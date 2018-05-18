@@ -1,0 +1,222 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'io.fabric'
+repositories {
+    mavenCentral()
+    mavenLocal()
+    flatDir {
+        dirs 'libs'
+    }
+}
+def bakPath = file("${buildDir}/bakApk/")
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.xjxeqb.money"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.1"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    //签名
+    signingConfigs {
+        myConfig {
+            storeFile file("bangnidai.jks")      //签名文件
+            storePassword "bangnidai123"
+            keyAlias "bangnidai"
+            keyPassword "bangnidai123"  //签名密码
+        }
+
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.myConfig
+            multiDexEnabled true
+            minifyEnabled false
+            proguardFiles 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
+                            && 'release'.equals(variant.buildType.name)) {
+                        def apkFile = new File(
+                                output.outputFile.getParent(),
+                                "BNDXJD${variant.flavorName}_v${variant.versionName}_${releaseTime()}.apk")
+                        output.outputFile = apkFile
+                    }
+                }
+            }
+        }
+
+
+        debug {
+            signingConfig signingConfigs.myConfig
+            minifyEnabled false
+            multiDexEnabled true
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        z30033{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30001"]
+            buildConfigField 'String','CHANNLE','"30001"'
+        }
+
+        aoppo{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30053"]
+            buildConfigField 'String','CHANNLE','"30053"'
+        }
+
+        a360{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30050"]
+            buildConfigField 'String','CHANNLE','"30050"'
+        }
+
+        ayingyongbao{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30051"]
+            buildConfigField 'String','CHANNLE','"30051"'
+        }
+
+        axiaomi{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30055"]
+            buildConfigField 'String','CHANNLE','"30055"'
+        }
+
+        ahuawei{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30054"]
+            buildConfigField 'String','CHANNLE','"30054"'
+        }
+
+        abaidu{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30056"]
+            buildConfigField 'String','CHANNLE','"30056"'
+        }
+
+        avivo{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30052"]
+            buildConfigField 'String','CHANNLE','"30052"'
+        }
+
+
+        bvivo{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30057"]
+            buildConfigField 'String','CHANNLE','"30057"'
+        }
+
+        bxiaomi{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30058"]
+            buildConfigField 'String','CHANNLE','"30058"'
+        }
+
+        byingyongbao{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30059"]
+            buildConfigField 'String','CHANNLE','"30059"'
+        }
+
+        bhuawei{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30060"]
+            buildConfigField 'String','CHANNLE','"30060"'
+        }
+
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+//    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+//        transitive = true;
+//    }
+    compile(name: 'base', ext: 'aar')
+//    compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+//    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
+//    compile "com.android.support:design:$rootProject.ext.supportVersion"
+    compile "net.qiujuer.genius:ui:$rootProject.ext.geniusVersion"
+    compile "net.qiujuer.genius:res:$rootProject.ext.geniusVersion"
+    compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageviewVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    compile "pub.devrel:easypermissions:$rootProject.ext.easyPMVersion"
+    // 空气面板
+    compile "net.qiujuer.widget:airpanel:$rootProject.ext.airpanelVersion"
+    compile project(':common')
+    compile project(':lang')
+    compile project(':factory')
+    compile files('libs/MiPush_SDK_Client_3_2_2.jar')
+    compile project(':PhotoPicker')
+    compile 'com.liulishuo.filedownloader:library:1.6.5'
+    compile 'org.jsoup:jsoup:1.9.2'
+    compile 'com.lovedise:permissiongen:0.0.6'
+    compile 'q.rorbin:badgeview:1.1.2'
+    compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.github.addappcn:android-pickers:1.0.3'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+//    compile 'com.android.support:support-v4:25.+'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.1'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    testCompile 'junit:junit:4.12'
+    compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2'
+    compile 'com.github.mcxtzhang:SuspensionIndexBar:V1.0.0'
+}
+def product_name = "bangnidai_v" + android.defaultConfig.versionName
+def time = "1367"
+
+task initTimeScape << {
+    println "first time"
+    println "$time"
+    def gCalendar = new GregorianCalendar()
+    time = gCalendar.time.format("MMddHHmm")
+    println "second time"
+    println "$time"
+}
+
+task initReleaseApkProduct_name(dependsOn: ['initTimeScape']) << {
+    //初始化release包名
+    product_name = product_name + "_" + time + "R.apk"
+    def outputName = "_OUT:>PRODUCT_FILENAME=" + product_name + ";_"
+    println "$outputName"
+}
+
+task initDebugApkProduct_name(dependsOn: ['initTimeScape']) << { //初始化release包名
+    product_name = product_name + "_" + time + "D.apk"
+    def outputName = "_OUT:>PRODUCT_FILENAME=" + product_name + ";_"
+    println "$outputName"
+}
+
+
+task release(dependsOn: ['assembleRelease', 'initReleaseApkProduct_name']) << {
+    copy {
+        from('build/outputs/apk') {
+            include('**/*-release.apk')
+            rename '(.*)-release.apk', product_name
+        }
+        from('build/proguard/release') {
+            include('**/mapping.txt')
+            rename '(.*).txt', product_name + ".map"
+        }
+        into('products')
+    }
+}
+
+task debug(dependsOn: ['assembleDebug', 'initDebugApkProduct_name']) << {
+    copy {
+        from('build/outputs/apk') {
+            include('**/*.apk')
+            rename '(.*).apk', product_name
+        }
+        into('products')
+    }
+}

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+    >
+
+
+    <include layout="@layout/toolbar"></include>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/calcgray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="应缴个税(元)"
+        android:textColor="@color/calctextcolor"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="20sp"
+        android:textColor="@color/red_text"
+        />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="12sp"
+        android:layout_marginLeft="19dp"
+        android:textColor="@color/righttextcolor"
+        android:text="请输入收入信息"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="请输入工资"
+            android:textSize="14sp"
+            />
+
+
+        <EditText
+            android:id="@+id/et_moneynum"
+            android:inputType="number"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入金额"
+            android:maxLength="11"
+            android:textColorHint="#bfbfbf"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="起征点"
+            android:textSize="14sp"
+            />
+
+
+        <EditText
+            android:id="@+id/tv_threshold"
+            android:inputType="number"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入金额"
+            android:textColorHint="#bfbfbf"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@null"
+            android:maxLength="11"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_calc"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonborder"
+        android:text="个税计算"
+        android:textColor="@color/calctextcolor"
+        />
+
+
+</LinearLayout>

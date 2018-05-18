@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:id="@+id/lin_main"
+    >
+
+
+    <include layout="@layout/toolbar"></include>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/calcgray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="商业贷款"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_wan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/calctextcolor"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="万"
+            />
+
+        <EditText
+            android:id="@+id/et_moneynum"
+            android:inputType="numberDecimal"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入商业贷款数"
+            android:textColorHint="#bfbfbf"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/tv_wan"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rel_lilv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="还款年限"
+            android:textSize="14sp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_goforward2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/goforward"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_baseinterest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="基准利率(4.90%)"
+            android:textSize="12sp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/calctextcolor"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_goforward2"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_date"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="还款年限"
+            android:textSize="14sp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_goforward1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/goforward"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1年(12个月)"
+            android:textSize="12sp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/calctextcolor"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_goforward1"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="还款方式"
+            android:textSize="14sp"
+            />
+
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="137dp"
+            android:layout_height="34dp"
+            android:background="@drawable/border"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            >
+
+            <RadioButton
+                android:id="@+id/radiobutton1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="等额本息"
+                android:checked="true"
+                android:button="@null"
+                android:background="@drawable/rb_nobtn_selector"
+                android:textColor="@color/black"
+                android:gravity="center"
+                />
+
+            <RadioButton
+                android:id="@+id/radiobutton2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="等额本金"
+                android:button="@null"
+                android:textColor="@color/black"
+                android:background="@drawable/rb_nobtn_selector"
+                android:gravity="center"
+                />
+
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_calc"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonborder"
+        android:text="开始计算"
+        android:textColor="@color/calctextcolor"
+        />
+
+
+
+
+
+
+
+</LinearLayout>

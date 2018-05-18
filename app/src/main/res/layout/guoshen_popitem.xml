@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="72px"
+              android:background="@color/white"
+    >
+
+
+    <CheckBox
+        android:id="@+id/guoshen_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/guoshen_popcheckbox"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16px"
+        />
+
+    <TextView
+        android:id="@+id/tv_qs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1期"
+        android:textSize="16px"
+        android:textColor="#333333"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/guoshen_checkbox"
+        android:layout_marginLeft="23px"
+        />
+
+    <TextView
+        android:id="@+id/tv_hkr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="还款日"
+        android:textSize="12px"
+        android:textColor="#333333"
+        android:layout_toRightOf="@+id/tv_qs"
+        android:layout_marginTop="18px"
+        android:layout_marginLeft="21px"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_hkjetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="还款金额"
+        android:textSize="12px"
+        android:textColor="#333333"
+        android:layout_toRightOf="@+id/tv_qs"
+        android:layout_marginLeft="21px"
+        android:layout_below="@+id/tv_hkr"
+        android:layout_marginTop="2px"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_hkrnum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-04-24"
+        android:textSize="12px"
+        android:textColor="#333333"
+        android:layout_alignBaseline="@+id/tv_hkr"
+        android:layout_marginLeft="176px"
+        />
+
+    <TextView
+        android:id="@+id/tv_hkjenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="172.67"
+        android:textSize="12px"
+        android:textColor="#333333"
+        android:layout_alignBaseline="@+id/tv_hkjetext"
+        android:layout_marginLeft="176px"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="待还款"
+        android:textColor="#333333"
+        android:textSize="16px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="22px"
+        android:layout_centerVertical="true"
+        />
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

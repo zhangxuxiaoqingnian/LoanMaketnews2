@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="200dp"
+              android:layout_height="100dp"
+              android:background="@drawable/poplist"
+              android:elevation="10dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="标记为已申请"
+        android:textColor="@color/textSecond"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="删除"
+        android:textColor="@color/textSecond"
+        android:gravity="center"
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>

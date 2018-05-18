@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+    <string name="action_home">首页</string>
+    <string name="action_search">发现</string>
+    <string name="action_active">活动</string>
+    <string name="action_creditcard">信用卡</string>
+    <string name="action_mine">我的</string>
+    <string name="action_add">添加</string>
+    <string name="action_person">用户信息</string>
+    <string name="action_follow">关注</string>
+
+    <string name="application_mine">我的申请</string>
+
+    <string name="setting_mine">设置</string>
+</resources>

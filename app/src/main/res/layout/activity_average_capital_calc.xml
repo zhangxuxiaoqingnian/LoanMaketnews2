@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+    >
+
+    <include layout="@layout/toolbar"></include>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/calcgray" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="贷款金额(万)"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_wan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/calctextcolor"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="万"
+            />
+
+        <EditText
+            android:id="@+id/et_moneynum"
+            android:inputType="numberDecimal"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入贷款金额"
+            android:textColorHint="#bfbfbf"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/tv_wan"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="贷款期限(年)"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/calctextcolor"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="年"
+            />
+
+        <EditText
+            android:id="@+id/et_year"
+            android:inputType="number"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入贷款期限"
+            android:textColorHint="#bfbfbf"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/tv_year"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/calctextcolor"
+            android:text="年利率"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/calctextcolor"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="%"
+            />
+
+        <EditText
+            android:id="@+id/et_rate"
+            android:inputType="numberDecimal"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入利率"
+            android:textColorHint="#bfbfbf"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/tv_rate"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/calcgray"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_calc"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonborder"
+        android:text="计算"
+        android:textColor="@color/calctextcolor"
+        />
+
+
+
+
+
+
+</LinearLayout>

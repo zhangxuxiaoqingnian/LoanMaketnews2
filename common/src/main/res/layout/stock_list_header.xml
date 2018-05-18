@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:layout_marginRight="16dp"
+        android:layout_height="30dp"
+        >
+        <TableRow
+            android:id="@+id/stock_list_header_row">
+            <TextView
+                android:id="@+id/stock_list_header_code"
+                android:text="期数"
+                android:layout_width="0dp"
+                android:layout_weight="14"
+                android:textColor="#333"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dip"
+                />
+
+            <TextView
+                android:id="@+id/stock_list_header_symbol"
+                android:text="应还本金"
+                android:layout_width="0dp"
+                android:textColor="#333"
+                android:layout_weight="28"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dip"
+                />
+
+            <TextView
+                android:id="@+id/stock_list_header_last_price"
+                android:text="应还利息"
+                android:layout_width="0dp"
+                android:layout_weight="28"
+                android:textColor="#333"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dip"
+                />
+
+            <TextView
+                android:id="@+id/stock_list_header_price_change"
+                android:text="每期还款额"
+                android:layout_width="0dp"
+                android:layout_weight="28"
+                android:textColor="#333"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dip"
+                />
+        </TableRow>
+    </TableLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider_gray"/>
+</LinearLayout>

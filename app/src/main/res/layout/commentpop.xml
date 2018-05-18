@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="272dp"
+                android:layout_height="362dp"
+    >
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="212dp"
+        android:layout_marginTop="87dp"
+        android:background="@drawable/commentcircle"
+        android:orientation="vertical"
+        >
+
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="24dp"
+           android:layout_marginTop="91dp"
+           android:text="悄悄告诉你"
+           android:textSize="14sp"
+           android:textColor="@color/textPrimary"
+           />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:text="在应用商店评论可以加快放款速度哦"
+            android:textSize="14sp"
+            android:textColor="@color/textPrimary"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="27dp"
+            android:background="#DDDDDD"
+            />
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="去评论"
+            android:textColor="#E42A2A"
+            android:textSize="18sp"
+            android:gravity="center"
+            />
+
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <ImageView
+        android:layout_width="208dp"
+        android:layout_height="208dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/praise"
+        />
+
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/popclose"
+        />
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/lin_home"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#F4F4F4"
+              android:paddingTop="28px"
+    >
+
+    <include  layout="@layout/guoshen_title"/>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rel_empty"
+        android:layout_width="match_parent"
+        android:layout_marginRight="15px"
+        android:layout_marginLeft="15px"
+        android:layout_height="150px"
+        android:layout_marginTop="8px"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/tv_tishi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105px"
+            android:layout_centerHorizontal="true"
+            android:text="您还没有添加还款记录呦~"
+            android:textColor="#4676B4"
+            />
+
+        <ImageView
+            android:layout_width="71px"
+            android:layout_height="71px"
+            android:layout_marginTop="32px"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/guoshen_additem"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+        android:id="@+id/viewpager"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:padding="24px"
+        android:layout_height="200px"
+        app:rvp_triggerOffset="0.1"
+        app:rvp_singlePageFling="true"
+        android:clipToPadding="false"
+        >
+    </com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rel_tab"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:layout_marginLeft="18px"
+        android:layout_marginRight="18px"
+        android:layout_marginTop="10px"
+        android:background="@color/white"
+        android:layout_below="@+id/viewpager"
+        >
+
+        <TextView
+            android:id="@+id/tv_hksj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16px"
+            android:text="还款时间"
+            android:textColor="#333333"
+            android:layout_marginLeft="21px"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_qs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16px"
+            android:text="期数"
+            android:textColor="#333333"
+            android:layout_toRightOf="@+id/tv_hksj"
+            android:layout_marginLeft="26px"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_hkje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16px"
+            android:text="还款金额"
+            android:textColor="#333333"
+            android:layout_toRightOf="@+id/tv_qs"
+            android:layout_marginLeft="27px"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_dqzt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16px"
+            android:text="当前状态"
+            android:textColor="#333333"
+            android:layout_toRightOf="@+id/tv_hkje"
+            android:layout_marginLeft="27px"
+            android:layout_centerVertical="true"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#EEEEEE"
+            android:layout_alignParentBottom="true"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mrecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="219px"
+            android:visibility="gone"
+            android:paddingBottom="20px"
+            android:layout_marginRight="18px"
+            android:layout_marginLeft="18px"
+            android:background="@color/white"
+            android:layout_below="@+id/rel_tab"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+
+
+        <TextView
+            android:id="@+id/tv_updatestatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:textSize="16px"
+            android:text="修改当前状态"
+            android:textColor="#ffffff"
+            android:background="#ffcf00"
+            android:gravity="center"
+            android:padding="15px"
+            />
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

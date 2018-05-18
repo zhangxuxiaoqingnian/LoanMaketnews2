@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+    <string name="title_home">首页</string>
+    <string name="title_find">发现</string>
+    <string name="title_active">活动</string>
+    <string name="title_creditcard">信用卡中心</string>
+    <string name="title_mine">我的</string>
+
+
+    <string name="title_special">专栏</string>
+    <string name="title_cal">计算器</string>
+
+    <string name="title_quick">今日头条</string>
+
+    <string name="title_search">搜索</string>
+    <string name="title_search_user">搜索用户</string>
+    <string name="title_search_group">搜索群</string>
+
+    <string name="title_select_gallery">选择照片</string>
+    <string name="title_assist_permissions">授予权限</string>
+
+    <string name="title_member_list">成员</string>
+    <string name="title_member_add">添加新成员</string>
+</resources>

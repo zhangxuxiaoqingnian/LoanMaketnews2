@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+    <string name="label_permission_network">网络访问</string>
+    <string name="label_permission_network_desc">用于即时通讯传输</string>
+    <string name="label_permission_read">读取文件</string>
+    <string name="label_permission_read_desc">用于设置头像与发送图片</string>
+    <string name="label_permission_write">写外部文件</string>
+    <string name="label_permission_write_desc">用于OSS日志存储</string>
+    <string name="label_permission_record_audio">麦克风</string>
+    <string name="label_permission_record_audio_desc">用于音频聊天</string>
+    <string name="label_permission_submit">授权</string>
+    <string name="label_permission_ok">授权成功！</string>
+
+    <string name="label_update_info_tips">仅差一步了</string>
+    <string name="label_login_welcome">登录</string>
+    <string name="label_submit">提交</string>
+    <string name="label_login">登录</string>
+    <string name="label_phone">请输入手机号码</string>
+    <string name="label_old">请输入原密码</string>
+    <string name="label_regist">注册</string>
+    <string name="update">确认修改</string>
+    <string name="label_register_welcome">欢迎您!</string>
+    <string name="label_register">注册</string>
+    <string name="label_code">请输入验证码</string>
+    <string name="update_password">请再次输入您的密码</string>
+    <string name="label_password">请输入密码</string>
+    <string name="label_new">请输入新密码</string>
+    <string name="code">验证码</string>
+    <string name="password">密码</string>
+    <string name="label_portrait_tips">选择你的专属头像</string>
+    <string name="label_name">名字</string>
+    <string name="label_desc_tips">用一句话介绍自己</string>
+    <string name="label_sex_man">男</string>
+    <string name="label_sex_woman">女</string>
+    <string name="label_go_register">去注册</string>
+
+
+
+    <string name="label_go_forget">忘记密码?</string>
+    <string name="label_go_login">去登录</string>
+
+    <string name="label_follows">Follows\n%s</string>
+    <string name="label_following">Following\n%s</string>
+    <string name="label_gallery_select_max_size">至多选择%d张</string>
+    <string name="label_gallery_selected_size">已选%s张</string>
+
+    <string name="label_group_name">群名称</string>
+    <string name="label_group_desc">群描述</string>
+    <string name="label_group_member_select">群成员</string>
+
+    <string name="label_group_create_invalid">所有项都是必须，并且至少选择一名成员!</string>
+    <string name="label_group_member_add_invalid">没有新增加的成员!</string>
+    <string name="label_group_create_succeed">创建群成功!</string>
+
+    <string name="label_chat_edit_hint">Type something to send…</string>
+
+    <string name="toast_audio_play_error">播放失败！</string>
+    <string name="toast_audio_record_time_short_error">录音时间太短!</string>
+
+    <string name="toast_download_error">下载失败!</string>
+
+
+    <string name="worth_active">身价计算器</string>
+    <string name="loan_active">贷款计算器</string>
+    <string name="try_active">等你来测</string>
+    <string name="parity_active">比价神器</string>
+    <string name="application_people">申请人数</string>
+
+    <string name="hot_platform">热门贷款平台</string>
+    <string name="hot_creditcard">热门信用卡</string>
+
+    <string name="city_new">新品区</string>
+
+    <string name="city_big">大额贷</string>
+    <string name="city_credit">信用贷</string>
+    <string name="city_quick">极速贷</string>
+    <string name="city_hot">热门贷</string>
+</resources>

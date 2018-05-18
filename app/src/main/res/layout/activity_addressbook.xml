@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:paddingTop="23dp"
+             android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rel_titel"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/len_8"
+            android:src="@drawable/back1" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="添加"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/font_16"
+            />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rel_titel"
+        android:background="@android:color/white">
+    </android.support.v7.widget.RecyclerView>
+
+    <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
+        android:id="@+id/indexBar"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rel_titel"
+        app:indexBarPressBackground="#39000000"
+        app:indexBarTextSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvSideBarHint"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_side_bar_bg"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/white"
+        android:textSize="48sp"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:text="A"
+        tools:visibility="visible"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

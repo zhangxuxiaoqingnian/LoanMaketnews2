@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+    <string name="data_account_login_invalid_parameter">账户名密码不能为空！</string>
+    <string name="data_account_login_error_validate">账户或密码验证错误</string>
+    <string name="data_account_register_invalid_parameter_mobile">请输入正确的手机号!</string>
+    <string name="data_account_register_invalid_parameter_password">密码不能小于6位!</string>
+    <string name="data_account_register_invalid_parameter_name">称呼不能小于2位!</string>
+    <string name="data_account_update_invalid_parameter">头像和描述不能为空!</string>
+    <string name="data_network_error">网络错误！</string>
+    <string name="data_upload_error">文件上传失败！</string>
+    <string name="apply">本次是否完成了申请</string>
+    <string name="no_login"> 您未登录,点击 登录/注册 去登录</string>
+    <string name="data_rsp_error_missing_data">缺少数据，请重新提交！</string>
+    <string name="data_rsp_error_parameters">抱歉，参数错误哦! O_o</string>
+    <string name="missing_data">缺少数据，请重新提交</string>
+    <string name="database_query_failed">数据库查询失败</string>
+    <string name="no_query_results">数据库查询失败</string>
+    <string name="user_does_not_exist">无查询结果</string>
+    <string name="the_new_password_is_empty">新密码为空</string>
+    <string name="mailbox_empty">邮箱为空</string>
+    <string name="user_id_is_empty">用户ID为空</string>
+    <string name="user_authentication_failed">验证问题错误</string>
+    <string name="sms_failed">短信发送失败</string>
+    <string name="the_verification_code_is_out_of_order">验证码有误</string>
+    <string name="sms_verification_has_been_done">已经通过短信验证，请勿重复</string>
+    <string name="the_cell_phone_number_format_is_wrong">手机号码格式有误</string>
+    <string name="user_information_is_empty">用户信息为空</string>
+
+    <string name="requested_mode_not_specified">未指定请求方式</string>
+
+
+    <string name="data_not_updated">未更新数据</string>
+
+
+    <string name="verify_code_error">验证码错误</string>
+
+
+    <string name="the_mailbox_has_been_canceled">邮箱已注销</string>
+
+
+    <string name="logon_failure">登陆失败</string>
+
+
+    <string name="non_current_user_login">非当前用户登录</string>
+
+
+    <string name="validation_problem_error">验证问题错误</string>
+
+    <string name="validation_error">验证错误</string>
+
+    <string name="user_not_logged_in">用户未登录</string>
+
+    <string name="the_user_is_not_logged_in_or_expired">用户未登录或过期</string>
+
+
+
+    <string name="the_password_is_empty">密码为空</string>
+
+
+    <string name="mail_failed">邮件发送失败</string>
+
+
+
+    <string name="user_information_failed_to_update">用户信息更新失败</string>
+
+
+    <string name="password_length_is_at_least_six_bits">密码长度至少六位</string>
+
+
+    <string name="password_error">密码错误</string>
+
+
+    <string name="the_password_is_the_same_as_the_old_one">密码跟旧密码一致</string>
+    <string name="no_data">暂时没有数据</string>
+
+    <string name="user_name_already_exists">用户名已存在</string>
+    <string name="openid_is_empty">openid为空，请重试</string>
+    <string name="the_cell_phone_has_been_registered">手机已经被注册</string>
+    <string name="failed_to_get_the_verification_code">获取验证码失败，请重试</string>
+    <string name="get_the_token_error">获取token错误，请重试</string>
+    <string name="the_phone_has_not_been_registered">该手机尚未注册，请重试</string>
+    <string name="validation_information_has_expired">验证信息已过期，请重新找回</string>
+    <string name="the_two_password_is_inconsistent">两次密码不一致，请检查重试</string>
+    <string name="please_enter_the_product_id">请输入产品id</string>
+    <string name="period_error">请输入需要期数</string>
+
+    <string name="the_loan_amount_is_wrong">请输入贷款的金额</string>
+    <string name="no_permissions">没有权限</string>
+    <string name="not_logged_on">没有登录</string>
+    <string name="database_problem">数据库问题</string>
+
+    <string name="version">有新版本了,马上更新</string>
+</resources>

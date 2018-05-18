@@ -1,0 +1,369 @@
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" >
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:divider="@color/divider_gray"
+            android:dividerHeight="1px"
+            android:paddingBottom="@dimen/len_2"
+            android:scrollbars="none"
+            android:visibility="gone"
+            />
+    </com.youth.banner.Banner>
+
+    <ImageView
+        android:id="@+id/im_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/len_12"
+        android:paddingEnd="@dimen/len_2"
+        android:paddingTop="@dimen/len_2"
+        android:layout_marginTop="@dimen/statusBarSize"
+        android:contentDescription="@string/app_name"
+        android:foreground="@drawable/ic_touch_menu"
+        android:scaleType="centerInside"
+        android:src="@drawable/message"
+        android:tint="?attr/toolbarMenuIconColor" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/banner"
+        android:orientation="vertical">
+        <!--滚动文字-->
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46px"
+            android:gravity="center_vertical"
+            >
+            <money.kuxuan.platform.moneyplatfrom.LampView
+                android:layout_width="match_parent"
+                android:id="@+id/lampview"
+                android:layout_height="wrap_content"
+                android:minHeight="24dp"
+                />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6px"
+            android:background="#F4F4F4"
+            />
+
+        <!--分区列表-->
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_68"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            >
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/quick_rel"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_fastloans"
+                    android:layout_width="41px"
+                    android:layout_height="41px"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/fast_loans"
+                    android:layout_marginLeft="9px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_fastloans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="极速贷"
+                    android:textSize="14px"
+                    android:textColor="#333333"
+                    android:layout_toRightOf="@+id/iv_fastloans"
+                    android:layout_marginTop="18px"
+                    android:layout_marginLeft="10px"
+                    />
+
+                <TextView
+                    android:id="@+id/new_two"
+                    android:layout_width="14px"
+                    android:layout_height="11px"
+                    android:gravity="top|center_horizontal"
+                    android:visibility="gone"
+                    android:padding="1px"
+                    android:textSize="6sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/red_back"
+                    android:layout_toRightOf="@+id/tv_fastloans"
+                    android:layout_marginLeft="6px"
+                    android:layout_marginTop="14px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最快2小时到账"
+                    android:layout_marginTop="3px"
+                    android:textColor="#999999"
+                    android:textSize="12px"
+                    android:layout_below="@+id/tv_fastloans"
+                    android:layout_alignStart="@+id/tv_fastloans"
+                    />
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#E5E5E5"
+                />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/hot_rel"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_hotloans"
+                    android:layout_width="41px"
+                    android:layout_height="41px"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/hotloans"
+                    android:layout_marginLeft="9px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_hotloans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热门贷"
+                    android:textSize="14px"
+                    android:textColor="#333333"
+                    android:layout_toRightOf="@+id/iv_hotloans"
+                    android:layout_marginTop="18px"
+                    android:layout_marginLeft="10px"
+                    />
+
+                <TextView
+                    android:id="@+id/new_three"
+                    android:layout_width="14px"
+                    android:layout_height="11px"
+                    android:gravity="top|center_horizontal"
+                    android:visibility="gone"
+                    android:padding="1px"
+                    android:textSize="6sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/red_back"
+                    android:layout_toRightOf="@+id/tv_hotloans"
+                    android:layout_marginLeft="6px"
+                    android:layout_marginTop="14px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大热贷款平台推荐"
+                    android:layout_marginTop="3px"
+                    android:textColor="#999999"
+                    android:textSize="12px"
+                    android:layout_below="@+id/tv_hotloans"
+                    android:layout_alignStart="@+id/tv_hotloans"
+                    />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#E5E5E5"
+            />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_68"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            >
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/big_rel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <ImageView
+                    android:id="@+id/iv_wholesaleloans"
+                    android:layout_width="41px"
+                    android:layout_height="41px"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/wholesaleloans"
+                    android:layout_marginLeft="9px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_wholesaleloans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大额贷"
+                    android:textSize="14px"
+                    android:textColor="#333333"
+                    android:layout_toRightOf="@+id/iv_wholesaleloans"
+                    android:layout_marginTop="18px"
+                    android:layout_marginLeft="10px"
+                    />
+
+                <TextView
+                    android:id="@+id/new_five"
+                    android:layout_width="14px"
+                    android:layout_height="11px"
+                    android:gravity="top|center_horizontal"
+                    android:visibility="gone"
+                    android:padding="1px"
+                    android:textSize="6sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/red_back"
+                    android:layout_toRightOf="@+id/tv_wholesaleloans"
+                    android:layout_marginLeft="6px"
+                    android:layout_marginTop="14px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="高额度 低门槛"
+                    android:layout_marginTop="3px"
+                    android:textColor="#999999"
+                    android:textSize="12px"
+                    android:layout_below="@+id/tv_wholesaleloans"
+                    android:layout_alignStart="@+id/tv_wholesaleloans"
+                    />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#E5E5E5"
+                />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/new_rel"
+                android:clipChildren="false"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <ImageView
+                    android:id="@+id/iv_newgoods"
+                    android:layout_width="41px"
+                    android:layout_height="41px"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/newgoods"
+                    android:layout_marginLeft="9px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_newgoods"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新品区"
+                    android:textSize="14px"
+                    android:textColor="#333333"
+                    android:layout_toRightOf="@+id/iv_newgoods"
+                    android:layout_marginTop="18px"
+                    android:layout_marginLeft="10px"
+                    />
+
+                <TextView
+                    android:id="@+id/new_four"
+                    android:layout_width="14px"
+                    android:layout_height="11px"
+                    android:gravity="top|center_horizontal"
+                    android:visibility="gone"
+                    android:padding="1px"
+                    android:textSize="6sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/red_back"
+                    android:layout_toRightOf="@+id/tv_newgoods"
+                    android:layout_marginLeft="6px"
+                    android:layout_marginTop="14px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最新上架平台"
+                    android:layout_marginTop="3px"
+                    android:textColor="#999999"
+                    android:textSize="12px"
+                    android:layout_below="@+id/tv_newgoods"
+                    android:layout_alignStart="@+id/tv_newgoods"
+                    />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6px"
+            android:background="#F4F4F4"
+            />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/len_16"
+                android:drawablePadding="@dimen/len_10"
+                android:drawableStart="@drawable/yhot"
+                android:text="@string/hot_platform"
+                android:textColor="@color/textSecond"
+                android:textSize="@dimen/font_14" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#F4F4F4"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

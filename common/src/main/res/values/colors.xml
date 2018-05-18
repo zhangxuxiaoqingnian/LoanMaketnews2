@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--基础主色-->
+    <color name="colorPrimary">#31373d</color>
+    <color name="colorPrimaryDark">#31373d</color>
+    <color name="colorAccent">#1572fc</color>
+    <color name="colorLight">@color/white</color>
+    <color name="colorDark">@color/black</color>
+    <color name="colorAccentAlpha">#801572fc</color>
+
+    <!--背景色-->
+    <color name="windowsBackground">#f7f7f7</color>
+    <color name="windowsBackgroundLight">#f8f8f8</color>
+
+    <!--字体颜色-->
+    <color name="textPrimary">#333333</color>
+    <color name="textSecond">#666666</color>
+    <color name="textThird">#999999</color>
+    <color name="textAccent">@color/colorAccent</color>
+    <color name="textLight">@color/colorLight</color>
+    <color name="textDark">#202020</color>
+
+    <!--提示色彩-->
+    <color name="alertNormal">#4ce275</color>
+    <color name="alertImportant">#f98d2c</color>
+
+    <!--遮罩颜色-->
+    <color name="maskChatHeader">@color/black_alpha_48</color>
+    <!--导航栏Icon遮罩色-->
+    <color name="navIconTintLight">@color/white_alpha_240</color>
+
+    <color name="topTrans">#21000000</color>
+
+    <color name="divider_gray">#e5e5e5</color>
+
+
+    <color name="righttextcolor">#bfbfbf</color>
+    <color name="calcgray">#f2f2f2</color>
+    <color name="yellow">#ffffd100</color>
+    <color name="red_alpha">#fa2f2f</color>
+    <color name="yellow_alpha">#55FFD100</color>
+    <!--<color name="bu_yellow_bg">#ffd100</color>-->
+    <color name="bu_yellow_bg">#21d09c</color>
+    <color name="yellow_apply">#f5e993</color>
+    <color name="bu_cccc">#cccccc</color>
+
+    <color name="calctextcolor">#414141</color>
+    <color name="red_text">#e42a2a</color>
+    <color name="bg_color">#f5f4f9</color>
+</resources>

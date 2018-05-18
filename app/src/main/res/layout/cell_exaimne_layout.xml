@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:id="@+id/mlayout"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="@dimen/len_80">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/len_20"
+        android:layout_marginTop="@dimen/len_8"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:maxLines="2"
+            android:layout_height="wrap_content"
+            android:text="如何简单有效理财"
+            android:layout_marginEnd="@dimen/len_16"
+            android:textColor="@color/textPrimary" />
+    <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/len_16"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:text="投资理财"
+                android:textSize="@dimen/font_12"
+                android:textColor="@color/textSecond" />
+            <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eye"/>
+            <TextView
+                android:id="@+id/num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9179"
+                android:textSize="@dimen/font_12"
+                android:layout_marginLeft="@dimen/len_4"
+                android:textColor="@color/textSecond" />
+               <!--<ImageView-->
+                   <!--android:layout_width="wrap_content"-->
+                   <!--android:layout_marginTop="3dp"-->
+                   <!--android:layout_marginLeft="@dimen/len_8"-->
+                   <!--android:layout_height="wrap_content"-->
+                   <!--android:src="@drawable/time"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/time"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                 <!--android:textSize="@dimen/font_12"-->
+                <!--android:layout_marginLeft="@dimen/len_4"-->
+                <!--android:text="2017-08-30"-->
+
+                <!--android:textColor="@color/textSecond" />-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <money.kuxuan.platform.common.widget.PortraitView
+        android:id="@+id/im_message"
+        android:layout_width="@dimen/len_88"
+        android:layout_height="@dimen/len_56"
+        android:layout_marginBottom="@dimen/len_8"
+        android:layout_marginEnd="@dimen/len_16"
+        android:layout_marginStart="@dimen/len_8"
+        android:layout_marginTop="@dimen/len_8"
+        android:scaleType="fitXY"
+        android:src="@drawable/project"
+        />
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+    <string name="prompt_empty">sorry，没有找到符合条件的产品</string>
+    <string name="prompt_error">我们正在联系火星总部查找您所需要的界面</string>
+    <string name="prompt_loading">加载中...</string>
+</resources>
