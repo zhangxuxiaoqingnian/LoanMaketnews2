@@ -21,7 +21,6 @@
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <uses-permission android:name="com.xjxeqb.money.permission.MIPUSH_RECEIVE" />
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -47,9 +46,11 @@
             android:name=".activities.AccountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-
-        <activity android:name=".activities.ApActivity1"/>
-        <activity android:name=".activities.Activity_AddressBook"/>
+        <activity android:name=".activities.ApActivity1"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".activities.Activity_AddressBook" />
 
         <service
             android:name="com.xiaomi.push.service.XMPushService"
@@ -110,26 +111,15 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-
-        <activity android:name=".activities.Activity_HouseCalc"></activity>
-
-        <activity android:name=".guoshen.activity.HomeActivity"></activity>
-
-        <activity android:name=".activities.Activity_Average_Capital_Interest"></activity>
-
-        <activity android:name=".activities.Activity_Average_Capital"></activity>
-
-        <activity android:name=".activities.Activity_Average_Capital_Calc"></activity>
-
-        <activity android:name=".activities.Activity_Average_Capital_Interest_Calc"></activity>
-
-        <activity android:name=".activities.Activity_loanCarCalc"></activity>
-
-        <activity android:name=".activities.Activity_CreditCard_ByStages"></activity>
-
-        <activity android:name=".activities.Activity_Income_Tax_Calc"></activity>
-
-
+        <activity android:name=".activities.Activity_HouseCalc" />
+        <activity android:name=".guoshen.activity.HomeActivity" />
+        <activity android:name=".activities.Activity_Average_Capital_Interest" />
+        <activity android:name=".activities.Activity_Average_Capital" />
+        <activity android:name=".activities.Activity_Average_Capital_Calc" />
+        <activity android:name=".activities.Activity_Average_Capital_Interest_Calc" />
+        <activity android:name=".activities.Activity_loanCarCalc" />
+        <activity android:name=".activities.Activity_CreditCard_ByStages" />
+        <activity android:name=".activities.Activity_Income_Tax_Calc" />
         <activity
             android:name=".activities.ChildProductActivity"
             android:screenOrientation="portrait"
@@ -152,10 +142,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".guoshen.activity.MineActivity"></activity>
-
-        <activity android:name=".guoshen.activity.AddActivity"></activity>
-
+        <activity android:name=".guoshen.activity.MineActivity" />
+        <activity android:name=".guoshen.activity.AddActivity" />
         <activity
             android:name=".activities.SetActivity"
             android:screenOrientation="portrait"
@@ -204,10 +192,8 @@
         <activity
             android:name=".activities.DetailActivityC"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main">
-
-        </activity>
-        <!--友盟-->
+            android:theme="@style/AppTheme.Main" />
+        <!-- 友盟 -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5ad58bfcf29d98151e000036" />
@@ -215,6 +201,10 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
 
+        <activity android:name=".activities.Webview_protocol"
+                   android:screenOrientation="portrait"
+                   android:theme="@style/AppTheme.Main"
+            ></activity>
     </application>
 
 </manifest>

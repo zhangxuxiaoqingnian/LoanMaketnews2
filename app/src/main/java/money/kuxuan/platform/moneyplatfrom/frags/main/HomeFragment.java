@@ -116,6 +116,9 @@ public class HomeFragment extends PresenterFragment<HomeContract.Presenter>
         mListView.addHeaderView(homeHeaderLayout);
         mListView.setAdapter(mAdapter);
         mPlaceHolderView.triggerOkOrEmpty(true);
+
+
+
     }
 
     @Override

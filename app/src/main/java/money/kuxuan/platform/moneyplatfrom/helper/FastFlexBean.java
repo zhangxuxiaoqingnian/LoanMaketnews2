@@ -10,6 +10,8 @@ public class FastFlexBean extends BaseIndexPinyinBean {
 
     private String platform;//贷款平台的名字
     private boolean isTop;//是否是最上面的 不需要被转化成拼音的
+    private String imgurl;
+    private String uuid;
     
 
 
@@ -36,6 +38,13 @@ public class FastFlexBean extends BaseIndexPinyinBean {
         return platform;
     }
 
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
 
     public boolean isTop() {
         return isTop;
@@ -44,6 +53,14 @@ public class FastFlexBean extends BaseIndexPinyinBean {
     public FastFlexBean setTop(boolean top) {
         isTop = top;
         return this;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     @Override

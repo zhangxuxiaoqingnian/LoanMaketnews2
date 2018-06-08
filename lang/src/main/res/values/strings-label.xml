@@ -37,7 +37,7 @@
 
 
     <string name="label_go_forget">忘记密码?</string>
-    <string name="label_go_login">去登录</string>
+    <string name="label_go_login">有账号?去登录</string>
 
     <string name="label_follows">Follows\n%s</string>
     <string name="label_following">Following\n%s</string>
@@ -64,7 +64,7 @@
     <string name="loan_active">贷款计算器</string>
     <string name="try_active">等你来测</string>
     <string name="parity_active">比价神器</string>
-    <string name="application_people">申请人数</string>
+    <string name="application_people">放款</string>
 
     <string name="hot_platform">热门贷款平台</string>
     <string name="hot_creditcard">热门信用卡</string>

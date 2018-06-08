@@ -141,7 +141,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         loginAuto();
         mFragmentHelper = new FragmentHelper(this, R.id.lay_container,
                 getSupportFragmentManager(), this);
-        if (checkChannel()) {
+        if (checkChannel()==false) {
             mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(HomeFragment.class, R.string.title_home))
                     .add(1, new FragmentHelper.Tab<Integer>(SearchFragment.class, R.string.title_find))
                     .add(2,new FragmentHelper.Tab<Integer>(CreditCardFragment.class,R.string.action_creditcard))
@@ -185,7 +185,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             View view = mTabLayout.getTabAt(i).getCustomView();
             ImageView icon = (ImageView) view.findViewById(R.id.tab_content_image);
             TextView text = (TextView) view.findViewById(R.id.tab_content_text);
-            if (checkChannel()) {
+            if (checkChannel()==false) {
                 if (i == tab.getPosition()) {
                     icon.setImageResource(DataGenerator.mTabResPressed[i]);
                     text.setTextColor(0xff01d09c);
@@ -219,7 +219,8 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     }
 
     private void setTabs(TabLayout tabLayout, LayoutInflater inflater) {
-        if (checkChannel()) {
+        //修改底部标题栏
+        if (checkChannel()==false) {
             for (int i = 0; i < mTabRes.length; i++) {
                 TabLayout.Tab tab = tabLayout.newTab();
 
@@ -302,7 +303,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     if (rspAdModel.getData().getProduct_id().equals("0")) {
                         WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
                     } else {
-                        DetailActivity.show(MainActivity.this, product_id,"homeAd");
+                        DetailActivity.show(MainActivity.this, product_id,"homeAd",0);
                     }
                     adDialog.dismiss();
                 } else {

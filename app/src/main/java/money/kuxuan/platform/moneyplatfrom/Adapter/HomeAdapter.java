@@ -1,11 +1,13 @@
 package money.kuxuan.platform.moneyplatfrom.Adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -71,7 +73,6 @@ public class HomeAdapter extends BaseAdapter {
         if (convertView == null) {
             mViewHolder = new ViewHolder();
             convertView = mInflate.inflate(R.layout.cell_home_list, parent, false);
-
             mViewHolder.im_portrait = (PortraitView) convertView.findViewById(im_portrait);
             mViewHolder.txt_desc = (TextView) convertView.findViewById(R.id.txt_desc);
             mViewHolder.txt_name = (TextView) convertView.findViewById(R.id.txt_name);
@@ -80,6 +81,8 @@ public class HomeAdapter extends BaseAdapter {
             mViewHolder.txt_rate = (TextView)  convertView.findViewById(R.id.txt_rate);
             mViewHolder.txt_rate_number = (TextView)  convertView.findViewById(R.id.txt_rate_number);
             mViewHolder.mLayout = (LinearLayout) convertView.findViewById(R.id.mlayout);
+            mViewHolder.smialtext = (TextView) convertView.findViewById(R.id.smialtext);
+            mViewHolder.txt_prod_title.setTag(position);
             convertView.setTag(mViewHolder);
         }
         //有tag时
@@ -88,21 +91,31 @@ public class HomeAdapter extends BaseAdapter {
         }
         //填充item的数据
         mViewHolder.txt_name.setText(mData.get(position).getName());
-        mViewHolder.txt_desc.setText(mData.get(position).getDescription());
-        mViewHolder.txt_prod_title.setText(mData.get(position).getProd_title());
+        mViewHolder.txt_desc.setText(mData.get(position).getApplicants()+"人申请");
+
         if (mData.get(position).getShow_day().equals("日利率")) {
             mViewHolder.txt_rate_number.setText(mData.get(position).getDay_rate() + "%");
         } else {
             mViewHolder.txt_rate_number.setText(mData.get(position).getMonthly_rate() + "%");
         }
         mViewHolder.txt_rate.setText(mData.get(position).getShow_day());
-        if (mData.get(position).getProd_title() == null) {
-            mViewHolder.txt_prod_title.setVisibility(View.GONE);
-        } else {
+        /*if(mViewHolder.txt_prod_title.getTag().equals(position)){
+            if (mData.get(position).getProd_title() == null) {
+                mViewHolder.txt_prod_title.setVisibility(View.GONE);
+            } else {
+                mViewHolder.txt_prod_title.setText(mData.get(position).getProd_title());
+            }
+        }*/
+        if (!TextUtils.isEmpty(mData.get(position).getProd_title())) {
             mViewHolder.txt_prod_title.setText(mData.get(position).getProd_title());
+            mViewHolder.txt_prod_title.setVisibility(View.VISIBLE);
+        } else {
+            mViewHolder.txt_prod_title.setVisibility(View.GONE);
         }
+
         mViewHolder.im_portrait.setup(Glide.with(mContext),mData.get(position));
-        mViewHolder.txt_people_number.setText(mData.get(position).getApplicants());
+        mViewHolder.txt_people_number.setText(mData.get(position).getLend_time());
+        mViewHolder.smialtext.setText(mData.get(position).getUpper_amount()+"-"+mData.get(position).getLower_amount());
         mViewHolder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,5 +149,6 @@ public class HomeAdapter extends BaseAdapter {
         private TextView txt_prod_title;
         //产品布局
         private LinearLayout mLayout;
+        private TextView smialtext;
     }
 }

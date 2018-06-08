@@ -8,8 +8,11 @@ public class CreditCardPageModel extends PageModelAll{
 
     private int pageId;
 
+
+
     public CreditCardPageModel(int pageid) {
         this.pageId = pageid;
+
     }
 
 }

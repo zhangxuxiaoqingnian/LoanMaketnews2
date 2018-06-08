@@ -44,6 +44,8 @@ public class ProductViewHolder extends RecyclerAdapter.ViewHolder<Product> {
     //产品副标题
     @BindView(R.id.txt_prod_title)
     TextView txt_prod_title;
+    @BindView(R.id.smialtext)
+    TextView smialtext;
 
     public ProductViewHolder(View itemView, Context context) {
         super(itemView);
@@ -51,15 +53,23 @@ public class ProductViewHolder extends RecyclerAdapter.ViewHolder<Product> {
     }
 
     protected void onBind(Product product) {
+
+
         im_portrait.setup(Glide.with(context), product);
-        txt_people_number.setText(product.getApplicants());
+        txt_people_number.setText(product.getLend_time());
         txt_name.setText(product.getName());
-        if (!TextUtils.isEmpty(product.getProd_title())) {
-            txt_prod_title.setText(product.getProd_title());
-        } else {
-            txt_prod_title.setVisibility(View.GONE);
-        }
-        txt_desc.setText(product.getDescription());
+
+            if (!TextUtils.isEmpty(product.getProd_title())) {
+                txt_prod_title.setText(product.getProd_title());
+                txt_prod_title.setVisibility(View.VISIBLE);
+            } else {
+                txt_prod_title.setVisibility(View.GONE);
+            }
+
+
+        smialtext.setText(product.getUpper_amount()+"-"+product.getLower_amount());
+        //mData.get(position).getUpper_amount()+"-"+mData.get(position).getLower_amount()
+        txt_desc.setText(product.getApplicants()+"人申请");
         txt_rate.setText(product.getShow_day());
         if (product.getShow_day().equals("日利率")) {
             txt_rate_number.setText(product.getDay_rate() + "%");

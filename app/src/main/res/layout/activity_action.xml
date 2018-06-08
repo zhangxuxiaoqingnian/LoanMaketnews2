@@ -95,7 +95,6 @@
                 android:textStyle="bold"
                 app:gTouchColor="@color/bu_yellow_bg"
                 app:gTouchCornerRadius="3dp"
-
                 app:gTouchEffect="ripple"
                 android:id="@+id/action_button"
                 android:layout_height="@dimen/len_44"

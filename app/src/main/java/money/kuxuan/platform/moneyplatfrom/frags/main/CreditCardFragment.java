@@ -103,7 +103,7 @@ public class CreditCardFragment extends PresenterFragment<CreditcardContract.Pre
 
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<CreditCardProduct>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardProduct product) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardProduct product,int pos) {
 
                 setCreditCardProduct(product);
                 mPresenter.loginState(Integer.parseInt(product.getId()));
@@ -295,7 +295,6 @@ public class CreditCardFragment extends PresenterFragment<CreditcardContract.Pre
 
         WebActivity.show(getContext(), creditCardProduct.getName(),
                 creditCardProduct.getUrl());
-
     }
 
 

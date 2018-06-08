@@ -26,7 +26,7 @@
             android:text="立即申请"
             android:id="@+id/btn_submit"
             android:textAppearance="@style/TextAppearance.Title"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             />
 
     </com.zhy.autolayout.AutoLinearLayout>
@@ -82,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:padding="@dimen/len_8"
-                android:src="@drawable/callphone" />
+                android:visibility="gone"
+                android:src="@drawable/callphone3" />
         </android.support.v7.widget.Toolbar>
 
         <View
@@ -275,7 +276,6 @@
                     android:id="@+id/tv_monthlyrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="参考月利率"
                     android:layout_marginTop="19px"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/textSecond"
@@ -303,7 +303,7 @@
             android:layout_height="6px"
             />
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/len_44"
             android:background="@drawable/bg_linear"
@@ -315,44 +315,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/len_16"
                 android:text="金额"
+                android:layout_alignParentLeft="true"
                 android:textColor="@color/textSecond"
+                android:layout_centerVertical="true"
                 android:textSize="@dimen/font_14" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/edit_money"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:inputType="number"
                 android:textStyle="bold"
                 android:padding="@dimen/len_8"
                 android:maxLength="6"
+                android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#FFCF00"
+                android:textColor="#21d09c"
                 android:textCursorDrawable="@drawable/ic_cursor"
+                android:layout_centerInParent="true"
                 android:textSize="20sp" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/len_20"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:text="元"
                 android:textColor="@color/textSecond" />
-        </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
 
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/res_data"
             android:layout_width="match_parent"
             android:layout_height="@dimen/len_44"
             android:background="@color/white"
@@ -364,40 +363,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/len_16"
                 android:text="期限"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:textColor="@color/textSecond"
                 android:textSize="@dimen/font_14" />
 
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/InstallmentPeriod_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFCF00"
+                android:textColor="#21d09c"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:layout_centerInParent="true"
                 />
 
-
-            <Space
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/data_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:textColor="@color/textSecond"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="@dimen/len_20"
+                android:layout_centerVertical="true"
+                />
 
 
             <ImageView
                 android:layout_width="30px"
                 android:layout_height="30px"
-                android:layout_marginEnd="@dimen/len_16"
+                android:layout_marginEnd="10dp"
                 android:id="@+id/bpoint"
                 android:scaleType="center"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/forward" />
 
-        </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"

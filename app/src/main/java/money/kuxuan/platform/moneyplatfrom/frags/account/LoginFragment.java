@@ -7,6 +7,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.text.Html;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -231,10 +232,18 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
 
     @OnClick(R.id.back)
     void onBack() {
+
+
         time.cancel();
 //        getActivity().finish();
 //        MainActivity.show(getActivity());
         listener.onLoginSuccess();
+
+        View view = getActivity().getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
 
     }
 

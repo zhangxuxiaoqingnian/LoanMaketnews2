@@ -1,17 +1,27 @@
 package money.kuxuan.platform.moneyplatfrom.frags.main;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -31,9 +41,11 @@ import money.kuxuan.platform.factory.model.db.Dialogs;
 import money.kuxuan.platform.factory.model.db.Product;
 import money.kuxuan.platform.factory.presenter.search.SearchContract;
 import money.kuxuan.platform.factory.presenter.search.SearchPresent;
+import money.kuxuan.platform.moneyplatfrom.Adapter.DialogAdapter;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.activities.DetailActivity;
 import money.kuxuan.platform.moneyplatfrom.frags.AlertFragment;
+import money.kuxuan.platform.moneyplatfrom.helper.DensityUtil;
 import money.kuxuan.platform.moneyplatfrom.helper.ProductViewHolder;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
@@ -46,8 +58,14 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
     @BindView(R.id.top_tab_layout)
     TabLayout tabLayout;
 
+    @BindView(R.id.gray_layout)
+    View gray_layout;
+
     @BindView(R.id.recycler)
     RecyclerView mRecycler;
+
+    @BindView(R.id.search_layout)
+    LinearLayout search_layout;
 
     @BindView(R.id.empty)
     EmptyView mEmptyView;
@@ -79,6 +97,9 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
     @BindView(R.id.term_tv)
     TextView term_tv;
 
+    private DialogAdapter mAdapter2;
+
+
     private static final String TAG = "SearchFragment";
 
     private String term = "不限";
@@ -87,6 +108,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
     private String ranking_list = "all";
 
     private static final String identity[] = {"不限", "上班族", "个体户", "企业家"};
+    private PopupWindow popupWindow;
 
     @Override
     protected void initWidget(View root) {
@@ -105,9 +127,28 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
             @Override
             protected ViewHolder<Product> onCreateViewHolder(View root, int viewType) {
+
                 return new ProductViewHolder(root, getContext());
             }
         });
+
+        RecyclerAdapter m = new RecyclerAdapter() {
+            @Override
+            protected int getItemViewType(int position, Object o) {
+                return 0;
+            }
+
+            @Override
+            protected ViewHolder onCreateViewHolder(View root, int viewType) {
+                return null;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+
+            }
+        };
 
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
@@ -130,7 +171,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Product>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, Product product) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, Product product,int pos) {
 
                 if (product.getSkip_type().equals("0")) {
                     DetailActivity.show(getContext(), product,"findList");
@@ -185,13 +226,13 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
     public void onTabSelected(TabLayout.Tab tab) {
 
         ranking_list = tab.getText().toString();
-        if(ranking_list.equals("利率最低")){
+        if(ranking_list.equals("利率低")){
             ranking_list = "rate";
         }
-        if(ranking_list.equals("放款最快")){
+        if(ranking_list.equals("放款快")){
             ranking_list = "term";
         }
-        if(ranking_list.equals("通过最高")){
+        if(ranking_list.equals("易通过")){
             ranking_list = "applicants";
         }
         if(ranking_list.equals("综合排序")){
@@ -223,11 +264,11 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
         tabLayout.addTab(tabLayout.newTab().setText("综合排序"));
 
-        tabLayout.addTab(tabLayout.newTab().setText("利率最低"));
+        tabLayout.addTab(tabLayout.newTab().setText("利率低"));
 
-        tabLayout.addTab(tabLayout.newTab().setText("放款最高"));
+        tabLayout.addTab(tabLayout.newTab().setText("放款快"));
 
-        tabLayout.addTab(tabLayout.newTab().setText("通过率高"));
+        tabLayout.addTab(tabLayout.newTab().setText("易通过"));
 
         tabLayout.addOnTabSelectedListener(this);
     }
@@ -315,64 +356,130 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
     @OnClick(R.id.num_lin)
     void numClick() {
 
-        AlertFragment alertFragment = new AlertFragment();
-        alertFragment.setListener(new AlertFragment.OnSelectedListener() {
-            @Override
-            public void onSelectedItem(String k, String v) {
+//        AlertFragment alertFragment = new AlertFragment();
+//        alertFragment.setListener(new AlertFragment.OnSelectedListener() {
+//            @Override
+//            public void onSelectedItem(String k, String v) {
+//
+//                mPresenter.setPage(1);
+//                refreshLayout.setLoadmoreFinished(false);
+//                mPresenter.setHasNext(true);
+//                num_tv.setText(v);
+//                amount = k;
+//                mPresenter.choseCategory(term, amount, user_title, ranking_list);
+//                Log.e(TAG, "term====" + term + "amount====" + amount + "user_title====" + user_title + "ranking_list====" + ranking_list);
+//            }
+//        });
+//        alertFragment.setData(amountList);
+//        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
 
+
+
+        ShowPopuWindow(amountList,2);
+        num_tv.setTextColor(Color.parseColor("#21d09c"));
+        gray_layout.setVisibility(View.VISIBLE);
+
+    }
+
+    private void ShowPopuWindow(final List<Dialogs> data, final int num) {
+
+        View view = getLayoutInflater().inflate(R.layout.dialog_listview_layout, null);
+        popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT,500,true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setTouchable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+        popupWindow.showAsDropDown(search_layout,0,0);
+
+        ListView listView  = (ListView) view.findViewById(R.id.dialog_list);
+        if(data!=null){
+            mAdapter2 = new DialogAdapter(getContext(), data);
+            listView.setAdapter(mAdapter2);
+        }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                popupWindow.dismiss();
                 mPresenter.setPage(1);
                 refreshLayout.setLoadmoreFinished(false);
                 mPresenter.setHasNext(true);
-                num_tv.setText(v);
-                amount = k;
+                if(num==1){
+                    identity_tv.setText(data.get(position).getV());
+                    user_title = data.get(position).getK();
+                }else if(num==2){
+                    num_tv.setText(data.get(position).getV());
+                    amount = data.get(position).getK();
+                }else if(num==3){
+                    term_tv.setText(data.get(position).getV());
+                    term = data.get(position).getK();
+                }
                 mPresenter.choseCategory(term, amount, user_title, ranking_list);
-                Log.e(TAG, "term====" + term + "amount====" + amount + "user_title====" + user_title + "ranking_list====" + ranking_list);
+
             }
         });
-        alertFragment.setData(amountList);
-        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                num_tv.setTextColor(Color.parseColor("#000000"));
+                identity_tv.setTextColor(Color.parseColor("#000000"));
+                term_tv.setTextColor(Color.parseColor("#000000"));
+                gray_layout.setVisibility(View.GONE);
+            }
+        });
+
     }
+
+
+
+
+
 
     @OnClick(R.id.term_lin)
     void termClick() {
 
-        AlertFragment alertFragment = new AlertFragment();
-        alertFragment.setListener(new AlertFragment.OnSelectedListener() {
-            @Override
-            public void onSelectedItem(String k, String v) {
-
-                mPresenter.setPage(1);
-                refreshLayout.setLoadmoreFinished(false);
-                mPresenter.setHasNext(true);
-                term_tv.setText(v);
-                term = k;
-                mPresenter.choseCategory(term, amount, user_title, ranking_list);
-                Log.e(TAG, "term====" + term + "amount====" + amount + "user_title====" + user_title + "ranking_list====" + ranking_list);
-            }
-        });
-        alertFragment.setData(termList);
-        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
+//        AlertFragment alertFragment = new AlertFragment();
+//        alertFragment.setListener(new AlertFragment.OnSelectedListener() {
+//            @Override
+//            public void onSelectedItem(String k, String v) {
+//
+//                mPresenter.setPage(1);
+//                refreshLayout.setLoadmoreFinished(false);
+//                mPresenter.setHasNext(true);
+//                term_tv.setText(v);
+//                term = k;
+//                mPresenter.choseCategory(term, amount, user_title, ranking_list);
+//                Log.e(TAG, "term====" + term + "amount====" + amount + "user_title====" + user_title + "ranking_list====" + ranking_list);
+//            }
+//        });
+//        alertFragment.setData(termList);
+//        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
+        ShowPopuWindow(termList,3);
+        term_tv.setTextColor(Color.parseColor("#21d09c"));
+        gray_layout.setVisibility(View.VISIBLE);
     }
 
 
     @OnClick(R.id.identity_lin)
     void idenClick() {
 
-        AlertFragment alertFragment = new AlertFragment();
-        alertFragment.setListener(new AlertFragment.OnSelectedListener() {
-            @Override
-            public void onSelectedItem(String k, String v) {
-                mPresenter.setPage(1);
-                refreshLayout.setLoadmoreFinished(false);
-                mPresenter.setHasNext(true);
-                identity_tv.setText(v);
-                user_title = k;
-                mPresenter.choseCategory(term, amount, user_title, ranking_list);
-                Log.e(TAG, "term====" + term + "amount====" + amount + "user_title====" + user_title + "ranking_list====" + ranking_list);
-            }
-        });
-        alertFragment.setData(personList);
-        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
+//        AlertFragment alertFragment = new AlertFragment();
+//        alertFragment.setListener(new AlertFragment.OnSelectedListener() {
+//            @Override
+//            public void onSelectedItem(String k, String v) {
+//                mPresenter.setPage(1);
+//                refreshLayout.setLoadmoreFinished(false);
+//                mPresenter.setHasNext(true);
+//                identity_tv.setText(v);
+//                user_title = k;
+//                mPresenter.choseCategory(term, amount, user_title, ranking_list);
+//                Log.e(TAG, "term====" + term + "amount====" + amount + "user_title====" + user_title + "ranking_list====" + ranking_list);
+//            }
+//        });
+//        alertFragment.setData(personList);
+//        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
+        ShowPopuWindow(personList,1);
+        identity_tv.setTextColor(Color.parseColor("#21d09c"));
+        gray_layout.setVisibility(View.VISIBLE);
+
     }
 
 

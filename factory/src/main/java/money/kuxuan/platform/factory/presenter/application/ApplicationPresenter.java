@@ -22,6 +22,9 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
     private boolean hasNext = false;
 
     private boolean click=true;
+    private int num;
+    private String ppger;
+
 
     private static final String TAG = "ApplicationPresenter";
 
@@ -37,8 +40,9 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
 
 
 
-    public void setIsClick(boolean click){
+    public void setIsClick(boolean click,String ppger){
         this.click = click;
+        this.ppger=ppger;
     }
 
 
@@ -46,8 +50,10 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
     public void start() {
         super.start();
 
+
         if(click){
-            PageModel pageModel = new PageModel(pageId,"3");
+
+            PageModel pageModel = new PageModel(pageId,ppger);
             ProductHelper.getApplication(click,pageModel,new DataSource.Callback<ApplyProductModel>() {
 
                 @Override
@@ -76,8 +82,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
 
 
         }else {
-
-            CreditCardPageModel pageModel = new CreditCardPageModel(page);
+            PageModel pageModel = new PageModel(pageId,ppger);
             //网络请求
             ProductHelper.getApplication(click,pageModel,new DataSource.Callback<CreditCardAppliModel>(){
 
@@ -117,7 +122,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
 
 
         if(click) {
-            PageModel pageModel = new PageModel(pageId,"3");
+            PageModel pageModel = new PageModel(pageId,ppger);
             ProductHelper.getApplication(click, pageModel, new DataSource.Callback<ApplyProductModel>() {
 
                 @Override
@@ -147,7 +152,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
             });
 
         }else {
-            CreditCardPageModel pageModel = new CreditCardPageModel(page);
+            PageModel pageModel = new PageModel(pageId,ppger);
             ProductHelper.getApplication(click,pageModel,new DataSource.Callback<CreditCardAppliModel>(){
 
 

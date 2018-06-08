@@ -53,7 +53,6 @@
                 android:layout_width="match_parent"
                 android:id="@+id/lampview"
                 android:layout_height="wrap_content"
-                android:minHeight="24dp"
                 />
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -133,7 +132,7 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="#E5E5E5"
+                android:background="#E1E1E1"
                 />
 
             <com.zhy.autolayout.AutoRelativeLayout
@@ -200,7 +199,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#E5E5E5"
+            android:background="#E1E1E1"
             />
 
         <com.zhy.autolayout.AutoLinearLayout
@@ -306,7 +305,6 @@
                     android:layout_width="14px"
                     android:layout_height="11px"
                     android:gravity="top|center_horizontal"
-                    android:visibility="gone"
                     android:padding="1px"
                     android:textSize="6sp"
                     android:textStyle="bold"
@@ -315,6 +313,7 @@
                     android:layout_toRightOf="@+id/tv_newgoods"
                     android:layout_marginLeft="6px"
                     android:layout_marginTop="14px"
+                    android:visibility="gone"
                     />
 
                 <TextView
@@ -350,7 +349,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/len_16"
                 android:drawablePadding="@dimen/len_10"
-                android:drawableStart="@drawable/yhot"
                 android:text="@string/hot_platform"
                 android:textColor="@color/textSecond"
                 android:textSize="@dimen/font_14" />

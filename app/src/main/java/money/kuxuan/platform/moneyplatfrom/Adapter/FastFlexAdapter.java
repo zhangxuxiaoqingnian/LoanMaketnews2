@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.activities.Activity_AddressBook;
 import money.kuxuan.platform.moneyplatfrom.helper.FastFlexBean;
 
 /**
@@ -21,6 +25,7 @@ public class FastFlexAdapter extends RecyclerView.Adapter<FastFlexAdapter.ViewHo
     protected Context mContext;
     protected List<FastFlexBean> mDatas;
     protected LayoutInflater mInflater;
+    private Getnum getnum;
 
     public FastFlexAdapter(Context mContext, List<FastFlexBean> mDatas) {
         this.mContext = mContext;
@@ -49,10 +54,12 @@ public class FastFlexAdapter extends RecyclerView.Adapter<FastFlexAdapter.ViewHo
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "pos:" + position, Toast.LENGTH_SHORT).show();
+
+                getnum.data(position);
             }
         });
-        holder.avatar.setImageResource(R.drawable.why);
+        //holder.avatar.setImageResource(R.drawable.why);
+        Glide.with(mContext).load(fastFlexBean.getImgurl()).into(holder.avatar);
     }
 
     @Override
@@ -71,5 +78,12 @@ public class FastFlexAdapter extends RecyclerView.Adapter<FastFlexAdapter.ViewHo
             avatar = (ImageView) itemView.findViewById(R.id.ivAvatar);
             content = itemView.findViewById(R.id.content);
         }
+    }
+    public interface Getnum{
+
+        void data(int pos);
+    }
+    public void Setnum(Getnum getnum){
+        this.getnum=getnum;
     }
 }

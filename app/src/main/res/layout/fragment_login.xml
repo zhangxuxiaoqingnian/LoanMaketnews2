@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:text="登录"
-            android:textColor="@color/textPrimary"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_16" />
     </android.support.v7.widget.Toolbar>
 
@@ -218,7 +218,7 @@
             android:layout_marginStart="@dimen/len_16"
             android:background="@drawable/bu_yellow_bg"
             android:text="@string/label_login"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:gTouchColor="@color/bu_yellow_bg"
             app:gTouchCornerRadius="3dp"

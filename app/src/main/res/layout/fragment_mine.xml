@@ -133,12 +133,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/len_16"
             android:textSize="@dimen/font_16"
-            android:drawableStart="@drawable/setting"
+            android:drawableStart="@drawable/setting3"
             android:drawablePadding="@dimen/len_16"
             android:text="@string/setting_mine"
             android:textColor="@color/textPrimary"/>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"

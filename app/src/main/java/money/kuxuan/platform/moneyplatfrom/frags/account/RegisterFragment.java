@@ -2,12 +2,18 @@ package money.kuxuan.platform.moneyplatfrom.frags.account;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.text.Html;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.qiujuer.genius.ui.widget.Button;
 import net.qiujuer.genius.ui.widget.Loading;
@@ -24,6 +30,7 @@ import money.kuxuan.platform.factory.presenter.account.RegisterContract;
 import money.kuxuan.platform.factory.presenter.account.RegisterPresenter;
 import money.kuxuan.platform.moneyplatfrom.BuildConfig;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.activities.Webview_protocol;
 
 import static money.kuxuan.platform.moneyplatfrom.R.id.btn_submit;
 
@@ -37,11 +44,17 @@ implements RegisterContract.View{
     @BindView(R.id.code)
     TextView code;
 
+    @BindView(R.id.protocol)
+    TextView protocol;
+
     @BindView(R.id.txt_go_sound)
     TextView goSound;
 
     @BindView(btn_submit)
     Button btnSubmit;
+
+    @BindView(R.id.agree)
+    CheckBox agree;
 
     @BindView(R.id.edit_password)
     EditText mPassword;
@@ -91,6 +104,21 @@ implements RegisterContract.View{
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        protocol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getActivity(), Webview_protocol.class);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    @Override
     protected void initWidget(View root) {
         super.initWidget(root);
         goSound.setText(Html.fromHtml("<font color='#999999'>收不到短信？请使用</font><font color=’red'>语音验证码</font>"));
@@ -114,6 +142,12 @@ implements RegisterContract.View{
 //        getActivity().finish();
 //        MainActivity.show(getActivity());
         listener.onRegistSuccess();
+
+        View view = getActivity().getWindow().peekDecorView();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
     @Override
     public void codeSuccess() {
@@ -147,6 +181,7 @@ implements RegisterContract.View{
         mPresenter.requestCode(phone,"1");
     }
 
+
     @Override
     public void showLoading() {
 
@@ -165,10 +200,15 @@ implements RegisterContract.View{
 
     @OnClick(btn_submit)
     void onSubmit(){
-        String phone = mPhone.getText().toString();
-        String code  = mCode.getText().toString();
-        String password = mPassword.getText().toString();
-        mPresenter.register(phone,password,code, BuildConfig.CHANNLE);
+        if(agree.isChecked()){
+            String phone = mPhone.getText().toString();
+            String code  = mCode.getText().toString();
+            String password = mPassword.getText().toString();
+            mPresenter.register(phone,password,code, BuildConfig.CHANNLE);
+        }else {
+            Toast.makeText(getActivity(),"请先同意用户协议",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

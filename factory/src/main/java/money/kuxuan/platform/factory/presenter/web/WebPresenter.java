@@ -19,7 +19,7 @@ public class WebPresenter extends BasePresenter<WebContract.View>
     @Override
     public void pushData(String product_apply_id, String status, String skip_type, String product_id) {
         WebModel webModel = new WebModel(product_apply_id,status,skip_type,product_id);
-        WebHelper.pushData(webModel);
+        //WebHelper.pushData(webModel);
 
     }
 }

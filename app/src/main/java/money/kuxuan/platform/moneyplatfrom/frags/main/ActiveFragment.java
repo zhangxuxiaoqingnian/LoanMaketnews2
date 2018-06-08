@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +23,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import money.kuxuan.platform.common.app.PresenterFragment;
+import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.common.widget.EmptyView;
 import money.kuxuan.platform.common.widget.recycler.RecyclerAdapter;
 import money.kuxuan.platform.factory.Constant;
+import money.kuxuan.platform.factory.data.helper.ActiveHelper;
 import money.kuxuan.platform.factory.model.db.Active;
+import money.kuxuan.platform.factory.model.db.Tool;
 import money.kuxuan.platform.factory.model.db.User;
 import money.kuxuan.platform.factory.presenter.active.ActiveContract;
 import money.kuxuan.platform.factory.presenter.active.ActivePresenter;
@@ -55,6 +59,44 @@ public class ActiveFragment extends PresenterFragment<ActiveContract.Presenter>
     private RecyclerAdapter<Active> mAdapter;
     @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
+
+    @BindView(R.id.img_one)
+    ImageView img_one;
+
+    @BindView(R.id.img_two)
+    ImageView img_two;
+
+    @BindView(R.id.img_three)
+    ImageView img_three;
+
+    @BindView(R.id.tool_one)
+    TextView tool_one;
+
+    @BindView(R.id.tool_two)
+    TextView tool_two;
+
+    @BindView(R.id.tool_three)
+    TextView tool_three;
+
+    @BindView(R.id.tv_one)
+    TextView tv_one;
+
+    @BindView(R.id.tv_two)
+    TextView tv_two;
+
+    @BindView(R.id.tv_three)
+    TextView tv_three;
+
+    @BindView(R.id.count_one)
+    LinearLayout count_one;
+
+    @BindView(R.id.count_two)
+    LinearLayout count_two;
+
+    @BindView(R.id.count_three)
+    LinearLayout count_three;
+
+
     private static final String TAG = "ActiveFragment";
     //未登陆弹框
     DgFragment dgFragment;
@@ -78,6 +120,18 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
         super.initWidget(root);
         // 初始化Recycler
 
+        ActiveHelper.getToolData(new DataSource.Callback<List<Tool>>() {
+            @Override
+            public void onDataNotAvailable(int strRes) {
+
+            }
+
+            @Override
+            public void onDataLoaded(List<Tool> list) {
+
+                getShow(list);
+            }
+        });
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter = new RecyclerAdapter<Active>() {
             @Override
@@ -93,11 +147,12 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
         });
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Active>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, Active active) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, Active active,int pos) {
 
                 Log.e(TAG, active.getActivity_url());
                 mPresenter.loginState();
                 setActive(active);
+                state();
 
             }
 
@@ -117,6 +172,111 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
                 mPresenter.requestData();
             }
         });
+    }
+
+    public void getShow(final List<Tool> list){
+        if(list.size()==1){
+            img_one.setVisibility(View.VISIBLE);
+            tool_one.setVisibility(View.VISIBLE);
+            tv_one.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(list.get(0).icon).into(img_one);
+            tool_one.setText(list.get(0).name);
+            tv_two.setVisibility(View.VISIBLE);
+
+            count_one.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    WebActivity.show(getActivity(),list.get(0).name,list.get(0).url);
+                }
+            });
+
+        }else if (list.size()==2){
+            img_one.setVisibility(View.VISIBLE);
+            tool_one.setVisibility(View.VISIBLE);
+            tv_one.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(list.get(0).icon).into(img_one);
+            tool_one.setText(list.get(0).name);
+
+            img_two.setVisibility(View.VISIBLE);
+            tool_two.setVisibility(View.VISIBLE);
+            tv_two.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(list.get(1).icon).into(img_two);
+            tool_two.setText(list.get(1).name);
+
+            tv_three.setVisibility(View.VISIBLE);
+
+            count_one.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            count_two.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            count_one.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    WebActivity.show(getActivity(),list.get(0).name,list.get(0).url);
+                }
+            });
+            count_two.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    WebActivity.show(getActivity(),list.get(1).name,list.get(1).url);
+                }
+            });
+
+
+        }else if(list.size()==3){
+            img_one.setVisibility(View.VISIBLE);
+            tool_one.setVisibility(View.VISIBLE);
+            tv_one.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(list.get(0).icon).into(img_one);
+            tool_one.setText(list.get(0).name);
+
+            img_two.setVisibility(View.VISIBLE);
+            tool_two.setVisibility(View.VISIBLE);
+            tv_two.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(list.get(1).icon).into(img_two);
+            tool_two.setText(list.get(1).name);
+
+            img_three.setVisibility(View.VISIBLE);
+            tool_three.setVisibility(View.VISIBLE);
+            tv_three.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(list.get(2).icon).into(img_three);
+            tool_three.setText(list.get(2).name);
+
+            count_one.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    WebActivity.show(getActivity(),list.get(0).name,list.get(0).url);
+                }
+            });
+            count_two.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    WebActivity.show(getActivity(),list.get(1).name,list.get(1).url);
+                }
+            });
+            count_three.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    WebActivity.show(getActivity(),list.get(2).name,list.get(2).url);
+                }
+            });
+
+        }
     }
 
     private void setActive(Active active) {
@@ -190,16 +350,7 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
         }
 
 
-
-
     }
-
-
-
-
-
-
-
 
     @Override
     public void stateError() {
@@ -227,6 +378,7 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
 
     @Override
     public void state() {
+
         WebActivity.show(getContext(), active.getTitle(),
                 active.getActivity_url());
     }

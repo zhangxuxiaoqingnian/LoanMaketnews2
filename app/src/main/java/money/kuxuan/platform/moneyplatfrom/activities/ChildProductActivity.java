@@ -118,7 +118,7 @@ public class ChildProductActivity extends PresenterActivity<ChildContract.Presen
 
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Product>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, Product product) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, Product product,int pos) {
                 if(product.getSkip_type().equals("0")){
 
 

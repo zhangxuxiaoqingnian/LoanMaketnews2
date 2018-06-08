@@ -51,7 +51,7 @@ public class DgFragment extends DialogFragment  {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         View view = inflater.inflate(R.layout.fragment_dialog, ((ViewGroup) window.findViewById(android.R.id.content)),false);
         int width = DensityUtil.dip2px(getActivity(),300);
-        int height = DensityUtil.dip2px(getActivity(),250);
+        int height = DensityUtil.dip2px(getActivity(),270);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         window.setLayout(width, height);//这2行,和上面的一样,注意顺序就行;
         initView(view);
@@ -71,7 +71,7 @@ public class DgFragment extends DialogFragment  {
                 if(edit_phone.getText().length()>0){
                     if(editable.length()>0){
                         button.setEnabled(true);
-                        button.setBackgroundColor(0xffffd100);
+                        button.setBackgroundResource(R.color.bu_yellow_bg);
                     }else{
                         button.setEnabled(false);
                         button.setBackgroundResource(R.color.textThird);

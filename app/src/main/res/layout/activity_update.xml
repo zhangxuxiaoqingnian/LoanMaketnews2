@@ -191,7 +191,7 @@
             android:layout_marginStart="@dimen/len_16"
             android:background="@drawable/bu_yellow_bg"
             android:text="@string/update"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:gTouchColor="@color/bu_yellow_bg"
             app:gTouchCornerRadius="3dp"
