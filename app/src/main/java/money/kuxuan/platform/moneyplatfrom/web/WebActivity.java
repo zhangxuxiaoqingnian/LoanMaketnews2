@@ -61,16 +61,16 @@ import money.kuxuan.platform.moneyplatfrom.helper.ImageUtils;
  */
 
 public class WebActivity extends PresenterActivity<WebContract.Presenter>
-        implements WebContract.View{
+        implements WebContract.View {
     @BindView(R.id.webview)
     WebView webview;
     String title_name;
     Intent intent;
     String url;
     @BindView(R.id.tv_title)
-   TextView tv_title;
+    TextView tv_title;
     SelfDialog selfDialog;
-//    @BindView(R.id.tv_back)
+    //    @BindView(R.id.tv_back)
 //    TextView tv_back;
     @BindView(R.id.pg)
     ProgressBar pg;
@@ -85,55 +85,58 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     private ValueCallback<Uri[]> mUploadCallbackAboveL;
     String enter_type = "activityList";
     private static final String TAG = "WebActivity";
-    public static void show(Context context,String name,String url){
-        Intent intent = new Intent(context,WebActivity.class);
-        intent.putExtra("url",url);
-        intent.putExtra("name",name);
-        context.startActivity(intent);
-    }
-    public static void show(Context context,String name,String url,String id,String skip_type){
-        Intent intent = new Intent(context,WebActivity.class);
-        intent.putExtra("url",url);
-        intent.putExtra("name",name);
-        intent.putExtra("id",id);
-        intent.putExtra("skip_type",skip_type);
+
+    public static void show(Context context, String name, String url) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("name", name);
         context.startActivity(intent);
     }
 
-    public static void show(Context context,String name,String url,String id,String skip_type,int type){
-        Intent intent = new Intent(context,WebActivity.class);
-        intent.putExtra("url",url);
-        intent.putExtra("name",name);
-        intent.putExtra("id",id);
-        intent.putExtra("skip_type",skip_type);
-        intent.putExtra("type",type);
+    public static void show(Context context, String name, String url, String id, String skip_type) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("name", name);
+        intent.putExtra("id", id);
+        intent.putExtra("skip_type", skip_type);
         context.startActivity(intent);
     }
 
-    public static void show(Context context,String name,String url,String id,String appply_id,String skip_type){
-        Intent intent = new Intent(context,WebActivity.class);
-        intent.putExtra("url",url);
-        intent.putExtra("name",name);
-        intent.putExtra("id",id);
-        intent.putExtra("skip_type",skip_type);
-        intent.putExtra("appply_id",appply_id);
+    public static void show(Context context, String name, String url, String id, String skip_type, int type) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("name", name);
+        intent.putExtra("id", id);
+        intent.putExtra("skip_type", skip_type);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
-
-    public static void show(Context context,String name,String url,String id,String appply_id,String skip_type,boolean flag){
-        Intent intent = new Intent(context,WebActivity.class);
-        intent.putExtra("flag",flag);
-        intent.putExtra("url",url);
-        intent.putExtra("name",name);
-        intent.putExtra("id",id);
-        intent.putExtra("skip_type",skip_type);
-        intent.putExtra("appply_id",appply_id);
+    public static void show(Context context, String name, String url, String id, String appply_id, String skip_type) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("name", name);
+        intent.putExtra("id", id);
+        intent.putExtra("skip_type", skip_type);
+        intent.putExtra("appply_id", appply_id);
         context.startActivity(intent);
     }
 
 
-    boolean isPop=false;
+    public static void show(Context context, String name, String url, String id, String appply_id, String skip_type, boolean flag) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("flag", flag);
+        intent.putExtra("url", url);
+        intent.putExtra("name", name);
+        intent.putExtra("id", id);
+        intent.putExtra("skip_type", skip_type);
+        intent.putExtra("appply_id", appply_id);
+        context.startActivity(intent);
+    }
+
+
+    boolean isPop = false;
+
     @Override
     protected boolean initArgs(Bundle bundle) {
         title_name = bundle.getString("name");
@@ -152,33 +155,32 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     protected void initWidget() {
         super.initWidget();
 
-        if(!TextUtils.isEmpty(appply_id)&&!TextUtils.isEmpty(id)) {
+        if (!TextUtils.isEmpty(appply_id) && !TextUtils.isEmpty(id)) {
             mPresenter.pushData(appply_id, "3", skip_type, id);
         }
 
-        if(!TextUtils.isEmpty(title_name)){
+        if (!TextUtils.isEmpty(title_name)) {
             tv_title.setText(title_name);
-            if(title_name.equals("身价计算器")){
+            if (title_name.equals("身价计算器")) {
                 enter_type = "valueCalculationa";
             }
         }
 
-        if(TextUtils.isEmpty(id)){
-           id = "0";
+        if (TextUtils.isEmpty(id)) {
+            id = "0";
         }
-        if(TextUtils.isEmpty(appply_id)){
+        if (TextUtils.isEmpty(appply_id)) {
             appply_id = "0";
         }
-        if(TextUtils.isEmpty(skip_type)){
+        if (TextUtils.isEmpty(skip_type)) {
 //            tv_back.setVisibility(View.GONE);
             back_text.setVisibility(View.GONE);
         }
-        Log.e(TAG,type+"---type");
+        Log.e(TAG, type + "---type");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             CookieManager.getInstance().setAcceptThirdPartyCookies(webview, true);
         }
         initWebView();
-
 
 
         webview.loadUrl(url);
@@ -187,13 +189,13 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
         webview.addJavascriptInterface(new AndroidtoJs(), "native");//AndroidtoJS类对象映射到js的test对象
 
 
-        if(isPop){
-        lin_parent.post(new Runnable() {
-            @Override
-            public void run() {
-                showPopWindow();
-            }
-        });
+        if (isPop) {
+            lin_parent.post(new Runnable() {
+                @Override
+                public void run() {
+                    showPopWindow();
+                }
+            });
         }
     }
 
@@ -203,9 +205,9 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     private void showPopWindow() {
 
 
-        View popView = getLayoutInflater().inflate(R.layout.commentpop,null,false);
+        View popView = getLayoutInflater().inflate(R.layout.commentpop, null, false);
 
-        final PopupWindow popupWindow = new PopupWindow(popView, DisplayUtil.dip2px(272),DisplayUtil.dip2px(362));
+        final PopupWindow popupWindow = new PopupWindow(popView, DisplayUtil.dip2px(272), DisplayUtil.dip2px(362));
 
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
 
@@ -226,18 +228,18 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             @Override
             public void onClick(View v) {
 
-                if(popupWindow!=null&&popupWindow.isShowing())
+                if (popupWindow != null && popupWindow.isShowing())
                     popupWindow.dismiss();
-                                try{
-                                    Uri uri = Uri.parse("market://details?id="+getPackageName());
-                                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
-                                   overridePendingTransition(R.anim.alpha_in,R.anim.alpha_out);
-                                }catch(Exception e){
-                                    Toast.makeText(getApplicationContext(), "您的手机没有安装Android应用市场", Toast.LENGTH_SHORT).show();
-                                    e.printStackTrace();
-                                }
+                try {
+                    Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "您的手机没有安装Android应用市场", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -252,44 +254,45 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             }
         });
 
-        popupWindow.showAtLocation(lin_parent, Gravity.CENTER,0,0);
+        popupWindow.showAtLocation(lin_parent, Gravity.CENTER, 0, 0);
 
     }
 
     @OnClick(R.id.back)
-    void onBack(){
+    void onBack() {
 
-         if(TextUtils.isEmpty(skip_type)){
-             finish();
-         }else{
-             if(skip_type.equals("1")) {
-                 Log.e(TAG,type+"--------------type");
-                 if(type == 0){
-                     finish();
-                 }else{
-                     MainActivity.show(WebActivity.this);
-                 }
-             }else{
-                 finish();
-             }
-         }
+        if (TextUtils.isEmpty(skip_type)) {
+            finish();
+        } else {
+            if (skip_type.equals("1")) {
+                Log.e(TAG, type + "--------------type");
+                if (type == 0) {
+                    finish();
+                } else {
+                    MainActivity.show(WebActivity.this);
+                }
+            } else {
+                finish();
+            }
+        }
 
 
     }
-    @OnClick(R.id.back_text)
-    void onBackText(){
 
-        if(TextUtils.isEmpty(skip_type)){
+    @OnClick(R.id.back_text)
+    void onBackText() {
+
+        if (TextUtils.isEmpty(skip_type)) {
             finish();
-        }else{
-            if(skip_type.equals("1")) {
-                Log.e(TAG,type+"--------------type");
-                if(type == 0){
+        } else {
+            if (skip_type.equals("1")) {
+                Log.e(TAG, type + "--------------type");
+                if (type == 0) {
                     finish();
-                }else{
+                } else {
                     MainActivity.show(WebActivity.this);
                 }
-            }else{
+            } else {
                 finish();
             }
         }
@@ -298,8 +301,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 //    @OnClick(R.id.tv_back)
 
 
-    void tvback()
-    {
+    void tvback() {
         createDialog(R.string.apply);
     }
 
@@ -334,7 +336,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
                         .insertImage(getContentResolver(), ImageUtils.ratio(photos.get(0), 950, 1280),
                                 null, null));
                 if (mUploadCallbackAboveL != null) {
-                    Uri[] uris = new Uri[] {uri};
+                    Uri[] uris = new Uri[]{uri};
                     mUploadCallbackAboveL.onReceiveValue(uris);
                     mUploadCallbackAboveL = null;
                 } else {
@@ -406,12 +408,13 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();
+            handler.proceed();
         }
 
         public void onPageFinished(WebView view, String url) {
         }
     }
+
     public void showOptions() {
         //如果大于6.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -427,11 +430,14 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 
         }
     }
-    @PermissionSuccess(requestCode = 100) public void camera_success() {
+
+    @PermissionSuccess(requestCode = 100)
+    public void camera_success() {
         PhotoPicker.builder().setPhotoCount(1).start(WebActivity.this);
     }
 
-    @PermissionFail(requestCode = 100) private void camera_fail() {
+    @PermissionFail(requestCode = 100)
+    private void camera_fail() {
         Toast.makeText(this, "请打开相机拍照及读写内存卡的权限", Toast.LENGTH_SHORT).show();
     }
 
@@ -440,6 +446,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
                                            int[] grantResults) {
         PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -464,12 +471,12 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
 
-            if(newProgress==100){
-                if(pg!=null) {
+            if (newProgress == 100) {
+                if (pg != null) {
                     pg.setVisibility(View.GONE);//加载完网页进度条消失
                 }
-            } else{
-                if(pg!=null) {
+            } else {
+                if (pg != null) {
                     pg.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
                     pg.setProgress(newProgress);//设置进度值
                 }
@@ -483,20 +490,23 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             callback.invoke(origin, true, false);
             super.onGeolocationPermissionsShowPrompt(origin, callback);
         }
+
         // For Android < 3.0
         public void openFileChooser(ValueCallback<Uri> uploadMsg) {
             mUploadMessage = uploadMsg;
             showOptions();
 
         }
-//
+
+        //
         // For Android  > 4.1.1
         public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType,
                                     String capture) {
             mUploadMessage = uploadMsg;
             showOptions();
         }
-//
+
+        //
         // For Android > 5.0支持多张上传
         @Override
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> uploadMsg,
@@ -507,6 +517,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
         }
 
     }
+
     private class ReOnCancelListener implements DialogInterface.OnCancelListener {
 
         @Override
@@ -534,11 +545,11 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             @Override
             public void onNoClick() {
                 selfDialog.dismiss();
-                mPresenter.pushData(appply_id,"2",skip_type,id);
-                Log.e(TAG,type+"---type");
-                if(type == 0){
+                mPresenter.pushData(appply_id, "2", skip_type, id);
+                Log.e(TAG, type + "---type");
+                if (type == 0) {
                     finish();
-                }else{
+                } else {
                     MainActivity.show(WebActivity.this);
                 }
 
@@ -548,12 +559,12 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             @Override
             public void onYesClick() {
                 selfDialog.dismiss();
-                Log.e(TAG,appply_id+"apply_id");
-                mPresenter.pushData(appply_id,"3",skip_type,id);
-                Log.e(TAG,type+"---type");
-                if(type == 0){
+                Log.e(TAG, appply_id + "apply_id");
+                mPresenter.pushData(appply_id, "3", skip_type, id);
+                Log.e(TAG, type + "---type");
+                if (type == 0) {
                     finish();
-                }else{
+                } else {
                     MainActivity.show(WebActivity.this);
                 }
             }
@@ -565,13 +576,13 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     private class AndroidtoJs {
         @JavascriptInterface
         public void JSGetProductId(String message) {   //提供给js调用的方法
-          Gson gson = new Gson();
-            H5Model data = gson.fromJson(message,H5Model.class);
-            Log.e(TAG,message);
-            if(data.getType().equals("0")){
-                DetailActivity.show(WebActivity.this,data.getProduct_id(),enter_type);
-            }else{
-                show(WebActivity.this,null,data.getLink(),data.getProduct_id(),data.getType());
+            Gson gson = new Gson();
+            H5Model data = gson.fromJson(message, H5Model.class);
+            Log.e(TAG, message);
+            if (data.getType().equals("0")) {
+                DetailActivity.show(WebActivity.this, data.getProduct_id(), enter_type);
+            } else {
+                show(WebActivity.this, null, data.getLink(), data.getProduct_id(), data.getType());
             }
 
         }
