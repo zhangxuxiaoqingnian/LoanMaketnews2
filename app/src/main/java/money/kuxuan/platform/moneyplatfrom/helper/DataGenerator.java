@@ -35,7 +35,7 @@ public class DataGenerator {
             R.drawable.tabbar_mine_highlight
     };
 
-    public static final String[] mTabTitle = new String[]{"首页", "贷款","信用卡","活动", "我的"};
+    public static final String[] mTabTitle = new String[]{"首页", "贷款","信用卡","发现", "我的"};
 
     public static final String[] mTabXTitle = new String[]{"首页", "专栏", "我的"};
     public static Fragment[] getFragments() {

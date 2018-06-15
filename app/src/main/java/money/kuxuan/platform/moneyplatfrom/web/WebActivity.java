@@ -180,7 +180,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
         initWebView();
 
 
-
+//url = "https://biz-api.jindanfenqi.com/h5/register.html?source=298";
         webview.loadUrl(url);
         webview.setWebViewClient(new MyWebViewClient());
         webview.setWebChromeClient(new MyWebChromeClient());

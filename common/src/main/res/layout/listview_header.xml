@@ -132,7 +132,7 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="#E1E1E1"
+                android:background="#f6f6f6"
                 />
 
             <com.zhy.autolayout.AutoRelativeLayout
@@ -199,7 +199,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#E1E1E1"
+            android:background="#f6f6f6"
             />
 
         <com.zhy.autolayout.AutoLinearLayout
@@ -269,7 +269,7 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
-                android:background="#E5E5E5"
+                android:background="#f6f6f6"
                 />
 
             <com.zhy.autolayout.AutoRelativeLayout

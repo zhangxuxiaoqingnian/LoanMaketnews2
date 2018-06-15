@@ -2,7 +2,7 @@
 <resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
     <string name="title_home">首页</string>
     <string name="title_find">贷款</string>
-    <string name="title_active">活动</string>
+    <string name="title_active">发现</string>
     <string name="title_creditcard">信用卡中心</string>
     <string name="title_mine">我的</string>
 

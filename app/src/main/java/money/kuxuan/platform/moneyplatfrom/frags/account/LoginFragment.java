@@ -136,13 +136,13 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
             String phone = user.getPhone();
             saveUserLoginData(phone, "");
         }
-        listener.onLoginSuccess();
+        listener.onLoginSuccess(true);
     }
 
     onLoginListener listener;
 
     public interface onLoginListener {
-        void onLoginSuccess();
+        void onLoginSuccess(boolean isSuccess);
     }
 
 
@@ -237,7 +237,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
         time.cancel();
 //        getActivity().finish();
 //        MainActivity.show(getActivity());
-        listener.onLoginSuccess();
+        listener.onLoginSuccess(false);
 
         View view = getActivity().getWindow().peekDecorView();
         if (view != null) {
@@ -320,7 +320,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
     @Override
     public boolean onBackPressed() {
 //        MainActivity.show(getActivity());
-        listener.onLoginSuccess();
+        listener.onLoginSuccess(false);
         time.cancel();
         return super.onBackPressed();
     }

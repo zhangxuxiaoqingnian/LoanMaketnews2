@@ -38,7 +38,7 @@ import static money.kuxuan.platform.moneyplatfrom.R.id.btn_submit;
  * 注册的界面
  */
 public class RegisterFragment extends PresenterFragment<RegisterContract.Presenter>
-implements RegisterContract.View{
+        implements RegisterContract.View {
     private AccountTrigger mAccountTrigger;
 
     @BindView(R.id.code)
@@ -97,7 +97,7 @@ implements RegisterContract.View{
 
 
     @OnClick(R.id.txt_go_login)
-    void onShowLoginClick(){
+    void onShowLoginClick() {
         //让AccountActivity进行界面切换
         mAccountTrigger.triggerView();
         time.cancel();
@@ -111,7 +111,7 @@ implements RegisterContract.View{
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), Webview_protocol.class);
+                Intent intent = new Intent(getActivity(), Webview_protocol.class);
                 startActivity(intent);
 
             }
@@ -134,14 +134,15 @@ implements RegisterContract.View{
 
 //        MainActivity.show(getActivity());
         EventBus.getDefault().post(new SecondEvent(user.phone));
-        listener.onRegistSuccess();
+        listener.onRegistSuccess(false);
     }
+
     @OnClick(R.id.back)
     void onBack() {
         time.cancel();
 //        getActivity().finish();
 //        MainActivity.show(getActivity());
-        listener.onRegistSuccess();
+        listener.onRegistSuccess(true);
 
         View view = getActivity().getWindow().peekDecorView();
         if (view != null) {
@@ -149,17 +150,20 @@ implements RegisterContract.View{
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
     @Override
     public void codeSuccess() {
         time.start();
         goSound.setVisibility(View.GONE);
 
     }
+
     @OnClick(R.id.txt_go_sound)
-    void OnSound(){
-        String phone =  mPhone.getText().toString();
-        mPresenter.requestCode(phone,"2");
+    void OnSound() {
+        String phone = mPhone.getText().toString();
+        mPresenter.requestCode(phone, "2");
     }
+
     @Override
     public void showError(int str) {
 
@@ -174,11 +178,12 @@ implements RegisterContract.View{
         btnSubmit.setEnabled(true);
 
     }
+
     @OnClick(R.id.code)
     void onCode() {
         String phone = mPhone.getText().toString();
 
-        mPresenter.requestCode(phone,"1");
+        mPresenter.requestCode(phone, "1");
     }
 
 
@@ -199,14 +204,14 @@ implements RegisterContract.View{
     }
 
     @OnClick(btn_submit)
-    void onSubmit(){
-        if(agree.isChecked()){
+    void onSubmit() {
+        if (agree.isChecked()) {
             String phone = mPhone.getText().toString();
-            String code  = mCode.getText().toString();
+            String code = mCode.getText().toString();
             String password = mPassword.getText().toString();
-            mPresenter.register(phone,password,code, BuildConfig.CHANNLE);
-        }else {
-            Toast.makeText(getActivity(),"请先同意用户协议",Toast.LENGTH_SHORT).show();
+            mPresenter.register(phone, password, code, BuildConfig.CHANNLE);
+        } else {
+            Toast.makeText(getActivity(), "请先同意用户协议", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -248,23 +253,22 @@ implements RegisterContract.View{
         public void onTick(long millisUntilFinished) {// 计时过程
             code.setClickable(false);//防止重复点击
             code.setTextColor(getResources().getColor(R.color.textThird));
-            code.setText("重新发送"+millisUntilFinished / 1000 + "s");
+            code.setText("重新发送" + millisUntilFinished / 1000 + "s");
             goSound.setEnabled(false);
         }
     }
 
     @Override
     public boolean onBackPressed() {
-        listener.onRegistSuccess();
+        listener.onRegistSuccess(true);
         time.cancel();
-
-        return super.onBackPressed();
+        return true;
     }
 
     onRegistListener listener;
 
     public interface onRegistListener {
-        void onRegistSuccess();
+        void onRegistSuccess(boolean isGoToLogin);
     }
 
 }
