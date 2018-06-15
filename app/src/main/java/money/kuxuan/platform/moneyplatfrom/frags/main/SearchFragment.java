@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -383,7 +384,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
     private void ShowPopuWindow(final List<Dialogs> data, final int num) {
 
-        View view = getLayoutInflater().inflate(R.layout.dialog_listview_layout, null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_listview_layout, null);
         popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.MATCH_PARENT,500,true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setTouchable(true);
