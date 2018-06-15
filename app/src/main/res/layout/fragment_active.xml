@@ -159,36 +159,8 @@
 
             </com.zhy.autolayout.AutoLinearLayout>
 
-
             <com.zhy.autolayout.AutoLinearLayout
-                android:id="@+id/lin_averagecapital"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/accumulationfound"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:textSize="12sp"
-                    android:text="公积金查询"
-                    android:textColor="@color/textPrimary"
-                    />
-
-            </com.zhy.autolayout.AutoLinearLayout>
-
-            <com.zhy.autolayout.AutoLinearLayout
-                android:id="@+id/lin_averageinterest"
+                android:id="@+id/count_one"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:orientation="vertical"
@@ -197,13 +169,14 @@
                 >
 
                 <ImageView
+                    android:id="@+id/img_one"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/averageinterest"
                     android:visibility="gone"
                     />
 
                 <TextView
+                    android:id="@+id/tool_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -215,6 +188,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_one"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/circleborder"
@@ -228,39 +202,91 @@
             </com.zhy.autolayout.AutoLinearLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
-                android:id="@+id/lin_commingsun"
+                android:id="@+id/count_two"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:gravity="center"
+
+                >
+
+                <ImageView
+                    android:id="@+id/img_two"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/accumulationfound"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:id="@+id/tool_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:textSize="12sp"
+                    android:text="公积金查询"
+                    android:textColor="@color/textPrimary"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/tv_two"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circleborder"
+                    android:text="敬请期待"
+                    android:gravity="center"
+                    android:textColor="@color/textThird"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/count_three"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:layout_height="80dp"
                 android:gravity="center"
                 >
+
                 <ImageView
+                    android:id="@+id/img_three"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:src="@drawable/accumulationfound"
                     android:visibility="gone"
                     />
 
                 <TextView
+                    android:id="@+id/tool_three"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="12sp"
                     android:layout_marginTop="5dp"
-                    android:visibility="gone"
+                    android:textSize="12sp"
+                    android:text="公积金查询"
                     android:textColor="@color/textPrimary"
+                    android:visibility="gone"
                     />
 
                 <TextView
+                    android:id="@+id/tv_three"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/circleborder"
                     android:text="敬请期待"
-                    android:visibility="gone"
                     android:gravity="center"
                     android:textColor="@color/textThird"
                     android:textSize="15sp"
                     android:padding="5dp"
+                    android:visibility="gone"
                     />
 
 

@@ -96,8 +96,8 @@ implements MessageContract.View{
         });
         mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Message>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, Message message) {
-                DetailActivity.show(MessageActivity.this,message.getProduct_id(),"news");
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, Message message,int pos) {
+                DetailActivity.show(MessageActivity.this,message.getProduct_id(),"news",0);
             }
         });
     }

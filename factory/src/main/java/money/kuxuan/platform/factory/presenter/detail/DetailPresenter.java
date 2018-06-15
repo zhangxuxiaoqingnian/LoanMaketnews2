@@ -212,10 +212,12 @@ public class DetailPresenter extends BasePresenter<DetailContract.View>
             public void onDataLoaded(ApplyModel applyModel) {
                 if (getView() != null)
                     getView().getApplyId(applyModel.getProduct_apply_id());
+
             }
 
             @Override
             public void onDataNotAvailable(@StringRes int strRes) {
+
 
             }
 

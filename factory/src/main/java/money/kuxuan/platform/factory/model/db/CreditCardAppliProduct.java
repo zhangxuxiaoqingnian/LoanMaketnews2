@@ -11,7 +11,7 @@ public class CreditCardAppliProduct {
     private String channel_id;
     private String create_time;
     private String icon;
-    private String Id;
+    private String id;
     private String phone;
     private String product_id;
     private String product_name;
@@ -54,11 +54,11 @@ public class CreditCardAppliProduct {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public String getPhone() {

@@ -197,7 +197,6 @@ public class AddActivity extends PresenterActivity<AddConreact.Presenter> implem
         et_jkqs.setText(repaymentBean.getPeriods()+"");
         et_money.setText(repaymentBean.getAmount()+"");
         et_rateMonthly.setText(repaymentBean.getMonthly_rate()+"");
-        System.out.println(repaymentBean.getMonthly_rate()+"");
         String date = repaymentBean.getFirst_time();
         String[] dateArr = date.split(" ");
         tv_choiseTime.setText(dateArr[0]);

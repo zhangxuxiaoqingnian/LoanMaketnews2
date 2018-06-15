@@ -44,6 +44,15 @@ public class ProductDetail {
     private String[] req_list;
     HashMap<String,String> loan;
     List<Dialogs> loan_period;
+    private String customer_service_number;
+
+    public String getCustomer_service_number() {
+        return customer_service_number;
+    }
+
+    public void setCustomer_service_number(String customer_service_number) {
+        this.customer_service_number = customer_service_number;
+    }
 
     public String getId() {
         return id;

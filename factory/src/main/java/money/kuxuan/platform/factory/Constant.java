@@ -13,7 +13,6 @@ public class Constant {
         public static final String PASSWORD = "password";
         public static final String CODETOKEN = "codetoken";
         public static final String ISEXITE = "isexite";
-
     }
 
 }

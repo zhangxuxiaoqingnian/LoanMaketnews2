@@ -2,7 +2,7 @@
 <resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
     <string name="data_account_login_invalid_parameter">账户名密码不能为空！</string>
     <string name="data_account_login_error_validate">账户或密码验证错误</string>
-    <string name="data_account_register_invalid_parameter_mobile">请输入正确的手机号!</string>
+    <string name="data_account_register_invalid_parameter_mobile">手机号格式错误!</string>
     <string name="data_account_register_invalid_parameter_password">密码不能小于6位!</string>
     <string name="data_account_register_invalid_parameter_name">称呼不能小于2位!</string>
     <string name="data_account_update_invalid_parameter">头像和描述不能为空!</string>
@@ -23,7 +23,7 @@
     <string name="sms_failed">短信发送失败</string>
     <string name="the_verification_code_is_out_of_order">验证码有误</string>
     <string name="sms_verification_has_been_done">已经通过短信验证，请勿重复</string>
-    <string name="the_cell_phone_number_format_is_wrong">手机号码格式有误</string>
+    <string name="the_cell_phone_number_format_is_wrong">手机号格式错误</string>
     <string name="user_information_is_empty">用户信息为空</string>
 
     <string name="requested_mode_not_specified">未指定请求方式</string>

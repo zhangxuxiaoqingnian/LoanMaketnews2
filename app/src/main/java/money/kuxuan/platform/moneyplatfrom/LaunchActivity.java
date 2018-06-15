@@ -113,9 +113,9 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
      */
     private void reallySkip() {
         //检测跳转到过审页还是线上页
-        if (checkChannel()) {
+        if (checkChannel()==false) {
             // 检查跳转到广告页还是跳转到主页
-            if (checkData()) {
+            if (checkData()==false) {
                 AdActivity.show(this);
                 finish();
             } else {

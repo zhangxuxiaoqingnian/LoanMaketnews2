@@ -18,6 +18,42 @@ public class Product implements Products {
     private String show_day;
     private String skip_type;
     private String link;
+    private String num;
+    private String lend_time;
+    private String upper_amount;
+    private String lower_amount;
+
+    public String getUpper_amount() {
+        return upper_amount;
+    }
+
+    public void setUpper_amount(String upper_amount) {
+        this.upper_amount = upper_amount;
+    }
+
+    public String getLower_amount() {
+        return lower_amount;
+    }
+
+    public void setLower_amount(String lower_amount) {
+        this.lower_amount = lower_amount;
+    }
+
+    public String getLend_time() {
+        return lend_time;
+    }
+
+    public void setLend_time(String lend_time) {
+        this.lend_time = lend_time;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
 
     public String getLink() {
         return link;

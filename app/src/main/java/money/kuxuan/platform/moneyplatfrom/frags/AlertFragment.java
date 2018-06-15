@@ -51,6 +51,8 @@ public class AlertFragment extends DialogFragment
          params.gravity = Gravity.BOTTOM; // 显示在底部
          params.width = WindowManager.LayoutParams.MATCH_PARENT; // 宽度填充满屏
          params.height = DensityUtil.dip2px(getContext(),200);
+         //params.y=-350;
+//         params.flags=WindowManager.LayoutParams.FLAG_BLUR_BEHIND;  背景不变暗
          window.setAttributes(params);
 
          // 这里用透明颜色替换掉系统自带背景

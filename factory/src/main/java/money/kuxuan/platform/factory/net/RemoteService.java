@@ -52,9 +52,14 @@ import money.kuxuan.platform.factory.model.api.product.ProductRspModel;
 import money.kuxuan.platform.factory.model.api.search.FilterRspModel;
 import money.kuxuan.platform.factory.model.api.search.SearchModel;
 import money.kuxuan.platform.factory.model.api.web.WebModel;
+import money.kuxuan.platform.factory.model.db.AllApp;
 import money.kuxuan.platform.factory.model.db.ApplyModel;
+import money.kuxuan.platform.factory.model.db.DeleteApp;
 import money.kuxuan.platform.factory.model.db.Idfa;
+import money.kuxuan.platform.factory.model.db.Tool;
 import money.kuxuan.platform.factory.model.db.Version;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -209,7 +214,7 @@ public interface RemoteService {
 
 
     @POST("CreditCard/myapply")
-    Call<RspModel<CreditCardAppliModel>> getCreditCardAppli(@Body CreditCardPageModel pageModel);
+    Call<RspModel<CreditCardAppliModel>> getCreditCardAppli(@Body PageModel pageModel);
 
 
     @POST("CreditCard/list")
@@ -223,7 +228,34 @@ public interface RemoteService {
     @POST("user/personalCenter")
     Call<RspModel<AccountRspModel>> getLoginState();
 
-
+    //添加到我的足迹
     @POST("user/addapply")
     Call<RspModel<ApplyModel>> pushApply(@Body Apply apply);
+
+    //删除记录
+    @POST("product/markDelete")
+    Call<RspModel<Integer>> deleteApp(@Body RequestBody requestBody);
+    //删除信用卡记录
+    @POST("creditCard/markDelete")
+    Call<RspModel<Integer>> deleteCard(@Body RequestBody requestBody);
+    //产品添加到我的申请
+    @POST("product/automaticAddApply")
+    @FormUrlEncoded
+    Call<RspModel<DeleteApp>> addApp(@Field("product_id") String appuuid);
+    //信用卡添加到我的申请
+    @POST("creditCard/automaticAddApply")
+    @FormUrlEncoded
+    Call<RspModel<DeleteApp>> addCard(@Field("product_id") String carduuid);
+
+    //返回所有App
+    @GET("product/allApplyProduct")
+    Call<RspModel<AllApp>> allApp();
+
+    //返回所有信用卡
+    @GET("creditCard/allApplyProduct")
+    Call<RspModel<AllApp>> allCard();
+
+    //获取活动页计算工具
+    @GET("activity/getToolsList")
+    Call<RspModel<List<Tool>>> tool();
 }

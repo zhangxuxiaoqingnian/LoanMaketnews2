@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context="money.kuxuan.platform.moneyplatfrom.frags.main.SearchFragment">
 <LinearLayout
     android:layout_width="match_parent"
@@ -20,6 +21,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/len_40"
             android:layout_marginTop="@dimen/len_14"
@@ -34,22 +36,14 @@
                 android:layout_marginEnd="@dimen/len_12"
                 android:id="@+id/identity_lin"
                 android:layout_weight="1"
-                android:background="@drawable/seach_button_bg"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="@dimen/len_6">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/len_6"
-                    android:src="@drawable/search_indentify" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/len_6"
-                   android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:id="@+id/identity_tv"
                     android:text="职业身份"
@@ -69,23 +63,17 @@
                 android:layout_marginEnd="@dimen/len_12"
                 android:layout_weight="1"
                 android:id="@+id/num_lin"
-                android:background="@drawable/seach_button_bg"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="@dimen/len_6">
 
-                <ImageView
+
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/len_6"
-                    android:src="@drawable/search_money" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/len_6"
                     android:id="@+id/num_tv"
-                    android:layout_weight="1"
                     android:text="贷款金额"
                     android:gravity="center_horizontal"
                     android:textColor="@color/textPrimary"
@@ -103,22 +91,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/term_lin"
-                android:background="@drawable/seach_button_bg"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="@dimen/len_6">
 
-                <ImageView
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/len_6"
-                    android:src="@drawable/search_time" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/len_6"
-                    android:layout_weight="1"
                     android:id="@+id/term_tv"
                     android:text="贷款期限"
                     android:gravity="center_horizontal"
@@ -137,7 +118,6 @@
             android:id="@+id/top_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/len_40"
-
             android:background="@color/white"
             app:tabBackground="@null"
             app:tabIndicatorColor="@color/bu_yellow_bg"
@@ -156,13 +136,26 @@
     <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/len_8"
+            >
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/len_8"
         android:visibility="gone" />
+
+            <View
+                android:id="@+id/gray_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="#66000000"/>
+        </RelativeLayout>
+
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:id="@+id/footer"
             android:layout_width="match_parent"

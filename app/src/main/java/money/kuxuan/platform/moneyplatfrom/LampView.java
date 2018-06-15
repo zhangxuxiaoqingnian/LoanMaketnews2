@@ -62,7 +62,7 @@ public class LampView extends FrameLayout {
                                 list.get(position).getLink(),list.get(position).getProduct_id(),
                                 list.get(position).getSkip_type());
                     }else{
-                        DetailActivity.show(getContext(),list.get(position).getProduct_id(),"notice");
+                        DetailActivity.show(getContext(),list.get(position).getProduct_id(),"notice",0);
                     }
                 }else{
                     WebActivity.show(getContext(),null,list.get(position).getLink(),

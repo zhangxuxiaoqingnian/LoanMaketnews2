@@ -15,11 +15,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -43,6 +45,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -101,6 +105,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     @BindView(R.id.tv_title)
     TextView tv_title;
 
+    @BindView(R.id.res_data)
+    AutoRelativeLayout res_data;
+
     @BindView(R.id.im_portrait)
     PortraitView im_portrait;
 
@@ -109,6 +116,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
     @BindView(R.id.tv_product_name)
     TextView tv_product_name;
+
+    @BindView(R.id.tv_monthlyrate)
+    TextView tv_monthlyrate;
 
     @BindView(R.id.loanlimit_tv)
     TextView loanlimit_tv;
@@ -124,6 +134,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
     @BindView(R.id.InstallmentPeriod_tv)
     TextView InstallmentPeriod_tv;
+
+    @BindView(R.id.data_tv)
+    TextView data_tv;
 
 //    @BindView(R.id.show_day)
 //    TextView show_day;
@@ -177,6 +190,12 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
     private Integer start[] = {R.id.start1, R.id.start2,
             R.id.start3, R.id.start4, R.id.start5};
+    private TextView tv_phone;
+    private TextView phonename;
+    private View view2;
+    private ImageView callphone;
+    private int lang;
+    private double data;
 
     /**
      * 产品详情页
@@ -199,13 +218,13 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      *
      * @param context context
      */
-    public static void show(Context context, String id, String type_channel) {
+    public static void show(Context context, String id, String type_channel,int num) {
 
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(PRODUCT_ID, id);
         intent.putExtra(TYPE_CHANNEL, type_channel);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+        intent.putExtra("Lang",num);
         context.startActivity(intent);
 
 
@@ -234,7 +253,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 //        Log.e(TAG,mProductId);
         enter_source = bundle.getString(TYPE_CHANNEL);
         flag = bundle.getString(PRODUCT_FLAG);
-
+        lang = bundle.getInt("Lang");
         return !TextUtils.isEmpty(mProductId);
 
     }
@@ -243,6 +262,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     @OnClick(R.id.callphone)
     void callPhone() {
 
+
         showDialog();
 
     }
@@ -250,6 +270,11 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     AlertDialog alertDialog;
     public void showDialog(){
 
+        view2 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.callphone_dialog,null);
+        phonename = (TextView) view2.findViewById(R.id.phone_name);
+        tv_phone = (TextView) view2.findViewById(R.id.tv_phone);
+        phonename.setText(mProductDetail.getName()+"客服电话");
+        tv_phone.setText(mProductDetail.getCustomer_service_number()+"");
         alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
@@ -261,9 +286,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.update_border);
         alertDialog.getWindow().setAttributes(lp);
         Window window = alertDialog.getWindow();
-        final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.callphone_dialog,null);
 
-        AutoRelativeLayout rel_next = (AutoRelativeLayout) view.findViewById(R.id.rel_next);
+        AutoRelativeLayout rel_next = (AutoRelativeLayout) view2.findViewById(R.id.rel_next);
 
         rel_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,12 +299,12 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         });
 
 
-        AutoRelativeLayout rel_good = (AutoRelativeLayout) view.findViewById(R.id.rel_good);
+        AutoRelativeLayout rel_good = (AutoRelativeLayout) view2.findViewById(R.id.rel_good);
         rel_good.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                TextView textView = (TextView) view.findViewById(R.id.tv_phone);
+                TextView textView = (TextView) view2.findViewById(R.id.tv_phone);
                 String phoneNum = textView.getText().toString().trim();
 
                 if(phoneNum!=null&&!phoneNum.equals("")) {
@@ -298,30 +322,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             }
         });
 
+        window.setContentView(view2);
 
-//        rel_good.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                SPUtil.putAndApply(getApplicationContext(),"flag",true);
-//                if(alertDialog!=null&&alertDialog.isShowing())
-//                    alertDialog.dismiss();
-//
-//                try{
-//                    Uri uri = Uri.parse("market://details?id="+getPackageName());
-//                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-//                   overridePendingTransition(R.anim.alpha_in,R.anim.alpha_out);
-//                }catch(Exception e){
-//                    Toast.makeText(getApplicationContext(), "您的手机没有安装Android应用市场", Toast.LENGTH_SHORT).show();
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        });
 
-        window.setContentView(view);
 
     }
 
@@ -343,6 +346,16 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
             }
         });
+        edit_money.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                edit_money.setFocusable(true);
+                edit_money.setFocusableInTouchMode(true);
+                edit_money.requestFocus();
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                return false;
+            }
+        });
         //设置查看更多的高度
         int start = DensityUtil.dip2px(this, 68);
         LinearLayout.LayoutParams linearParams =
@@ -360,7 +373,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         super.initData();
         mPresenter.start();
         productDetails = new ArrayList<>();
-        initEditContent();
+        //initEditContent();
 
     }
 
@@ -401,43 +414,115 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      *
      * @param product
      */
-    private void initProductData(ProductDetail product) {
+    private void initProductData(final ProductDetail product) {
+
+        callphone = (ImageView) findViewById(R.id.callphone);
         hideLoading();
         int startCount = Integer.parseInt(product.getStar());
         for (int i = 0; i < startCount; i++) {
             ImageView im = (ImageView) findViewById(start[i]);
             im.setImageResource(R.drawable.start);
         }
-        loanlimit_tv.setText("(" + product.getUpper_amount() + "-" + product.getLower_amount() + ")");
+        loanlimit_tv.setText(product.getUpper_amount() + "-" + product.getLower_amount());
+
+        if(!product.getCustomer_service_number().equals("")){
+
+            callphone.setVisibility(View.VISIBLE);
+
+        }else {
+            callphone.setVisibility(View.GONE);
+        }
         mProductUrl = product.getLink();
         edit_money.setText(product.getUpper_amount() + "");
+
         tv_fasttime.setText(product.getLend_time());
 
+
         if (product.getTerm().length() > 2) {
-            tv_period.setText("(" + product.getTerm() + ")");
+            tv_period.setText( product.getTerm());
         } else {
             tv_period.setText("");
         }
-        InstallmentPeriod_tv.setText(product.getLoan_period().get(0).getV());
+        String v = product.getLoan_period().get(0).getV();
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(v);
+        m.find();
+        InstallmentPeriod_tv.setText(m.group());
+
+        String group = m.group();
+        data = Double.parseDouble(group);
+
+        boolean contains = v.contains("天");
+        boolean contains1 = v.contains("月");
+        if(contains){
+            data_tv.setText("天");
+        }
+        if(contains1){
+            data_tv.setText("月");
+        }
+        tv_monthlyrate.setText(product.getShow_day());
 
 //        show_day.setText(product.getShow_day());
         if (product.getShow_day().equals("参考日利率")) {
             tv_rate.setText(product.getDay_rate() + "%");
+            double c = Double.parseDouble(product.getDay_rate());
             double a = Double.parseDouble(edit_money.getText().toString());
-            double b = Double.parseDouble(product.getDay_rate());
-            double ben = a + b * product.getUpper_term() * a / 100;
-            tv_sum.setText(String.format("%.0f", ben) + "元");
+            double b = data;
+            double ben = (a*b*c/100)+a;
+            tv_sum.setText(String.format("%.2f", ben) + "元");
         } else {
             tv_rate.setText(product.getMonthly_rate() + "%");
             double a = Double.parseDouble(edit_money.getText().toString());
             double b = Double.parseDouble(product.getMonthly_rate());
+            double c=data;
             Log.e(TAG, product.getUpper_term() + "ssssssss");
-            double ben = a + b * product.getUpper_term() * a / 100 / 30;
-            tv_sum.setText(String.format("%.0f", ben) + "元");
+            double ben = a + b * c * a / 100;
+            tv_sum.setText(String.format("%.2f", ben) + "元");
         }
         conditions_tv.setText(product.getRequirements());
         data_needed_tv.setText(product.getDocument());
         detailed_description_tv.setText(Html.fromHtml(product.getExplain()));
+
+        edit_money.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                    String trim = s.toString().trim();
+                    if(!trim.equals("")){
+                        String s1 = InstallmentPeriod_tv.getText().toString();
+                        double v2 = Double.parseDouble(s1);
+                        double v1 = Double.parseDouble(trim);
+                        if(!TextUtils.isEmpty(trim)){
+                            if (product.getShow_day().equals("参考日利率")) {
+                                double c = Double.parseDouble(product.getDay_rate());
+                                double ben = v1+v1*v2*c/100;
+                                tv_sum.setText(String.format("%.2f", ben) + "元");
+                            } else {
+                                double c = Double.parseDouble(product.getMonthly_rate());
+                                Log.e(TAG, product.getUpper_term() + "ssssssss");
+                                double ben = v1+v1*v2*c/100;
+                                tv_sum.setText(String.format("%.2f", ben) + "元");
+                            }
+                        }
+                    }else {
+                        tv_sum.setText(String.format("%.2f", 0.0) + "元");
+                    }
+
+                }
+
+
+
+        });
 
         tv_title.setText(product.getName());
 
@@ -458,9 +543,16 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             btn_submit.setText("已下架");
             btn_submit.setBackgroundResource(R.drawable.bu_gray_bg);
         }else {
-            btn_submit.setText("立即申请");
-            btn_submit.setTextColor(Color.BLACK);
-            btn_submit.setBackgroundResource(R.drawable.bu_yellow_bg);
+//            if(lang==2){
+//                btn_submit.setText("我要还款");
+//                btn_submit.setTextColor(Color.WHITE);
+//                btn_submit.setBackgroundResource(R.drawable.bu_yellow_bg);
+//            }else {
+                btn_submit.setText("立即申请");
+                btn_submit.setTextColor(Color.WHITE);
+                btn_submit.setBackgroundResource(R.drawable.bu_yellow_bg);
+//            }
+
         }
 
 
@@ -504,7 +596,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mProductId = amountList.get(position).getId();
                 DetailActivity.show(DetailActivity.this,
-                        amountList.get(position).getId(), enter_source);
+                        amountList.get(position).getId(), enter_source,0);
 
             }
         });
@@ -546,6 +638,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      */
     @Override
     public void state() {
+
         mPresenter.apply(mProductDetail.getId(), InstallmentPeriod_tv.getText().toString(),edit_money.getText().toString());
 
     }
@@ -615,7 +708,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
 
     // 底部弹出的dialog
-    @OnClick(R.id.bpoint)
+    @OnClick(R.id.res_data)
     void bPoint() {
         if (mProductDetail.getLoan_period() != null) {
             createDialog(mProductDetail.getLoan_period());
@@ -737,17 +830,17 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      */
     private void countSum(String s) {
         if (s.toString().equals("")) {
-            tv_sum.setText("0元");
+            tv_sum.setText("0.00元");
             return;
         }
         double a = Integer.parseInt(s);
-        if (isDay()) {
-            if (a > mProductDetail.getLower_amount()) {
-                a = mProductDetail.getLower_amount();
-                edit_money.setText(String.format("%.0f", a));
-            }
-            tv_sum.setText(count(a));
-        }
+//        if (isDay()) {
+//            if (a > mProductDetail.getLower_amount()) {
+//                a = mProductDetail.getLower_amount();
+//                edit_money.setText(String.format("%.0f", a));
+//            }
+//            tv_sum.setText(count(a));
+//        }
     }
 
     /**
@@ -759,7 +852,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     public String count(double a) {
         double b = Double.parseDouble(mProductDetail.getDay_rate());
         double ben = a + b * mProductDetail.getUpper_term() * a / 100;
-        return String.format("%.0f", ben) + "元";
+        return String.format("%.2f", ben) + "元";
     }
 
     /**
@@ -783,15 +876,19 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         alertFragment.setListener(new AlertFragment.OnSelectedListener() {
             @Override
             public void onSelectedItem(String k, String v) {
-                InstallmentPeriod_tv.setText(v);
+                Pattern p = Pattern.compile("\\d+");
+                Matcher m = p.matcher(v);
+                m.find();
+                InstallmentPeriod_tv.setText(m.group());
                 count(k);
+
             }
         });
         alertFragment.setData(data);
         alertFragment.show(getSupportFragmentManager(), AlertFragment.class.getName());
     }
 
-    //顶部导航栏返回键点击事件
+    //顶部导航栏返回键点击事件gdd
     @OnClick(R.id.back)
     void back() {
         hideSoftKeyboard();
@@ -805,11 +902,34 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     }
 
     public void count(String k) {
-        double a = Double.parseDouble(edit_money.getText().toString());
-        double b = Double.parseDouble(mProductDetail.getDay_rate());
-        double c = Double.parseDouble(k);
-        double ben = a + b * c * a / 100;
-        tv_sum.setText(String.format("%.0f", ben) + "元");
+          if(edit_money.getText().toString().equals("")){
+          }else {
+              double a = Double.parseDouble(edit_money.getText().toString());
+              double b = Double.parseDouble(InstallmentPeriod_tv.getText().toString());
+              if (mProductDetail.getShow_day().equals("参考日利率")) {
+                  double c = Double.parseDouble(mProductDetail.getDay_rate());
+                  double ben = a + b * c * a / 100;
+                  tv_sum.setText(String.format("%.2f", ben) + "元");
+              } else {
+                  double c = Double.parseDouble(mProductDetail.getMonthly_rate());
+                  Log.e(TAG, mProductDetail.getUpper_term() + "ssssssss");
+                  double ben = a + b * c * a / 100;
+                  tv_sum.setText(String.format("%.2f", ben) + "元");
+              }
+          }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 
     //立即申请
@@ -822,7 +942,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         Log.e("点击", "ssa");
 
         mPresenter.loginState();
-//        WebActivity.show(this,mProductName,mProductUrl);
+       //WebActivity.show(this,mProductName,mProductUrl);
     }
 
     //   dialog 的点击
@@ -858,7 +978,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         hideSoftKeyboard();
         if(onBack()){
-            finish();
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                finish();
+            }
             if (!TextUtils.isEmpty(flag)) {
                 MainActivity.show(this);
             }

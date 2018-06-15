@@ -124,6 +124,7 @@ public abstract class RecyclerAdapter<Data>
         Data data = mDataList.get(position);
         // 触发Holder的绑定方法
         holder.bind(data);
+
     }
 
     /**
@@ -201,6 +202,7 @@ public abstract class RecyclerAdapter<Data>
     @Override
     public void update(Data data, ViewHolder<Data> holder) {
         int pos = holder.getAdapterPosition();
+
         if(pos>=0){
             mDataList.remove(pos);
             mDataList.add(pos,data);
@@ -215,7 +217,7 @@ public abstract class RecyclerAdapter<Data>
             // 得到ViewHolder当前对应的适配器中的坐标
             int pos = viewHolder.getAdapterPosition();
             // 回掉方法
-            this.mListener.onItemClick(viewHolder, mDataList.get(pos));
+            this.mListener.onItemClick(viewHolder, mDataList.get(pos),pos);
         }
 
     }
@@ -227,7 +229,7 @@ public abstract class RecyclerAdapter<Data>
             // 得到ViewHolder当前对应的适配器中的坐标
             int pos = viewHolder.getAdapterPosition();
             // 回掉方法
-            this.mListener.onItemLongClick(viewHolder, mDataList.get(pos));
+            this.mListener.onItemLongClick(viewHolder, mDataList.get(pos),pos);
             return true;
         }
         return false;
@@ -249,10 +251,10 @@ public abstract class RecyclerAdapter<Data>
      */
     public interface AdapterListener<Data> {
         // 当Cell点击的时候触发
-        void onItemClick(RecyclerAdapter.ViewHolder holder, Data data);
+        void onItemClick(RecyclerAdapter.ViewHolder holder, Data data,int pos);
 
         // 当Cell长按时触发
-        void onItemLongClick(RecyclerAdapter.ViewHolder holder, Data data);
+        void onItemLongClick(RecyclerAdapter.ViewHolder holder, Data data,int pos);
     }
 
     /**
@@ -264,6 +266,7 @@ public abstract class RecyclerAdapter<Data>
         private Unbinder unbinder;
         private AdapterCallback<Data> callback;
         protected Data mData;
+        private int pos;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -305,12 +308,12 @@ public abstract class RecyclerAdapter<Data>
     public static abstract class AdapterListenerImpl<Data> implements  AdapterListener<Data>{
 
         @Override
-        public void onItemClick(ViewHolder holder, Data data) {
+        public void onItemClick(ViewHolder holder, Data data,int pos) {
 
         }
 
         @Override
-        public void onItemLongClick(ViewHolder holder, Data data) {
+        public void onItemLongClick(ViewHolder holder, Data data,int pos) {
 
         }
     }

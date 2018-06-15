@@ -1,11 +1,14 @@
 package money.kuxuan.platform.factory.data.helper;
 
+import java.util.List;
+
 import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.factory.Factory;
 import money.kuxuan.platform.factory.R;
 import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.active.ActiveModel;
 import money.kuxuan.platform.factory.model.api.active.ActiveRspModel;
+import money.kuxuan.platform.factory.model.db.Tool;
 import money.kuxuan.platform.factory.net.Network;
 import money.kuxuan.platform.factory.net.RemoteService;
 import retrofit2.Call;
@@ -46,6 +49,32 @@ public class ActiveHelper {
                     callback.onDataNotAvailable(R.string.data_network_error);
             }
         });
+    }
+
+    public static void getToolData(final DataSource.Callback<List<Tool>> callback){
+
+        RemoteService service = Network.remote();
+        Call<RspModel<List<Tool>>> tool = service.tool();
+        tool.enqueue(new Callback<RspModel<List<Tool>>>() {
+            @Override
+            public void onResponse(Call<RspModel<List<Tool>>> call, Response<RspModel<List<Tool>>> response) {
+
+                RspModel<List<Tool>> body = response.body();
+                if (body.success()) {
+                    callback.onDataLoaded(body.getRst());
+                }else {
+                    Factory.decodeRspCode(body, callback);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<List<Tool>>> call, Throwable t) {
+
+
+            }
+        });
+
     }
 
 }

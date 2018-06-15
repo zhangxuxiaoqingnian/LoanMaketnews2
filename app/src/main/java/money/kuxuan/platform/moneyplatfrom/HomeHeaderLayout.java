@@ -205,7 +205,7 @@ public class HomeHeaderLayout extends RelativeLayout implements OnBannerListener
     @Override
     public void OnBannerClick(int position) {
         if(TextUtils.isEmpty(bannerList.get(position).getLink())){
-            DetailActivity.show(mContext,bannerList.get(position).getId(),"banner");
+            DetailActivity.show(mContext,bannerList.get(position).getId(),"banner",0);
         }else{
             WebActivity.show(mContext,null,
                     bannerList.get(position).getLink(),bannerList.get(position).getId(),bannerList.get(position).getSkip_type());

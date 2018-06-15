@@ -60,65 +60,65 @@ android {
     }
 
     productFlavors {
-        z30033{
+        z30033 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30001"]
-            buildConfigField 'String','CHANNLE','"30001"'
+            buildConfigField 'String', 'CHANNLE', '"30001"'
         }
 
-        aoppo{
+        aoppo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30053"]
-            buildConfigField 'String','CHANNLE','"30053"'
+            buildConfigField 'String', 'CHANNLE', '"30053"'
         }
 
-        a360{
+        a360 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30050"]
-            buildConfigField 'String','CHANNLE','"30050"'
+            buildConfigField 'String', 'CHANNLE', '"30050"'
         }
 
-        ayingyongbao{
+        ayingyongbao {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30051"]
-            buildConfigField 'String','CHANNLE','"30051"'
+            buildConfigField 'String', 'CHANNLE', '"30051"'
         }
 
-        axiaomi{
+        axiaomi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30055"]
-            buildConfigField 'String','CHANNLE','"30055"'
+            buildConfigField 'String', 'CHANNLE', '"30055"'
         }
 
-        ahuawei{
+        ahuawei {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30054"]
-            buildConfigField 'String','CHANNLE','"30054"'
+            buildConfigField 'String', 'CHANNLE', '"30054"'
         }
 
-        abaidu{
+        abaidu {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30056"]
-            buildConfigField 'String','CHANNLE','"30056"'
+            buildConfigField 'String', 'CHANNLE', '"30056"'
         }
 
-        avivo{
+        avivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30052"]
-            buildConfigField 'String','CHANNLE','"30052"'
+            buildConfigField 'String', 'CHANNLE', '"30052"'
         }
 
 
-        bvivo{
+        bvivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30057"]
-            buildConfigField 'String','CHANNLE','"30057"'
+            buildConfigField 'String', 'CHANNLE', '"30057"'
         }
 
-        bxiaomi{
+        bxiaomi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30058"]
-            buildConfigField 'String','CHANNLE','"30058"'
+            buildConfigField 'String', 'CHANNLE', '"30058"'
         }
 
-        byingyongbao{
+        byingyongbao {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30059"]
-            buildConfigField 'String','CHANNLE','"30059"'
+            buildConfigField 'String', 'CHANNLE', '"30059"'
         }
 
-        bhuawei{
+        bhuawei {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30060"]
-            buildConfigField 'String','CHANNLE','"30060"'
+            buildConfigField 'String', 'CHANNLE', '"30060"'
         }
 
     }

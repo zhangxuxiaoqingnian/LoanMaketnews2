@@ -1,5 +1,6 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -12,6 +13,12 @@ import java.util.List;
 
 import butterknife.OnClick;
 import money.kuxuan.platform.common.app.PresenterActivity;
+import money.kuxuan.platform.common.factory.data.DataSource;
+import money.kuxuan.platform.factory.data.helper.MineHelper;
+import money.kuxuan.platform.factory.model.db.AllApp;
+import money.kuxuan.platform.factory.model.db.AllCard;
+import money.kuxuan.platform.factory.model.db.Bean;
+import money.kuxuan.platform.factory.model.db.DeleteApp;
 import money.kuxuan.platform.factory.presenter.addplatform.AddPlatformPresenter;
 import money.kuxuan.platform.factory.presenter.addplatform.AddPlatfromContract;
 import money.kuxuan.platform.moneyplatfrom.Adapter.FastFlexAdapter;
@@ -44,16 +51,171 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
      * 显示指示器DialogText
      */
     private TextView mTvSideBarHint;
+    private List<AllApp.HBean> list=new ArrayList();
+    private boolean all_app;
 
+    public void getDataOfAllApp(List<AllApp.HBean> a){
+        if (a!=null&&a.size()>0)
+        {
+                list.addAll(a);
+        }
+    }
 
     @Override
     protected void initWidget() {
         super.initWidget();
 
+        Intent intent = getIntent();
+        all_app = intent.getBooleanExtra("All_App", false);
+        if(all_app){
+            list.clear();
+            //请求所有app接口
+            MineHelper.allShap(new DataSource.Callback<AllApp>() {
+                @Override
+                public void onDataNotAvailable(int strRes) {
+
+
+                }
+
+                @Override
+                public void onDataLoaded(AllApp allApp) {
+                    getDataOfAllApp(allApp.A);
+                    getDataOfAllApp(allApp.B);
+                    getDataOfAllApp(allApp._$0);
+                    getDataOfAllApp(allApp._$1);
+                    getDataOfAllApp(allApp._$2);
+                    getDataOfAllApp(allApp._$3);
+                    getDataOfAllApp(allApp._$4);
+                    getDataOfAllApp(allApp._$5);
+                    getDataOfAllApp(allApp._$6);
+                    getDataOfAllApp(allApp._$7);
+                    getDataOfAllApp(allApp._$8);
+                    getDataOfAllApp(allApp._$9);
+                    getDataOfAllApp(allApp.C);
+                    getDataOfAllApp(allApp.D);
+                    getDataOfAllApp(allApp.E);
+                    getDataOfAllApp(allApp.F);
+                    getDataOfAllApp(allApp.G);
+                    getDataOfAllApp(allApp.H);
+                    getDataOfAllApp(allApp.I);
+                    getDataOfAllApp(allApp.J);
+                    getDataOfAllApp(allApp.K);
+                    getDataOfAllApp(allApp.L);
+                    getDataOfAllApp(allApp.M);
+                    getDataOfAllApp(allApp.N);
+                    getDataOfAllApp(allApp.O);
+                    getDataOfAllApp(allApp.P);
+                    getDataOfAllApp(allApp.Q);
+                    getDataOfAllApp(allApp.R);
+                    getDataOfAllApp(allApp.S);
+                    getDataOfAllApp(allApp.T);
+                    getDataOfAllApp(allApp.U);
+                    getDataOfAllApp(allApp.V);
+                    getDataOfAllApp(allApp.W);
+                    getDataOfAllApp(allApp.X);
+                    getDataOfAllApp(allApp.Y);
+                    getDataOfAllApp(allApp.Z);
+
+                }
+            });
+
+        }else {
+            list.clear();
+            //请求所有信用卡接口
+            MineHelper.allCard(new DataSource.Callback<AllApp>() {
+                @Override
+                public void onDataNotAvailable(int strRes) {
+
+                }
+
+                @Override
+                public void onDataLoaded(AllApp allCard) {
+
+
+                    getDataOfAllApp(allCard.A);
+                    getDataOfAllApp(allCard.B);
+                    getDataOfAllApp(allCard._$0);
+                    getDataOfAllApp(allCard._$1);
+                    getDataOfAllApp(allCard._$2);
+                    getDataOfAllApp(allCard._$3);
+                    getDataOfAllApp(allCard._$4);
+                    getDataOfAllApp(allCard._$5);
+                    getDataOfAllApp(allCard._$6);
+                    getDataOfAllApp(allCard._$7);
+                    getDataOfAllApp(allCard._$8);
+                    getDataOfAllApp(allCard._$9);
+                    getDataOfAllApp(allCard.C);
+                    getDataOfAllApp(allCard.D);
+                    getDataOfAllApp(allCard.E);
+                    getDataOfAllApp(allCard.F);
+                    getDataOfAllApp(allCard.G);
+                    getDataOfAllApp(allCard.H);
+                    getDataOfAllApp(allCard.I);
+                    getDataOfAllApp(allCard.J);
+                    getDataOfAllApp(allCard.K);
+                    getDataOfAllApp(allCard.L);
+                    getDataOfAllApp(allCard.M);
+                    getDataOfAllApp(allCard.N);
+                    getDataOfAllApp(allCard.O);
+                    getDataOfAllApp(allCard.P);
+                    getDataOfAllApp(allCard.Q);
+                    getDataOfAllApp(allCard.R);
+                    getDataOfAllApp(allCard.S);
+                    getDataOfAllApp(allCard.T);
+                    getDataOfAllApp(allCard.U);
+                    getDataOfAllApp(allCard.V);
+                    getDataOfAllApp(allCard.W);
+                    getDataOfAllApp(allCard.X);
+                    getDataOfAllApp(allCard.Y);
+                    getDataOfAllApp(allCard.Z);
+
+                }
+            });
+
+        }
         mRv = (RecyclerView) findViewById(R.id.rv);
         mRv.setLayoutManager(mManager = new LinearLayoutManager(this));
 
         mAdapter = new FastFlexAdapter(this, mDatas);
+        mAdapter.Setnum(new FastFlexAdapter.Getnum() {
+            @Override
+            public void data(int pos) {
+
+
+
+                if(all_app){
+                    //当点击一个产品时调用添加到过审接口并关闭此Activity
+                    MineHelper.addapp(mDatas.get(pos).getUuid(), new DataSource.Callback<DeleteApp>() {
+                        @Override
+                        public void onDataNotAvailable(int strRes) {
+
+                        }
+
+                        @Override
+                        public void onDataLoaded(DeleteApp deleteApp) {
+
+                            finish();
+                        }
+                    });
+                }else{
+
+                    MineHelper.addcard(mDatas.get(pos).getUuid(), new DataSource.Callback<DeleteApp>() {
+                        @Override
+                        public void onDataNotAvailable(int strRes) {
+
+                        }
+
+                        @Override
+                        public void onDataLoaded(DeleteApp deleteApp) {
+
+                            finish();
+                        }
+                    });
+                }
+
+
+            }
+        });
         mHeaderAdapter = new HeaderRecyclerAndFooterWrapperAdapter(mAdapter) {
             @Override
             protected void onBindHeaderHolder(ViewHolder holder, int headerPos, int layoutId, Object o) {
@@ -79,10 +241,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
         //        initDatas(getResources().getStringArray(R.array.provinces));
 
 
-        String[] strArr = {"水电费","总积分的","覆盖面通过","水电费GV","从VB","f的说法是个","问问人内","那地方公开","电饭煲个体","问题",
-                "旁边","十多个","区别","白豆腐干","你干活","让他个人","时代光华机遇","版本","每个月","在v","dfg","ujyj","nhgt"};
-
-        initDatas(strArr);
+        initDatas(list);
 
     }
 
@@ -110,17 +269,24 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
      * @param data
      * @return
      */
-    private void initDatas(final String[] data) {
+    private void initDatas(final List<AllApp.HBean> data) {
         //延迟200ms 模拟加载数据中....
         getWindow().getDecorView().postDelayed(new Runnable() {
             @Override
             public void run() {
 
                 mDatas = new ArrayList<>();
-                for (int i = 0; i < data.length; i++) {
+                for (int i = 0; i < data.size(); i++) {
 
                     FastFlexBean fastFlexBean = new FastFlexBean();
-                    fastFlexBean.setPlatform(data[i]);//设置城市名称
+                    fastFlexBean.setPlatform(data.get(i).name);//设置城市名称
+                    if(all_app){
+                        fastFlexBean.setImgurl(data.get(i).icon);
+                    }else {
+                        fastFlexBean.setImgurl(data.get(i).card_icon);
+                    }
+
+                    fastFlexBean.setUuid(data.get(i).id+"");
                     mDatas.add(fastFlexBean);
 
                 }

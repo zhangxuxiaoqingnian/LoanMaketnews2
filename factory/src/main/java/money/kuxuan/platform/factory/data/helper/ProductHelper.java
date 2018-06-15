@@ -234,6 +234,7 @@ public class ProductHelper {
                 RspModel<ApplyModel> rspModel = response.body();
                 if (rspModel!=null&&rspModel.success()) {
                     callback.onDataLoaded(rspModel.getRst());
+
                     Log.e("aaaaa", rspModel.success() + "");
                 } else {
                     Factory.decodeRspCode(rspModel, callback);
@@ -346,8 +347,9 @@ public class ProductHelper {
 
         }else {
 
+
             service = Network.remote();
-            Call<RspModel<CreditCardAppliModel>> call = service.getCreditCardAppli((CreditCardPageModel) pageModel);
+            Call<RspModel<CreditCardAppliModel>> call = service.getCreditCardAppli((PageModel) pageModel);
 
             call.enqueue(new Callback<RspModel<CreditCardAppliModel>>() {
                 @Override

@@ -61,7 +61,7 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
     protected void initWidget(View root) {
         super.initWidget(root);
         mPresenter.start();
-        if (!checkChannel()) {
+        if (checkChannel()) {
             ap_lin.setVisibility(View.GONE);
         }
 
@@ -120,7 +120,6 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
         }
         SetActivity.show(getContext());
     }
-
 
     @OnClick(R.id.lin_problem)
     public void commonProblem(){

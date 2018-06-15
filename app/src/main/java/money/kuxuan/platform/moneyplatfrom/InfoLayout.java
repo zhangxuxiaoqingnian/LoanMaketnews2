@@ -149,7 +149,6 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
 
         if(infoBanner!=null) {
             String url = infoBanner.getThumbnail();
-            System.out.print(url);
             Glide.with(getContext()).load(url).into(imageview1);
         }
 

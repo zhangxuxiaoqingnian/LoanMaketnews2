@@ -51,6 +51,7 @@ public class HomeHelper {
     public static void getPopDetailData(int id, final DataSource.Callback<RspModel<List<PopModel>>> callback){
 
         RemoteService service = Network.remote();
+
         Call<RspModel<List<PopModel>>> call = service.getPopDetail(id);
         call.enqueue(new Callback<RspModel<List<PopModel>>>() {
             @Override
@@ -77,7 +78,6 @@ public class HomeHelper {
 
         RemoteService service = Network.remote();
         Call<RspModel<List<RepaymentListBean>>> call = service.getRepaymentList();
-
         call.enqueue(new Callback<RspModel<List<RepaymentListBean>>>() {
             @Override
             public void onResponse(Call<RspModel<List<RepaymentListBean>>> call, Response<RspModel<List<RepaymentListBean>>> response) {

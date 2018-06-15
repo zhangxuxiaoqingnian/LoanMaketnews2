@@ -12,7 +12,7 @@ import money.kuxuan.platform.moneyplatfrom.frags.account.LoginFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.account.RegisterFragment;
 
 //账户activity
-public class AccountActivity extends Activity implements AccountTrigger, LoginFragment.onLoginListener,RegisterFragment.onRegistListener {
+public class AccountActivity extends Activity implements AccountTrigger, LoginFragment.onLoginListener, RegisterFragment.onRegistListener {
     private Fragment mCurFragment;
     private Fragment mLoginFragment;
     private Fragment mRegisterFragment;
@@ -68,14 +68,24 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(boolean isSuccess) {
+        if(isSuccess)
         setResult(Constant.Code.RESULT_LOGINSUC_CODE);
         finish();
     }
 
     @Override
-    public void onRegistSuccess() {
-        setResult(Constant.Code.RESULT_LOGINSUC_CODE);
-        finish();
+    public void onRegistSuccess(boolean isGoToLogin) {
+        if (isGoToLogin) {
+            //返回登录页
+            mCurFragment = mLoginFragment;
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.lay_container, mLoginFragment)
+                    .commit();
+        } else {
+            setResult(Constant.Code.RESULT_LOGINSUC_CODE);
+            finish();
+        }
+
     }
 }

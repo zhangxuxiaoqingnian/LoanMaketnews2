@@ -13,6 +13,8 @@
         android:layout_gravity="center_vertical"
         android:src="@drawable/time_information_icon"/>
 
+
+
     <money.kuxuan.platform.moneyplatfrom.helper.VerticalLampView
         android:id="@+id/lamp_view"
         android:layout_width="match_parent"

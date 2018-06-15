@@ -74,7 +74,7 @@ public class RadiersActivity extends Activity {
                 "最终放款额将以信贷机构给出的确认批复为准，" +
                 "如果未能完全满足您的资金需求，建议多申请几笔其他产品作为备用金。");
 
-        childData.add("在【我的】页面点击【我的足迹】，找到已贷款的产品，点击进入详情页，底部有\"我要还款\"按钮，点击按钮进入贷款产品，需打开贷款产品app或打开应用商店直接下载app进行还款。");
+        childData.add("在【我的】页面点击【我的申请】，找到已贷款的产品，点击进入详情页，底部有\"我要还款\"按钮，点击按钮进入贷款产品，需打开贷款产品app或打开应用商店直接下载app进行还款。");
 
         final MyExpandableAdapter dl = new MyExpandableAdapter(this,data,childData);
         list_view.setAdapter(dl);

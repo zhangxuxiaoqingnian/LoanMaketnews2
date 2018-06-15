@@ -1,5 +1,6 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,33 +11,44 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.zhy.autolayout.AutoRelativeLayout;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnItemLongClick;
 import money.kuxuan.platform.common.app.PresenterActivity;
+import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.common.utils.DisplayUtil;
 import money.kuxuan.platform.common.widget.EmptyView;
 import money.kuxuan.platform.common.widget.PortraitView;
 import money.kuxuan.platform.common.widget.recycler.RecyclerAdapter;
+import money.kuxuan.platform.factory.data.helper.MineHelper;
 import money.kuxuan.platform.factory.model.db.ApplyProduct;
 import money.kuxuan.platform.factory.model.db.CreditCardAppliProduct;
+import money.kuxuan.platform.factory.model.db.DeleteApp;
+import money.kuxuan.platform.factory.model.db.DeleteTwo;
 import money.kuxuan.platform.factory.presenter.application.ApplicationContract;
 import money.kuxuan.platform.factory.presenter.application.ApplicationPresenter;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
+import okhttp3.FormBody;
 
 //我的申请activity
 public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter>
@@ -64,8 +76,10 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     RecyclerAdapter.AdapterListenerImpl adapterListener;
 
     private boolean flag=true;
-
+    private List<ApplyProduct> productData;
+    private List<CreditCardAppliProduct> cardData;
     private static final String TAG = "ApActivity";
+    private Intent intent;
 
     /**
      * 我的申请界面入口
@@ -87,7 +101,12 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @OnClick(R.id.tv_add)
     void jump(){
 
-        Intent intent = new Intent(this,Activity_AddressBook.class);
+        intent = new Intent(this,Activity_AddressBook.class);
+        if(flag==true){
+            intent.putExtra("All_App",true);
+        }else if(flag==false){
+            intent.putExtra("All_App",false);
+        }
         startActivity(intent);
 
     }
@@ -96,7 +115,11 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     protected void initData() {
         super.initData();
         //网络请求
+        applicationPresenter.setIsClick(flag,"3");
+        clickChange(flag);
+        //这个是网络请求
         mPresenter.start();
+        initWidget();
     }
 
 
@@ -115,7 +138,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                 break;
 
         }
-        applicationPresenter.setIsClick(flag);
+        applicationPresenter.setIsClick(flag,"3");
         clickChange(flag);
         //这个是网络请求
         mPresenter.start();
@@ -150,13 +173,15 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
                 @Override
-                public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product) {
-                    DetailActivity.show(ApActivity1.this,product.getProduct_id(),"applicationList");
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
+                    DetailActivity.show(ApActivity1.this,product.getProduct_id(),"applicationList",2);
                 }
 
                 @Override
-                public void onItemLongClick(RecyclerAdapter.ViewHolder holder, ApplyProduct applyProduct) {
-                    showPopupwindow();
+                public void onItemLongClick(RecyclerAdapter.ViewHolder holder, ApplyProduct applyProduct, int pos) {
+                    //super.onItemLongClick(holder, applyProduct, pos);
+                    View inflate = getLayoutInflater().inflate(R.layout.activity_delete2_layout, null);
+                    showDialog(inflate,pos);
                 }
             };
 
@@ -183,13 +208,19 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<CreditCardAppliProduct>() {
                 @Override
-                public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product) {
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product,int pos) {
 
                     WebActivity.show(ApActivity1.this, product.getProduct_name(),
                             product.getUrl());
 
                 }
 
+                @Override
+                public void onItemLongClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct creditCardAppliProduct, int pos) {
+                    super.onItemLongClick(holder, creditCardAppliProduct, pos);
+                    View inflate = getLayoutInflater().inflate(R.layout.activity_delete2_layout, null);
+                    showDialog(inflate,pos);
+                }
             };
 
             initwidget2(adapter2);
@@ -198,6 +229,129 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+            //网络请求
+            applicationPresenter.setIsClick(flag,"3");
+            clickChange(flag);
+            //这个是网络请求
+            mPresenter.start();
+            initWidget();
+
+
+    }
+
+    AlertDialog alertDialog;
+    public void showDialog(View view, final int pos){
+
+        alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+        WindowManager.LayoutParams  lp= alertDialog.getWindow().getAttributes();
+        int width = DisplayUtil.dip2px(264);
+        int height = DisplayUtil.dip2px(130);
+        lp.width=width;//定义宽度
+        lp.height=height;//定义高度
+        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.update_border);
+        alertDialog.getWindow().setAttributes(lp);
+        Window window = alertDialog.getWindow();
+
+
+        AutoRelativeLayout rel_next = (AutoRelativeLayout) view.findViewById(R.id.rel_next);
+        AutoRelativeLayout rel_good = (AutoRelativeLayout) view.findViewById(R.id.rel_good);
+        final TextView phone_name2 = (TextView) view.findViewById(R.id.phone_name2);
+
+        phone_name2.setText("您确定删除此申请？");
+        rel_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(alertDialog!=null&&alertDialog.isShowing())
+                    alertDialog.dismiss();
+            }
+        });
+
+        rel_good.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+
+                if(flag){
+                    //删除app申请
+
+                    FormBody.Builder builder=new FormBody.Builder();
+                    builder.add("product_apply_ids[0]",productData.get(pos).getId()+"");
+                    FormBody build = builder.build();
+                    MineHelper.deletetapp(build, new DataSource.Callback<Integer>() {
+
+                        @Override
+                        public void onDataNotAvailable(int strRes) {
+
+
+                        }
+
+                        @Override
+                        public void onDataLoaded(Integer integer) {
+
+
+                            productData.remove(pos);
+                            adapter1.replace(productData);
+
+
+                            if(productData.size()==0){
+                                //网络请求
+                                applicationPresenter.setIsClick(flag,"3");
+                                clickChange(flag);
+                                //这个是网络请求
+                                mPresenter.start();
+                                initWidget();
+
+                            }
+                        }
+                    });
+                }else {
+                    //删除信用卡申请
+                    FormBody.Builder builder=new FormBody.Builder();
+                    builder.add("credit_card_apply_ids[0]",cardData.get(pos).getId()+"");
+                    FormBody build = builder.build();
+                    MineHelper.deletetcard(build, new DataSource.Callback<Integer>() {
+                        @Override
+                        public void onDataNotAvailable(int strRes) {
+
+
+                        }
+
+                        @Override
+                        public void onDataLoaded(Integer integer) {
+
+                            cardData.remove(pos);
+                            adapter2.replace(cardData);
+
+                            if(cardData.size()==0){
+                                //网络请求
+                                applicationPresenter.setIsClick(flag,"3");
+                                clickChange(flag);
+                                //这个是网络请求
+                                mPresenter.start();
+                                initWidget();
+
+                            }
+                        }
+                    });
+                }
+
+
+
+            }
+        });
+
+
+        window.setContentView(view);
+
+    }
 
     @BindView(R.id.lin_bottomtitel)
     LinearLayout lin_bottomtitel;
@@ -301,6 +455,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @Override
     public void requestData(List<ApplyProduct> products) {
         hideLoading();
+        productData=products;
         adapter1.replace(products);
         adapter1.notifyDataSetChanged();
         // 如果有数据，则是OK，没有数据就显示空布局
@@ -315,6 +470,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @Override
     public void requestData1(List<CreditCardAppliProduct> products) {
         hideLoading();
+        cardData=products;
         adapter2.replace(products);
         adapter2.notifyDataSetChanged();
         // 如果有数据，则是OK，没有数据就显示空布局

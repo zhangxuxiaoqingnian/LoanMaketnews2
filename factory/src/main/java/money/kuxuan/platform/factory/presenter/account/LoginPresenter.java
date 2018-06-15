@@ -106,7 +106,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
             AccountHelper.loginByCode(model, new DataSource.Callback<CodeRspModel>() {
                 @Override
                 public void onDataNotAvailable(@StringRes int strRes) {
-                    Toast.makeText(Factory.app(), strRes, Toast.LENGTH_SHORT).show();
+
+                    getView().showError(strRes);
+
                 }
 
                 @Override

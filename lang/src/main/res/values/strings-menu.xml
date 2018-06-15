@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
     <string name="action_home">首页</string>
-    <string name="action_search">发现</string>
+    <string name="action_search">贷款</string>
     <string name="action_active">活动</string>
     <string name="action_creditcard">信用卡</string>
     <string name="action_mine">我的</string>

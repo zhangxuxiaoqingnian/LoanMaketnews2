@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/len_76"
-    android:id="@+id/mlayout"
     android:foreground="@drawable/ic_touch_fg"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
     android:paddingEnd="@dimen/len_16"
     >
 
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/mlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/lin_checkbox"
         android:layout_width="wrap_content"
@@ -72,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/txt_background_red"
                 android:ellipsize="end"
-
                 android:lines="1"
                 android:padding="@dimen/len_2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -99,6 +106,24 @@
             android:layout_marginTop="@dimen/len_4"
             android:orientation="horizontal">
 
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/layout_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+            <TextView
+                android:id="@+id/txt_people_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/len_2"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/red_text"
+                android:textSize="@dimen/font_12"/>
             <TextView
                 android:id="@+id/application"
                 android:layout_width="match_parent"
@@ -112,17 +137,7 @@
                 android:textColor="@color/textThird"
                 android:textSize="@dimen/font_12"/>
 
-            <TextView
-                android:id="@+id/txt_people_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="@dimen/len_2"
-                android:gravity="center_vertical"
-                android:lines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/red_text"
-                android:textSize="@dimen/font_12"/>
+            </com.zhy.autolayout.AutoLinearLayout>
 
 
             <TextView
@@ -132,7 +147,6 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="@dimen/len_16"
                 android:ellipsize="end"
-
                 android:gravity="center_vertical"
                 android:lines="1"
                 android:maxLength="50"
@@ -154,7 +168,6 @@
                 android:textSize="@dimen/font_12"/>
 
             <TextView
-
                 android:id="@+id/textqi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,24 +178,40 @@
                 android:text="起"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/textThird"
-
                 android:textSize="@dimen/font_12"/>
         </com.zhy.autolayout.AutoLinearLayout>
 
 
     </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-    <Space
-        android:layout_width="0dp"
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="100px"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        >
+        <TextView
+            android:id="@+id/smialtext"
+            android:layout_width="93px"
+            android:layout_height="22px"
+            android:textColor="#e42a2a"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/smial_tok"
+            android:layout_width="70px"
+            android:layout_height="14px"
+            android:textSize="10sp"
+            android:textColor="#333333"
+            android:text="额度范围 (元)"
+            android:gravity="center"
+            />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/app_name"
-        android:background="@drawable/forward"
+    </com.zhy.autolayout.AutoLinearLayout>
 
-        />
-</com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>
