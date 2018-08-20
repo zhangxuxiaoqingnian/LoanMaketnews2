@@ -89,6 +89,7 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
             public void onDataLoaded(LaunchRspModel launcherModel) {
 
                 save(launcherModel.getAndroid(),launcherModel.getVersion());
+
 //                Intent intent = new Intent(Factory.app(),DownService.class);
 //                intent.putExtra("url",launcherModel.getUrl());
 //                Factory.app().startService(intent);
@@ -209,21 +210,36 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
      */
 
     private void save(String channelOk,String version){
-        int versionLocal = Integer.parseInt(HomePresenter.getVersionCode(Factory.app()));
-        int versionNet;
-                try{
-                    versionNet =   Integer.parseInt(version);
-                }catch (Exception e){
-                    versionNet = 0;
-                }
+//        int versionLocal = Integer.parseInt(HomePresenter.getVersionCode(Factory.app()));
+//        int versionNet;
+//                try{
+//                    versionNet =   Integer.parseInt(version);
+//                }catch (Exception e){
+//                    versionNet = 0;
+//                }
+//
+//        if(versionLocal<versionNet){
+//            SharedPreferences sp = Factory.app().getSharedPreferences(CHANNEL,
+//                    Context.MODE_PRIVATE);
+//            sp.edit()
+//                    .putString(CHANNELOKORNOTOK,"0")
+//                    .apply();
+//        }else{
+//            SharedPreferences sp = Factory.app().getSharedPreferences(CHANNEL,
+//                    Context.MODE_PRIVATE);
+//            sp.edit()
+//                    .putString(CHANNELOKORNOTOK,channelOk)
+//                    .apply();
+//        }
 
-        if(versionLocal<versionNet){
+        if(channelOk.equals("0")){
             SharedPreferences sp = Factory.app().getSharedPreferences(CHANNEL,
                     Context.MODE_PRIVATE);
             sp.edit()
                     .putString(CHANNELOKORNOTOK,"0")
                     .apply();
         }else{
+            //过审页
             SharedPreferences sp = Factory.app().getSharedPreferences(CHANNEL,
                     Context.MODE_PRIVATE);
             sp.edit()

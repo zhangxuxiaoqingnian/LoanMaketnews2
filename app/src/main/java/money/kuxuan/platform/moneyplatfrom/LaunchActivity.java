@@ -113,7 +113,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
      */
     private void reallySkip() {
         //检测跳转到过审页还是线上页
-        if (checkChannel()==false) {
+        if (checkChannel()) {
             // 检查跳转到广告页还是跳转到主页
             if (checkData()==false) {
                 AdActivity.show(this);
@@ -125,9 +125,19 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
             }
             finish();
         } else {
-            HomeActivity.show(this);
-//          MainActivity.show(this);
-            Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+//            HomeActivity.show(this);
+////          MainActivity.show(this);
+//            Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+//            finish();
+            // 检查跳转到广告页还是跳转到主页
+            if (checkData()==false) {
+                AdActivity.show(this);
+                finish();
+            } else {
+                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+                MainActivity.show(this);
+                finish();
+            }
             finish();
         }
     }

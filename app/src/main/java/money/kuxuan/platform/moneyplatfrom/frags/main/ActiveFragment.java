@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -102,10 +103,10 @@ public class ActiveFragment extends PresenterFragment<ActiveContract.Presenter>
     DgFragment dgFragment;
 
     private Active active;
-//    private static final String URL = "http://web.kuxuan-inc.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
-private static final String URL = "https://newapi.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
+  //private static final String URL = "http://web.kuxuan-inc.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
+//private static final String URL = "https://newapi.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
 //线上接口
-//    private static final String URL = "https://m.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
+   private static final String URL = "https://m.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
 //测试接口
 //    private static final String URL = "https://bw.quyaqu.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
     //    private static final String URL = "http://m.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
@@ -120,6 +121,7 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
         super.initWidget(root);
         // 初始化Recycler
 
+        final List<Tool> list2=new ArrayList<>();
         ActiveHelper.getToolData(new DataSource.Callback<List<Tool>>() {
             @Override
             public void onDataNotAvailable(int strRes) {
@@ -128,8 +130,13 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
 
             @Override
             public void onDataLoaded(List<Tool> list) {
-
-                getShow(list);
+                for (int i = 0; i < list.size(); i++) {
+                    if(list.get(i).show==1){
+                        list2.add(list.get(i));
+                    }
+                }
+                //请求计算器的网络请求
+                getShow(list2);
             }
         });
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -150,7 +157,7 @@ private static final String URL = "https://newapi.henhaojie.com/Atesting/index.h
             public void onItemClick(RecyclerAdapter.ViewHolder holder, Active active,int pos) {
 
                 Log.e(TAG, active.getActivity_url());
-                mPresenter.loginState();
+                //mPresenter.loginState();
                 setActive(active);
                 state();
 

@@ -2,8 +2,12 @@ package money.kuxuan.platform.moneyplatfrom.guoshen.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,11 +39,21 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
     @BindView(R.id.phone)
     public TextView phoneTv;
 
+    @BindView(R.id.back)
+    public ImageView back;
+
+
     @Override
     protected void initWidget() {
         super.initWidget();
         EventBus.getDefault().register(this);
         mPresenter.start();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public static void show(Context context){
@@ -85,6 +99,7 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
     @Override
     protected int getContentLayoutId() {
         return R.layout.guoshen_aboutme;
+
     }
 
     @OnClick(R.id.top_rel)
@@ -163,7 +178,6 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
     protected MineConreact.Presenter initPresenter() {
         return new MinePresenter(this);
     }
-
 
 
 }

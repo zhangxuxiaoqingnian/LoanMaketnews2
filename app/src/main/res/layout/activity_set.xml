@@ -164,7 +164,7 @@
             app:gTouchCornerRadius="3dp"
             app:gTouchEffect="ripple"
             android:layout_height="@dimen/len_44"
-            android:background="@drawable/bu_red_bg"
+            android:background="#ffffff"
 
             />
 

@@ -99,7 +99,6 @@
                 android:id="@+id/action_button"
                 android:layout_height="@dimen/len_44"
                 android:background="@drawable/bu_yellow_bg"
-
                 />
 
             <net.qiujuer.genius.ui.widget.Loading

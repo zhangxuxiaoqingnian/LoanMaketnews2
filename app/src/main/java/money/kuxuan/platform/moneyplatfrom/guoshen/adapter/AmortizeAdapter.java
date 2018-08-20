@@ -1,5 +1,7 @@
 package money.kuxuan.platform.moneyplatfrom.guoshen.adapter;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
@@ -48,8 +50,11 @@ public class AmortizeAdapter extends BaseQuickAdapter<RepaymentListBean.Detail,B
 
         if(item.getStatus()==0){
             tv_status.setText("待还款");
+            tv_status.setTextColor(Color.parseColor("#333333"));
+
         }else {
             tv_status.setText("已结清");
+            tv_status.setTextColor(Color.parseColor("#cccccc"));
         }
 
     }

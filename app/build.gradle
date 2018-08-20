@@ -10,13 +10,13 @@ repositories {
 def bakPath = file("${buildDir}/bakApk/")
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+        buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.xjxeqb.money"
+        applicationId "com.yidaikuanjisuanqi.money"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0.1"
+        versionCode 13
+        versionName "3.0.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -49,8 +49,6 @@ android {
                 }
             }
         }
-
-
         debug {
             signingConfig signingConfigs.myConfig
             minifyEnabled false
@@ -66,8 +64,8 @@ android {
         }
 
         aoppo {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30053"]
-            buildConfigField 'String', 'CHANNLE', '"30053"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "10098"]
+            buildConfigField 'String', 'CHANNLE', '"10098"'
         }
 
         a360 {
@@ -76,13 +74,13 @@ android {
         }
 
         ayingyongbao {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30051"]
-            buildConfigField 'String', 'CHANNLE', '"30051"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30021"]
+            buildConfigField 'String', 'CHANNLE', '"30021"'
         }
 
         axiaomi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30055"]
-            buildConfigField 'String', 'CHANNLE', '"30055"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30061"]
+            buildConfigField 'String', 'CHANNLE', '"30061"'
         }
 
         ahuawei {
@@ -96,8 +94,12 @@ android {
         }
 
         avivo {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30052"]
-            buildConfigField 'String', 'CHANNLE', '"30052"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "10045"]
+            buildConfigField 'String', 'CHANNLE', '"10045"'
+        }
+        aqqlibray {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30063"]
+            buildConfigField 'String', 'CHANNLE', '"30063"'
         }
 
 
@@ -138,7 +140,8 @@ dependencies {
 //    }
     compile(name: 'base', ext: 'aar')
 //    compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
-//    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
+//    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportVersi
+// on"
 //    compile "com.android.support:design:$rootProject.ext.supportVersion"
     compile "net.qiujuer.genius:ui:$rootProject.ext.geniusVersion"
     compile "net.qiujuer.genius:res:$rootProject.ext.geniusVersion"

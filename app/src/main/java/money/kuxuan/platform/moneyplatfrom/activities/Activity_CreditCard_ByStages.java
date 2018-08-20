@@ -1,6 +1,8 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
+import android.content.Context;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -73,7 +75,7 @@ public class Activity_CreditCard_ByStages extends Activity implements View.OnCli
             case R.id.back:
 
                 finish();
-
+                hideSoftKeyboard();
                 break;
 
             case R.id.btn_calc:
@@ -89,6 +91,17 @@ public class Activity_CreditCard_ByStages extends Activity implements View.OnCli
         }
 
 
+    }
+
+    // 隐藏软件盘
+    private void hideSoftKeyboard() {
+        // 当前焦点的View
+        View view = getCurrentFocus();
+        if (view == null)
+            return;
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void calc() {

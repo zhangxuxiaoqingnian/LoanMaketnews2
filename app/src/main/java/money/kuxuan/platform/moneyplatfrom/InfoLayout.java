@@ -45,7 +45,7 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
     ImageView imageview1;
     ImageView imageview2;
     ImageView imageview3;
-    TabLayout tabLayout;
+//    TabLayout tabLayout;
     TextView name;
     TextView people;
 //    TextView comment;
@@ -81,65 +81,65 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mRootView = (LinearLayout) inflater.inflate(R.layout.item_info_head_layout, this);
-        tabLayout = (TabLayout) mRootView.findViewById(R.id.tablayout);
+        //tabLayout = (TabLayout) mRootView.findViewById(R.id.tablayout);
 
-       for(int i=0;i<5;i++){
-           tabLayout.addTab(tabLayout.newTab().setText(tabList.get(i)).setTag(i));
-       }
-
-       tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-           @Override
-           public void onTabSelected(TabLayout.Tab tab) {
-
-
-               switch ((Integer)tab.getTag()){
-
-                   case 0:
-                       EventBus.getDefault().post("0");
-                       break;
-                   case 1:
-                       EventBus.getDefault().post("1");
-                       break;
-                   case 2:
-                       EventBus.getDefault().post("2");
-                       break;
-                   case 3:
-                       EventBus.getDefault().post("3");
-                       break;
-                   case 4:
-                       EventBus.getDefault().post("4");
-                       break;
-               }
-           }
-           @Override
-           public void onTabUnselected(TabLayout.Tab tab) {
-           }
-
-           @Override
-           public void onTabReselected(TabLayout.Tab tab) {
-           }
-       });
+//       for(int i=0;i<5;i++){
+//           tabLayout.addTab(tabLayout.newTab().setText(tabList.get(i)).setTag(i));
+//       }
+//
+//       tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//           @Override
+//           public void onTabSelected(TabLayout.Tab tab) {
+//
+//
+//               switch ((Integer)tab.getTag()){
+//
+//                   case 0:
+//                       EventBus.getDefault().post("0");
+//                       break;
+//                   case 1:
+//                       EventBus.getDefault().post("1");
+//                       break;
+//                   case 2:
+//                       EventBus.getDefault().post("2");
+//                       break;
+//                   case 3:
+//                       EventBus.getDefault().post("3");
+//                       break;
+//                   case 4:
+//                       EventBus.getDefault().post("4");
+//                       break;
+//               }
+//           }
+//           @Override
+//           public void onTabUnselected(TabLayout.Tab tab) {
+//           }
+//
+//           @Override
+//           public void onTabReselected(TabLayout.Tab tab) {
+//           }
+//       });
 
         click = (LinearLayout) findViewById(R.id.click);
         title = (TextView) findViewById(R.id.title);
 
-        LinearLayout lin_housecalc = (LinearLayout) mRootView.findViewById(R.id.lin_housecalc);
-        lin_housecalc.setOnClickListener(this);
-
-       LinearLayout lin_averagecapital = (LinearLayout) mRootView.findViewById(R.id.lin_averagecapital);
-       lin_averagecapital.setOnClickListener(this);
-
-       LinearLayout lin_averageinterest = (LinearLayout) mRootView.findViewById(R.id.lin_averageinterest);
-       lin_averageinterest.setOnClickListener(this);
-
-       LinearLayout lin_lin_loancar = (LinearLayout) mRootView.findViewById(R.id.lin_loancar);
-       lin_lin_loancar.setOnClickListener(this);
-
-       LinearLayout lin_creditcardbystages = (LinearLayout) mRootView.findViewById(R.id.lin_creditcardbystages);
-       lin_creditcardbystages.setOnClickListener(this);
-
-       LinearLayout lin_incometaxcalc = (LinearLayout) mRootView.findViewById(R.id.lin_incometaxcalc);
-       lin_incometaxcalc.setOnClickListener(this);
+//        LinearLayout lin_housecalc = (LinearLayout) mRootView.findViewById(R.id.lin_housecalc);
+//        lin_housecalc.setOnClickListener(this);
+//
+//       LinearLayout lin_averagecapital = (LinearLayout) mRootView.findViewById(R.id.lin_averagecapital);
+//       lin_averagecapital.setOnClickListener(this);
+//
+//       LinearLayout lin_averageinterest = (LinearLayout) mRootView.findViewById(R.id.lin_averageinterest);
+//       lin_averageinterest.setOnClickListener(this);
+//
+//       LinearLayout lin_lin_loancar = (LinearLayout) mRootView.findViewById(R.id.lin_loancar);
+//       lin_lin_loancar.setOnClickListener(this);
+//
+//       LinearLayout lin_creditcardbystages = (LinearLayout) mRootView.findViewById(R.id.lin_creditcardbystages);
+//       lin_creditcardbystages.setOnClickListener(this);
+//
+//       LinearLayout lin_incometaxcalc = (LinearLayout) mRootView.findViewById(R.id.lin_incometaxcalc);
+//       lin_incometaxcalc.setOnClickListener(this);
 
 
         imageview1 = (ImageView) mRootView.findViewById(R.id.imageview1);
@@ -198,15 +198,15 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
         Intent intent;
         switch (view.getId()){
 
-            case R.id.lin_averagecapital:
-                intent = new Intent(mContext, Activity_Average_Capital_Calc.class);
-                mContext.startActivity(intent);
-                break;
-
-            case R.id.lin_housecalc:
-                intent = new Intent(getContext(), Activity_HouseCalc.class);
-                getContext().startActivity(intent);
-                break;
+//            case R.id.lin_averagecapital:
+//                intent = new Intent(mContext, Activity_Average_Capital_Calc.class);
+//                mContext.startActivity(intent);
+//                break;
+//
+//            case R.id.lin_housecalc:
+//                intent = new Intent(getContext(), Activity_HouseCalc.class);
+//                getContext().startActivity(intent);
+//                break;
 
             case R.id.click:
             if(infoBannerTwo!=null) {
@@ -214,33 +214,33 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
             }
                 break;
 
-            case R.id.lin_averageinterest:
-
-                intent = new Intent(getContext(), Activity_Average_Capital_Interest_Calc.class);
-                getContext().startActivity(intent);
-
-                break;
-
-            case R.id.lin_loancar:
-
-                intent =new Intent(getContext(), Activity_loanCarCalc.class);
-                getContext().startActivity(intent);
-
-                break;
-
-            case R.id.lin_creditcardbystages:
-
-                intent = new Intent(getContext(), Activity_CreditCard_ByStages.class);
-                getContext().startActivity(intent);
-
-                break;
-
-            case R.id.lin_incometaxcalc:
-
-                intent = new Intent(getContext(), Activity_Income_Tax_Calc.class);
-                getContext().startActivity(intent);
-
-                break;
+//            case R.id.lin_averageinterest:
+//
+//                intent = new Intent(getContext(), Activity_Average_Capital_Interest_Calc.class);
+//                getContext().startActivity(intent);
+//
+//                break;
+//
+//            case R.id.lin_loancar:
+//
+//                intent =new Intent(getContext(), Activity_loanCarCalc.class);
+//                getContext().startActivity(intent);
+//
+//                break;
+//
+//            case R.id.lin_creditcardbystages:
+//
+//                intent = new Intent(getContext(), Activity_CreditCard_ByStages.class);
+//                getContext().startActivity(intent);
+//
+//                break;
+//
+//            case R.id.lin_incometaxcalc:
+//
+//                intent = new Intent(getContext(), Activity_Income_Tax_Calc.class);
+//                getContext().startActivity(intent);
+//
+//                break;
 
         }
 

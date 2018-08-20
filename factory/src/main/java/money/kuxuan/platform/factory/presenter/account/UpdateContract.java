@@ -1,5 +1,7 @@
 package money.kuxuan.platform.factory.presenter.account;
 
+import android.content.Context;
+
 import money.kuxuan.platform.common.factory.presenter.BaseContract;
 
 /**
@@ -20,7 +22,7 @@ public interface UpdateContract {
          * 发起修改
          *
          */
-        void update(String newpassword, String oldpassword);
+        void update(String newpassword, String oldpassword, Context context);
 
 
 

@@ -30,6 +30,7 @@ import money.kuxuan.platform.factory.model.api.guoshen.PopModel;
 import money.kuxuan.platform.factory.model.api.guoshen.RepaymentListBean;
 import money.kuxuan.platform.factory.model.db.User;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.activities.AccountActivity;
 import money.kuxuan.platform.moneyplatfrom.guoshen.adapter.AmortizeAdapter;
 import money.kuxuan.platform.moneyplatfrom.guoshen.adapter.LayoutAdapter;
 import money.kuxuan.platform.moneyplatfrom.guoshen.adapter.Pop_Adapter;
@@ -93,7 +94,15 @@ public class HomeActivity extends PresenterActivity<HomeConreact.Presenter> impl
 
     @OnClick(R.id.iv_mine)
     public void onclick(){
-        MineActivity.show(this);
+
+        if(flag){
+            MineActivity.show(this);
+        }else {
+            //MineActivity.show(this);
+            Intent intent = new Intent(this, AccountActivity.class);
+            this.startActivityForResult(intent, money.kuxuan.platform.moneyplatfrom.Constant.Code.REQUEST_CODE);
+        }
+
     }
 
     boolean flag;
@@ -103,7 +112,9 @@ public class HomeActivity extends PresenterActivity<HomeConreact.Presenter> impl
         if(flag){
             AddActivity.show(this);
         }else {
-            MineActivity.show(this);
+            //MineActivity.show(this);
+            Intent intent = new Intent(this, AccountActivity.class);
+            this.startActivityForResult(intent, money.kuxuan.platform.moneyplatfrom.Constant.Code.REQUEST_CODE);
         }
 
     }

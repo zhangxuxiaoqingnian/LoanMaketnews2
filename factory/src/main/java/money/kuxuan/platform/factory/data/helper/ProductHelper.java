@@ -356,16 +356,20 @@ public class ProductHelper {
                 public void onResponse(Call<RspModel<CreditCardAppliModel>> call, Response<RspModel<CreditCardAppliModel>> response) {
 
                     RspModel<CreditCardAppliModel> rspModel = response.body();
+
                     if (rspModel != null && rspModel.success()) {
                         callback.onDataLoaded(rspModel.getRst());
+
                     } else {
                         Factory.decodeRspCode(rspModel, callback);
+
                     }
 
                 }
                 @Override
                 public void onFailure(Call<RspModel<CreditCardAppliModel>> call, Throwable t) {
                     callback.onDataNotAvailable(R.string.data_network_error);
+
                 }
             });
 

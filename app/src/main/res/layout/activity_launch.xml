@@ -19,7 +19,7 @@
             android:id="@+id/activity_launch"
             android:layout_gravity="center_horizontal|bottom"
             android:contentDescription="@string/app_name"
-            android:src="@mipmap/bg_welcome"
+            android:src="@mipmap/bg_welcome_kuai"
             android:scaleType="fitXY"
              />
     </FrameLayout>

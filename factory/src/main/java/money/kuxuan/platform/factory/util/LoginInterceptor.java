@@ -20,7 +20,8 @@ import static money.kuxuan.platform.factory.net.Network.channelId;
  * Created by xieshengqi on 2017/10/9.
  */
 
-public class LoginInterceptor implements Interceptor {
+public class
+LoginInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         // 拿到我们的请求

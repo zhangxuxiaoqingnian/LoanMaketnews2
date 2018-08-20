@@ -5,14 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import money.kuxuan.platform.common.app.PresenterActivity;
+import money.kuxuan.platform.common.widget.SelfDialog;
 import money.kuxuan.platform.factory.presenter.account.ForgetContract;
 import money.kuxuan.platform.factory.presenter.account.ForgetPresenter;
 import money.kuxuan.platform.moneyplatfrom.R;
@@ -38,6 +43,7 @@ implements ForgetContract.View{
 
 
     TimeCount time;
+    private SelfDialog selfDialog;
 
     public static void show(Context context){
         Intent intent = new Intent(context,ForgetActivity.class);
@@ -65,7 +71,7 @@ implements ForgetContract.View{
 
     @Override
     public void codeSuccess() {
-       time.start();
+        time.start();
         goSound.setVisibility(View.GONE);
     }
 
@@ -79,13 +85,60 @@ implements ForgetContract.View{
         String phone = mPhone.getText().toString();
         String password= mPassword.getText().toString();
         String code = mCode.getText().toString();
-        mPresenter.update(phone,password,code);
+        if(TextUtils.isEmpty(phone)||TextUtils.isEmpty(password)||TextUtils.isEmpty(code)){
+            selfDialog = new SelfDialog(ForgetActivity.this);
+            selfDialog.setTitle("温馨提示");
+            selfDialog.setMessage(R.string.data_account_login_invalid_parameter);
+            selfDialog.setNoOnclickListener("确定", new SelfDialog.onNoOnclickListener() {
+                @Override
+                public void onNoClick() {
+                    selfDialog.dismiss();
+                }
+            });
+            selfDialog.show();
+        }else {
+            if(password.length()<6){
+                selfDialog = new SelfDialog(ForgetActivity.this);
+                selfDialog.setTitle("温馨提示");
+                selfDialog.setMessage(R.string.data_account_register_invalid_parameter_password);
+                selfDialog.setNoOnclickListener("确定", new SelfDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        selfDialog.dismiss();
+                    }
+                });
+                selfDialog.show();
+
+            }else {
+                mPresenter.update(phone,password,code);
+
+            }
+        }
+
     }
 
     @OnClick(R.id.code)
     void onCode(){
         String phone = mPhone.getText().toString();
-        mPresenter.getCode(phone,"1");
+        Pattern p = Pattern
+                .compile("^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$");
+        Matcher m = p.matcher(phone);
+        boolean matches = m.matches();
+        if(TextUtils.isEmpty(phone)||matches==false){
+            selfDialog = new SelfDialog(ForgetActivity.this);
+            selfDialog.setTitle("温馨提示");
+            selfDialog.setMessage(R.string.the_cell_phone_number_format_is_wrong);
+            selfDialog.setNoOnclickListener("确定", new SelfDialog.onNoOnclickListener() {
+                @Override
+                public void onNoClick() {
+                    selfDialog.dismiss();
+                }
+            });
+            selfDialog.show();
+        }else {
+            mPresenter.getCode(phone,"1");
+        }
+
     }
     @OnClick(R.id.txt_go_sound)
     void soundCode(){

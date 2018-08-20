@@ -114,12 +114,12 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @Override
     protected void initData() {
         super.initData();
-        //网络请求
-        applicationPresenter.setIsClick(flag,"3");
-        clickChange(flag);
-        //这个是网络请求
-        mPresenter.start();
-        initWidget();
+//        //网络请求
+//        applicationPresenter.setIsClick(flag,"3");
+//        clickChange(flag);
+//        //这个是网络请求
+//        mPresenter.start();
+//        initWidget();
     }
 
 
@@ -131,10 +131,12 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
             case R.id.tv_tv_borrow_money:
                 flag = true;
+                refreshLayout.setLoadmoreFinished(false);
                 break;
 
             case R.id.tv_credit_card:
                 flag = false;
+                refreshLayout.setLoadmoreFinished(false);
                 break;
 
         }
@@ -143,6 +145,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
         //这个是网络请求
         mPresenter.start();
         initWidget();
+
 
     }
 
@@ -406,6 +409,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
         refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
+
                 mPresenter.refreshData();
             }
         });
@@ -487,6 +491,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
      */
     @Override
     public void refresh(List<ApplyProduct> products) {
+        productData.addAll(products);
         adapter1.add(products);
         adapter1.notifyDataSetChanged();
         refreshLayout.finishLoadmore(true);
@@ -495,6 +500,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
     @Override
     public void refresh1(List<CreditCardAppliProduct> products) {
+        cardData.addAll(products);
         adapter2.add(products);
         adapter2.notifyDataSetChanged();
         refreshLayout.finishLoadmore(true);
@@ -511,14 +517,14 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
         if (click){
             tv_borrow_money.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_borrow_money.setBackgroundColor(Color.parseColor("#21d09c"));
-            tv_credit_card.setTextColor(Color.parseColor("#21d09c"));
+            tv_borrow_money.setBackgroundColor(Color.parseColor("#4594FF"));
+            tv_credit_card.setTextColor(Color.parseColor("#4594FF"));
             tv_credit_card.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }else {
-            tv_borrow_money.setTextColor(Color.parseColor("#21d09c"));
+            tv_borrow_money.setTextColor(Color.parseColor("#4594FF"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFFFFF"));
             tv_credit_card.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_credit_card.setBackgroundColor(Color.parseColor("#21d09c"));
+            tv_credit_card.setBackgroundColor(Color.parseColor("#4594FF"));
         }
 
 

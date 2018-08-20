@@ -114,11 +114,11 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     @Override
     protected void initData() {
         super.initData();
-        //网络请求
-        applicationPresenter.setIsClick(flag,"2");
-        clickChange(flag);
-        mPresenter.start();
-        initWidget();
+//        //网络请求
+//        applicationPresenter.setIsClick(flag,"2");
+//        clickChange(flag);
+//        mPresenter.start();
+//        initWidget();
     }
 
 
@@ -330,6 +330,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
             case R.id.tv_tv_borrow_money:
                 flag = true;
+                refreshLayout.setLoadmoreFinished(false);
                 applicationPresenter.setIsClick(flag,"2");
                 clickChange(flag);
                 //这个是网络请求
@@ -339,6 +340,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
             case R.id.tv_credit_card:
                 flag = false;
+                refreshLayout.setLoadmoreFinished(false);
                 applicationPresenter.setIsClick(flag,"2");
                 clickChange(flag);
                 //这个是网络请求
@@ -706,6 +708,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                             initWidget();
 
                         }
+
                     });
 
 
@@ -720,6 +723,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                     if (lin_bottomtitel.getVisibility() == View.VISIBLE) {
                         lin_bottomtitel.setVisibility(View.GONE);
                     }
+
 
                     for (int i = 0; i < checklist.size(); i++) {
                         deleteData.add(cardData.get(checklist.get(i)).getId());
@@ -882,6 +886,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     //上拉加载app列表
     @Override
     public void refresh(List<ApplyProduct> products) {
+        productData.addAll(products);
         adapter1.add(products);
         adapter1.notifyDataSetChanged();
         refreshLayout.finishLoadmore(true);
@@ -890,9 +895,20 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     //上拉加载信用卡列表
     @Override
     public void refresh1(List<CreditCardAppliProduct> products) {
+        cardData.addAll(products);
         adapter2.add(products);
         adapter2.notifyDataSetChanged();
         refreshLayout.finishLoadmore(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //网络请求
+        applicationPresenter.setIsClick(flag,"2");
+        clickChange(flag);
+        mPresenter.start();
+        initWidget();
     }
 
     //没有数据的回调
@@ -906,14 +922,14 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         if (click){
             tv_borrow_money.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_borrow_money.setBackgroundColor(Color.parseColor("#21d09c"));
-            tv_credit_card.setTextColor(Color.parseColor("#21d09c"));
+            tv_borrow_money.setBackgroundColor(Color.parseColor("#4594FF"));
+            tv_credit_card.setTextColor(Color.parseColor("#4594FF"));
             tv_credit_card.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }else {
-            tv_borrow_money.setTextColor(Color.parseColor("#21d09c"));
+            tv_borrow_money.setTextColor(Color.parseColor("#4594FF"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFFFFF"));
             tv_credit_card.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_credit_card.setBackgroundColor(Color.parseColor("#21d09c"));
+            tv_credit_card.setBackgroundColor(Color.parseColor("#4594FF"));
         }
 
 
@@ -1094,8 +1110,6 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 }
 
             }
-
-
             im_portrait.setup(Glide.with(context), creditCardAppliProduct.getIcon());
             txt_name.setText(creditCardAppliProduct.getProduct_name());
             txt_desc.setText(creditCardAppliProduct.getDesc());

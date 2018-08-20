@@ -332,7 +332,7 @@
                 android:maxLength="6"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#21d09c"
+                android:textColor="#4594FF"
                 android:textCursorDrawable="@drawable/ic_cursor"
                 android:layout_centerInParent="true"
                 android:textSize="20sp" />
@@ -341,7 +341,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/len_20"
+                android:layout_marginEnd="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="元"
@@ -374,7 +374,7 @@
                 android:id="@+id/InstallmentPeriod_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#21d09c"
+                android:textColor="#4594FF"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_centerInParent="true"
@@ -386,7 +386,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textSecond"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="@dimen/len_20"
+                android:layout_marginEnd="30dp"
                 android:layout_centerVertical="true"
                 />
 

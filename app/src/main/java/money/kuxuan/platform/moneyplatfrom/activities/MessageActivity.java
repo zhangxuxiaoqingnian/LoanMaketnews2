@@ -19,12 +19,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import money.kuxuan.platform.common.app.PresenterActivity;
+import money.kuxuan.platform.common.utils.DisplayUtil;
 import money.kuxuan.platform.common.widget.EmptyView;
 import money.kuxuan.platform.common.widget.recycler.RecyclerAdapter;
 import money.kuxuan.platform.factory.model.db.Message;
 import money.kuxuan.platform.factory.presenter.message.MessageContract;
 import money.kuxuan.platform.factory.presenter.message.MessagePresenter;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.util.DisplayUtils2;
 
 //消息界面
 public class MessageActivity extends PresenterActivity<MessageContract.Presenter>
@@ -66,6 +68,7 @@ implements MessageContract.View{
 
         mPresenter.start();
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mRecycler.addItemDecoration(new DisplayUtils2.SpacesItemDecoration());
         mRecycler.setAdapter(mAdapter = new RecyclerAdapter<Message>() {
             @Override
             protected int getItemViewType(int position, Message message) {

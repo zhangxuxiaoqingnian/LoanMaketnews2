@@ -106,7 +106,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
     private String term = "不限";
     private String amount = "不限";
     private String user_title = "不限";
-    private String ranking_list = "all";
+    private String ranking_list = "";
 
     private static final String identity[] = {"不限", "上班族", "个体户", "企业家"};
     private PopupWindow popupWindow;
@@ -203,6 +203,22 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
 
     }
+
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        term_tv.setText("贷款期限");
+        num_tv.setText("贷款金额");
+        identity_tv.setText("职业身份");
+
+
+        tabLayout.getTabAt(0).select();
+
+
+    }
+
 
     @Override
     protected void onFirstInit() {
@@ -377,7 +393,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
 
         ShowPopuWindow(amountList,2);
-        num_tv.setTextColor(Color.parseColor("#21d09c"));
+        num_tv.setTextColor(Color.parseColor("#4594FF"));
         gray_layout.setVisibility(View.VISIBLE);
 
     }
@@ -404,6 +420,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
                 refreshLayout.setLoadmoreFinished(false);
                 mPresenter.setHasNext(true);
                 if(num==1){
+
                     identity_tv.setText(data.get(position).getV());
                     user_title = data.get(position).getK();
                 }else if(num==2){
@@ -454,7 +471,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 //        alertFragment.setData(termList);
 //        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
         ShowPopuWindow(termList,3);
-        term_tv.setTextColor(Color.parseColor("#21d09c"));
+        term_tv.setTextColor(Color.parseColor("#4594FF"));
         gray_layout.setVisibility(View.VISIBLE);
     }
 
@@ -478,7 +495,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 //        alertFragment.setData(personList);
 //        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
         ShowPopuWindow(personList,1);
-        identity_tv.setTextColor(Color.parseColor("#21d09c"));
+        identity_tv.setTextColor(Color.parseColor("#4594FF"));
         gray_layout.setVisibility(View.VISIBLE);
 
     }

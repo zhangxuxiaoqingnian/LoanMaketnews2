@@ -55,6 +55,7 @@
         app:rvp_triggerOffset="0.1"
         app:rvp_singlePageFling="true"
         android:clipToPadding="false"
+
         >
     </com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager>
 
@@ -66,8 +67,8 @@
         android:layout_marginLeft="18px"
         android:layout_marginRight="18px"
         android:layout_marginTop="10px"
-        android:background="@color/white"
         android:layout_below="@+id/viewpager"
+
         >
 
         <TextView
@@ -151,7 +152,7 @@
             android:textSize="16px"
             android:text="修改当前状态"
             android:textColor="#ffffff"
-            android:background="#ffcf00"
+            android:background="#1E58D6"
             android:gravity="center"
             android:padding="15px"
             />

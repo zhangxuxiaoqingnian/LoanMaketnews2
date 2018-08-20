@@ -1,7 +1,9 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -75,6 +77,7 @@ public class Activity_Average_Capital_Interest_Calc extends Activity implements 
 
             case R.id.back:
 
+                hideSoftKeyboard();
                 finish();
 
                 break;
@@ -90,6 +93,16 @@ public class Activity_Average_Capital_Interest_Calc extends Activity implements 
         }
 
 
+    }
+    // 隐藏软件盘
+    private void hideSoftKeyboard() {
+        // 当前焦点的View
+        View view = getCurrentFocus();
+        if (view == null)
+            return;
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void calc() {

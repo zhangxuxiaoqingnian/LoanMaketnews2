@@ -4,6 +4,7 @@ package money.kuxuan.platform.moneyplatfrom.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,20 +18,26 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import money.kuxuan.platform.common.app.PresenterActivity;
 import money.kuxuan.platform.common.widget.AdDialog;
 import money.kuxuan.platform.common.widget.StatusBarUtil;
 import money.kuxuan.platform.factory.Factory;
+import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.account.LoginModel;
+import money.kuxuan.platform.factory.model.api.launcher.LaunchRspModel;
 import money.kuxuan.platform.factory.model.api.launcher.RspAdModel;
 import money.kuxuan.platform.factory.net.Network;
+import money.kuxuan.platform.factory.net.RemoteService;
 import money.kuxuan.platform.factory.presenter.home.MainContract;
 import money.kuxuan.platform.factory.presenter.home.MainPresenter;
 import money.kuxuan.platform.moneyplatfrom.Constant;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.frags.main.ActiveFragment;
+import money.kuxuan.platform.moneyplatfrom.frags.main.Calculate2Fragment;
+import money.kuxuan.platform.moneyplatfrom.frags.main.CalculateFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.CreditCardFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.HomeFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.MineFragment;
@@ -41,15 +48,19 @@ import money.kuxuan.platform.moneyplatfrom.helper.DataGenerator;
 import money.kuxuan.platform.moneyplatfrom.helper.FragmentHelper;
 import money.kuxuan.platform.moneyplatfrom.helper.SPUtil;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static money.kuxuan.platform.factory.presenter.launcher.LauncherPresenter.FILEPATH;
 import static money.kuxuan.platform.factory.presenter.launcher.LauncherPresenter.LINK;
 import static money.kuxuan.platform.factory.presenter.launcher.LauncherPresenter.NEW_DIALOG;
 import static money.kuxuan.platform.factory.presenter.launcher.LauncherPresenter.PRODUCTID;
 import static money.kuxuan.platform.factory.presenter.launcher.LauncherPresenter.SKIPTYPE;
+import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.icon2;
 import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.mTabChannelRes;
-import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.mTabRes;
-import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.mTabTitle;
+import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.icon;
+import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.cx;
 import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
@@ -64,6 +75,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     @BindView(R.id.txt_title)
     TextView mTitle;
+
+    @BindView(R.id.timemore)
+    ImageView timemore;
 
     @BindView(R.id.line)
     View line;
@@ -101,12 +115,18 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     private String mPatchFileDir; //patch要保存的文件夹
     private String mFilePtch; //patch文件保存路径
+    private List<Integer> icon;
+    private List<Integer> icon2;
+    private List<String> cx;
+    private SharedPreferences sp;
+    private String credit_hidden;
 
 
     public static void show(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
 
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
+
 
     }
 
@@ -115,14 +135,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     protected void initWidows() {
         super.initWidows();
         StatusBarUtil.StatusBarLightMode(this);
-
-
-
     }
 
-
-
     private void loginAuto() {
+
         String phone = (String) SPUtil.get(this, Constant.UserInfo.USERNAME, "");
         String pwd = (String) SPUtil.get(this, Constant.UserInfo.PASSWORD, "");
         if (!TextUtils.isEmpty(phone)) {
@@ -139,31 +155,112 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     protected void initWidget() {
         super.initWidget();
         loginAuto();
+
+    }
+
+    public void shabi(){
+
         mFragmentHelper = new FragmentHelper(this, R.id.lay_container,
                 getSupportFragmentManager(), this);
-        if (checkChannel()==false) {
-            mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(HomeFragment.class, R.string.title_home))
-                    .add(1, new FragmentHelper.Tab<Integer>(SearchFragment.class, R.string.title_find))
-                    .add(2,new FragmentHelper.Tab<Integer>(CreditCardFragment.class,R.string.action_creditcard))
-                    .add(3, new FragmentHelper.Tab<Integer>(ActiveFragment.class, R.string.title_active))
-                    .add(4, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
+
+
+        if (checkChannel()) {
+
+            cx = cx();
+            icon = icon();
+            icon2 = icon2();
+
+
+          if (credit_hidden.equals("0")){
+                mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(HomeFragment.class, R.string.title_home))
+                        .add(1, new FragmentHelper.Tab<Integer>(SearchFragment.class, R.string.title_find))
+                        .add(2,new FragmentHelper.Tab<Integer>(CreditCardFragment.class,R.string.action_creditcard))
+                        .add(3, new FragmentHelper.Tab<Integer>(ActiveFragment.class, R.string.title_active))
+                        .add(4, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
+            }else {
+                mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(HomeFragment.class, R.string.title_home))
+                        .add(1, new FragmentHelper.Tab<Integer>(SearchFragment.class, R.string.title_find))
+                        .add(2, new FragmentHelper.Tab<Integer>(ActiveFragment.class, R.string.title_active))
+                        .add(3, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
+
+                cx.remove(2);
+                icon.remove(2);
+                icon2.remove(2);
+
+            }
+
+            setTabs(mTabLayout, this.getLayoutInflater());
+            initBottomTitle();
+            mPresenter.start();
+
+
+
+
         } else {
             mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(ExaimeFragment.class, R.string.title_quick))
                     .add(1, new FragmentHelper.Tab<Integer>(ExpertFragment.class, R.string.title_special))
-//                    .add(2, new FragmentHelper.Tab<Integer>(CalculateFragment.class, R.string.title_cal))
-                    .add(2, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
+                    .add(2, new FragmentHelper.Tab<Integer>(Calculate2Fragment.class, R.string.title_cal))
+                    .add(3, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
+
+            setTabs(mTabLayout, this.getLayoutInflater());
+            initBottomTitle2();
+            mPresenter.start();
+
+
 
         }
         //添加底部导航的监听
         mTabLayout.addOnTabSelectedListener(this);
-
     }
 
+    private void initBottomTitle() {
+        View view = mTabLayout.getTabAt(0).getCustomView();
+        ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
+        TextView text = (TextView) view.findViewById(R.id.tab_content_text);
+        icon3.setImageResource(icon2.get(0));
+        text.setTextColor(Color.parseColor("#4594FF"));
+    }
+    private void initBottomTitle2() {
+        View view = mTabLayout.getTabAt(0).getCustomView();
+        ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
+        TextView text = (TextView) view.findViewById(R.id.tab_content_text);
+        icon3.setImageResource(DataGenerator.mTabResChanelPressed[0]);
+        text.setTextColor(Color.parseColor("#4594FF"));
+    }
+
+    public void cardvisible(){
+
+        RemoteService service = Network.remote();
+        Call<RspModel<LaunchRspModel>> call = service.getChannel(Network.channelId);
+
+        // 异步的请求
+        call.enqueue(new Callback<RspModel<LaunchRspModel>>() {
+            @Override
+            public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
+                RspModel<LaunchRspModel> rspModel = response.body();
+
+                if (rspModel!=null&&rspModel.success()) {
+
+                    LaunchRspModel rst = rspModel.getRst();
+                    String version = rst.create_time;
+                    credit_hidden = rst.getCredit_hidden();
+                    String url = rst.getUrl();
+                    shabi();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<LaunchRspModel>> call, Throwable t) {
+
+            }
+        });
+    }
     @Override
     protected void initData() {
         super.initData();
-        setTabs(mTabLayout, this.getLayoutInflater());
-        mPresenter.start();
+        cardvisible();
     }
 
 
@@ -180,25 +277,26 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+
         Log.e(TAG, tab.getText() + "");
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
             View view = mTabLayout.getTabAt(i).getCustomView();
-            ImageView icon = (ImageView) view.findViewById(R.id.tab_content_image);
+            ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
             TextView text = (TextView) view.findViewById(R.id.tab_content_text);
-            if (checkChannel()==false) {
+            if (checkChannel()) {
                 if (i == tab.getPosition()) {
-                    icon.setImageResource(DataGenerator.mTabResPressed[i]);
-                    text.setTextColor(0xff01d09c);
+                    icon3.setImageResource(icon2.get(i));
+                    text.setTextColor(Color.parseColor("#4594FF"));
                 } else {
-                    icon.setImageResource(DataGenerator.mTabRes[i]);
+                    icon3.setImageResource(icon.get(i));
                     text.setTextColor(getResources().getColor(R.color.textSecond));
                 }
             } else {
                 if (i == tab.getPosition()) {
-                    icon.setImageResource(DataGenerator.mTabResChanelPressed[i]);
-                    text.setTextColor(0xff01d09c);
+                    icon3.setImageResource(DataGenerator.mTabResChanelPressed[i]);
+                    text.setTextColor(Color.parseColor("#4594FF"));
                 } else {
-                    icon.setImageResource(DataGenerator.mTabChannelRes[i]);
+                    icon3.setImageResource(DataGenerator.mTabChannelRes[i]);
                     text.setTextColor(getResources().getColor(R.color.textSecond));
                 }
             }
@@ -219,9 +317,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     }
 
     private void setTabs(TabLayout tabLayout, LayoutInflater inflater) {
+        mFragmentHelper.performClickMenu(0);
         //修改底部标题栏
-        if (checkChannel()==false) {
-            for (int i = 0; i < mTabRes.length; i++) {
+        if (checkChannel()) {
+
+            for (int i = 0; i < icon.size(); i++) {
                 TabLayout.Tab tab = tabLayout.newTab();
 
                 View view = inflater.inflate(R.layout.tab_content, null);
@@ -230,11 +330,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
                 TextView tvTitle = (TextView) view.findViewById(R.id.tab_content_text);
 
-                tvTitle.setText(mTabTitle[i]);
+                tvTitle.setText(cx.get(i));
 
                 ImageView imgTab = (ImageView) view.findViewById(R.id.tab_content_image);
 
-                imgTab.setImageResource(mTabRes[i]);
+                imgTab.setImageResource(icon.get(i));
 
                 tabLayout.addTab(tab);
             }
@@ -272,8 +372,24 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             mLayAppbar.setVisibility(View.VISIBLE);
             line.setVisibility(View.VISIBLE);
         }
+        if(checkChannel()){
+            if(newTab.extra.equals(R.string.title_mine)){
+                timemore.setVisibility(View.VISIBLE);
+            }else {
+                timemore.setVisibility(View.GONE);
+            }
+        }
+
 
         Log.e(TAG, newTab.extra + "");
+
+        timemore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,MessageActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -381,10 +497,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     private void save(String time) {
         SharedPreferences sp = Factory.app().getSharedPreferences(NEW_PICTURE,
                 Context.MODE_PRIVATE);
-        sp.edit()
-                .putString(KEY_TIME, time)
-
-                .apply();
+        sp.edit().putString(KEY_TIME, time).apply();
     }
 
     private String loadTime() {

@@ -3,6 +3,8 @@ package money.kuxuan.platform.moneyplatfrom.activities;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.mcxtzhang.indexlib.IndexBar.widget.IndexBar;
@@ -14,6 +16,7 @@ import java.util.List;
 import butterknife.OnClick;
 import money.kuxuan.platform.common.app.PresenterActivity;
 import money.kuxuan.platform.common.factory.data.DataSource;
+import money.kuxuan.platform.common.widget.EmptyView;
 import money.kuxuan.platform.factory.data.helper.MineHelper;
 import money.kuxuan.platform.factory.model.db.AllApp;
 import money.kuxuan.platform.factory.model.db.AllCard;
@@ -53,6 +56,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
     private TextView mTvSideBarHint;
     private List<AllApp.HBean> list=new ArrayList();
     private boolean all_app;
+    private EmptyView empty;
 
     public void getDataOfAllApp(List<AllApp.HBean> a){
         if (a!=null&&a.size()>0)
@@ -126,6 +130,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
                 @Override
                 public void onDataNotAvailable(int strRes) {
 
+
                 }
 
                 @Override
@@ -174,15 +179,14 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
 
         }
         mRv = (RecyclerView) findViewById(R.id.rv);
+        empty = (EmptyView) findViewById(R.id.empty);
+
         mRv.setLayoutManager(mManager = new LinearLayoutManager(this));
 
         mAdapter = new FastFlexAdapter(this, mDatas);
         mAdapter.Setnum(new FastFlexAdapter.Getnum() {
             @Override
             public void data(int pos) {
-
-
-
                 if(all_app){
                     //当点击一个产品时调用添加到过审接口并关闭此Activity
                     MineHelper.addapp(mDatas.get(pos).getUuid(), new DataSource.Callback<DeleteApp>() {
@@ -225,8 +229,11 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
         //        mHeaderAdapter.setHeaderView(R.layout.item_city, "测试头部");
 
         mRv.setAdapter(mHeaderAdapter);
+        mHeaderAdapter.notifyDataSetChanged();
         mRv.addItemDecoration(mDecoration = new SuspensionDecoration(this, mDatas).setHeaderViewCount(mHeaderAdapter.getHeaderViewCount()));
 
+//        empty.bind(mRv);
+//        setPlaceHolderView(empty);
         //如果add两个，那么按照先后顺序，依次渲染。
         mRv.addItemDecoration(new DividerItemDecoration(Activity_AddressBook.this, DividerItemDecoration.VERTICAL_LIST));
 
@@ -262,6 +269,18 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
 
     }
 
+    @Override
+    public void showError(int str) {
+        super.showError(str);
+        mPlaceHolderView.triggerNetError();
+        Button button = (Button) empty.findViewById(R.id.bu_re);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.start();
+            }
+        });
+    }
 
     /**
      * 组织数据源

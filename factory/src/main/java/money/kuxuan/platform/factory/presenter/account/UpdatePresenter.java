@@ -1,11 +1,14 @@
 package money.kuxuan.platform.factory.presenter.account;
 
+import android.content.Context;
 import android.support.annotation.StringRes;
 import android.widget.Toast;
 
 import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.common.factory.presenter.BasePresenter;
+import money.kuxuan.platform.common.widget.SelfDialog;
 import money.kuxuan.platform.factory.Factory;
+import money.kuxuan.platform.factory.R;
 import money.kuxuan.platform.factory.data.helper.AccountHelper;
 import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.account.UpdateModel;
@@ -21,14 +24,23 @@ public class UpdatePresenter extends BasePresenter<UpdateContract.View>
     }
 
     @Override
-    public void update(String oldpassword, String newpassword) {
+    public void update(String oldpassword, String newpassword, final Context context) {
 
         UpdateModel updateModel = new UpdateModel(newpassword,oldpassword);
         AccountHelper.update(updateModel, new DataSource.Callback<RspModel>() {
             @Override
             public void onDataNotAvailable(@StringRes int strRes) {
-                if(getView()!=null)
-                    getView().showError(strRes);
+               final SelfDialog selfDialog = new SelfDialog(context);
+                selfDialog.setTitle("温馨提示");
+                selfDialog.setMessage(R.string.data_account_login_invalid_parameter4);
+                selfDialog.setNoOnclickListener("确定", new SelfDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        selfDialog.dismiss();
+                    }
+                });
+
+                selfDialog.show();
             }
 
             @Override

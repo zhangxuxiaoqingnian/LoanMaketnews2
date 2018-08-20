@@ -57,7 +57,7 @@
             android:layout_height="80dp"
            android:layout_marginTop="@dimen/len_100"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_kuai" />
 
         <TextView
             android:id="@+id/name"

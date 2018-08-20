@@ -107,6 +107,7 @@ public class HomeHeaderLayout extends RelativeLayout implements OnBannerListener
             public void onClick(View v) {
                 HomePresenter.save(mContext,max_id);
                 bage.hide(false);
+
                 MessageActivity.show(mContext);
 
             }
@@ -135,6 +136,7 @@ public class HomeHeaderLayout extends RelativeLayout implements OnBannerListener
                 new_three.setVisibility(View.GONE);
             }
         });
+
 
 //        credit_rel.setOnClickListener(new OnClickListener() {
 //            @Override

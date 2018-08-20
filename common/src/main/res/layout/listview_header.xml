@@ -4,22 +4,22 @@
     android:layout_height="match_parent">
 
     <com.youth.banner.Banner
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="120dp" >
+    android:id="@+id/banner"
+    android:layout_width="match_parent"
+    android:layout_height="120dp" >
 
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:divider="@color/divider_gray"
-            android:dividerHeight="1px"
-            android:paddingBottom="@dimen/len_2"
-            android:scrollbars="none"
-            android:visibility="gone"
-            />
-    </com.youth.banner.Banner>
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:divider="@color/divider_gray"
+        android:dividerHeight="1px"
+        android:paddingBottom="@dimen/len_2"
+        android:scrollbars="none"
+        android:visibility="gone"
+        />
+</com.youth.banner.Banner>
 
     <ImageView
         android:id="@+id/im_message"
@@ -33,7 +33,7 @@
         android:contentDescription="@string/app_name"
         android:foreground="@drawable/ic_touch_menu"
         android:scaleType="centerInside"
-        android:src="@drawable/message"
+        android:src="@drawable/timemore3"
         android:tint="?attr/toolbarMenuIconColor" />
 
     <com.zhy.autolayout.AutoLinearLayout

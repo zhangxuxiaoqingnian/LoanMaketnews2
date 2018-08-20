@@ -32,15 +32,6 @@
             android:textColor="@color/bu_yellow_bg"
             android:textSize="@dimen/font_14"
             />
-        <!--<TextView-->
-            <!--android:id="@+id/tv_back"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="关闭"-->
-            <!--android:layout_marginStart="@dimen/len_16"-->
-            <!--android:textColor="@color/bu_yellow_bg"-->
-            <!--android:textSize="@dimen/font_14"-->
-            <!--/>-->
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"

@@ -29,6 +29,7 @@ public interface ApplicationContract {
         //加载完成
         void NoData();
 
+
         void clickChange(boolean click);
 
     }

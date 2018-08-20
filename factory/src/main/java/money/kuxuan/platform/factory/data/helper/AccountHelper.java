@@ -1,6 +1,8 @@
 package money.kuxuan.platform.factory.data.helper;
 
+import money.kuxuan.platform.common.app.Application;
 import money.kuxuan.platform.common.factory.data.DataSource;
+import money.kuxuan.platform.common.widget.SelfDialog;
 import money.kuxuan.platform.factory.Factory;
 import money.kuxuan.platform.factory.R;
 import money.kuxuan.platform.factory.model.api.RspModel;
@@ -119,6 +121,7 @@ public class AccountHelper {
                 if (rspModel.success()) {
                     callback.onDataLoaded(rspModel);
                 } else {
+
                     Factory.decodeRspCode(rspModel, callback);
                 }
             }
@@ -186,7 +189,7 @@ public class AccountHelper {
         // 调用Retrofit对我们的网络请求接口做代理
         RemoteService service = Network.remote();
         // 得到一个Call
-        Call<RspModel> call = service.update(forgetModel);
+        Call<RspModel> call = service.update2(forgetModel);
         // 异步的请求
         call.enqueue(new Callback<RspModel>() {
             @Override

@@ -18,6 +18,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
@@ -229,13 +230,16 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
                 if(popupWindow!=null&&popupWindow.isShowing())
                     popupWindow.dismiss();
                                 try{
-                                    Uri uri = Uri.parse("market://details?id="+getPackageName());
+                                    Uri uri = Uri.parse("market://details?id=com.xjjdsdjk.money");
                                     Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.setClassName("com.tencent.android.qqdownloader", "com.tencent.pangu.link.LinkProxyActivity");
                                     startActivity(intent);
                                    overridePendingTransition(R.anim.alpha_in,R.anim.alpha_out);
                                 }catch(Exception e){
-                                    Toast.makeText(getApplicationContext(), "您的手机没有安装Android应用市场", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent();
+                                    intent.setData(Uri.parse("http://android.myapp.com/myapp/detail.htm?apkName=com.xjjdsdjk.money&ADTAG=mobile"));//Url 就是你要打开的网址
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    startActivity(intent); //启动浏览器
                                     e.printStackTrace();
                                 }
 
@@ -261,16 +265,19 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 
          if(TextUtils.isEmpty(skip_type)){
              finish();
+             hideSoftKeyboard();
          }else{
              if(skip_type.equals("1")) {
                  Log.e(TAG,type+"--------------type");
                  if(type == 0){
                      finish();
+                     hideSoftKeyboard();
                  }else{
                      MainActivity.show(WebActivity.this);
                  }
              }else{
                  finish();
+                 hideSoftKeyboard();
              }
          }
 
@@ -318,6 +325,17 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    // 隐藏软件盘
+    private void hideSoftKeyboard() {
+        // 当前焦点的View
+        View view = getCurrentFocus();
+        if (view == null)
+            return;
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -368,7 +386,6 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 //                "channel=" + BuildConfig.CHANNLE + "&version=" + 2.0 + "&isAndroid=1");
         settings.setAllowFileAccess(true);
         settings.setBuiltInZoomControls(false);
-
         settings.setDomStorageEnabled(true);
 //        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
@@ -388,7 +405,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     }
 
 
-    private class MyWebViewClient extends WebViewClient {
+        private class   MyWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, final String url) {

@@ -14,7 +14,7 @@
 
     <!--字体颜色-->
     <color name="textPrimary">#333333</color>
-    <color name="textSecond">#666666</color>
+        <color name="textSecond">#666666</color>
     <color name="textThird">#999999</color>
     <color name="textAccent">@color/colorAccent</color>
     <color name="textLight">@color/colorLight</color>
@@ -40,8 +40,8 @@
     <color name="red_alpha">#fa2f2f</color>
     <color name="yellow_alpha">#55FFD100</color>
     <!--<color name="bu_yellow_bg">#ffd100</color>-->
-    <color name="bu_yellow_bg">#21d09c</color>
-    <color name="yellow_apply">#f5e993</color>
+    <color name="bu_yellow_bg">#4594FF</color>
+    <color name="yellow_apply">#cccccc</color>
     <color name="bu_cccc">#cccccc</color>
 
     <color name="calctextcolor">#414141</color>

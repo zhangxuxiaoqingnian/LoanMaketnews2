@@ -50,6 +50,7 @@ public class ForgetPresenter extends BasePresenter<ForgetContract.View>
             @Override
             public void onDataNotAvailable(@StringRes int strRes) {
                 if(getView()!=null){
+
                     getView().showError(strRes);
                 }
 

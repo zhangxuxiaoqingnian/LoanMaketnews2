@@ -24,7 +24,7 @@
             android:layout_weight="1"
             android:text="修改为已结清"
             android:gravity="center"
-            android:background="#FFCF00"
+            android:background="#3399ff"
             android:textColor="@color/white"
             android:textSize="16px"
             />
@@ -38,7 +38,7 @@
             android:textSize="16px"
             android:textColor="@color/white"
             android:gravity="center"
-            android:background="#FFB800"
+            android:background="#1E58D6"
             />
 
 

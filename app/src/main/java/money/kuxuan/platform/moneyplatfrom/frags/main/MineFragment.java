@@ -48,6 +48,11 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
 
     @BindView(R.id.ap_lin)
     LinearLayout ap_lin;
+    @BindView(R.id.apply_lin)
+    LinearLayout apply_lin;
+    @BindView(R.id.lin_problem)
+    LinearLayout lin_problem;
+
 
 
     private SelfDialog selfDialog;
@@ -61,8 +66,10 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
     protected void initWidget(View root) {
         super.initWidget(root);
         mPresenter.start();
-        if (checkChannel()) {
+        if (checkChannel()==false) {
             ap_lin.setVisibility(View.GONE);
+            apply_lin.setVisibility(View.GONE);
+            lin_problem.setVisibility(View.GONE);
         }
 
     }

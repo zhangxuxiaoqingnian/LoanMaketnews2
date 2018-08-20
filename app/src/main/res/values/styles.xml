@@ -22,7 +22,7 @@
 
 
      <style name="SplashTheme" parent="AppTheme">
-         <item name="android:windowBackground">@mipmap/bg_welcome</item>
+         <item name="android:windowBackground">@mipmap/bg_welcome_kuai</item>
          <item name="android:windowFullscreen">true</item>
          <item name="android:windowIsTranslucent">false</item>
      </style>

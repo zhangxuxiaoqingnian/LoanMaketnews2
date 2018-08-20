@@ -1,11 +1,13 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -225,12 +227,22 @@ public class Activity_HouseCalc extends Activity implements View.OnClickListener
                     popupWindow.dismiss();
                 }
                 finish();
-
+                hideSoftKeyboard();
                 break;
 
         }
 
 
+    }
+    // 隐藏软件盘
+    private void hideSoftKeyboard() {
+        // 当前焦点的View
+        View view = getCurrentFocus();
+        if (view == null)
+            return;
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void realcalcCapital(String moneynum, String year, String rate) {

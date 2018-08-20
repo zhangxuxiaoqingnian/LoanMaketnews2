@@ -20,11 +20,11 @@
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/mine_background"
+            android:src="@drawable/mine_backgroun7"
             />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/len_64"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/ic_kuai"
             android:id="@+id/icon"
             app:civ_border_width="6dp"
             app:civ_border_color="#FFFFFF"

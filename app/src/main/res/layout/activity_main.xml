@@ -21,17 +21,34 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/statusBarSize">
 
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
             <TextView
                 android:id="@+id/txt_title"
                 android:textSize="@dimen/font_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_centerInParent="true"
                 android:text="@string/app_name"
                 android:textAppearance="@style/TextAppearance.Title"
                 android:textColor="@color/textPrimary" />
 
+            <ImageView
+                android:id="@+id/timemore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/timemore"
+                android:layout_marginRight="20px"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
         </FrameLayout>
 
 

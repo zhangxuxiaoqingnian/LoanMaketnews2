@@ -270,6 +270,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     AlertDialog alertDialog;
     public void showDialog(){
 
+        callphone.setEnabled(false);
         view2 = LayoutInflater.from(getApplicationContext()).inflate(R.layout.callphone_dialog,null);
         phonename = (TextView) view2.findViewById(R.id.phone_name);
         tv_phone = (TextView) view2.findViewById(R.id.tv_phone);
@@ -295,6 +296,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
                 if(alertDialog!=null&&alertDialog.isShowing())
                     alertDialog.dismiss();
+                callphone.setEnabled(true);
             }
         });
 
@@ -304,6 +306,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             @Override
             public void onClick(View v) {
 
+                callphone.setEnabled(true);
                 TextView textView = (TextView) view2.findViewById(R.id.tv_phone);
                 String phoneNum = textView.getText().toString().trim();
 

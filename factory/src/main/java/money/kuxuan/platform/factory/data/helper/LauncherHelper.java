@@ -1,5 +1,6 @@
 package money.kuxuan.platform.factory.data.helper;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import money.kuxuan.platform.common.factory.data.DataSource;
@@ -97,8 +98,8 @@ public class LauncherHelper {
      * @param callback 成功与失败的接口回调
      */
     public static void getChannel(String channel,final DataSource.Callback callback) {
-        RemoteService service = Network.remote();
 
+        RemoteService service = Network.remote();
         Call<RspModel<LaunchRspModel>> call = service.getChannel(channel);
 
         // 异步的请求
@@ -109,7 +110,6 @@ public class LauncherHelper {
 
                 if (rspModel!=null&&rspModel.success()) {
                     callback.onDataLoaded(rspModel.getRst());
-
                 } else {
                     Factory.decodeRspCode(rspModel, callback);
                 }

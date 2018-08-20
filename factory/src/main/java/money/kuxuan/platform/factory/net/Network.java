@@ -22,6 +22,7 @@ import money.kuxuan.platform.factory.Factory;
 import money.kuxuan.platform.factory.util.LoginInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

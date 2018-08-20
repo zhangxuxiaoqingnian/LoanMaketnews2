@@ -97,7 +97,6 @@ public interface RemoteService {
     @GET("/user/repayment/repaymentList")
     Call<RspModel<List<RepaymentListBean>>> getRepaymentList();
 
-
     @FormUrlEncoded
     @POST("/user/repayment/getRepaymentDetail")
     Call<RspModel<List<PopModel>>> getPopDetail(@Field("id") int id);
@@ -112,21 +111,17 @@ public interface RemoteService {
     @POST("user/personalCenter")
     Call<RspModel<AccountRspModel>> loginState();
 
-
     @POST("user/confirmForgetPasswordCode")
-    Call<RspModel> update(@Body ForgetModel forgetModel);
+    Call<RspModel> update2(@Body ForgetModel forgetModel);
 
     @POST("user/addMessage")
     Call<RspModel> sendMessage(@Body ContentModel contentModel);
-
-
 
     @POST("user/register")
     Call<RspModel<CodeRspModel>> loginByCode(@Body CodeModel model);
 
     @POST("user/forgetPassword")
     Call<RspModel<CodeRspModel>> forgetByCode(@Body CodeModel model);
-
 
     //获取banner图
     @POST("product/homeact")
@@ -144,7 +139,6 @@ public interface RemoteService {
     @GET("information/banner")
     Call<RspModel<BannerModel>> getBanner();
 
-
     @POST("information/getinformationsbypackage")
     Call<RspModel<BannerExprt>> getExpertHomeData(@Body Examine model);
 
@@ -160,11 +154,8 @@ public interface RemoteService {
     @POST("product/searchSecond")
     Call<RspModel<ProductRspModel>> getSearchData(@Body SearchModel searchModel);
 
-
     @POST("user/updateApplyStatus")
     Call<RspModel> ApplyState(@Body WebModel webModel);
-
-
 
     @POST("product/detail")
     Call<RspModel<ProductDetail>> getDetailData(@Body DetailModel detailModel);
@@ -175,12 +166,9 @@ public interface RemoteService {
     @POST("/user/repayment/updateRepayment")
     Call<RspModel<Object>> getAddRepayment1(@Body AddModel1 addModel);
 
-
-
     @FormUrlEncoded
     @POST("/user/repayment/getRepayment")
     Call<RspModel<GetRepaymentModel>> getRepayment(@Field("id") int id);
-
 
     @POST("product/getSameAmountByProductId")
     Call<RspModel<AmountRspModel>> getHorData(@Body DetailModel detailModel);
@@ -212,18 +200,14 @@ public interface RemoteService {
     @POST("user/myapply")
     Call<RspModel<ApplyProductModel>> getApplication(@Body PageModel pageModel);
 
-
     @POST("CreditCard/myapply")
     Call<RspModel<CreditCardAppliModel>> getCreditCardAppli(@Body PageModel pageModel);
-
 
     @POST("CreditCard/list")
     Call<RspModel<CreditCardModel>> getCrediCard(@Body CreditCardPageModel pageModel);
 
     @POST("CreditCard/add")
     Call<RspModel> getCanAdd(@Body CreditModel creditModel);
-
-
 
     @POST("user/personalCenter")
     Call<RspModel<AccountRspModel>> getLoginState();

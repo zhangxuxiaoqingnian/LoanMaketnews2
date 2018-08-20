@@ -25,9 +25,11 @@ public class App extends Application {
     private static final String TAG = "App";
     public static final String UMENG_APP_KEY = "59b64bfa677baa34a00017ca";
 
+    private Context context;
     @Override
     public void onCreate() {
         super.onCreate();
+        this.context=getApplicationContext();
         //初始化
         Factory.setup();
         MobclickAgent.setDebugMode(true);

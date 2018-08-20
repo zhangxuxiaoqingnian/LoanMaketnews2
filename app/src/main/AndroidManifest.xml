@@ -12,21 +12,23 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
     <!-- 小米需要的service和receiver -->
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <permission
-        android:name="com.xjxeqb.money.permission.MIPUSH_RECEIVE"
+        android:name="com.yidaikuanjisuanqi.money.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
-    <uses-permission android:name="com.xjxeqb.money.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.yidaikuanjisuanqi.money.permission.MIPUSH_RECEIVE" />
 
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_kuai"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:roundIcon="@mipmap/ic_kuai"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
@@ -196,10 +198,10 @@
         <!-- 友盟 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5ad58bfcf29d98151e000036" />
+            android:value="591d670304e2050f4f00061e"/>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}" />
+            android:value="${UMENG_CHANNEL_VALUE}"/>
 
         <activity android:name=".activities.Webview_protocol"
                    android:screenOrientation="portrait"

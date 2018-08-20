@@ -119,6 +119,8 @@ public class FragmentHelper<T> {
         //提交事务
         ft.commit();
         notifyTabSelect(newTab,oldTab);
+
+
     }
 
     /**
@@ -146,6 +148,7 @@ public class FragmentHelper<T> {
             this.extra = extra;
 
         }
+
 
         //Fragment对应的Class信息
         public Class<?> clx;

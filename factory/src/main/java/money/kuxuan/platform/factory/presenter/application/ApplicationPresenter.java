@@ -2,6 +2,8 @@ package money.kuxuan.platform.factory.presenter.application;
 
 import android.support.annotation.StringRes;
 
+import java.util.List;
+
 import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.common.factory.presenter.BasePresenter;
 import money.kuxuan.platform.factory.data.helper.ProductHelper;
@@ -9,6 +11,7 @@ import money.kuxuan.platform.factory.model.api.application.PageModel;
 import money.kuxuan.platform.factory.model.api.creditcard.CreditCardPageModel;
 import money.kuxuan.platform.factory.model.api.product.ApplyProductModel;
 import money.kuxuan.platform.factory.model.api.product.CreditCardAppliModel;
+import money.kuxuan.platform.factory.model.db.CreditCardAppliProduct;
 
 /**
  * @author HFRX hfrx1314@qq.com
@@ -52,6 +55,8 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
 
 
         if(click){
+            pageId=1;
+            hasNext=false;
 
             PageModel pageModel = new PageModel(pageId,ppger);
             ProductHelper.getApplication(click,pageModel,new DataSource.Callback<ApplyProductModel>() {
@@ -60,6 +65,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
                 public void onDataNotAvailable(@StringRes int strRes) {
                     if(getView()!=null)
                         getView().showError(strRes);
+
                 }
 
                 @Override
@@ -67,6 +73,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
                     if(getView()!=null) {
 
                         getView().requestData(productRspModel.getList());
+
 
                     }
                     if(productRspModel.getPageinfo().isHasNext()){
@@ -82,11 +89,11 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
 
 
         }else {
+            pageId=1;
+            hasNext=false;
             PageModel pageModel = new PageModel(pageId,ppger);
             //网络请求
             ProductHelper.getApplication(click,pageModel,new DataSource.Callback<CreditCardAppliModel>(){
-
-
                 @Override
                 public void onDataNotAvailable(@StringRes int strRes) {
 
@@ -102,6 +109,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
                     if(getView()!=null) {
                         getView().requestData1(creditCardAppliModel.getList());
                     }
+                    List<CreditCardAppliProduct> list = creditCardAppliModel.getList();
                     if(creditCardAppliModel.getPageinfo().isHasNext()){
                         hasNext =true;
                         page++;
@@ -122,6 +130,9 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
 
 
         if(click) {
+            if(hasNext==false)
+                return;
+
             PageModel pageModel = new PageModel(pageId,ppger);
             ProductHelper.getApplication(click, pageModel, new DataSource.Callback<ApplyProductModel>() {
 
@@ -146,16 +157,17 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
                             hasNext=false;
                             if(getView()!=null)
                                 getView().NoData();
+
                         }
                     }
                 }
             });
 
         }else {
+            if(hasNext==false)
+                return;
             PageModel pageModel = new PageModel(pageId,ppger);
             ProductHelper.getApplication(click,pageModel,new DataSource.Callback<CreditCardAppliModel>(){
-
-
                 @Override
                 public void onDataNotAvailable(@StringRes int strRes) {
 
@@ -171,7 +183,7 @@ public class ApplicationPresenter extends BasePresenter<ApplicationContract.View
                         getView().refresh1(creditCardAppliModel.getList());
                     if(creditCardAppliModel.getPageinfo().isHasNext()){
                         hasNext =true;
-                        page++;
+                        pageId++;
                     }else{
                         hasNext=false;
                         if(getView()!=null)
