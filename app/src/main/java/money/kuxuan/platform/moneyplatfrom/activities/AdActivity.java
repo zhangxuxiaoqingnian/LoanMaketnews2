@@ -14,9 +14,20 @@ import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import money.kuxuan.platform.common.app.Activity;
+import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.common.timer.BaseTimerTask;
 import money.kuxuan.platform.common.timer.ITimerListener;
+import money.kuxuan.platform.factory.data.helper.LauncherHelper;
+import money.kuxuan.platform.factory.model.api.Bean.HomeBase;
+import money.kuxuan.platform.factory.model.api.RspModel;
+import money.kuxuan.platform.factory.model.api.launcher.LauncherModel;
+import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
@@ -60,6 +71,7 @@ public class AdActivity extends Activity
     private Timer mTimer = null;
 
     public static void show(Context context) {
+
         Intent intent = new Intent(context,AdActivity.class);
         context.startActivity(intent);
 
@@ -81,9 +93,42 @@ public class AdActivity extends Activity
         load();
         Intent intent = getIntent();
         showAdDialog = intent.getBooleanExtra(SHOWADDIALOG,false);
+
+
+//        Observable<HomeBase> homeBaseObservable = new NetRequestUtils().bucuo().getbaseretrofit().getAdPicture("750x1334").subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
+//        homeBaseObservable.subscribe(new Observer<HomeBase>() {
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(HomeBase homeBase) {
+//
+//                System.out.println("成功了");
+//                String image_url = homeBase.rst.data.image_url;
+//                //加载
+//                Glide.with(AdActivity.this).load(image_url).into(imageView);
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//
+//            }
+//        });
+
         //加载
-        Glide.with(this).load(filePath).into(imageView);
+        Glide.with(AdActivity.this).load(filePath).into(imageView);
+
     }
+
+
 
     /**
      * 加载缓存的广告图片

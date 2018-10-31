@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+
 import butterknife.BindView;
 import money.kuxuan.platform.common.app.PresenterFragment;
 import money.kuxuan.platform.common.factory.presenter.BaseContract;
@@ -58,6 +60,10 @@ public class Calculate2Fragment extends Fragment implements View.OnClickListener
 
         LinearLayout lin_incometaxcalc = (LinearLayout) mRootView.findViewById(R.id.lin_incometaxcalc);
         lin_incometaxcalc.setOnClickListener(this);
+
+        ImageView img = (ImageView) mRootView.findViewById(R.id.chart);
+        String url="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2758812849,70676744&fm=200&gp=0.jpg";
+        Glide.with(getActivity()).load(url).into(img);
 
     }
 

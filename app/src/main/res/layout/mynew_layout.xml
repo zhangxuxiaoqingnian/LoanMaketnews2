@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/guoshen_hua"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/newtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:text="你好"
+            android:textStyle="bold"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="50px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="30px"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="贷款总额"
+                android:textColor="#ffffff"
+                />
+            <TextView
+                android:id="@+id/daizong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="本月还款总额"
+                android:textColor="#ffffff"
+                />
+            <TextView
+                android:id="@+id/daifen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/jitwo"
+            android:id="@+id/ji"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mynewrv"
+            android:visibility="gone"
+
+            />
+        <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rel_empty"
+        android:layout_width="match_parent"
+        android:layout_marginRight="15px"
+        android:layout_marginLeft="15px"
+        android:layout_height="150px"
+        android:layout_marginTop="8px"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/tv_tishi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105px"
+            android:layout_centerHorizontal="true"
+            android:text="您还没有添加还款记录呦~"
+            android:textColor="#4676B4"
+            />
+
+        <ImageView
+            android:layout_width="71px"
+            android:layout_height="71px"
+            android:layout_marginTop="32px"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/guoshen_additem"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

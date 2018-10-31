@@ -31,16 +31,16 @@ public class DataGenerator {
 
     public static final List<Integer> icon(){
         list2 = new ArrayList<>();
-        list2.add(R.drawable.tabbar_home7);
-        list2.add(R.drawable.tabbar_search7);
-        list2.add(R.drawable.tabbar_creditcard7);
-        list2.add(R.drawable.tabbar_active7);
-        list2.add(R.drawable.tabbar_mine7);
+        list2.add(R.drawable.tabbar_home15);
+        list2.add(R.drawable.tabbar_search15);
+        list2.add(R.drawable.tabbar_creditcard8);
+        list2.add(R.drawable.tabbar_active15);
+        list2.add(R.drawable.tabbar_mine15);
         return list2;
     }
     public static final int[] mTabChannelRes = new int[]{
-            R.drawable.tabbar_home7, R.drawable.tabbar_exper2,
-            R.drawable.tabbar_color2,R.drawable.tabbar_mine7
+            R.drawable.tabbar_home10, R.drawable.tabbar_exper10,
+            R.drawable.tabbar_color10,R.drawable.tabbar_mine10
     };
     public static final int[] mTabResPressed = new int[]{
             R.drawable.tabbar_home_highlight, R.drawable.tabbar_search_highlight, R.drawable.tabbar_creditcard_highlight,
@@ -48,16 +48,16 @@ public class DataGenerator {
     };
     public static final List<Integer> icon2(){
         list3 = new ArrayList<>();
-        list3.add(R.drawable.tabbar_home_highligh7);
-        list3.add(R.drawable.tabbar_search_highlight7);
-        list3.add(R.drawable.tabbar_creditcard_highlight7);
-        list3.add(R.drawable.tabbar_active_hightlight7);
-        list3.add(R.drawable.tabbar_mine_highligh7);
+        list3.add(R.drawable.tabbar_home_highligh15);
+        list3.add(R.drawable.tabbar_search_highlight15);
+        list3.add(R.drawable.tabbar_creditcard_highlight8);
+        list3.add(R.drawable.tabbar_active_hightlight15);
+        list3.add(R.drawable.tabbar_mine_highligh15);
         return list3;
     }
     public static final int[] mTabResChanelPressed = new int[]{
-            R.drawable.tabbar_home_highligh7, R.drawable.tabbar_expert_hightligh2,
-            R.drawable.tabbar_color_highligh2,R.drawable.tabbar_mine_highligh7
+            R.drawable.tabbar_home_highligh10, R.drawable.tabbar_expert_hightligh10,
+            R.drawable.tabbar_color_highligh10,R.drawable.tabbar_mine_highligh10
     };
 
     public static final String[] mTabTitle = new String[]{"首页", "贷款","信用卡","发现", "我的"};
@@ -73,7 +73,7 @@ public class DataGenerator {
         return list;
     }
 
-    public static final String[] mTabXTitle = new String[]{"首页", "专栏","计算器","我的"};
+    public static final String[] mTabXTitle = new String[]{"首页", "发单","订单","我的"};
     public static Fragment[] getFragments() {
         Fragment fragments[] = new Fragment[list2.size()];
         fragments[0] = new HomeFragment();

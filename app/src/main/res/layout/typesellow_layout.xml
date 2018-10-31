@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="68px"
+        android:layout_height="21px"
+        android:id="@+id/money_text"
+        android:text="2千-1万"
+        android:textSize="13px"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:background="@drawable/money_quan"
+/>
+
+</LinearLayout>

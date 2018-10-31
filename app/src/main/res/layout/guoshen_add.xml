@@ -250,6 +250,7 @@
         android:padding="15px"
         android:textSize="16px"
         android:layout_marginTop="56px"
+        android:textColor="#ffffff"
         android:background="@drawable/guoshen_border"
         />
 

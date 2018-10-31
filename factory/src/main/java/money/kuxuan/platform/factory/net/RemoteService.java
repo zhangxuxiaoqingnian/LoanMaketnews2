@@ -1,6 +1,8 @@
 package money.kuxuan.platform.factory.net;
 
 
+import android.database.Observable;
+
 import java.util.List;
 
 import money.kuxuan.platform.factory.model.api.RspModel;
@@ -24,6 +26,8 @@ import money.kuxuan.platform.factory.model.api.examine.BannerExprt;
 import money.kuxuan.platform.factory.model.api.examine.BannerModel;
 import money.kuxuan.platform.factory.model.api.examine.Examine;
 import money.kuxuan.platform.factory.model.api.examine.Examine1;
+import money.kuxuan.platform.factory.model.api.examine.HaLou;
+import money.kuxuan.platform.factory.model.api.examine.HomeBean;
 import money.kuxuan.platform.factory.model.api.examine.IdModel;
 import money.kuxuan.platform.factory.model.api.examine.InfoModel;
 import money.kuxuan.platform.factory.model.api.examine.RspExamHomeModel;
@@ -142,6 +146,9 @@ public interface RemoteService {
     @POST("information/getinformationsbypackage")
     Call<RspModel<BannerExprt>> getExpertHomeData(@Body Examine model);
 
+    @POST("information/getinformationsbypackage")
+    Call<RspModel<HomeBean>> gethome(@Body HaLou haLou);
+
     @POST("information/getinformationcontentbyid")
     Call<RspModel<InfoModel>> getInfoData(@Body IdModel model);
 
@@ -157,6 +164,7 @@ public interface RemoteService {
     @POST("user/updateApplyStatus")
     Call<RspModel> ApplyState(@Body WebModel webModel);
 
+    //详情页
     @POST("product/detail")
     Call<RspModel<ProductDetail>> getDetailData(@Body DetailModel detailModel);
 

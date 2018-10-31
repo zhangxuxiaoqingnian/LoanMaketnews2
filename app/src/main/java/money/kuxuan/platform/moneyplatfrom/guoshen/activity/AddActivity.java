@@ -4,6 +4,7 @@ package money.kuxuan.platform.moneyplatfrom.guoshen.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -92,7 +93,14 @@ public class AddActivity extends PresenterActivity<AddConreact.Presenter> implem
 
        iv_mine.setImageResource(R.drawable.guoshen_back);
        iv_add.setVisibility(View.GONE);
-       tv_title.setText("添加");
+
+
+        boolean nilang = getIntent().getBooleanExtra("nilang", false);
+        if(nilang){
+            tv_title.setText("添加");
+        }else {
+            tv_title.setText("修改");
+        }
 
     }
 
@@ -169,7 +177,9 @@ public class AddActivity extends PresenterActivity<AddConreact.Presenter> implem
 
     public static void show(Context context){
         Intent intent = new Intent(context,AddActivity.class);
+        intent.putExtra("nilang",true);
         context.startActivity(intent);
+
     }
 
     public static void show(Context context,int id){

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70px"
+        android:background="#FEA034"
+        />
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36px"
+        >
+        <LinearLayout
+            android:layout_width="355px"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26px"
+            android:layout_marginRight="25px"
+            android:layout_marginTop="24px"
+            >
+            <TextView
+                android:id="@+id/newmoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="贷款金额"
+                android:textColor="#666666"
+                android:textSize="17px"
+                />
+            <TextView
+                android:id="@+id/newdata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="贷款期限"
+                android:textColor="#666666"
+                android:textSize="17px"
+                android:layout_centerInParent="true"
+                />
+            <TextView
+                android:id="@+id/newidentity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="职业身份"
+                android:textColor="#666666"
+                android:textSize="17px"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#D8D8D8"
+                android:layout_marginTop="13px"
+                android:layout_marginLeft="15px"
+                android:layout_marginRight="17px"
+                />
+        </LinearLayout>
+        <FrameLayout
+            android:id="@+id/newframe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+</LinearLayout>
+</RelativeLayout>

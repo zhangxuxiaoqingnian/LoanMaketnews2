@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F4F4"
+    tools:context="money.kuxuan.platform.moneyplatfrom.activities.DiscloseActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:orientation="vertical"
+        android:background="#FEA034"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/pic_contact_back"
+                    android:layout_width="24px"
+                    android:layout_height="24px"
+                    android:src="@drawable/back1"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerVertical="true"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="下款爆料"
+                android:layout_gravity="center_vertical"
+                android:textColor="#ffffff"
+                android:layout_centerInParent="true"
+                android:textSize="17px"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="116px"
+            android:orientation="vertical"
+            android:background="#ffffff"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40px"
+                android:orientation="horizontal"
+                android:layout_marginTop="22px"
+                android:layout_marginLeft="15px"
+                android:layout_marginRight="12px"
+                >
+                <ImageView
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/loginicon"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="李小狗"
+                    android:layout_marginLeft="54px"
+                    android:textSize="14px"
+                    android:textColor="#333333"
+                    />
+                <TextView
+                    android:layout_width="62px"
+                    android:layout_height="23px"
+                    android:text="已关注"
+                    android:textColor="#ffffff"
+                    android:textSize="14px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/guan"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#D8D8D8"
+                android:layout_marginTop="14px"
+                android:layout_marginLeft="15px"
+                android:layout_marginRight="12px"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="平台介绍:全网最真实最快最全的下款信息一站获取"
+                android:layout_marginTop="12px"
+                android:textSize="12px"
+                android:textColor="#666666"
+                android:layout_marginLeft="15px"
+                android:layout_marginRight="12px"
+                />
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dis_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/compile"
+        android:layout_width="43px"
+        android:layout_height="43px"
+        android:src="@mipmap/loginicon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="87px"
+        android:layout_marginRight="43px"
+        />
+
+</RelativeLayout>

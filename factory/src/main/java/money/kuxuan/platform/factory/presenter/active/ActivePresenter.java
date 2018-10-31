@@ -5,6 +5,8 @@ import android.text.TextUtils;
 
 import money.kuxuan.platform.common.factory.data.DataSource;
 import money.kuxuan.platform.common.factory.presenter.BasePresenter;
+import money.kuxuan.platform.factory.Constant;
+import money.kuxuan.platform.factory.Factory;
 import money.kuxuan.platform.factory.R;
 import money.kuxuan.platform.factory.data.helper.AccountHelper;
 import money.kuxuan.platform.factory.data.helper.ActiveHelper;
@@ -16,6 +18,7 @@ import money.kuxuan.platform.factory.model.api.active.ActiveModel;
 import money.kuxuan.platform.factory.model.api.active.ActiveRspModel;
 import money.kuxuan.platform.factory.model.db.User;
 import money.kuxuan.platform.factory.net.Network;
+import money.kuxuan.platform.factory.util.SPUtil;
 
 
 /**
@@ -115,6 +118,8 @@ public class ActivePresenter extends BasePresenter<ActiveContract.View>
 
                 @Override
                 public void onDataLoaded(User user) {
+                    if(user!=null)
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
                     if(getView()!=null)
                     getView().loginSuccess();
                 }
@@ -139,6 +144,9 @@ public class ActivePresenter extends BasePresenter<ActiveContract.View>
                 @Override
                 public void onDataLoaded(User user) {
                     getView().loginSuccess();
+                    if(user!=null)
+                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
+
                 }
             });
 

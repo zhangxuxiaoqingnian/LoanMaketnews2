@@ -11,25 +11,35 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 小米需要的service和receiver -->
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <permission
-        android:name="com.yidaikuanjisuanqi.money.permission.MIPUSH_RECEIVE"
+        android:name="com.sddksxjgod.money.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
-    <uses-permission android:name="com.yidaikuanjisuanqi.money.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.sddksxjgod.money.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_kuai"
+        android:icon="@mipmap/ic_pig"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_pig"
         android:supportsRtl="true"
-        android:roundIcon="@mipmap/ic_kuai"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="design_width"
+            android:value="375" />
+        <meta-data
+            android:name="design_height"
+            android:value="667" />
+
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
@@ -48,10 +58,10 @@
             android:name=".activities.AccountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".activities.ApActivity1"
+        <activity
+            android:name=".activities.ApActivity1"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            />
+            android:theme="@style/AppTheme.Main" />
         <activity android:name=".activities.Activity_AddressBook" />
 
         <service
@@ -198,15 +208,40 @@
         <!-- 友盟 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="591d670304e2050f4f00061e"/>
+            android:value="5b8e2da6a40fa30c1100021e" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}"/>
+            android:value="${UMENG_CHANNEL_VALUE}" />
 
-        <activity android:name=".activities.Webview_protocol"
-                   android:screenOrientation="portrait"
-                   android:theme="@style/AppTheme.Main"
-            ></activity>
+        <activity
+            android:name=".activities.Webview_protocol"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main" />
+        <activity android:name=".activities.GuoShenDetail" />
+        <activity android:name=".activities.MyHomeActivity" />
+        <activity android:name=".activities.MyBillActivity" />
+        <activity android:name=".activities.MyTypeActivity" />
+        <activity android:name=".activities.MySetActivity" />
+        <activity android:name=".activities.MyDaiActivity" />
+        <activity android:name=".activities.NewDetailActivity" />
+
+        <!-- 高德定位 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="645c73ba2c605217308ad971b4d31d71" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".activities.CityotherActivity" />
+        <activity android:name=".activities.DiscloseActivity" />
+        <activity android:name=".activities.MyCollectActivity" />
+        <activity android:name=".activities.RecordActivity" />
+        <activity android:name=".activities.MemoActivity" />
+        <activity android:name=".activities.MemoTwoActivity" />
+        <activity android:name=".activities.MySetTwoActivity" />
+        <activity android:name=".activities.TypeActivity" />
+        <activity android:name=".activities.CaseurlActivity" />
+        <activity android:name=".activities.FeedbackActivity"></activity>
     </application>
 
 </manifest>

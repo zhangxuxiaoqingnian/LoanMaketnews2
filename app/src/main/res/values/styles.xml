@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="AppTheme.Base">
         <!--
@@ -12,6 +12,15 @@
         <item name="colorControlActivated">@color/textPrimary</item>
 
     </style>
+
+    <style name="ImageTranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">false</item>
+        <item name="android:windowTranslucentNavigation" tools:ignore="NewApi">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+    </style>
+
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">colorPrimary
          <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/bu_yellow_bg</item>
@@ -22,7 +31,7 @@
 
 
      <style name="SplashTheme" parent="AppTheme">
-         <item name="android:windowBackground">@mipmap/bg_welcome_kuai</item>
+         <item name="android:windowBackground">@mipmap/bg_welcome_pig</item>
          <item name="android:windowFullscreen">true</item>
          <item name="android:windowIsTranslucent">false</item>
      </style>
@@ -76,5 +85,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="pop_anim" parent="android:Animation">
+
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+
+    </style>
+
+    <declare-styleable name="MarkViewStyle">
+        <attr name="contentSize" format="dimension" />
+        <attr name="leftPadding" format="dimension" />
+        <attr name="disabled" format="boolean" />
+    </declare-styleable>
 
 </resources>

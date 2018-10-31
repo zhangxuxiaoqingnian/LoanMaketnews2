@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import money.kuxuan.platform.common.SecondEvent;
 import money.kuxuan.platform.common.app.PresenterActivity;
+import money.kuxuan.platform.factory.model.api.examine.HomeBean;
 import money.kuxuan.platform.factory.model.api.guoshen.GetRepaymentModel;
 import money.kuxuan.platform.factory.model.api.guoshen.PopModel;
 import money.kuxuan.platform.factory.model.api.guoshen.RepaymentListBean;
@@ -76,6 +77,19 @@ public class HomeActivity extends PresenterActivity<HomeConreact.Presenter> impl
         initTabViewPager();
         initRecycleView();
         mPresenter.getLoginStats();
+        rel_empty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(flag){
+                    AddActivity.show(HomeActivity.this);
+                }else {
+                    //MineActivity.show(this);
+                    Intent intent = new Intent(HomeActivity.this, AccountActivity.class);
+                    startActivityForResult(intent, money.kuxuan.platform.moneyplatfrom.Constant.Code.REQUEST_CODE);
+                }
+            }
+        });
 
     }
 

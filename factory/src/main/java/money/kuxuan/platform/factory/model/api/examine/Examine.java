@@ -9,8 +9,11 @@ public class Examine {
     private String package_id;
     private int page;
 
-    public Examine(String package_id,int page) {
+
+    public Examine(String package_id, int page ) {
         this.package_id = package_id;
         this.page = page;
+
     }
+
 }

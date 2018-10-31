@@ -20,11 +20,11 @@
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/mine_backgroun7"
+            android:src="@drawable/mine_backgroun8"
             />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/len_64"
-            android:src="@mipmap/ic_kuai"
+            android:src="@mipmap/ic_pig"
             android:id="@+id/icon"
             app:civ_border_width="6dp"
             app:civ_border_color="#FFFFFF"
@@ -46,10 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/divider_gray"/>
+
     <LinearLayout
+        android:id="@+id/mycollect"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:id="@+id/ap_lin"
         android:gravity="center_vertical"
         android:background="@color/white"
         android:layout_height="@dimen/len_56">
@@ -61,7 +62,32 @@
             android:textSize="@dimen/font_16"
             android:drawableStart="@drawable/footprint"
             android:drawablePadding="@dimen/len_16"
-            android:text="我的足迹"
+            android:text="我的收藏"
+            android:textColor="@color/textPrimary"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider_gray"/>
+    <LinearLayout
+        android:id="@+id/newrecord"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="@dimen/len_56">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/len_16"
+            android:textSize="@dimen/font_16"
+            android:drawableStart="@drawable/footprint"
+            android:drawablePadding="@dimen/len_16"
+            android:text="浏览记录"
             android:textColor="@color/textPrimary"/>
 
     </LinearLayout>
@@ -71,11 +97,10 @@
         android:layout_height="1px"
         android:background="@color/divider_gray"/>
 
-
     <LinearLayout
+        android:id="@+id/memo"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:id="@+id/apply_lin"
         android:gravity="center_vertical"
         android:background="@color/white"
         android:layout_height="@dimen/len_56">
@@ -85,9 +110,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/len_16"
             android:textSize="@dimen/font_16"
-            android:drawableStart="@drawable/applymine"
+            android:drawableStart="@drawable/footprint"
             android:drawablePadding="@dimen/len_16"
-            android:text="我的申请"
+            android:text="还款备忘录"
             android:textColor="@color/textPrimary"/>
 
     </LinearLayout>
@@ -116,6 +141,56 @@
             android:textColor="@color/textPrimary"/>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="@dimen/len_56">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/len_16"
+            android:textSize="@dimen/font_16"
+            android:drawableStart="@drawable/commonproblem"
+            android:drawablePadding="@dimen/len_16"
+            android:text="意见反馈"
+            android:textColor="@color/textPrimary"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider_gray"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/apply_lin"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="@dimen/len_56">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/len_16"
+            android:textSize="@dimen/font_16"
+            android:drawableStart="@drawable/applymine"
+            android:drawablePadding="@dimen/len_16"
+            android:text="我的申请"
+            android:textColor="@color/textPrimary"/>
+
+    </LinearLayout>
+
+
+
+
 
 
 

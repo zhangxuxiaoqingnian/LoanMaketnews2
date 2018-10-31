@@ -54,6 +54,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
     private AdModel adModel;
 
     private boolean showAdDialog = true;
+    private SharedPreferences sp;
 
     @Override
     protected int getContentLayoutId() {
@@ -66,6 +67,9 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         super.initWidget();
         mPresenter.start();
         mImageView.setAlpha(0.1f);
+
+        sp = getSharedPreferences("Overs",MODE_PRIVATE);
+
     }
 
     @Override
@@ -115,36 +119,46 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         //检测跳转到过审页还是线上页
         if (checkChannel()) {
             // 检查跳转到广告页还是跳转到主页
-            if (checkData()==false) {
+//            if (checkData()==false) {
+
+            boolean oldwer = sp.getBoolean("oldwer", false);
+            if(oldwer){
                 AdActivity.show(this);
                 finish();
-            } else {
-                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+            }else {
+                sp.edit().putBoolean("oldwer",true).commit();
                 MainActivity.show(this);
                 finish();
             }
+
+//            } else {
+//                System.out.println("不为空");
+//                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+//                MainActivity.show(this);
+//                finish();
+//            }
             finish();
         } else {
-//            HomeActivity.show(this);
-////          MainActivity.show(this);
-//            Log.e(TAG, showAdDialog + "--A-DASDASDAS");
-//            finish();
-            // 检查跳转到广告页还是跳转到主页
-            if (checkData()==false) {
-                AdActivity.show(this);
-                finish();
-            } else {
-                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
-                MainActivity.show(this);
-                finish();
-            }
+      //     HomeActivity.show(this);
+//           finish();
+            MainActivity.show(this);
+            Log.e(TAG, showAdDialog + "--A-DASDASDAS");
             finish();
+            // 检查跳转到广告页还是跳转到主页
+//            if (checkData()==false) {
+//                AdActivity.show(this);
+//                finish();
+//            } else {
+//                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+//                MainActivity.show(this);
+//                finish();
+//            }
+//            finish();
         }
     }
 
     /**
      * 给背景设置一个动画
-     *
      * @param endProgress 动画的结束进度
      * @param endCallback 动画结束时触发
      */
@@ -160,7 +174,6 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
                 super.onAnimationEnd(animation);
                 // 结束时触发
                 endCallback.run();
-
             }
         });
         anim.start();
@@ -203,6 +216,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
     public void loadTry(String filePath, RspAdModel rspAdModel) {
         this.filePath = filePath;
         save(filePath, rspAdModel);
+
 
     }
 

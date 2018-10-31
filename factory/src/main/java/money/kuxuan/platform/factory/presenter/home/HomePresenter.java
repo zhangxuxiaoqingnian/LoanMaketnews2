@@ -68,15 +68,18 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
             public void onDataLoaded(ProductRspModel productRspModel) {
                 if(getView()!=null)
                 getView().onDone(productRspModel.getData());
-                if(productRspModel.getPageinfo().isHasNext()){
-                    hasNext = true;
-                    page++;
-                }else{
-                    hasNext = false;
-                    if(getView()!=null)
-                    getView().NoData();
 
-                }
+                    if(productRspModel.getPageinfo().isHasNext()){
+                        HomePresenter.this.hasNext = true;
+                        page++;
+                    }else{
+                        HomePresenter.this.hasNext = false;
+                        if(getView()!=null)
+                            getView().NoData();
+
+                    }
+
+
             }
         });
         ProductHelper.refreshBanner(new DataSource.Callback<BannerRspModel>() {

@@ -393,7 +393,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
 
         ShowPopuWindow(amountList,2);
-        num_tv.setTextColor(Color.parseColor("#4594FF"));
+        num_tv.setTextColor(Color.parseColor("#FFAA48"));
         gray_layout.setVisibility(View.VISIBLE);
 
     }
@@ -471,7 +471,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 //        alertFragment.setData(termList);
 //        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
         ShowPopuWindow(termList,3);
-        term_tv.setTextColor(Color.parseColor("#4594FF"));
+        term_tv.setTextColor(Color.parseColor("#FFAA48"));
         gray_layout.setVisibility(View.VISIBLE);
     }
 
@@ -495,7 +495,7 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 //        alertFragment.setData(personList);
 //        alertFragment.show(getActivity().getSupportFragmentManager(), AlertFragment.class.getName());
         ShowPopuWindow(personList,1);
-        identity_tv.setTextColor(Color.parseColor("#4594FF"));
+        identity_tv.setTextColor(Color.parseColor("#FFAA48"));
         gray_layout.setVisibility(View.VISIBLE);
 
     }

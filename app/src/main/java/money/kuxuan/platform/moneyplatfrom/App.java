@@ -3,7 +3,9 @@ package money.kuxuan.platform.moneyplatfrom;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Process;
+import android.os.StrictMode;
 //import com.crashlytics.android.Crashlytics;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -12,6 +14,7 @@ import java.util.List;
 import money.kuxuan.platform.common.app.Application;
 import money.kuxuan.platform.factory.Factory;
 import money.kuxuan.platform.factory.net.Network;
+import money.kuxuan.platform.moneyplatfrom.sqlite.DatabaseHelper;
 
 
 /**
@@ -25,10 +28,16 @@ public class App extends Application {
     private static final String TAG = "App";
     public static final String UMENG_APP_KEY = "59b64bfa677baa34a00017ca";
 
-    private Context context;
+    public static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
+
         this.context=getApplicationContext();
         //初始化
         Factory.setup();

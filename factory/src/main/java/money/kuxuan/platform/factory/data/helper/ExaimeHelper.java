@@ -10,6 +10,7 @@ import money.kuxuan.platform.factory.model.api.examine.BannerExprt;
 import money.kuxuan.platform.factory.model.api.examine.BannerModel;
 import money.kuxuan.platform.factory.model.api.examine.Examine;
 import money.kuxuan.platform.factory.model.api.examine.Examine1;
+import money.kuxuan.platform.factory.model.api.examine.HomeBean;
 import money.kuxuan.platform.factory.model.api.examine.IdModel;
 import money.kuxuan.platform.factory.model.api.examine.InfoModel;
 import money.kuxuan.platform.factory.model.api.examine.RspExamHomeModel;
@@ -73,9 +74,9 @@ public class ExaimeHelper {
 
             @Override
             public void onFailure(Call<RspModel<BannerModel>> call, Throwable t) {
-                 if(callback!=null){
-                     callback.onDataNotAvailable(R.string.data_network_error);
-                 }
+                if(callback!=null){
+                    callback.onDataNotAvailable(R.string.data_network_error);
+                }
             }
         });
 
@@ -123,6 +124,7 @@ public class ExaimeHelper {
      * @param model
      * @param callback 成功与失败的接口回调
      */
+
     public static void refreshExpert(Examine model, final DataSource.Callback callback) {
         RemoteService service = Network.remote();
         Call<RspModel<BannerExprt>> call = service.getExpertHomeData(model);
@@ -133,9 +135,12 @@ public class ExaimeHelper {
             public void onResponse(Call<RspModel<BannerExprt>> call, Response<RspModel<BannerExprt>> response) {
                 RspModel<BannerExprt> rspModel = response.body();
                 if (rspModel.success()) {
+
+
                     callback.onDataLoaded(rspModel.getRst());
 
                 } else {
+
                     Factory.decodeRspCode(rspModel, callback);
                 }
             }

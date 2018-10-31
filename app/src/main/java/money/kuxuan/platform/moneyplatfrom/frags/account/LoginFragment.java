@@ -235,7 +235,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
 
 
         time.cancel();
-//        getActivity().finish();
+        getActivity().finish();
 //        MainActivity.show(getActivity());
         listener.onLoginSuccess(false);
 

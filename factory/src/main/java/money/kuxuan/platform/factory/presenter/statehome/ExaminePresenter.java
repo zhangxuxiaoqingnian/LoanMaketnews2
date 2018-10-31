@@ -24,8 +24,8 @@ public class ExaminePresenter extends BasePresenter<ExamineContract.View>
     private Banner mbanner;
     private int page = 1;
     private boolean hasNext = false;
-    private String pageid = "package_5";
-    private String classification_id;
+    private String pageid = "package_3";
+    private String classification_id="推荐";
     private List<String> tabList;
     public ExaminePresenter(ExamineContract.View view,String pageid) {
         super(view);

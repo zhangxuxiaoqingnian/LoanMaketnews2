@@ -52,7 +52,9 @@ public class ProductHelper {
             public void onResponse(Call<RspModel<ProductRspModel>> call, Response<RspModel<ProductRspModel>> response) {
                 RspModel<ProductRspModel> rspModel = response.body();
                 if (rspModel!=null&&rspModel.success()) {
+
                     callback.onDataLoaded(rspModel.getRst());
+
 
                 } else {
                     Factory.decodeRspCode(rspModel, callback);
@@ -61,6 +63,8 @@ public class ProductHelper {
 
             @Override
             public void onFailure(Call<RspModel<ProductRspModel>> call, Throwable t) {
+
+
                 if (callback != null)
                     callback.onDataNotAvailable(R.string.data_network_error);
             }

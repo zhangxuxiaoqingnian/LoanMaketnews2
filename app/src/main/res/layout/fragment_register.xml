@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,11 +6,15 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="#FEA034"
+        />
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionBarWithStatusBarSize"
-        android:background="@color/white"
         android:paddingTop="@dimen/statusBarSize"
         android:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
@@ -18,10 +22,10 @@
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/len_8"
-            android:src="@drawable/back1" />
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -30,10 +34,19 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:text="注册"
-            android:textColor="@color/textPrimary"
-            android:textSize="@dimen/font_16" />
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
     </android.support.v7.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="#ffffff"
+        >
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/len_64"
@@ -42,13 +55,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/len_32"
         android:layout_marginTop="@dimen/len_36"
-        android:src="@mipmap/ic_kuai" />
+        android:src="@mipmap/ic_pig" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
 
-        android:background="@color/black_alpha_32" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,6 +109,8 @@
             android:layout_height="1px"
             android:layout_marginBottom="@dimen/len_2"
             android:layout_marginTop="@dimen/len_2"
+            android:layout_marginLeft="@dimen/len_8"
+            android:layout_marginRight="@dimen/len_8"
             android:background="@color/black_alpha_32" />
 
         <LinearLayout
@@ -140,6 +151,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
+            android:layout_marginLeft="@dimen/len_8"
+            android:layout_marginRight="@dimen/len_8"
             android:background="@color/black_alpha_32" />
 
         <LinearLayout
@@ -192,7 +205,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-
+        android:layout_marginLeft="@dimen/len_8"
+        android:layout_marginRight="@dimen/len_8"
         android:background="@color/black_alpha_32" />
 
     <LinearLayout
@@ -294,5 +308,5 @@
             app:gForegroundColor="@color/white"
             app:gForegroundLineSize="1dp" />
     </FrameLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -14,6 +14,13 @@ public class Notice {
         return link;
     }
 
+    public Notice(String product_id, String content, String link, String skip_type) {
+        this.product_id = product_id;
+        this.content = content;
+        this.link = link;
+        this.skip_type = skip_type;
+    }
+
     public void setLink(String link) {
         this.link = link;
     }

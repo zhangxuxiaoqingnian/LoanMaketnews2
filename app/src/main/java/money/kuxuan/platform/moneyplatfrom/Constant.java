@@ -17,6 +17,7 @@ public class Constant {
     public static class Code{
         public  static final int RESULT_LOGINSUC_CODE = 10000;
         public  static final int REQUEST_CODE = 10001;
+        public  static final int REQUEST_CODEF = 10002;
     }
 
 }

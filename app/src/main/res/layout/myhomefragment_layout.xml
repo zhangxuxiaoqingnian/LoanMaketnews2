@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:id="@+id/homelayout"
+    android:orientation="vertical">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="355px"-->
+        <!--android:layout_height="253px"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="#ffffff"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:layout_marginTop="@dimen/actionBarWithStatusBarSize"-->
+        <!--&gt;-->
+        <!--<com.stx.xhb.xbanner.XBanner-->
+            <!--android:id="@+id/xbanner"-->
+            <!--android:layout_width="330px"-->
+            <!--android:layout_height="140px"-->
+            <!--app:AutoPlayTime="3000"-->
+            <!--android:layout_marginTop="15px"-->
+            <!--app:isAutoPlay="true"-->
+            <!--app:pointsPosition="CENTER"-->
+            <!--app:pointContainerPosition="BOTTOM"-->
+            <!--app:isHandLoop="true"-->
+            <!--&gt;-->
+
+        <!--</com.stx.xhb.xbanner.XBanner>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="90px"-->
+            <!--android:orientation="horizontal"-->
+            <!--&gt;-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/shungou"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center"-->
+                <!--&gt;-->
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@mipmap/shun"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="顺购"-->
+                    <!--android:textColor="#444444"-->
+                    <!--android:textSize="14px"-->
+                    <!--android:layout_marginTop="8px"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/lineup"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center"-->
+                <!--&gt;-->
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@mipmap/paidui"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="排队"-->
+                    <!--android:textColor="#444444"-->
+                    <!--android:textSize="14px"-->
+                    <!--android:layout_marginTop="8px"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/otherup"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center"-->
+                <!--&gt;-->
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@mipmap/qita"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="其他"-->
+                    <!--android:textColor="#444444"-->
+                    <!--android:textSize="14px"-->
+                    <!--android:layout_marginTop="8px"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+    <RelativeLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        >
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
+        >
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/homerv"
+
+            />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,7 +1,11 @@
 package money.kuxuan.platform.moneyplatfrom.frags.main.state;
 
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -60,6 +64,11 @@ public class ExaimeFragment extends PresenterFragment<ExamineContract.Presenter>
         return R.layout.fra_home_state;
     }
 
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
     @Override
     protected void initWidget(View root) {

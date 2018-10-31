@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="53px"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/indentallrv"
+            android:layout_marginLeft="16px"
+            android:layout_marginTop="16px"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40px"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:layout_marginTop="6px"
+        >
+        <ImageView
+            android:layout_width="13px"
+            android:layout_height="13px"
+            android:src="@mipmap/remind_icon"
+            android:layout_marginLeft="18px"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="据统计,申请5个以上产品,贷款成功率超过95%"
+            android:textColor="#787878"
+            android:textSize="12px"
+            android:layout_marginLeft="18px"
+            />
+    </LinearLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshlayout"
+        android:layout_marginTop="11px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11px"
+        android:id="@+id/indentrv"
+        />
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

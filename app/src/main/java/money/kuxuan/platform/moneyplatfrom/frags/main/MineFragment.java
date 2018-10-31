@@ -28,7 +28,10 @@ import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.activities.AccountActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.ApActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.ApActivity1;
+import money.kuxuan.platform.moneyplatfrom.activities.MemoActivity;
+import money.kuxuan.platform.moneyplatfrom.activities.MyCollectActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.RadiersActivity;
+import money.kuxuan.platform.moneyplatfrom.activities.RecordActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.SetActivity;
 
 
@@ -36,7 +39,7 @@ import money.kuxuan.platform.moneyplatfrom.activities.SetActivity;
  *
  */
 public class MineFragment extends PresenterFragment<StateContract.Presenter>
-        implements StateContract.View {
+        implements StateContract.View ,View.OnClickListener{
 
     private static final String CHANNEL = "CHANNEL";
 
@@ -46,13 +49,18 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
     @BindView(R.id.phone)
     public TextView phoneTv;
 
-    @BindView(R.id.ap_lin)
-    LinearLayout ap_lin;
+//    @BindView(R.id.ap_lin)
+//    LinearLayout ap_lin;
     @BindView(R.id.apply_lin)
     LinearLayout apply_lin;
     @BindView(R.id.lin_problem)
     LinearLayout lin_problem;
-
+    @BindView(R.id.mycollect)
+    LinearLayout mycollect;
+    @BindView(R.id.newrecord)
+    LinearLayout record;
+    @BindView(R.id.memo)
+    LinearLayout memo;
 
 
     private SelfDialog selfDialog;
@@ -67,10 +75,13 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
         super.initWidget(root);
         mPresenter.start();
         if (checkChannel()==false) {
-            ap_lin.setVisibility(View.GONE);
+//            ap_lin.setVisibility(View.GONE);
             apply_lin.setVisibility(View.GONE);
             lin_problem.setVisibility(View.GONE);
         }
+        mycollect.setOnClickListener(this);
+        record.setOnClickListener(this);
+        memo.setOnClickListener(this);
 
     }
 
@@ -185,14 +196,14 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
         selfDialog.show();
     }
 
-    @OnClick(R.id.ap_lin)
-    void onApClick() {
-        if (flag == 0) {
-            createDialog(R.string.no_login);
-            return;
-        }
-        ApActivity.show(getContext());
-    }
+//    @OnClick(R.id.ap_lin)
+//    void onApClick() {
+//        if (flag == 0) {
+//            createDialog(R.string.no_login);
+//            return;
+//        }
+//        ApActivity.show(getContext());
+//    }
 
 
     @OnClick(R.id.apply_lin)
@@ -217,6 +228,27 @@ public class MineFragment extends PresenterFragment<StateContract.Presenter>
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            //我的收藏
+            case R.id.mycollect:
+                Intent intent=new Intent(getActivity(), MyCollectActivity.class);
+                startActivity(intent);
+                break;
+                //浏览记录
+            case R.id.newrecord:
+                Intent intent1=new Intent(getActivity(),RecordActivity.class);
+                startActivity(intent1);
+                break;
+                //还款备忘录
+            case R.id.memo:
+                Intent intent2=new Intent(getActivity(), MemoActivity.class);
+                startActivity(intent2);
+                break;
+
+        }
+    }
 }
 
 

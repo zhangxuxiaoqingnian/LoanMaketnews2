@@ -152,7 +152,7 @@
             android:textSize="16px"
             android:text="修改当前状态"
             android:textColor="#ffffff"
-            android:background="#1E58D6"
+            android:background="#FFAA48"
             android:gravity="center"
             android:padding="15px"
             />

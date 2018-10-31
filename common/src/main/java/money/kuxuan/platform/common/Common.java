@@ -40,8 +40,6 @@ public class Common {
         //手机号正则，11位手机号
         String REGEX_MOBILE = "[1][3,4,5,7,8][0-9]{9}$";
 ////         基础的网络请求地址
-
-        
 //        String API_URL = "http://api.kuxuan-inc.com/user/";
 //         基础的网络请求地址
 
@@ -54,7 +52,7 @@ public class Common {
 
 
         //测试接口
-       //String API_URL = "http://bw.quyaqu.com/user/";
+      // String API_URL = "http://bw.quyaqu.com/user/";
 
         // 最大的上传图片大小860kb
         long MAX_UPLOAD_IMAGE_LENGTH = 860 * 1024;

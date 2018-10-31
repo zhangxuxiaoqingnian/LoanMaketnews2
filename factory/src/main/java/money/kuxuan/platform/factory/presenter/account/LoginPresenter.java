@@ -1,6 +1,8 @@
 package money.kuxuan.platform.factory.presenter.account;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -53,9 +55,13 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
 
                 @Override
                 public void onDataLoaded(User user) {
-                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.USERNAME, user.getPhone());
-                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, password);
-                    SPUtil.putAndApply(Factory.app(),Constant.UserInfo.ISEXITE,false);
+                    if(user!=null){
+
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.USERNAME, user.getPhone());
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, password);
+                        SPUtil.putAndApply(Factory.app(),Constant.UserInfo.ISEXITE,false);
+                    }
                     onSuccess(user);
                 }
             });
@@ -80,11 +86,15 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
 
                 @Override
                 public void onDataLoaded(User user) {
-                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.USERNAME, user.getPhone());
-                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, "");
-                    SPUtil.putAndApply(Factory.app(),Constant.UserInfo.ISEXITE,false);
-                    if (user.getUser_token()!=null)
-                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.CODETOKEN, user.getUser_token());
+                    if(user!=null){
+
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.USERNAME, user.getPhone());
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, "");
+                        SPUtil.putAndApply(Factory.app(),Constant.UserInfo.ISEXITE,false);
+                        if (user.getUser_token()!=null)
+                            SPUtil.putAndApply(Factory.app(), Constant.UserInfo.CODETOKEN, user.getUser_token());
+                    }
                     onSuccess(user);
                 }
             });

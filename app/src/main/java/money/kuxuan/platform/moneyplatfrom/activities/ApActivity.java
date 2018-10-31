@@ -405,7 +405,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
                 @Override
                 public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
-                    DetailActivity.show(ApActivity.this,product.getProduct_id(),"applicationList",0);
+                   DetailActivity.show(ApActivity.this,product.getProduct_id(),"applicationList",0);
                 }
 
                 @Override
@@ -922,14 +922,14 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         if (click){
             tv_borrow_money.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_borrow_money.setBackgroundColor(Color.parseColor("#4594FF"));
-            tv_credit_card.setTextColor(Color.parseColor("#4594FF"));
+            tv_borrow_money.setBackgroundColor(Color.parseColor("#FFAA48"));
+            tv_credit_card.setTextColor(Color.parseColor("#FFAA48"));
             tv_credit_card.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }else {
-            tv_borrow_money.setTextColor(Color.parseColor("#4594FF"));
+            tv_borrow_money.setTextColor(Color.parseColor("#FFAA48"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFFFFF"));
             tv_credit_card.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_credit_card.setBackgroundColor(Color.parseColor("#4594FF"));
+            tv_credit_card.setBackgroundColor(Color.parseColor("#FFAA48"));
         }
 
 

@@ -53,7 +53,11 @@ public class LoginUtil {
 
                 @Override
                 public void onDataLoaded(User user) {
-                    SPUtil.putAndApply(Factory.app(),Constant.UserInfo.CODETOKEN,user.getUser_token());
+                    if(user!=null){
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
+                        SPUtil.putAndApply(Factory.app(),Constant.UserInfo.CODETOKEN,user.getUser_token());
+
+                    }
                     onLoadListener.onLoadSuccess( user);
                 }
             });
@@ -69,7 +73,8 @@ public class LoginUtil {
 
                 @Override
                 public void onDataLoaded(User user) {
-
+                    if(user!=null)
+                        SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
                     onLoadListener.onLoadSuccess(user);
                 }
             });

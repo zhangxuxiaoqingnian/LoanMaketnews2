@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="money.kuxuan.platform.moneyplatfrom.activities.CaseurlActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        app:titleTextAppearance="@style/TextAppearance.Title"
+        android:background="#FFAA48"
+        >
+
+
+        <ImageView
+            android:id="@+id/case_back"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
+        <TextView
+            android:id="@+id/casename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="还款备忘录"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/case_wv"
+        />
+
+</LinearLayout>

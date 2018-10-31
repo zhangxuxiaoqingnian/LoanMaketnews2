@@ -1,6 +1,10 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -57,6 +61,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
     private List<AllApp.HBean> list=new ArrayList();
     private boolean all_app;
     private EmptyView empty;
+    private SharedPreferences sharedPreferences;
 
     public void getDataOfAllApp(List<AllApp.HBean> a){
         if (a!=null&&a.size()>0)
@@ -65,10 +70,12 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
         }
     }
 
+
     @Override
     protected void initWidget() {
         super.initWidget();
 
+        sharedPreferences = getSharedPreferences("DaiData",MODE_PRIVATE);
         Intent intent = getIntent();
         all_app = intent.getBooleanExtra("All_App", false);
         if(all_app){
@@ -188,6 +195,13 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
             @Override
             public void data(int pos) {
                 if(all_app){
+                    SharedPreferences.Editor edit = sharedPreferences.edit();
+                    edit.putString("daiimg",mDatas.get(pos).getImgurl());
+                    edit.putString("dainame",mDatas.get(pos).getPlatform());
+                    edit.putString("daiid",mDatas.get(pos).getUuid());
+                    edit.commit();
+
+
                     //当点击一个产品时调用添加到过审接口并关闭此Activity
                     MineHelper.addapp(mDatas.get(pos).getUuid(), new DataSource.Callback<DeleteApp>() {
                         @Override

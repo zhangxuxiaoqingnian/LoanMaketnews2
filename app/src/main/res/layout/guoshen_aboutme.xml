@@ -53,11 +53,11 @@
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/mine_backgroun7"
+            android:src="@drawable/mine_backgroun8"
             />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/len_64"
-            android:src="@mipmap/ic_kuai"
+            android:src="@mipmap/ic_pig"
             android:id="@+id/icon"
             app:civ_border_width="6dp"
             app:civ_border_color="#FFFFFF"
@@ -123,7 +123,7 @@
             app:gTouchCornerRadius="3dp"
             app:gTouchEffect="ripple"
             android:layout_height="@dimen/len_44"
-            android:background="#1E58D6"
+            android:background="#FFAA48"
             />
 
         <net.qiujuer.genius.ui.widget.Loading

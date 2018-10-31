@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,48 +7,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="money.kuxuan.platform.moneyplatfrom.activities.SetActivity">
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:id="@id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/actionBarWithStatusBarSize"
-            android:background="@color/white"
-            android:paddingTop="@dimen/statusBarSize"
-            android:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:titleTextAppearance="@style/TextAppearance.Title">
-
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/len_8"
-                android:src="@drawable/back1" />
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:text="关于我们"
-                android:textColor="@color/textPrimary"
-                android:textSize="@dimen/font_16"
-                 />
-        </android.support.v7.widget.Toolbar>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/divider_gray" />
-
-    </LinearLayout>
-    <LinearLayout
+        android:layout_height="134px"
+        android:background="#FEA034"
+        />
+    <android.support.v7.widget.Toolbar
+        android:id="@id/toolbar"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:paddingTop="@dimen/statusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/len_8"
+            android:src="@drawable/back1" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="关于我们"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="355px"
        android:layout_gravity="center_horizontal"
         android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
         android:layout_height="match_parent">
 
         <ImageView
@@ -57,7 +55,7 @@
             android:layout_height="80dp"
            android:layout_marginTop="@dimen/len_100"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_kuai" />
+            android:src="@mipmap/ic_pig" />
 
         <TextView
             android:id="@+id/name"
@@ -79,4 +77,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -143,13 +143,14 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
             public void run() {
                 try {
                     String url = rspAdModel.getData().getImage_url();
+
                     final Context context = Factory.app();
                     FutureTarget<File> target = Glide.with(context)
                             .load(url)
                             .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
                     final File imageFile = target.get();
                     if(adPictureListener!=null){
-                        adPictureListener.loadTry(imageFile.getPath(),rspAdModel);
+                        adPictureListener.loadTry(url,rspAdModel);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

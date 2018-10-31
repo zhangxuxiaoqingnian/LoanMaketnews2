@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -36,6 +37,7 @@ import money.kuxuan.platform.factory.presenter.active.ActiveContract;
 import money.kuxuan.platform.factory.presenter.active.ActivePresenter;
 import money.kuxuan.platform.factory.util.LoginUtil;
 import money.kuxuan.platform.factory.util.SPUtil;
+import money.kuxuan.platform.moneyplatfrom.Adapter.MyContentAdapter;
 import money.kuxuan.platform.moneyplatfrom.BuildConfig;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.activities.Activity_CreditCard_ByStages;
@@ -59,7 +61,7 @@ public class ActiveFragment extends PresenterFragment<ActiveContract.Presenter>
     EmptyView mEmptyView;
     private RecyclerAdapter<Active> mAdapter;
     @BindView(R.id.refreshLayout)
-    RefreshLayout refreshLayout;
+    SmartRefreshLayout refreshLayout;
 
     @BindView(R.id.img_one)
     ImageView img_one;
@@ -97,18 +99,19 @@ public class ActiveFragment extends PresenterFragment<ActiveContract.Presenter>
     @BindView(R.id.count_three)
     LinearLayout count_three;
 
+    private List<Active> list2=new ArrayList<>();
 
     private static final String TAG = "ActiveFragment";
     //未登陆弹框
     DgFragment dgFragment;
 
     private Active active;
-  //private static final String URL = "http://web.kuxuan-inc.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
+    //private static final String URL = "http://web.kuxuan-inc.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
 //private static final String URL = "https://newapi.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
 //线上接口
-   private static final String URL = "https://m.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
-//测试接口
-//    private static final String URL = "https://bw.quyaqu.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
+    private static final String URL = "https://m.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
+    //测试接口
+    //private static final String URL = "https://bw.quyaqu.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
     //    private static final String URL = "http://m.henhaojie.com/Atesting/index.html?channel_id=" + BuildConfig.CHANNLE;
     List<Active> activeList;
 
@@ -303,9 +306,11 @@ public class ActiveFragment extends PresenterFragment<ActiveContract.Presenter>
 
     @Override
     public void requestData(List<Active> activeList) {
-        refreshLayout.setEnableLoadmore(true);
-        refreshLayout.setEnableRefresh(true);
-        mAdapter.replace(activeList);
+
+        refreshLayout.finishLoadmore();
+        refreshLayout.finishRefresh();
+        list2.addAll(activeList);
+        mAdapter.replace(list2);
 
         mPlaceHolderView.triggerOkOrEmpty(mAdapter.getItemCount() > 0);
     }
@@ -489,5 +494,6 @@ public class ActiveFragment extends PresenterFragment<ActiveContract.Presenter>
             }
         });
     }
+
 
 }

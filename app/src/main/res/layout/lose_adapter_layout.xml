@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#ffffff">
+
+    <money.kuxuan.platform.moneyplatfrom.util.NiceImageView
+        android:id="@+id/lose_icon"
+        android:layout_width="39px"
+        android:layout_height="39px"
+        app:corner_radius="20dp"
+        android:src="@mipmap/loginicon"
+        />
+    <TextView
+        android:id="@+id/lose_name"
+        android:layout_width="37px"
+        android:layout_height="wrap_content"
+        android:text="快圣诞节"
+        android:textColor="#666666"
+        android:textSize="9px"
+        android:layout_marginTop="8px"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        />
+
+</LinearLayout>

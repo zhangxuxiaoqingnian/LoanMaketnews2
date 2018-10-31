@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F6F6F6"
+    android:gravity="center_horizontal"
+    android:id="@+id/typelayout"
+    tools:context="money.kuxuan.platform.moneyplatfrom.activities.MyTypeActivity">
+
+    <include layout="@layout/guoshen_title"/>
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="50px"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        >
+        <LinearLayout
+            android:id="@+id/moneyup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginLeft="17px"
+            >
+        <TextView
+            android:id="@+id/moneytext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金额"
+            android:textSize="16px"
+            android:textColor="#666666"
+            />
+            <ImageView
+                android:layout_width="13px"
+                android:layout_height="8px"
+                android:src="@mipmap/moneytype"
+                android:layout_marginLeft="8px"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timeup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginLeft="44px"
+            >
+            <TextView
+                android:id="@+id/timetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间"
+                android:textSize="16px"
+                android:textColor="#666666"
+                />
+            <ImageView
+                android:layout_width="13px"
+                android:layout_height="8px"
+                android:src="@mipmap/moneytype"
+                android:layout_marginLeft="8px"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:layout_marginTop="6px"
+        >
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/typerv"
+                />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <TextView
+            android:id="@+id/typecang"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="暂时没有该类型的任务哦"
+            android:gravity="center"
+            android:textSize="20px"
+            android:textColor="#666666"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+</LinearLayout>

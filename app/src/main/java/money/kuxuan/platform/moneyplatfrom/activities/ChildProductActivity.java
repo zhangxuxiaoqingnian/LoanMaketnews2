@@ -122,7 +122,7 @@ public class ChildProductActivity extends PresenterActivity<ChildContract.Presen
                 if(product.getSkip_type().equals("0")){
 
 
-                    DetailActivity.show(ChildProductActivity.this,product,type_channel);
+                   DetailActivity.show(ChildProductActivity.this,product,type_channel);
                 }else{
                     WebActivity.show(ChildProductActivity.this,product.getName(),
                             product.getLink(),product.getId(),product.getSkip_type());

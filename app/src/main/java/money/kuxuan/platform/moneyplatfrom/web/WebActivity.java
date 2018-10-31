@@ -405,7 +405,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     }
 
 
-        private class   MyWebViewClient extends WebViewClient {
+        private class  MyWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, final String url) {

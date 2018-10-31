@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/tab_content_image"
-        android:src="@mipmap/ic_kuai"
+        android:src="@mipmap/ic_pig"
         android:layout_width="18dp"
         android:layout_height="18dp" />
 

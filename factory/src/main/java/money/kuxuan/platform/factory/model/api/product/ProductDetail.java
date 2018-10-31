@@ -45,6 +45,7 @@ public class ProductDetail {
     HashMap<String,String> loan;
     List<Dialogs> loan_period;
     private String customer_service_number;
+    private int is_collection;
 
     public String getCustomer_service_number() {
         return customer_service_number;
@@ -52,6 +53,14 @@ public class ProductDetail {
 
     public void setCustomer_service_number(String customer_service_number) {
         this.customer_service_number = customer_service_number;
+    }
+
+    public int getIs_collection() {
+        return is_collection;
+    }
+
+    public void setIs_collection(int is_collection) {
+        this.is_collection = is_collection;
     }
 
     public String getId() {

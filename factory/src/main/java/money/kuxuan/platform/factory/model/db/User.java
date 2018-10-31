@@ -51,6 +51,15 @@ public class User {
     public String last_login_time;
     public String PHPSESSID;
 
+    public String identity;
+
+    public String getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(String identity) {
+        this.identity = identity;
+    }
 
     public String getId() {
         return id;

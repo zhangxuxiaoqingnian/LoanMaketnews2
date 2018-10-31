@@ -2,6 +2,7 @@ package money.kuxuan.platform.moneyplatfrom.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 import money.kuxuan.platform.common.app.Activity;
 import money.kuxuan.platform.common.app.Fragment;
@@ -16,6 +17,7 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
     private Fragment mCurFragment;
     private Fragment mLoginFragment;
     private Fragment mRegisterFragment;
+    private SharedPreferences sp;
 
 
     /**
@@ -42,6 +44,8 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
                 .beginTransaction()
                 .replace(R.id.lay_container, mCurFragment)
                 .commit();
+
+        sp = getSharedPreferences("Deng",MODE_PRIVATE);
     }
 
     @Override
@@ -69,9 +73,11 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
 
     @Override
     public void onLoginSuccess(boolean isSuccess) {
-        if(isSuccess)
-        setResult(Constant.Code.RESULT_LOGINSUC_CODE);
-        finish();
+        if(isSuccess) {
+            sp.edit().putBoolean("liulang", true).commit();
+            setResult(Constant.Code.RESULT_LOGINSUC_CODE);
+            finish();
+        }
     }
 
     @Override

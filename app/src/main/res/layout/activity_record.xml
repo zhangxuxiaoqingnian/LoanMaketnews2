@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    tools:context="money.kuxuan.platform.moneyplatfrom.activities.RecordActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="#FFAA48"
+        />
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <ImageView
+            android:id="@+id/record_back"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="我的足迹"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+
+        <TextView
+            android:id="@+id/record_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/len_10"
+            android:layout_gravity="right|center_vertical"
+            android:text="一键清空"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="#F6F6F6"
+        >
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/record_rv"
+                />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_empty"
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:layout_width="113px"
+            android:layout_height="113px"
+            android:src="@mipmap/wujilu"
+            android:layout_marginTop="134px"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无浏览记录,快去逛逛吧"
+            android:layout_marginTop="8px"
+            android:textColor="#C9C9C9"
+            android:textSize="14px"
+            />
+        <TextView
+            android:onClick="gotoShopping"
+            android:layout_width="249px"
+            android:layout_height="40px"
+            android:text="去逛逛"
+            android:textSize="17px"
+            android:textColor="#ffffff"
+            android:background="@drawable/buttonshap"
+            android:layout_marginTop="72px"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="money.kuxuan.platform.moneyplatfrom.activities.MyCollectActivity">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F4F4"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="#FFAA48"
+            />
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lin_bottomtitel"
+        >
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <ImageView
+            android:id="@+id/collect_back"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="我的收藏"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+
+        <TextView
+            android:id="@+id/collect_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/len_10"
+            android:layout_gravity="right|center_vertical"
+            android:text="编辑"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+        <LinearLayout
+            android:layout_width="355px"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="#F6F6F6"
+            >
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                >
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/collectrv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:id="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </LinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/collect_bottomtitel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            >
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/collect_checkall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                >
+                <CheckBox
+                    android:id="@+id/collect_checkbox"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:clickable="false"
+                    android:button="@drawable/deletecheck"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全选"
+                    android:textSize="14sp"
+                    android:textColor="@color/textSecond"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/collect_delete"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="删除"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:background="#ff0000"
+                />
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <LinearLayout
+            android:id="@+id/collect_null"
+            android:layout_width="355px"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+            <ImageView
+                 android:layout_width="114px"
+                 android:layout_height="114px"
+                 android:layout_marginTop="135px"
+                 android:src="@mipmap/collectnull"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="你还没有收藏,快去看看吧"
+                android:textSize="14px"
+                android:textColor="#C9C9C9"
+                android:layout_marginTop="8px"
+                />
+            <TextView
+                android:id="@+id/collect_goto"
+                android:layout_width="249px"
+                android:layout_height="40px"
+                android:text="去看看"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="17px"
+                android:background="@drawable/buttonshap"
+                android:layout_marginTop="72px"
+                />
+        </LinearLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</LinearLayout>

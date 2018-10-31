@@ -1,6 +1,7 @@
 package money.kuxuan.platform.moneyplatfrom;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,6 +15,7 @@ import butterknife.ButterKnife;
 import money.kuxuan.platform.common.widget.BaseAutoScrollTextView;
 import money.kuxuan.platform.factory.presenter.notice.Notice;
 import money.kuxuan.platform.moneyplatfrom.activities.DetailActivity;
+import money.kuxuan.platform.moneyplatfrom.activities.NewDetailActivity;
 import money.kuxuan.platform.moneyplatfrom.helper.VerticalLampView;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
@@ -63,6 +65,9 @@ public class LampView extends FrameLayout {
                                 list.get(position).getSkip_type());
                     }else{
                         DetailActivity.show(getContext(),list.get(position).getProduct_id(),"notice",0);
+//                        Intent intent=new Intent(getContext(),NewDetailActivity.class);
+//                        intent.putExtra("typeid",list.get(position).getProduct_id());
+//                        getContext().startActivity(intent);
                     }
                 }else{
                     WebActivity.show(getContext(),null,list.get(position).getLink(),

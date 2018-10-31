@@ -7,44 +7,46 @@
     android:layout_height="match_parent"
     tools:context="money.kuxuan.platform.moneyplatfrom.activities.SetActivity">
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="134px"
+        android:background="#FEA034"
+        />
+    <android.support.v7.widget.Toolbar
+        android:id="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:paddingTop="@dimen/statusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextAppearance="@style/TextAppearance.Title">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/actionBarWithStatusBarSize"
-            android:background="@color/white"
-            android:paddingTop="@dimen/statusBarSize"
-            android:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:titleTextAppearance="@style/TextAppearance.Title">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/len_8"
-                android:src="@drawable/back1" />
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:text="设置"
-                android:textColor="@color/textPrimary"
-                android:textSize="@dimen/font_16"
-                />
-        </android.support.v7.widget.Toolbar>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/divider_gray"
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="设置"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
             />
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/update"
@@ -80,38 +82,7 @@
             android:background="@color/divider_gray" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/len_16"
-            android:paddingEnd="@dimen/len_16"
-            android:id="@+id/action_lin"
-            android:gravity="center_vertical"
-            android:layout_height="@dimen/len_52">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/textPrimary"
-                android:layout_height="wrap_content"
-                android:text="意见反馈"/>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/active_point"/>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/divider_gray"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:background="@color/white"
@@ -139,11 +110,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/active_point"/>
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/divider_gray"
-            />
+
         
 
 </LinearLayout>

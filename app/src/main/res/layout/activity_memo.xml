@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    tools:context="money.kuxuan.platform.moneyplatfrom.activities.RecordActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="#FFAA48"
+        />
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <ImageView
+            android:id="@+id/memo_back"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="还款备忘录"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+
+        <ImageView
+            android:id="@+id/memo_add"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/overadd"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="right|center_vertical"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/len_60"
+        >
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/memo_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                />
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/memo_null"
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:layout_width="113px"
+            android:layout_height="113px"
+            android:src="@mipmap/zanwubei"
+            android:layout_marginTop="136px"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无还款记录"
+            android:textSize="14px"
+            android:textColor="#C9C9C9"
+            android:layout_marginTop="8px"
+            />
+        <TextView
+            android:id="@+id/gotoadd"
+            android:layout_width="249px"
+            android:layout_height="40px"
+            android:text="去添加"
+            android:background="@drawable/buttonshap"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="17px"
+            android:layout_marginTop="72px"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

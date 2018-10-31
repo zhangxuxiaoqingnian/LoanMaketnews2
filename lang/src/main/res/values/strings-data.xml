@@ -13,6 +13,7 @@
     <string name="data_upload_error">文件上传失败！</string>
     <string name="apply">本次是否完成了申请</string>
     <string name="no_login"> 您未登录,点击 登录/注册 去登录</string>
+    <string name="no_login2"> 您未登录,点击 登录 去登录</string>
     <string name="data_rsp_error_missing_data">缺少数据，请重新提交！</string>
     <string name="data_rsp_error_parameters">抱歉，参数错误哦! O_o</string>
     <string name="missing_data">缺少数据，请重新提交</string>
@@ -28,6 +29,10 @@
     <string name="sms_verification_has_been_done">已经通过短信验证，请勿重复</string>
     <string name="the_cell_phone_number_format_is_wrong">手机号格式错误</string>
     <string name="user_information_is_empty">用户信息为空</string>
+    <string name="cancleselect">你确定要取消抢单吗?</string>
+    <string name="cancleselecttwo">你确定要取消订单吗?</string>
+    <string name="beiwang">确定删除此条备忘录?</string>
+    <string name="mycollect">确定删除这些收藏?</string>
 
     <string name="requested_mode_not_specified">未指定请求方式</string>
 

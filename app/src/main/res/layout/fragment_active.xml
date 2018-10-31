@@ -1,14 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="money.kuxuan.platform.moneyplatfrom.frags.main.ActiveFragment">
-<com.zhy.autolayout.AutoLinearLayout
-    android:layout_width="match_parent"
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="#FEA034"
+        />
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <TextView
+            android:id="@+id/tiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="发现"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+    </android.support.v7.widget.Toolbar>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+    android:layout_width="355px"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp">
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
@@ -324,4 +353,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 
-</FrameLayout>
+</RelativeLayout>

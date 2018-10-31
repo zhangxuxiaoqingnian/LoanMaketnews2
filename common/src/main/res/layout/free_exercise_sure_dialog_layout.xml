@@ -52,6 +52,12 @@
                 android:textStyle="bold"
                 android:textColor="@color/blue_600"
                 android:textSize="15sp" />
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/divider_gray"
+
+                />
             <Button
                 android:id="@+id/nagative"
                 android:layout_width="0dp"

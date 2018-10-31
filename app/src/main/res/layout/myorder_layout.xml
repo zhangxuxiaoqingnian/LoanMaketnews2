@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="50px"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
+        >
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/ordertablayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:tl_indicator_style="NORMAL"
+        app:tl_underline_gravity="BOTTOM"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="#4935F0"
+        app:tl_textUnselectColor="#666666"
+        app:tl_indicator_color="#5A5DFF"
+        app:tl_indicator_height="10px"
+        app:tl_indicator_margin_top="6px"
+        app:tl_indicator_width="110px"
+
+
+        >
+
+    </com.flyco.tablayout.SlidingTabLayout>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="355px"
+        android:layout_height="match_parent"
+        android:id="@+id/ordervp"
+        android:layout_marginTop="6px"
+        android:overScrollMode="never"
+        />
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package money.kuxuan.platform.moneyplatfrom;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Observable;
 import android.support.design.widget.TabLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,8 +17,17 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import money.kuxuan.platform.factory.Factory;
+import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.examine.Banner;
+import money.kuxuan.platform.factory.model.api.examine.HaLou;
+import money.kuxuan.platform.factory.model.api.examine.HomeBean;
 import money.kuxuan.platform.factory.model.api.examine.InfoBanner;
+import money.kuxuan.platform.factory.model.db.DeleteApp;
+import money.kuxuan.platform.factory.net.Network;
+import money.kuxuan.platform.factory.net.RemoteService;
 import money.kuxuan.platform.moneyplatfrom.activities.Activity_Average_Capital_Calc;
 import money.kuxuan.platform.moneyplatfrom.activities.Activity_Average_Capital_Interest_Calc;
 import money.kuxuan.platform.moneyplatfrom.activities.Activity_CreditCard_ByStages;
@@ -25,6 +35,9 @@ import money.kuxuan.platform.moneyplatfrom.activities.Activity_HouseCalc;
 import money.kuxuan.platform.moneyplatfrom.activities.Activity_Income_Tax_Calc;
 import money.kuxuan.platform.moneyplatfrom.activities.Activity_loanCarCalc;
 import money.kuxuan.platform.moneyplatfrom.activities.InfoActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -79,8 +92,10 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
     }
     private void initView(final Banner infoBanner) {
 
+
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mRootView = (LinearLayout) inflater.inflate(R.layout.item_info_head_layout, this);
+
         //tabLayout = (TabLayout) mRootView.findViewById(R.id.tablayout);
 
 //       for(int i=0;i<5;i++){
@@ -146,14 +161,44 @@ public class InfoLayout extends LinearLayout implements View.OnClickListener{
         click.setOnClickListener(this);
 
 
+        //开始请求
+        //getdata();
 
-        if(infoBanner!=null) {
-            String url = infoBanner.getThumbnail();
-            Glide.with(getContext()).load(url).into(imageview1);
-        }
-
+//        if(infoBanner!=null) {
+//            String url = infoBanner.getThumbnail();
+//            Glide.with(getContext()).load(url).into(imageview1);
+//        }
+        String url="http://bwadmin.quyaqu.com/Uploads/20171120/1511149233450449.jpg";
+        Glide.with(getContext()).load(url).into(imageview1);
 
     }
+
+    public void getdata(){
+
+        HaLou haLou=new HaLou("package_12",1,"理财资讯");
+        RemoteService service = Network.remote();
+        Call<RspModel<HomeBean>> call = service.gethome(haLou);
+        call.enqueue(new Callback<RspModel<HomeBean>>() {
+            @Override
+            public void onResponse(Call<RspModel<HomeBean>> call, Response<RspModel<HomeBean>> response) {
+                RspModel<HomeBean> rspModel = response.body();
+                if(rspModel.success()){
+                    String thumbnail = rspModel.getRst().banner.thumbnail;
+
+                    Glide.with(getContext()).load(thumbnail).into(imageview1);
+
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<HomeBean>> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     private void initView(final InfoBanner infoBanner) {
         LayoutInflater inflater = LayoutInflater.from(mContext);

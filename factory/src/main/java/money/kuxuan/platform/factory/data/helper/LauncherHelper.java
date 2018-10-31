@@ -44,7 +44,6 @@ public class LauncherHelper {
 
                 if (rspModel!=null&&rspModel.success()) {
                     callback.onDataLoaded(rspModel);
-
                 } else {
                     Factory.decodeRspCode(rspModel, callback);
                 }
@@ -107,7 +106,6 @@ public class LauncherHelper {
             @Override
             public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
                 RspModel<LaunchRspModel> rspModel = response.body();
-
                 if (rspModel!=null&&rspModel.success()) {
                     callback.onDataLoaded(rspModel.getRst());
                 } else {
