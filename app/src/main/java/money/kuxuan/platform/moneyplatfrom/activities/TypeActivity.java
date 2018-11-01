@@ -33,6 +33,7 @@ import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.moneyplatfrom.Adapter.DaiAdapter4;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.util.DisplayUtils3;
+import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
 
 public class TypeActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener{
@@ -107,7 +108,7 @@ public class TypeActivity extends PresenterActivity implements View.OnClickListe
                 List<HomedataBean.RstBean.DataBean> data = homedataBean.rst.data;
                 list.addAll(data);
                 if(daiAdapter4==null){
-                    daiAdapter4 = new DaiAdapter4(TypeActivity.this,list,liulang);
+                    daiAdapter4 = new DaiAdapter4(TypeActivity.this,list);
                     rv.setLayoutManager(new LinearLayoutManager(TypeActivity.this));
                     rv.setAdapter(daiAdapter4);
                 }else {
@@ -121,6 +122,17 @@ public class TypeActivity extends PresenterActivity implements View.OnClickListe
 
                         DetailActivity.show(TypeActivity.this, list.get(pos).id+"","notice",0);
 
+                    }
+
+                    @Override
+                    public void request(int pos) {
+                        if(liulang){
+                            WebActivity.show(TypeActivity.this, list.get(pos).name,
+                                    list.get(pos).link, list.get(pos).id, "", "0",false);
+                        }else {
+                            Intent intent=new Intent(TypeActivity.this, AccountActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 });
             }

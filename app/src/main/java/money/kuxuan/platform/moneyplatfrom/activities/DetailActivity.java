@@ -88,6 +88,7 @@ import money.kuxuan.platform.moneyplatfrom.helper.DensityUtil;
 import money.kuxuan.platform.moneyplatfrom.sqlite.DatabaseAdapter;
 import money.kuxuan.platform.moneyplatfrom.sqlite.DatabaseHelper;
 import money.kuxuan.platform.moneyplatfrom.util.MarkView;
+import money.kuxuan.platform.moneyplatfrom.util.NiceImageView;
 import money.kuxuan.platform.moneyplatfrom.util.ToastUtil;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
@@ -132,7 +133,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private TextView give;
     private LinearLayout data;
     private EditText money;
-    private ImageView icon;
+    private NiceImageView icon;
     private TextView name;
     private TextView text;
     private MarkView mark;
@@ -176,7 +177,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         data = (LinearLayout) findViewById(R.id.ppdata);
         give = (TextView) findViewById(R.id.successgive);
         time = (TextView) findViewById(R.id.pptime);
-        icon = (ImageView) findViewById(R.id.ppicon);
+        icon = (NiceImageView) findViewById(R.id.ppicon);
         name = (TextView) findViewById(R.id.ppname);
         text = (TextView) findViewById(R.id.pptext);
         mark = (MarkView) findViewById(R.id.ppmark);

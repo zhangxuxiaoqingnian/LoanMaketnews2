@@ -29,6 +29,7 @@ import money.kuxuan.platform.moneyplatfrom.Bean.NoteEntity;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.sqlite.DatabaseAdapter;
 import money.kuxuan.platform.moneyplatfrom.util.DisplayUtils3;
+import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
 public class RecordActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
@@ -60,8 +61,7 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
 
     }
     public void initview(){
-        SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
-        liulang = sp.getBoolean("liulang", false);
+
         edit.setOnClickListener(this);
         back.setOnClickListener(this);
         refreshlayout.setOnRefreshLoadmoreListener(this).
@@ -71,7 +71,7 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
         limit = adapter.findLimit(pageSize, pageNum);
         if (limit!=null&&limit.size()>0){
             limits.addAll(limit);
-            daiAdapter = new DaiAdapter3(this, limits,liulang);
+            daiAdapter = new DaiAdapter3(this, limits);
             rv.setLayoutManager(new LinearLayoutManager(this));
             rv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
             rv.setAdapter(daiAdapter);
@@ -80,6 +80,17 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
                 @Override
                 public void success(int pos) {
                     DetailActivity.show(RecordActivity.this, limits.get(pos).productid+"","notice",0);
+                }
+
+                @Override
+                public void requst(int pos) {
+                    if(liulang){
+                        WebActivity.show(RecordActivity.this, limits.get(pos).title,
+                                limits.get(pos).url, limits.get(pos).productid, "", "0",false);
+                    }else {
+                        Intent intent=new Intent(RecordActivity.this, AccountActivity.class);
+                        startActivity(intent);
+                    }
                 }
             });
             edit.setClickable(true);
@@ -123,6 +134,13 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
                 break;
 
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
+        liulang = sp.getBoolean("liulang", false);
     }
 
     @Override

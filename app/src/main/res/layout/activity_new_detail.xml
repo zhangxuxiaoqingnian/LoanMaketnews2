@@ -141,11 +141,18 @@
                         android:layout_marginRight="18px"
                         android:layout_marginTop="13px"
                         >
-                        <ImageView
+                        <!--<ImageView-->
+                            <!--android:id="@+id/ppicon"-->
+                            <!--android:layout_width="45px"-->
+                            <!--android:layout_height="46px"-->
+                            <!--android:src="@drawable/default_portrait"-->
+                            <!--/>-->
+                        <money.kuxuan.platform.moneyplatfrom.util.NiceImageView
                             android:id="@+id/ppicon"
                             android:layout_width="45px"
                             android:layout_height="46px"
                             android:src="@drawable/default_portrait"
+                            app:corner_radius="10dp"
                             />
                         <RelativeLayout
                             android:layout_width="128px"
@@ -230,7 +237,7 @@
                                 >
                                 <EditText
                                     android:id="@+id/summoney"
-                                    android:layout_width="57px"
+                                    android:layout_width="80px"
                                     android:layout_height="match_parent"
                                     android:background="@null"
                                     android:textColor="#ffffff"

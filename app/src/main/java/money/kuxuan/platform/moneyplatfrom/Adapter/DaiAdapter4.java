@@ -33,10 +33,9 @@ public class DaiAdapter4 extends RecyclerView.Adapter<DaiAdapter4.MyViewHolder> 
    private List<HomedataBean.RstBean.DataBean> list;
    private boolean isture=false;
 
-    public DaiAdapter4(Context context, List<HomedataBean.RstBean.DataBean> list, boolean isture) {
+    public DaiAdapter4(Context context, List<HomedataBean.RstBean.DataBean> list) {
         this.context = context;
         this.list = list;
-        this.isture = isture;
     }
 
 
@@ -61,7 +60,7 @@ public class DaiAdapter4 extends RecyclerView.Adapter<DaiAdapter4.MyViewHolder> 
         });
 
         Glide.with(context).load(list.get(position).icon).into(holder.img);
-       holder.name.setText(list.get(position).name);
+        holder.name.setText(list.get(position).name);
         holder.jieshao.setText(list.get(position).description);
         holder.money.setText(list.get(position).upper_amount+"-"+list.get(position).lower_amount+"元");
         holder.lv.setText(list.get(position).monthly_rate+"%");
@@ -70,13 +69,8 @@ public class DaiAdapter4 extends RecyclerView.Adapter<DaiAdapter4.MyViewHolder> 
         holder.shen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isture){
-                    WebActivity.show(context, list.get(position).name,
-                            list.get(position).link, list.get(position).id, "", "0",false);
-                }else {
-                    Intent intent=new Intent(context, AccountActivity.class);
-                    context.startActivity(intent);
-                }
+
+                getItemposition.request(position);
             }
         });
 
@@ -120,6 +114,7 @@ public class DaiAdapter4 extends RecyclerView.Adapter<DaiAdapter4.MyViewHolder> 
     public interface getItemposition{
 
         void success(int pos);
+        void request(int pos);
     }
     public void setItemposition(getItemposition getItemposition){
         this.getItemposition=getItemposition;

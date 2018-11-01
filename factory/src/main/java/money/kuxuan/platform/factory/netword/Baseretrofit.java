@@ -229,7 +229,19 @@ public interface Baseretrofit {
     @FormUrlEncoded
     Observable<HomeurlBean> geturllist(@Field("source") String source);
 
-    //下款爆料&口子测评帖子---列表
+    //资讯类别
+    @POST("/user/huaJiangHu/newsCategory")
+    Observable<Object> gettexttype();
+
+    //资讯列表
+    @POST("/user/huaJiangHu/newsList")
+    @FormUrlEncoded
+    Observable<Object> gettextlist(@Field("type") String type,@Field("category") String category,@Field("page") String page);
+
+    //资讯详情
+    @POST("/user/huaJiangHu/newsDetail")
+    @FormUrlEncoded
+    Observable<Object> gettextdetail(@Field("id") String id,@Field("view_num") String view_num);
 
 
 

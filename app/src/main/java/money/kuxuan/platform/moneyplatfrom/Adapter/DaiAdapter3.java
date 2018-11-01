@@ -33,13 +33,12 @@ public class DaiAdapter3 extends RecyclerView.Adapter<DaiAdapter3.MyViewHolder> 
     private int pos;
     private getItemposition getItemposition;
     private ArrayList<NoteEntity> list;
-    private boolean isture;
 
 
-    public DaiAdapter3(Context context, ArrayList<NoteEntity> list, boolean isture) {
+
+    public DaiAdapter3(Context context, ArrayList<NoteEntity> list) {
         this.context = context;
         this.list = list;
-        this.isture = isture;
     }
 
     @Override
@@ -75,19 +74,26 @@ public class DaiAdapter3 extends RecyclerView.Adapter<DaiAdapter3.MyViewHolder> 
         holder.man.setText(list.get(position).peoplenum);
         holder.name.setText(list.get(position).title);
 
-
         holder.shen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isture){
-                    WebActivity.show(context, list.get(position).title,
-                            list.get(position).url, list.get(position).productid, "", "0",false);
-                }else {
-                    Intent intent=new Intent(context, AccountActivity.class);
-                    context.startActivity(intent);
-                }
+
+                getItemposition.requst(position);
             }
         });
+
+//        holder.shen.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(isture){
+//                    WebActivity.show(context, list.get(position).title,
+//                            list.get(position).url, list.get(position).productid, "", "0",false);
+//                }else {
+//                    Intent intent=new Intent(context, AccountActivity.class);
+//                    context.startActivity(intent);
+//                }
+//            }
+//        });
 
 
     }
@@ -128,6 +134,8 @@ public class DaiAdapter3 extends RecyclerView.Adapter<DaiAdapter3.MyViewHolder> 
     public interface getItemposition{
 
         void success(int pos);
+
+        void requst(int pos);
     }
     public void setItemposition(getItemposition getItemposition){
         this.getItemposition=getItemposition;

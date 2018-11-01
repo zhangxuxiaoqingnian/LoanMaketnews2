@@ -130,13 +130,6 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
                 MainActivity.show(this);
                 finish();
             }
-
-//            } else {
-//                System.out.println("不为空");
-//                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
-//                MainActivity.show(this);
-//                finish();
-//            }
             finish();
         } else {
       //     HomeActivity.show(this);

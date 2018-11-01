@@ -119,11 +119,11 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
         initview();
 
         timerv.setNestedScrollingEnabled(false);
-        timerv.setHasFixedSize(true);
+
         tuirv.setNestedScrollingEnabled(false);
-        tuirv.setHasFixedSize(true);
+
         newrv.setNestedScrollingEnabled(false);
-        newrv.setHasFixedSize(true);
+
 
         smils.setOnClickListener(this);
         bigmoney.setOnClickListener(this);
@@ -529,7 +529,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
                             @Override
                             public void onItemClick(XBanner banner, Object model,View view, int position) {
-                                DetailActivity.show(getActivity(), homeact.get(position).id+"","notice",0);
+                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0);
                             }
                         });
 

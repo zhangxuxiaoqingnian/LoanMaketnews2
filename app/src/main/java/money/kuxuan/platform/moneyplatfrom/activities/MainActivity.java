@@ -238,6 +238,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
 
             list2 = new ArrayList<>();
+            //保留一份
+//            list2.add(new HuaHomeFragment());
+//            list2.add(new NewSearchFragment());
+//            list2.add(new ActiveFragment());
+//            list2.add(new NewMineFragment());
+//            list2.add(new NewMineFragment());
             list2.add(new HuaHomeFragment());
             list2.add(new NewSearchFragment());
             list2.add(new ActiveFragment());

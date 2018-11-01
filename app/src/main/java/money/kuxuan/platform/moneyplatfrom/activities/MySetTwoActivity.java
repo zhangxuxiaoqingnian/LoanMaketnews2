@@ -91,6 +91,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     private MultipartBody.Part avatar;
     private String sexid;
     private String identid;
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +154,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
                 break;
             //保存信息
             case R.id.newsetok:
+                getpopwindow();
                 String s = name.getText().toString();
                 String s1 = sex.getText().toString();
                 String s2 = typetext.getText().toString();
@@ -404,7 +406,6 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
                     }
                     String cropImagePath = getRealFilePathFromUri(getApplicationContext(), uri);
                     bitMap = BitmapFactory.decodeFile(cropImagePath);
-
                     icon.setImageBitmap(bitMap);
 
                     fileover=new File(cropImagePath);
@@ -434,7 +435,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
 
             @Override
             public void onNext(Object o) {
-
+                popupWindow.dismiss();
                 finish();
             }
 
@@ -449,7 +450,24 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
 
             }
         });
+    }
 
+    public void getpopwindow(){
+        light(0.5f);
+        int width = getWindowManager().getDefaultDisplay().getWidth();
+        View inflate = LayoutInflater.from(MySetTwoActivity.this).inflate(R.layout.loading_layout, null, false);
+        TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
+        loading.setText("保存中...");
+        popupWindow = new PopupWindow(inflate, width/3,width/3);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.showAtLocation(layout, Gravity.CENTER,0,0);
 
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                light(1.0f);
+            }
+        });
     }
 }

@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import money.kuxuan.platform.common.app.PresenterActivity;
 import money.kuxuan.platform.common.factory.presenter.BaseContract;
+import money.kuxuan.platform.factory.Constant;
+import money.kuxuan.platform.factory.util.SPUtil;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
@@ -32,8 +34,7 @@ public class FeedbackActivity extends PresenterActivity {
                 finish();
             }
         });
-        SharedPreferences sharedPreferences = getSharedPreferences("Logintype", Context.MODE_PRIVATE);
-        String sessionid = sharedPreferences.getString("sessionid", null);
+        String sessionid = (String) SPUtil.get(this, Constant.UserInfo.SESSIONID,"");
         wv.getSettings().setUseWideViewPort(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setDisplayZoomControls(true);
@@ -51,7 +52,7 @@ public class FeedbackActivity extends PresenterActivity {
             }
         });
 
-        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/feedback.html?sessionid="+sessionid);
+        wv.loadUrl("https://m.henhaojie.com/xiaohuazhu/feedback.html?sessionid="+sessionid);
 
     }
 
