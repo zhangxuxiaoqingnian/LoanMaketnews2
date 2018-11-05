@@ -8,10 +8,12 @@ import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.text.Html;
+import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +78,10 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
         // Required empty public constructor
     }
 
+
+
+    @BindView(R.id.fragment_register_delete_pwdimg)
+    ImageView register_check_imge;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -85,6 +91,21 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
         listener = (onRegistListener) context;
     }
 
+    /**
+     * 显示隐藏密码
+     */
+    boolean isCheck;
+    @OnClick(R.id.fragment_register_delete_pwdimg)
+    void onCheck(){
+        if (!isCheck) {
+            mPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            isCheck = true;
+        } else {
+            mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            isCheck = false;
+        }
+    }
+
     @Override
     protected RegisterContract.Presenter initPresenter() {
         return new RegisterPresenter(this);
@@ -92,13 +113,19 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
 
     @Override
     protected int getContentLayoutId() {
-        return R.layout.fragment_register;
+        return R.layout.fragment_register_new;
     }
 
 
     @OnClick(R.id.txt_go_login)
     void onShowLoginClick() {
         //让AccountActivity进行界面切换
+        mAccountTrigger.triggerView();
+        time.cancel();
+    }
+
+    @OnClick(R.id.fragment_register_gotoLogin_text)
+    void goToLogin() {
         mAccountTrigger.triggerView();
         time.cancel();
     }
@@ -242,8 +269,7 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
 
         @Override
         public void onFinish() {// 计时完毕
-            code.setText("获取验证码");
-            code.setTextColor(getResources().getColor(R.color.textPrimary));
+            code.setText("获取");
             code.setClickable(true);
             goSound.setVisibility(View.GONE);
             goSound.setEnabled(true);
@@ -252,7 +278,6 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
         @Override
         public void onTick(long millisUntilFinished) {// 计时过程
             code.setClickable(false);//防止重复点击
-            code.setTextColor(getResources().getColor(R.color.textThird));
             code.setText("重新发送" + millisUntilFinished / 1000 + "s");
             goSound.setEnabled(false);
         }

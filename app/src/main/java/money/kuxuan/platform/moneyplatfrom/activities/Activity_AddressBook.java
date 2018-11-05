@@ -31,6 +31,7 @@ import money.kuxuan.platform.factory.presenter.addplatform.AddPlatfromContract;
 import money.kuxuan.platform.moneyplatfrom.Adapter.FastFlexAdapter;
 import money.kuxuan.platform.moneyplatfrom.Adapter.HeaderRecyclerAndFooterWrapperAdapter;
 import money.kuxuan.platform.moneyplatfrom.Adapter.ViewHolder;
+import money.kuxuan.platform.moneyplatfrom.Constant;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.helper.FastFlexBean;
 import money.kuxuan.platform.moneyplatfrom.util.DividerItemDecoration;
@@ -211,7 +212,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
 
                         @Override
                         public void onDataLoaded(DeleteApp deleteApp) {
-
+setResult(Constant.Code.RESULT_CHOOSEAPP_CODE);
                             finish();
                         }
                     });

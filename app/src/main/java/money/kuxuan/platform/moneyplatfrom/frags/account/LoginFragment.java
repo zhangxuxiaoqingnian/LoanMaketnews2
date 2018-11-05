@@ -184,7 +184,7 @@ public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
         if (tab.getText().equals("账号密码登录")) {
             code.setVisibility(View.GONE);
             code_tv.setText(R.string.password);
-            txtForget.setText("忘记密码？");
+                txtForget.setText("忘记密码？");
             mPassword.setHint(R.string.label_password);
             flag = 0;
         } else {

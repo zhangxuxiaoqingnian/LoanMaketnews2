@@ -18,7 +18,6 @@ import money.kuxuan.platform.factory.bean.NewDeatilsBean;
 import money.kuxuan.platform.factory.bean.NewListBean;
 import money.kuxuan.platform.moneyplatfrom.R;
 
-import static com.umeng.analytics.a.i;
 
 /**
  * Created by 小狼 on 2018/9/20.

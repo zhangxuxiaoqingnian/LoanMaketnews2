@@ -170,7 +170,8 @@ public class SelfDialog extends Dialog {
      */  
     public void setMessage(@StringRes int message) {
         this.message = message;
-    }  
+    }
+
 
     public interface onNoOnclickListener {  
         public void onNoClick();  

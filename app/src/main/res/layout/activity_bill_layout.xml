@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:background="@color/login_yellow_color"
+        android:contentInsetLeft="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        app:contentInsetStart="0dp"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback"
+            android:scaleType="center"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="账单管理"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <RadioGroup
+        android:id="@+id/billmanager_radiogroup"
+        android:layout_width="199px"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/radio_gray_bill_bg"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/daihuan_moneyRbtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/select_bill_rabtn_left_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="待还账单" />
+
+        <RadioButton
+            android:id="@+id/yihuan_moneyRbtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/select_bill_rabtn_bg_right"
+            android:button="@null"
+            android:gravity="center"
+            android:text="已结清账单" />
+
+
+    </RadioGroup>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bill_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bill_com_recyclerView"
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</LinearLayout>
