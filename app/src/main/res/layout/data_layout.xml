@@ -10,17 +10,21 @@
         android:layout_height="53px"
         android:orientation="vertical"
         android:background="#ffffff"
+        android:gravity="center"
         >
         <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
+            android:layout_width="355px"
             android:layout_height="wrap_content"
             android:id="@+id/dataallrv"
-            android:layout_marginLeft="16px"
-            android:layout_marginTop="16px"
             />
     </LinearLayout>
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6px"
+        android:background="#F5F4F9"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +32,6 @@
         android:orientation="horizontal"
         android:background="#ffffff"
         android:gravity="center_vertical"
-        android:layout_marginTop="6px"
         >
         <ImageView
             android:layout_width="13px"
@@ -48,7 +51,6 @@
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshlayout"
-        android:layout_marginTop="11px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >

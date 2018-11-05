@@ -94,12 +94,14 @@ public class HomedataBean {
             public String show_day;
             public int skip_type;
             public String top_money;
-            public Object lend_time;
-            public Object top_term;
+            public String lend_time;
+            public String top_term;
             public String category_name;
             public String category_note;
             public int category_type;
             public int deadline;
+            public String term;
+
         }
     }
 }

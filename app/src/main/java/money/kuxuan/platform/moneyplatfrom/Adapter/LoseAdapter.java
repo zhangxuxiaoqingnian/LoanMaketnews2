@@ -1,11 +1,11 @@
 package money.kuxuan.platform.moneyplatfrom.Adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,7 +14,6 @@ import java.util.List;
 
 import money.kuxuan.platform.factory.bean.LoseBean;
 import money.kuxuan.platform.moneyplatfrom.R;
-import money.kuxuan.platform.moneyplatfrom.util.NiceImageView;
 
 /**
  * Created by 小狼 on 2018/10/25.
@@ -60,12 +59,12 @@ public class LoseAdapter extends RecyclerView.Adapter<LoseAdapter.MyViewHolder>{
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView name;
-        private final NiceImageView icon;
+        private final ImageView icon;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            icon = (NiceImageView) itemView.findViewById(R.id.lose_icon);
+            icon = (ImageView) itemView.findViewById(R.id.lose_icon);
             name = (TextView) itemView.findViewById(R.id.lose_name);
         }
     }

@@ -29,10 +29,12 @@ import money.kuxuan.platform.common.factory.presenter.BaseContract;
 import money.kuxuan.platform.factory.bean.DaiBanner;
 import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.moneyplatfrom.Adapter.HuaDaiAdapter;
+import money.kuxuan.platform.moneyplatfrom.Adapter.SerchAdapter;
 import money.kuxuan.platform.moneyplatfrom.Adapter.Typeadapter;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.activities.DetailActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.NewDetailActivity;
+import money.kuxuan.platform.moneyplatfrom.util.DisplayUtils3;
 import money.kuxuan.platform.moneyplatfrom.util.DisplayUtils4;
 import money.kuxuan.platform.moneyplatfrom.util.DividerItemDecoration2;
 
@@ -55,6 +57,8 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
     private List<DaiBanner.RstBean.DataBean> list3;
     private int page=1;
     private String type;
+    private SerchAdapter serchAdapter;
+
     @Override
     protected BaseContract.Presenter initPresenter() {
         return null;
@@ -136,21 +140,20 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
                 }
                 final List<DaiBanner.RstBean.DataBean> data = daiBanner.rst.data;
                 list3.addAll(data);
-                if(huaDaiAdapter==null){
-                    huaDaiAdapter = new HuaDaiAdapter(getActivity(),list3);
-                    datarv.setLayoutManager(new GridLayoutManager(getActivity(),3));
-                    datarv.setAdapter(huaDaiAdapter);
+                if(serchAdapter==null){
+                    serchAdapter = new SerchAdapter(getActivity(),list3);
+                    datarv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    datarv.setAdapter(serchAdapter);
                 }else {
-                    huaDaiAdapter.notifyDataSetChanged();
+                    serchAdapter.notifyDataSetChanged();
                 }
 
-                huaDaiAdapter.Setnum(new HuaDaiAdapter.Getnum() {
+                serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
-                    public void successover(int pos) {
+                    public void success(int pos) {
                         DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0);
                     }
                 });
-
 
             }
 
@@ -170,7 +173,7 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
         rv = (RecyclerView) inflate.findViewById(R.id.dataallrv);
         rv.addItemDecoration(new DisplayUtils4.SpacesItemDecoration());
         datarv = (RecyclerView) inflate.findViewById(R.id.datarv);
-        datarv.addItemDecoration(new DividerItemDecoration2(getActivity(),R.drawable.item_style,R.dimen.alphabet_size2));
+        datarv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         refreshlayout = (SmartRefreshLayout) inflate.findViewById(R.id.refreshlayout);
         refreshlayout.setOnRefreshLoadmoreListener(this).
                 setEnableLoadmore(true)

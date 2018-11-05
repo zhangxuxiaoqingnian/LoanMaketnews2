@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -14,15 +15,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -36,17 +42,24 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import money.kuxuan.platform.common.app.PresenterActivity;
 import money.kuxuan.platform.common.widget.AdDialog;
 import money.kuxuan.platform.common.widget.SelfDialog;
 import money.kuxuan.platform.common.widget.StatusBarUtil;
 import money.kuxuan.platform.factory.Factory;
+import money.kuxuan.platform.factory.bean.PaoBean;
 import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.account.LoginModel;
 import money.kuxuan.platform.factory.model.api.launcher.LaunchRspModel;
 import money.kuxuan.platform.factory.model.api.launcher.RspAdModel;
 import money.kuxuan.platform.factory.net.Network;
 import money.kuxuan.platform.factory.net.RemoteService;
+import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.factory.presenter.home.MainContract;
 import money.kuxuan.platform.factory.presenter.home.MainPresenter;
 import money.kuxuan.platform.moneyplatfrom.Constant;
@@ -62,12 +75,14 @@ import money.kuxuan.platform.moneyplatfrom.frags.main.state.ExaimeFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.ExaimeNewFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.ExpertFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.HuaHomeFragment;
+import money.kuxuan.platform.moneyplatfrom.frags.main.state.MessageFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.MineMyFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.MyBillFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.MyHomeFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.MyOrderFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.NewMineFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.main.state.NewSearchFragment;
+import money.kuxuan.platform.moneyplatfrom.frags.main.state.PigHomeFragment;
 import money.kuxuan.platform.moneyplatfrom.helper.DataGenerator;
 import money.kuxuan.platform.moneyplatfrom.helper.FragmentHelper;
 import money.kuxuan.platform.moneyplatfrom.helper.SPUtil;
@@ -88,7 +103,7 @@ import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.cx;
 import static money.kuxuan.platform.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
-        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View,HuaHomeFragment.OnDaikuanClickListener{
+        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View,HuaHomeFragment.OnDaikuanClickListener,PigHomeFragment.Alldatacont{
     @BindView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.lay_container)
@@ -154,6 +169,8 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     private List<Fragment> list2;
     private int mPosition=0;
     private int position;
+    private CountDownTimer countDownTimer;
+    private PopupWindow popupWindow;
 
 
     public static void show(Context context) {
@@ -164,13 +181,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     }
 
-
-
     @Override
     protected void initWidows() {
         super.initWidows();
         StatusBarUtil.StatusBarLightMode(this);
-
         RxPermissions rxPermission = new RxPermissions(MainActivity.this);
         rxPermission
                 .requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
@@ -223,6 +237,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         loginAuto();
 
+
     }
 
     public void getcarvter(){
@@ -237,16 +252,19 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             icon2 = icon2();
 
 
+            //请求气泡
+            getpao();
+
             list2 = new ArrayList<>();
             //保留一份
-//            list2.add(new HuaHomeFragment());
+  //         list2.add(new HuaHomeFragment());
 //            list2.add(new NewSearchFragment());
 //            list2.add(new ActiveFragment());
 //            list2.add(new NewMineFragment());
 //            list2.add(new NewMineFragment());
-            list2.add(new HuaHomeFragment());
+            list2.add(new PigHomeFragment());
             list2.add(new NewSearchFragment());
-            list2.add(new ActiveFragment());
+            list2.add(new MessageFragment());
             list2.add(new NewMineFragment());
             list2.add(new NewMineFragment());
             switchFragment(list2.get(position)).commit();
@@ -309,6 +327,34 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     }
 
 
+    public void getpao(){
+        Observable<PaoBean> paoBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextpao().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        paoBeanObservable.subscribe(new Observer<PaoBean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(PaoBean paoBean) {
+                String content = paoBean.rst.content;
+                String icon = paoBean.rst.icon;
+                getpopshort(content,icon);
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
 
     public void getvisible(int pos){
 
@@ -425,7 +471,51 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
 
     }
+    public void getpopshort(String cont,String img){
 
+        View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
+        popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,true);
+        popupWindow.setOutsideTouchable(false);
+        popupWindow.setFocusable(false);
+        popupWindow.showAtLocation(mTabLayout, Gravity.BOTTOM,-130,120);
+
+        TextView timer = (TextView) inflate.findViewById(R.id.ggtimer);
+        ImageView ggicon = (ImageView) inflate.findViewById(R.id.ggicon);
+        timer.setText(cont);
+        Glide.with(MainActivity.this).load(img).into(ggicon);
+        timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                countDownTimer.onFinish();
+            }
+        });
+        countDownTimer = new CountDownTimer(5*1000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(millisUntilFinished/1000==0){
+                    popupWindow.dismiss();
+                    countDownTimer.onFinish();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        countDownTimer.start();
+
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        countDownTimer.onFinish();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -461,6 +551,13 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             if (checkChannel()) {
                 if (i == position) {
                     switchFragment(list2.get(i)).commit();
+                    if(position==1){
+                        if(popupWindow!=null){
+                            popupWindow.dismiss();
+                            countDownTimer.onFinish();
+                        }
+
+                    }
                     getvisible2(i);
                     icon3.setImageResource(icon2.get(i));
                     text.setTextColor(Color.parseColor("#FFAA48"));
@@ -778,6 +875,16 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     @Override
     public void gotoDaikuan() {
         mTabLayout.getTabAt(1).select();
+    }
+
+    @Override
+    public void daikuan() {
+        mTabLayout.getTabAt(1).select();
+    }
+
+    @Override
+    public void message() {
+        mTabLayout.getTabAt(2).select();
     }
 }
 

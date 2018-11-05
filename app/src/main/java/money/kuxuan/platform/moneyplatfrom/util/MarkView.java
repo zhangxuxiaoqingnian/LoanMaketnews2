@@ -84,7 +84,7 @@ public class MarkView extends LinearLayout implements View.OnClickListener {
             if((i + 1) * 2 <= mValue){
                 imageViews[i].setImageResource(R.mipmap.xing_bai);
             } else if(i * 2 < mValue) {
-                imageViews[i].setImageResource(R.mipmap.img_star_halffull);
+                imageViews[i].setImageResource(R.mipmap.xing_bai);
             } else {
                 imageViews[i].setImageResource(R.mipmap.xiang_yellow);
             }

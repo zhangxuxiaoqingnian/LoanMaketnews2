@@ -46,6 +46,7 @@ public class ProductDetail {
     List<Dialogs> loan_period;
     private String customer_service_number;
     private int is_collection;
+    private String is_quality;
 
     public String getCustomer_service_number() {
         return customer_service_number;
@@ -53,6 +54,14 @@ public class ProductDetail {
 
     public void setCustomer_service_number(String customer_service_number) {
         this.customer_service_number = customer_service_number;
+    }
+
+    public String getIs_quality() {
+        return is_quality;
+    }
+
+    public void setIs_quality(String is_quality) {
+        this.is_quality = is_quality;
     }
 
     public int getIs_collection() {

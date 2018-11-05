@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="46px"
+    android:background="#ffffff"
+    >
+    <TextView
+        android:id="@+id/typetext"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="全部"
+        android:textSize="14px"
+        android:textColor="#999999"
+        android:gravity="center"
+        />
+
+    <View
+        android:id="@+id/typeview"
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:background="#FFCE25"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+</RelativeLayout>

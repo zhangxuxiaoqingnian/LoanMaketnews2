@@ -60,7 +60,7 @@ public class DataGenerator {
             R.drawable.tabbar_color_highligh10,R.drawable.tabbar_mine_highligh10
     };
 
-    public static final String[] mTabTitle = new String[]{"首页", "贷款","信用卡","发现", "我的"};
+    public static final String[] mTabTitle = new String[]{"首页", "贷款","信用卡","资讯", "我的"};
     private static List<String> list;
 
     public static final List<String> cx(){

@@ -22,6 +22,9 @@ import money.kuxuan.platform.factory.bean.LikeBean;
 import money.kuxuan.platform.factory.bean.LoseBean;
 import money.kuxuan.platform.factory.bean.MemoBean;
 import money.kuxuan.platform.factory.bean.MemoShowBean;
+import money.kuxuan.platform.factory.bean.MessBannerBean;
+import money.kuxuan.platform.factory.bean.MessTypeBean;
+import money.kuxuan.platform.factory.bean.MessageBean;
 import money.kuxuan.platform.factory.bean.MyDetailBean;
 import money.kuxuan.platform.factory.bean.MyHomeFragmentBean;
 import money.kuxuan.platform.factory.bean.MyHomeListBean;
@@ -29,7 +32,9 @@ import money.kuxuan.platform.factory.bean.MyiconBean;
 import money.kuxuan.platform.factory.bean.MynameBean;
 import money.kuxuan.platform.factory.bean.NewDeatilsBean;
 import money.kuxuan.platform.factory.bean.NewListBean;
+import money.kuxuan.platform.factory.bean.PaoBean;
 import money.kuxuan.platform.factory.bean.QiangBean;
+import money.kuxuan.platform.factory.bean.TabBean;
 import money.kuxuan.platform.factory.model.api.Bean.HomeBase;
 import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.guoshen.RepaymentListBean;
@@ -231,18 +236,31 @@ public interface Baseretrofit {
 
     //资讯类别
     @POST("/user/huaJiangHu/newsCategory")
-    Observable<Object> gettexttype();
+    Observable<MessTypeBean> gettexttype();
 
     //资讯列表
     @POST("/user/huaJiangHu/newsList")
     @FormUrlEncoded
-    Observable<Object> gettextlist(@Field("type") String type,@Field("category") String category,@Field("page") String page);
+    Observable<MessageBean> gettextlist(@Field("type") String type, @Field("category") String category, @Field("page") int page);
 
     //资讯详情
     @POST("/user/huaJiangHu/newsDetail")
     @FormUrlEncoded
     Observable<Object> gettextdetail(@Field("id") String id,@Field("view_num") String view_num);
 
+
+    //资讯banner
+    @POST("/user/huaJiangHu/newsBanner")
+    Observable<MessBannerBean> gettextbanner();
+
+    //获取气泡信息
+    @GET("/user/homeact/getBubbleAdvert")
+    Observable<PaoBean> gettextpao();
+
+    //获取快借1500等信息
+    @POST("/user/product/getInfoByCat")
+    @FormUrlEncoded
+    Observable<TabBean> gettablist(@Field("id") int id, @Field("page") int page, @Field("source") String soure);
 
 
 }

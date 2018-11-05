@@ -31,6 +31,7 @@ import money.kuxuan.platform.factory.bean.DaiBanner;
 import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.moneyplatfrom.Adapter.HuaAdapter;
 import money.kuxuan.platform.moneyplatfrom.Adapter.HuaDaiAdapter;
+import money.kuxuan.platform.moneyplatfrom.Adapter.SerchAdapter;
 import money.kuxuan.platform.moneyplatfrom.Adapter.Typeadapter;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.activities.DetailActivity;
@@ -58,6 +59,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
     private int page=1;
     private String type;
     private SmartRefreshLayout refreshlayout;
+    private SerchAdapter serchAdapter;
 
     @Override
     protected BaseContract.Presenter initPresenter() {
@@ -144,21 +146,21 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
                     refreshlayout.setLoadmoreFinished(true);
                 }
                 list3.addAll(data);
-                if(huaDaiAdapter==null){
-                    huaDaiAdapter = new HuaDaiAdapter(getActivity(),list3);
-                    moneyrv.setLayoutManager(new GridLayoutManager(getActivity(),3));
-                    moneyrv.setAdapter(huaDaiAdapter);
+                if(serchAdapter==null){
+                    serchAdapter = new SerchAdapter(getActivity(),list3);
+                    moneyrv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    moneyrv.setAdapter(serchAdapter);
                 }else {
-                    huaDaiAdapter.notifyDataSetChanged();
+                    serchAdapter.notifyDataSetChanged();
                 }
 
-
-                huaDaiAdapter.Setnum(new HuaDaiAdapter.Getnum() {
+                serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
-                    public void successover(int pos) {
+                    public void success(int pos) {
                         DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0);
                     }
                 });
+
 
             }
 
@@ -178,7 +180,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
         rv = (RecyclerView) inflate.findViewById(R.id.typeallrv);
         moneyrv = (RecyclerView) inflate.findViewById(R.id.money_rv);
-        moneyrv.addItemDecoration(new DividerItemDecoration2(getActivity(),R.drawable.item_style,R.dimen.alphabet_size2));
+        moneyrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         rv.addItemDecoration(new DisplayUtils4.SpacesItemDecoration());
         refreshlayout = (SmartRefreshLayout) inflate.findViewById(R.id.refreshlayout);
 

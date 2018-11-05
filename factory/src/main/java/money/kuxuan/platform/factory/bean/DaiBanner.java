@@ -79,7 +79,7 @@ public class DaiBanner {
             public String remarks;
             public String name;
             public String description;
-            public Object prod_title;
+            public String prod_title;
             public String applicants;
             public String icon;
             public String day_rate;
@@ -93,6 +93,8 @@ public class DaiBanner {
             public String top_money;
             public String top_term;
             public String lend_time;
+            public String term;
+            public String is_quality;
         }
     }
 }

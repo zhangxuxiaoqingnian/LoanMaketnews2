@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F7F7F6"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        android:background="#FFCE25"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="资讯"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <com.stx.xhb.xbanner.XBanner
+        android:layout_width="355px"
+        android:layout_height="122px"
+        app:AutoPlayTime="3000"
+        app:isAutoPlay="true"
+        app:pointsPosition="CENTER"
+        app:pointContainerPosition="BOTTOM"
+        app:isHandLoop="true"
+        android:layout_marginTop="16px"
+        android:id="@+id/mess_banner"
+        >
+    </com.stx.xhb.xbanner.XBanner>
+
+    <LinearLayout
+        android:layout_width="355px"
+        android:layout_height="56px"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="#ffffff"
+        android:layout_marginTop="8px"
+        >
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/mess_tablayout"
+            android:layout_width="355px"
+            android:layout_height="46px"
+            app:tl_textSelectColor="#FFB33A"
+            app:tl_textUnselectColor="#999999"
+            app:tl_indicator_gravity="BOTTOM"
+            app:tl_indicator_style="NORMAL"
+            app:tl_indicator_width_equal_title="true"
+            app:tl_underline_color="#FFCE25"
+            app:tl_indicator_color="#FFCE25"
+            >
+        </com.flyco.tablayout.SlidingTabLayout>
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="355px"
+        android:layout_height="wrap_content"
+        android:id="@+id/mess_vp"
+
+        />
+
+
+</LinearLayout>

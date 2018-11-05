@@ -32,13 +32,15 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     TextView casename;
     @BindView(R.id.case_back)
     ImageView case_back;
+    private String urlname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
         int urlid = intent.getIntExtra("urlid", -1);
-        String urlname = intent.getStringExtra("urlname");
+        urlname = intent.getStringExtra("urlname");
         String urladdress = intent.getStringExtra("urladdress");
         case_back.setOnClickListener(this);
 //       SharedPreferences sharedPreferences = getSharedPreferences("Logintype", Context.MODE_PRIVATE);
@@ -95,16 +97,18 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
             }
         });
 
-
-        if(urlid!=0){
-            wv.loadUrl(urladdress+"?id="+urlid+"&title="+urlname+"&sessionid="+sessionid+"&channel_id"+channelId);
-            wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
-            wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
-
-        }else {
-
-            wv.loadUrl("https://m.henhaojie.com/xiaohuazhu/burst.html?title="+urlname+"&sessionid="+sessionid+"&channel_id="+channelId);
-        }
+        //资讯h5
+        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+urlid+"&view_num="+urlname+"&sessionid="+sessionid);
+//        if(urlid!=0){
+//
+//            wv.loadUrl(urladdress+"?id="+urlid+"&title="+urlname+"&sessionid="+sessionid+"&channel_id"+channelId);
+//            wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
+//            wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
+//
+//        }else {
+//
+//            wv.loadUrl("https://m.henhaojie.com/xiaohuazhu/burst.html?title="+urlname+"&sessionid="+sessionid+"&channel_id="+channelId);
+//        }
 
     }
 

@@ -1,48 +1,29 @@
 package money.kuxuan.platform.moneyplatfrom.activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,8 +32,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -61,14 +40,9 @@ import io.reactivex.schedulers.Schedulers;
 import money.kuxuan.platform.common.Common;
 import money.kuxuan.platform.common.app.PresenterActivity;
 import money.kuxuan.platform.common.utils.DateTimeUtil;
-import money.kuxuan.platform.common.utils.DisplayUtil;
-import money.kuxuan.platform.common.widget.PortraitView;
-import money.kuxuan.platform.common.widget.TextWatcherAdapter;
 import money.kuxuan.platform.factory.Constant;
 import money.kuxuan.platform.factory.bean.CancleCollectBean;
 import money.kuxuan.platform.factory.bean.CollectBean;
-import money.kuxuan.platform.factory.bean.DetailBean;
-import money.kuxuan.platform.factory.bean.LikeBean;
 import money.kuxuan.platform.factory.model.api.product.ProductDetail;
 import money.kuxuan.platform.factory.model.db.Amount;
 import money.kuxuan.platform.factory.model.db.Dialogs;
@@ -79,17 +53,12 @@ import money.kuxuan.platform.factory.presenter.detail.DetailContract;
 import money.kuxuan.platform.factory.presenter.detail.DetailPresenter;
 import money.kuxuan.platform.factory.util.LoginUtil;
 import money.kuxuan.platform.factory.util.SPUtil;
-import money.kuxuan.platform.moneyplatfrom.Adapter.GridViewAdapter;
 import money.kuxuan.platform.moneyplatfrom.Bean.NoteEntity;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.frags.AlertFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.dialog.DgFragment;
-import money.kuxuan.platform.moneyplatfrom.helper.DensityUtil;
 import money.kuxuan.platform.moneyplatfrom.sqlite.DatabaseAdapter;
-import money.kuxuan.platform.moneyplatfrom.sqlite.DatabaseHelper;
 import money.kuxuan.platform.moneyplatfrom.util.MarkView;
-import money.kuxuan.platform.moneyplatfrom.util.NiceImageView;
-import money.kuxuan.platform.moneyplatfrom.util.ToastUtil;
 import money.kuxuan.platform.moneyplatfrom.web.WebActivity;
 
 
@@ -133,7 +102,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private TextView give;
     private LinearLayout data;
     private EditText money;
-    private NiceImageView icon;
+    private ImageView icon;
     private TextView name;
     private TextView text;
     private MarkView mark;
@@ -163,6 +132,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private LinearLayout wei_circle;
     private TextView cancle;
     private AlertFragment alertFragment;
+    private ImageView quality;
 
 
     @Override
@@ -177,7 +147,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         data = (LinearLayout) findViewById(R.id.ppdata);
         give = (TextView) findViewById(R.id.successgive);
         time = (TextView) findViewById(R.id.pptime);
-        icon = (NiceImageView) findViewById(R.id.ppicon);
+        icon = (ImageView) findViewById(R.id.ppicon);
         name = (TextView) findViewById(R.id.ppname);
         text = (TextView) findViewById(R.id.pptext);
         mark = (MarkView) findViewById(R.id.ppmark);
@@ -199,6 +169,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         apply = (TextView) findViewById(R.id.apply_success);
         share = (ImageView) findViewById(R.id.share);
         layout = (RelativeLayout) findViewById(R.id.detaillayout);
+        quality = (ImageView) findViewById(R.id.detail_quality);
     }
 
     /**
@@ -376,7 +347,11 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         mark.setValue(Double.parseDouble(product.getStar()));
         money1.setText("金额 （"+ product.getUpper_amount()+"-"+ product.getLower_amount()+")");
         timer.setText("期限 （"+ product.getTerm()+")");
-
+        if(product.getIs_quality().equals("0")){
+              quality.setVisibility(View.GONE);
+        }else {
+            quality.setVisibility(View.VISIBLE);
+        }
         obser.setText(product.getLend_time());
         num=product.getId();
         type.setText(product.getShow_day());
@@ -393,7 +368,11 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         datum.setText(product.getDocument());
         state.setText(Html.fromHtml(product.getExplain()));
 
-
+        String applicants = product.getApplicants();
+        double v = Double.parseDouble(applicants);
+        double v1 = v / 10000;
+        String format = String.format("%.1f", v1);
+        apply.setText("立即申请 ("+format+"万人申请)");
 
 //        if(product.getCustomer_service_number()!=null){
 //            if(product.getCustomer_service_number().equals("")){
@@ -424,6 +403,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideSoftKeyboard();
                 if (product.getLoan_period() != null) {
                     alertFragment = new AlertFragment();
                     alertFragment.setListener(new AlertFragment.OnSelectedListener() {
@@ -488,6 +468,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
 
     }
+
+
 
     public void count(ProductDetail product){
         if(money.getText().toString().equals("")){
@@ -561,9 +543,13 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     public void stateError() {
         Boolean isExit = (Boolean) SPUtil.get(this, Constant.UserInfo.ISEXITE, true);
         if (isExit) {
-            dgFragment = new DgFragment();
-            dgFragment.setDialogLisener(this);
-            dgFragment.show(getFragmentManager(), "EditNameDialog");
+
+            Intent intent = new Intent(DetailActivity.this, AccountActivity.class);
+            startActivity(intent);
+            //未登录弹框
+//            dgFragment = new DgFragment();
+//            dgFragment.setDialogLisener(this);
+//            dgFragment.show(getFragmentManager(), "EditNameDialog");
         } else {
             LoginUtil.getInstance().reLoadLogin(new LoginUtil.OnLoadListener() {
                 @Override
