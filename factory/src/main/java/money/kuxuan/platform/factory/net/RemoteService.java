@@ -5,6 +5,9 @@ import android.database.Observable;
 
 import java.util.List;
 
+import money.kuxuan.platform.factory.bean.BillData;
+import money.kuxuan.platform.factory.bean.BillDetialData;
+import money.kuxuan.platform.factory.bean.BillStatusData;
 import money.kuxuan.platform.factory.model.api.RspModel;
 import money.kuxuan.platform.factory.model.api.account.AccountRspModel;
 import money.kuxuan.platform.factory.model.api.account.CodeModel;
@@ -18,6 +21,11 @@ import money.kuxuan.platform.factory.model.api.account.UpdateModel;
 import money.kuxuan.platform.factory.model.api.active.ActiveModel;
 import money.kuxuan.platform.factory.model.api.active.ActiveRspModel;
 import money.kuxuan.platform.factory.model.api.application.PageModel;
+import money.kuxuan.platform.factory.model.api.bill.AddBillModel;
+import money.kuxuan.platform.factory.model.api.bill.BillListsModel;
+import money.kuxuan.platform.factory.model.api.bill.BillstatusModel;
+import money.kuxuan.platform.factory.model.api.bill.DeleteBillModel;
+import money.kuxuan.platform.factory.model.api.bill.DetialModel;
 import money.kuxuan.platform.factory.model.api.creditcard.CreditCardPageModel;
 import money.kuxuan.platform.factory.model.api.creditcard.CreditModel;
 import money.kuxuan.platform.factory.model.api.detail.AmountRspModel;
@@ -227,13 +235,16 @@ public interface RemoteService {
     //删除记录
     @POST("product/markDelete")
     Call<RspModel<Integer>> deleteApp(@Body RequestBody requestBody);
+
     //删除信用卡记录
     @POST("creditCard/markDelete")
     Call<RspModel<Integer>> deleteCard(@Body RequestBody requestBody);
+
     //产品添加到我的申请
     @POST("product/automaticAddApply")
     @FormUrlEncoded
     Call<RspModel<DeleteApp>> addApp(@Field("product_id") String appuuid);
+
     //信用卡添加到我的申请
     @POST("creditCard/automaticAddApply")
     @FormUrlEncoded
@@ -250,4 +261,28 @@ public interface RemoteService {
     //获取活动页计算工具
     @GET("activity/getToolsList")
     Call<RspModel<List<Tool>>> tool();
+
+
+    //获取账单列表
+    @POST("huaJiangHu/billList")
+//    Call<RspModel<BillData>> getBillManagerLists(@Query("page") String page, @Query("status") String status);
+    Call<RspModel<BillData>> getBillManagerLists(@Body BillListsModel billListsModel);
+
+    //修改已还状态
+    @POST("huaJiangHu/statusBill")
+//    Call<RspModel<BillStatusData>> changeBillStatus(@Query("id") String id, @Query("status") String status);
+    Call<RspModel<BillStatusData>> changeBillStatus(@Body BillstatusModel billstatusModel);
+
+    //账单详情
+    @POST("huaJiangHu/billDetail")
+//    Call<RspModel<BillDetialData>> getBillDetial(@Query("page") String page, @Query("platform_id")String platform_id);
+    Call<RspModel<BillDetialData>> getBillDetial(@Body DetialModel model);
+
+    //删除账单
+    @POST("huaJiangHu/delBill")
+    Call<RspModel<Object>> deleteBill(@Body DeleteBillModel id);
+
+    //添加账单
+    @POST("huaJiangHu/addBill")
+    Call<RspModel<Object>> addBill(@Body AddBillModel addBillModel);
 }

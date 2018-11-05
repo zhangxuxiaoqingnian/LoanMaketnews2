@@ -25,6 +25,7 @@ import money.kuxuan.platform.factory.presenter.state.StatePresenter;
 import money.kuxuan.platform.moneyplatfrom.Constant;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.activities.AccountActivity;
+import money.kuxuan.platform.moneyplatfrom.activities.BillManagerActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.FeedbackActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.MemoActivity;
 import money.kuxuan.platform.moneyplatfrom.activities.MyCollectActivity;
@@ -38,7 +39,7 @@ import money.kuxuan.platform.moneyplatfrom.activities.SetActivity;
  */
 
 public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
-        implements StateContract.View,View.OnClickListener{
+        implements StateContract.View, View.OnClickListener {
 
     private View inflate;
     private TextView login;
@@ -49,7 +50,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     private RelativeLayout question;
     private RelativeLayout feenback;
     private RelativeLayout set;
-    private int flag=0;
+    private int flag = 0;
     private SelfDialog selfDialog;
     private String myiconurl;
     private String myname;
@@ -74,7 +75,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         sharedPreferences = getActivity().getSharedPreferences("Logintype", Context.MODE_PRIVATE);
 
     }
-    public void initview(){
+
+    public void initview() {
         login = (TextView) inflate.findViewById(R.id.mine_login);
         loginicon = (CircleImageView) inflate.findViewById(R.id.mine_icon);
         collect = (RelativeLayout) inflate.findViewById(R.id.my_collect);
@@ -95,11 +97,13 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         layout.setOnClickListener(this);
 
     }
+
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
         mPresenter.start();
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -111,37 +115,36 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     public void stateLogin(User user) {
 
 //        sharedPreferences.edit().putString("sessionid",user.getPHPSESSID()).commit();
-        flag=1;
+        flag = 1;
         login.setText(user.nick);
-        if(user.avatar_url.equals("")){
+        if (user.avatar_url.equals("")) {
             loginicon.setImageResource(R.mipmap.loginicon);
-        }else {
+        } else {
             Glide.with(getActivity()).load(user.avatar_url).into(loginicon);
         }
-        myiconurl=user.avatar_url;
-        myname=user.nick;
-        if(user.gender.equals("woman")){
-            mysex="女";
-        }else {
-            mysex="男";
+        myiconurl = user.avatar_url;
+        myname = user.nick;
+        if (user.gender.equals("woman")) {
+            mysex = "女";
+        } else {
+            mysex = "男";
         }
-        if(user.identity.equals("1")){
-            mytype="上班族";
-        }else if(user.identity.equals("2")){
-            mytype="个体户";
-        }else if(user.identity.equals("3")){
-            mytype="企业主";
+        if (user.identity.equals("1")) {
+            mytype = "上班族";
+        } else if (user.identity.equals("2")) {
+            mytype = "个体户";
+        } else if (user.identity.equals("3")) {
+            mytype = "企业主";
         }
-
 
 
     }
 
     @Override
     public void setNoLogin() {
-        login.setText("登录");
+        login.setText("注册/登录");
         loginicon.setImageResource(R.mipmap.loginicon);
-        flag=0;
+        flag = 0;
     }
 
     @Override
@@ -157,46 +160,46 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             //登录
             case R.id.mine_layout:
-                if(flag==0){
+                if (flag == 0) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, money.kuxuan.platform.moneyplatfrom.Constant.Code.REQUEST_CODE);
-                }else {
+                } else {
                     //进入更换信息页面
-                    Intent intent=new Intent(getActivity(), MySetTwoActivity.class);
-                    intent.putExtra("loginicon",myiconurl);
-                    intent.putExtra("loginname",myname);
-                    intent.putExtra("loginsex",mysex);
-                    intent.putExtra("loginindent",mytype);
+                    Intent intent = new Intent(getActivity(), MySetTwoActivity.class);
+                    intent.putExtra("loginicon", myiconurl);
+                    intent.putExtra("loginname", myname);
+                    intent.putExtra("loginsex", mysex);
+                    intent.putExtra("loginindent", mytype);
                     //把现有的信息传过去展示
                     startActivity(intent);
                 }
                 break;
             //我的收藏
             case R.id.my_collect:
-                if(flag==0){
+                if (flag == 0) {
                     //提示登录
                     createDialog(R.string.no_login2);
-                }else {
-                    Intent intent=new Intent(getActivity(), MyCollectActivity.class);
+                } else {
+                    Intent intent = new Intent(getActivity(), MyCollectActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
                 }
                 break;
             //我的足迹
             case R.id.my_record:
-                Intent intent1=new Intent(getActivity(),RecordActivity.class);
+                Intent intent1 = new Intent(getActivity(), RecordActivity.class);
                 startActivityForResult(intent1, Constant.Code.REQUEST_CODE);
                 break;
             //还款备忘录
             case R.id.my_forget:
-                if(flag==0){
+                if (flag == 0) {
                     //提示登录
                     createDialog(R.string.no_login2);
-                }else {
-                    Intent intent2=new Intent(getActivity(), MemoActivity.class);
+                } else {
+                    Intent intent2 = new Intent(getActivity(), BillManagerActivity.class);
                     startActivity(intent2);
                 }
 
@@ -207,25 +210,26 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 break;
             //意见反馈
             case R.id.my_feenback:
-                if(flag==0){
+                if (flag == 0) {
                     //提示登录
                     createDialog(R.string.no_login2);
-                }else {
-                    Intent intent=new Intent(getActivity(), FeedbackActivity.class);
+                } else {
+                    Intent intent = new Intent(getActivity(), FeedbackActivity.class);
                     startActivity(intent);
                 }
 
                 break;
             //设置
             case (R.id.my_set):
-                if(flag==0){
+                if (flag == 0) {
                     //提示登录
                     createDialog(R.string.no_login2);
-                }else {
+                } else {
                     SetActivity.show(getContext());
                 }
 
                 break;
+
         }
     }
 

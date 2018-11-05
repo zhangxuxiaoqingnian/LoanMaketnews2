@@ -87,7 +87,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
                 @Override
                 public void onDataLoaded(User user) {
                     if(user!=null){
-
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.USERNAME, user.getPhone());
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, "");

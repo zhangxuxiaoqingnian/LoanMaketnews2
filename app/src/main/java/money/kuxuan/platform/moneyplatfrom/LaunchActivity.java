@@ -5,7 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Binder;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 

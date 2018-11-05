@@ -248,7 +248,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             list2.add(new NewSearchFragment());
             list2.add(new ActiveFragment());
             list2.add(new NewMineFragment());
-            list2.add(new NewMineFragment());
+//            list2.add(new NewMineFragment());
             switchFragment(list2.get(position)).commit();
             getvisible2(position);
             //显示隐藏

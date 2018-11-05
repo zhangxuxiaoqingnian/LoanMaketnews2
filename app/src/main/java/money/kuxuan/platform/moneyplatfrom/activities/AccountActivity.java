@@ -10,6 +10,7 @@ import money.kuxuan.platform.moneyplatfrom.Constant;
 import money.kuxuan.platform.moneyplatfrom.R;
 import money.kuxuan.platform.moneyplatfrom.frags.account.AccountTrigger;
 import money.kuxuan.platform.moneyplatfrom.frags.account.LoginFragment;
+import money.kuxuan.platform.moneyplatfrom.frags.account.NewLoginFragment;
 import money.kuxuan.platform.moneyplatfrom.frags.account.RegisterFragment;
 
 //账户activity
@@ -39,7 +40,7 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
         super.initWidget();
 
         // 初始化Fragment
-        mCurFragment = mLoginFragment = new LoginFragment();
+        mCurFragment = mLoginFragment = new NewLoginFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.lay_container, mCurFragment)

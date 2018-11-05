@@ -244,6 +244,13 @@
         <activity android:name=".activities.TypeActivity" />
         <activity android:name=".activities.CaseurlActivity" />
         <activity android:name=".activities.FeedbackActivity"></activity>
+        <activity android:name=".activities.BillManagerActivity" />
+        <activity android:name=".activities.BillDetialActivity" />
+        <activity android:name=".activities.BillAddActivity" />
+        <receiver
+            android:name="money.kuxuan.platform.moneyplatfrom.util.AlarmReceiver"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></receiver>
     </application>
 
 </manifest>

@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.regex.Matcher;
@@ -56,6 +58,24 @@ implements ForgetContract.View{
         return R.layout.activity_forget;
     }
 
+
+
+    @BindView(R.id.fragment_register_delete_pwdimg)
+    ImageView register_check_imge;
+    /**
+     * 显示隐藏密码
+     */
+    boolean isCheck;
+    @OnClick(R.id.fragment_register_delete_pwdimg)
+    void onCheck(){
+        if (!isCheck) {
+            mPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            isCheck = true;
+        } else {
+            mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            isCheck = false;
+        }
+    }
     @Override
     protected void initWidget() {
         super.initWidget();
@@ -160,8 +180,7 @@ implements ForgetContract.View{
 
         @Override
         public void onFinish() {// 计时完毕
-            code.setText("获取验证码");
-            code.setTextColor(getResources().getColor(R.color.textPrimary));
+            code.setText("获取");
             code.setClickable(true);
             goSound.setVisibility(View.VISIBLE);
         }
@@ -169,7 +188,6 @@ implements ForgetContract.View{
         @Override
         public void onTick(long millisUntilFinished) {// 计时过程
             code.setClickable(false);//防止重复点击
-            code.setTextColor(getResources().getColor(R.color.textThird));
             code.setText("重新发送"+millisUntilFinished / 1000 + "s");
         }
     }
