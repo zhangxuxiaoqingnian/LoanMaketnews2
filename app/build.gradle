@@ -9,7 +9,7 @@ repositories {
 }
 def bakPath = file("${buildDir}/bakApk/")
 android {
-    compileSdkVersion 28
+    compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.smileflowpig.money"
