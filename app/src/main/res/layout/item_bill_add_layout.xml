@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_bill_addlayout"
     android:layout_width="match_parent"
     android:layout_height="72px"
-    android:id="@+id/item_bill_addlayout"
-    android:background="@drawable/item_bill_bg">
+    android:background="@mipmap/icon_billmanager_bg">
 
 
     <LinearLayout
@@ -14,8 +14,9 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25px"
+            android:layout_height="25px"
+            android:layout_gravity="center_vertical"
             android:src="@mipmap/icon_addbill" />
 
 
@@ -25,6 +26,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:text="添加账单"
+            android:textSize="16px"
             android:textColor="@color/black" />
     </LinearLayout>
 

@@ -22,11 +22,11 @@
     <!-- 小米需要的service和receiver -->
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <permission
-        android:name="com.sddksxjgod.com.permission.MIPUSH_RECEIVE"
+        android:name="com.smileflowpig.money.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
-    <uses-permission android:name="com.sddksxjgod.com.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.smileflowpig.money.permission.MIPUSH_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application

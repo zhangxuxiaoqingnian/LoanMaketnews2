@@ -6,10 +6,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.smileflowpig.money.common.utils.NotchUtil;
 import com.smileflowpig.money.common.widget.StatusBarUtil;
 import com.smileflowpig.money.common.widget.convention.PlaceHolderView;
 import com.umeng.analytics.MobclickAgent;
@@ -40,7 +43,12 @@ public abstract class Activity extends AutoLayoutActivity {
         if (initArgs(getIntent().getExtras())) {
             // 得到界面Id并设置到Activity界面中
             int layId = getContentLayoutId();
-            setContentView(layId);
+            ViewGroup inflate = (ViewGroup) LayoutInflater.from(this).inflate(layId, null);
+            setContentView(inflate);
+            //判断是不是androidP系统
+            if (Build.VERSION.SDK_INT >= 28) {
+                NotchUtil.adaptationView(inflate, this);
+            }
             initBefore();
             initWidget();
             initData();
@@ -60,7 +68,7 @@ public abstract class Activity extends AutoLayoutActivity {
      * 初始化窗口
      */
     protected void initWidows() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                     | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);

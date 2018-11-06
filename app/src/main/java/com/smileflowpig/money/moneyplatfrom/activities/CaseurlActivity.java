@@ -17,7 +17,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -118,7 +120,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 
         //资讯h5
         strurl = "http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid;
-        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
+//        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
+        wv.loadUrl(strurl);
 
         //第一版被抛弃的小花猪
 //        if(urlid!=0){
@@ -186,16 +189,35 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
 
-                UMImage image = new UMImage(CaseurlActivity.this, "");
+//                UMImage image = new UMImage(CaseurlActivity.this, "");
                 UMWeb web = new UMWeb(strurl);
-                      web.setTitle("This is music title");//标题
-                        web.setThumb(image);  //缩略图
-                        web.setDescription("my description");//描述
-
+                web.setTitle("测试");
+                web.setDescription("测试地址");
+                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_pig));
                 new ShareAction(CaseurlActivity.this)
-                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)
+                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)//传入平台
                         .withMedia(web)
-                        .setCallback(umShareListener)
+                        .setCallback(new UMShareListener() {
+                            @Override
+                            public void onStart(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onResult(SHARE_MEDIA share_media) {
+                                ToastUtil.show(CaseurlActivity.this, "分享成功");
+                            }
+
+                            @Override
+                            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+                                ToastUtil.show(CaseurlActivity.this, "分享失败");
+                            }
+
+                            @Override
+                            public void onCancel(SHARE_MEDIA share_media) {
+
+                            }
+                        })//回调监听器
                         .share();
                 popupWindow.dismiss();
             }
@@ -203,17 +225,34 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         wei_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                UMImage image = new UMImage(CaseurlActivity.this, "");
                 UMWeb web = new UMWeb(strurl);
-                web.setTitle("This is music title");//标题
-                web.setThumb(image);  //缩略图
-                web.setDescription("my description");//描述
-
+                web.setTitle("测试");
+                web.setDescription("测试地址");
+                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_pig));
                 new ShareAction(CaseurlActivity.this)
-                        .setPlatform(SHARE_MEDIA.WEIXIN)
+                        .setPlatform(SHARE_MEDIA.WEIXIN)//传入平台
                         .withMedia(web)
-                        .setCallback(umShareListener)
+                        .setCallback(new UMShareListener() {
+                            @Override
+                            public void onStart(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onResult(SHARE_MEDIA share_media) {
+                                ToastUtil.show(CaseurlActivity.this, "分享成功");
+                            }
+
+                            @Override
+                            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+                                ToastUtil.show(CaseurlActivity.this, "分享失败");
+                            }
+
+                            @Override
+                            public void onCancel(SHARE_MEDIA share_media) {
+
+                            }
+                        })//回调监听器
                         .share();
                 popupWindow.dismiss();
             }
@@ -236,7 +275,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     private UMShareListener umShareListener = new UMShareListener() {
         @Override
         public void onStart(SHARE_MEDIA share_media) {
-
+            Toast.makeText(CaseurlActivity.this,"开始分享",Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -257,5 +296,10 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
             Toast.makeText(CaseurlActivity.this,"分享取消",Toast.LENGTH_SHORT).show();
         }
     };
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
 
 }

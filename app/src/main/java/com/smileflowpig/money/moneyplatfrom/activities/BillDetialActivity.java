@@ -232,6 +232,8 @@ public class BillDetialActivity extends Activity {
                         }
                     }
                     adapter.notifyDataSetChanged();
+                    page = 1;
+                    getDetialData(page + "", platform_id, false);
                 }
 
             }

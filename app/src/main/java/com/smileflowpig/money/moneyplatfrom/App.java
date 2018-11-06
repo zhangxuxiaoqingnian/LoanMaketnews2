@@ -20,7 +20,6 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 import java.util.List;
 
 
-
 //import com.crashlytics.android.Crashlytics;
 //import io.fabric.sdk.android.Fabric;
 
@@ -37,19 +36,22 @@ public class App extends Application {
     public static final String UMENG_APP_KEY = "59b64bfa677baa34a00017ca";
 
     public static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        UMConfigure.init(this,"5a12384aa40fa3551f0001d1"
-                        ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
-
+        UMConfigure.init(this, "5bda5fdaf1f5564485000223"
+                , "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+        //友盟
+        UMShareAPI.get(this);
+        PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
         }
 
-        this.context=getApplicationContext();
+        this.context = getApplicationContext();
         //初始化
         Factory.setup();
         MobclickAgent.setDebugMode(true);
@@ -59,12 +61,11 @@ public class App extends Application {
         if (shouldInit()) {
             MiPushClient.registerPush(this, APP_ID, APP_KEY);
         }
+
+
         Network.channelId = BuildConfig.CHANNLE;
 //        Fabric.with(this, new Crashlytics());
 
-        //友盟
-        UMShareAPI.get(this);
-        PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
 
     }
 

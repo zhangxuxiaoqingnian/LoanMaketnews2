@@ -10,8 +10,8 @@
     <LinearLayout
         android:id="@+id/item_bill_data_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/item_bill_bg"
+        android:layout_height="110px"
+        android:background="@mipmap/icon_billmanager_bg"
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">

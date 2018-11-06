@@ -9,11 +9,11 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import com.smileflowpig.money.moneyplatfrom.App;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.BillManagerAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.BillManagerComAdapter;
-import com.smileflowpig.money.moneyplatfrom.App;
 import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.util.AlarmOpertor;
 
@@ -39,6 +39,7 @@ import com.smileflowpig.money.factory.presenter.bill.BillPresenter;
  * create by xiaoxie
  */
 public class BillManagerActivity extends PresenterActivity<BillContract.Presenter> implements BillContract.View {
+
 
 
     @BindView(R.id.billmanager_radiogroup)
@@ -198,27 +199,27 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
     SelfDialog selfDialog;
 
     private void showChangeStatusDialog(final String id) {
-        if (selfDialog == null) {
-            selfDialog = new SelfDialog(this);
-            selfDialog.setTitle("提示");
-            selfDialog.setMessage(R.string.billchange_message);
-            selfDialog.setYesOnclickListener("确定", new SelfDialog.onYesOnclickListener() {
-                @Override
-                public void onYesClick() {
-                    showLoading();
-                    mPresenter.changeStatus(id, "1");
-                    selfDialog.dismiss();
-                }
-            });
-            selfDialog.setNoOnclickListener("取消", new SelfDialog.onNoOnclickListener() {
-                @Override
-                public void onNoClick() {
-                    selfDialog.dismiss();
-                }
-            });
-        } else {
-            selfDialog.show();
-        }
+//        if (selfDialog == null) {
+        selfDialog = new SelfDialog(this);
+        selfDialog.setTitle("提示");
+        selfDialog.setMessage(R.string.billchange_message);
+        selfDialog.setYesOnclickListener("确定", new SelfDialog.onYesOnclickListener() {
+            @Override
+            public void onYesClick() {
+                showLoading();
+                mPresenter.changeStatus(id, "1");
+                selfDialog.dismiss();
+            }
+        });
+        selfDialog.setNoOnclickListener("取消", new SelfDialog.onNoOnclickListener() {
+            @Override
+            public void onNoClick() {
+                selfDialog.dismiss();
+            }
+        });
+//        } else {
+        selfDialog.show();
+//        }
 
     }
 
@@ -235,21 +236,24 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
     private void changeType(int type) {
         switch (type) {
             case 1:
+                page=1;
                 currentPosition = 0;
                 currentType = 1;
                 daiHuan_rbtn.setTextColor(Color.WHITE);
                 yihuan_rbtn.setTextColor(Color.parseColor("#ffb43b"));
                 status = 0;
+                getData(page + "", status + "", true);
                 break;
             case 2:
+                comPage=1;
                 currentPosition = 1;
                 currentType = 2;
                 yihuan_rbtn.setTextColor(Color.WHITE);
                 daiHuan_rbtn.setTextColor(Color.parseColor("#ffb43b"));
                 status = 1;
+                getData(comPage + "", status + "", true);
                 break;
         }
-        getData(page + "", status + "", false);
     }
 
     @Override
@@ -269,8 +273,10 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
                 }
                 if (billData != null && billData.getData() != null && billData.getData().size() != 0) {
                     isHaveNext = billData.getPageInfoBean().hasNext;
+                    if(!isHaveNextCom)
+                        adapter.loadMoreEnd(true);
                     billData.getData().add(new BillManagerBean().setTrueData(false));
-                    if (isRefresh) {
+                    if (!isRefresh) {
                         adapter.addData(billData.getData());
                     } else {
                         adapter.setNewData(billData.getData());
@@ -295,7 +301,9 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
                     comAdapter.loadMoreComplete();
                 if (billData != null && billData.getData() != null && billData.getData().size() != 0) {
                     isHaveNextCom = billData.getPageInfoBean().hasNext;
-                    if (isRefresh) {
+                    if(!isHaveNextCom)
+                        comAdapter.loadMoreEnd(true);
+                    if (!isRefresh) {
                         comAdapter.addData(billData.getData());
                     } else {
                         comAdapter.setNewData(billData.getData());
@@ -372,7 +380,7 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
                 }
                 //测试
 //                timemillis = System.currentTimeMillis() + 2 * 60 * 1000;
-                AlarmOpertor.getInstance(App.context).setAlarm(timemillis, "还款提醒", "温馨提示：还有"+remind_time+"天就是您"+billManagerBean.getPlatform_name()+"产品的还款日了，快去还款吧！");
+                AlarmOpertor.getInstance(App.context).setAlarm(timemillis, "还款提醒", "温馨提示：还有" + remind_time + "天就是您" + billManagerBean.getPlatform_name() + "产品的还款日了，快去还款吧！");
             } catch (Exception e) {
 
             }
@@ -393,11 +401,13 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
                 list.add(new BillManagerBean().setTrueData(false));
                 adapter.setNewData(list);
             }
+            adapter.loadMoreEnd(true);
         } else {
             if (comRecyclerView.getVisibility() != View.VISIBLE)
                 comRecyclerView.setVisibility(View.VISIBLE);
             if (recyclerView.getVisibility() != View.INVISIBLE)
                 recyclerView.setVisibility(View.INVISIBLE);
+            comAdapter.loadMoreEnd(true);
         }
     }
 

@@ -10,8 +10,8 @@
     <LinearLayout
         android:id="@+id/item_bill_data_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/item_bill_bg"
+        android:layout_height="110px"
+        android:background="@mipmap/icon_billmanager_bg"
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
@@ -124,6 +124,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10000"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColor="#6494FF"
                     android:textSize="14px" />
 
@@ -146,7 +148,7 @@
                 <TextView
                     android:id="@+id/item_bill_setting_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="25dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/bill_setting_bg"
                     android:gravity="center"
