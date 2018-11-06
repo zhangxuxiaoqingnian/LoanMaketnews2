@@ -179,7 +179,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         Manifest.permission.RECORD_AUDIO,
                         Manifest.permission.CAMERA,
                         Manifest.permission.CALL_PHONE,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.SEND_SMS)
                 .subscribe(new io.reactivex.functions.Consumer<Permission>() {
                     @Override
@@ -235,7 +234,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
 
             //请求气泡
-            //getpao();
+            getpao();
 
             list2 = new ArrayList<>();
             //保留一份
@@ -464,8 +463,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     protected void initData() {
         super.initData();
         position = getIntent().getIntExtra(RecordActivity.POSITION,0);
-        cardvisible();
-
+        getcarvter();
 
     }
     public void getpopshort(String cont,String img){
@@ -760,10 +758,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
      * @return 线上
      */
     private boolean checkChannel() {
-        SharedPreferences sp = getSharedPreferences(CHANNEL,
-                Context.MODE_PRIVATE);
-        String channelOk = sp.getString(CHANNELOKORNOTOK, "1");
-        return channelOk.equals("0");
+//        SharedPreferences sp = getSharedPreferences(CHANNEL,
+//                Context.MODE_PRIVATE);
+//        String channelOk = sp.getString(CHANNELOKORNOTOK, "1");
+//        return channelOk.equals("0");
+        return true;
     }
 
     @Override

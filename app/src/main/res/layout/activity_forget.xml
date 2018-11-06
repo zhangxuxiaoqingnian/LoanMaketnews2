@@ -60,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/phone_tv"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/len_8"
@@ -108,7 +108,7 @@
 
                 <TextView
                     android:id="@+id/code_tv"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/len_8"
                     android:layout_marginRight="@dimen/len_8"
@@ -167,7 +167,7 @@
 
                 <TextView
                     android:id="@+id/password_tv"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/len_8"
                     android:layout_marginRight="@dimen/len_8"
