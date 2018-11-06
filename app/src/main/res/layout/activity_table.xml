@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="#F7F7F7"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.TableActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.TableActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

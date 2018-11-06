@@ -161,9 +161,9 @@
     public static <fields>;
 }
 
-# The support library contains references to newer platform versions.
+# The support library contains references to newer money versions.
 # Don't warn about those in case this app is linking against an older
-# platform version.  We know about them, and they are safe.
+# money version.  We know about them, and they are safe.
 #-libraryjars libs/android-support-v4.jar
 -dontwarn android.support.**
 -keep class android.support.** {*;}
@@ -244,7 +244,7 @@
 
 
 
--keep public class money.kuxuan.platform.moneyplatfrom.R$*{
+-keep public class smileflowpig.platform.moneyplatfrom.R$*{
     public static final int *;
 }
 
@@ -332,8 +332,8 @@
     public <init>(org.json.JSONObject);
  }
 
- -keep class money.kuxuan.platform.moneyplatfrom.MiPushReceiver {*;}
- -keep class money.kuxuan.platform.factory.** { *; }
+ -keep class smileflowpig.platform.moneyplatfrom.MiPushReceiver {*;}
+ -keep class smileflowpig.platform.factory.** { *; }
 
  -keep public class * implements com.bumptech.glide.module.GlideModule
  -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
@@ -352,7 +352,7 @@
      <init>(java.lang.Throwable);
  }
 
- -keepclassmembers class money.kuxuan.platform.moneyplatfrom.web.WebActivity$AndroidtoJs {
+ -keepclassmembers class smileflowpig.platform.moneyplatfrom.web.WebActivity$AndroidtoJs {
      <methods>;
  }
 

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="money.kuxuan.platform.moneyplatfrom.frags.main.ActiveFragment">
+    tools:context="com.smileflowpig.money.moneyplatfrom.frags.main.ActiveFragment">
 
     <View
         android:layout_width="match_parent"
@@ -348,7 +348,7 @@
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>
-    <money.kuxuan.platform.common.widget.EmptyView
+    <com.smileflowpig.money.common.widget.EmptyView
     android:id="@+id/empty"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

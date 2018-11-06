@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
     android:background="@color/bg_color"
-    tools:context="money.kuxuan.platform.moneyplatfrom.frags.main.MineFragment">
+    tools:context="com.smileflowpig.money.moneyplatfrom.frags.main.MineFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

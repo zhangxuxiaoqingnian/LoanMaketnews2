@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.Webview_protocol">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.Webview_protocol">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

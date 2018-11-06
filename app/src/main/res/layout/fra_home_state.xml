@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <money.kuxuan.platform.common.widget.EmptyView
+    <com.smileflowpig.money.common.widget.EmptyView
         android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

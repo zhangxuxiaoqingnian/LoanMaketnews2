@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="money.kuxuan.platform.moneyplatfrom.frags.account.LoginByCode">
+    tools:context="com.smileflowpig.money.moneyplatfrom.frags.account.LoginByCode">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

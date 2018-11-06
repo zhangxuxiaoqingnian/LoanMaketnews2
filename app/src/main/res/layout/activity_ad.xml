@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.AdActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.AdActivity">
 
 
 
@@ -39,7 +39,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <money.kuxuan.platform.common.widget.PortraitView
+        <com.smileflowpig.money.common.widget.PortraitView
             android:layout_width="@dimen/len_48"
             android:layout_height="@dimen/len_48"
             android:layout_marginTop="@dimen/len_10"

@@ -9,7 +9,7 @@
     android:paddingEnd="@dimen/len_16"
     >
 
-    <money.kuxuan.platform.common.widget.PortraitView
+    <com.smileflowpig.money.common.widget.PortraitView
         android:id="@+id/im_portrait"
         android:layout_width="@dimen/portraitSize"
         android:layout_height="@dimen/portraitSize"

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F4F4F4"
     android:id="@+id/detaillayout"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.DetailActivity"
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.DetailActivity"
     >
     <View
         android:layout_width="match_parent"
@@ -198,7 +198,7 @@
                                         android:textSize="12px"
                                         android:textColor="#ffffff"
                                         />
-                                    <money.kuxuan.platform.moneyplatfrom.util.MarkView
+                                    <com.smileflowpig.money.moneyplatfrom.util.MarkView
                                         android:id="@+id/ppmark"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -207,7 +207,7 @@
                                         app:leftPadding="3dp"
                                         >
 
-                                    </money.kuxuan.platform.moneyplatfrom.util.MarkView>
+                                    </com.smileflowpig.money.moneyplatfrom.util.MarkView>
 
                                 </LinearLayout>
                             </RelativeLayout>

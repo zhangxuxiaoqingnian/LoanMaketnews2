@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F4F4F4"
     android:id="@+id/setmain"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.SetActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.SetActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

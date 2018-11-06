@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F4F4F4"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.DiscloseActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.DiscloseActivity">
 
 
     <LinearLayout

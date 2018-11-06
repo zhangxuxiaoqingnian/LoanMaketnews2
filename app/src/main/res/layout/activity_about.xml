@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.SetActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.SetActivity">
     <View
         android:layout_width="match_parent"
         android:layout_height="134px"

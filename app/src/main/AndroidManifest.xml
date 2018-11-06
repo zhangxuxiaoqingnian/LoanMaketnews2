@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="money.kuxuan.platform.moneyplatfrom">
+    package="com.smileflowpig.money">
 
     <!-- 小米推送权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -22,15 +22,15 @@
     <!-- 小米需要的service和receiver -->
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
     <permission
-        android:name="com.sddksxjgod.money.permission.MIPUSH_RECEIVE"
+        android:name="com.sddksxjgod.com.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
     <!-- 这里com.xiaomi.mipushdemo改成app的包名 -->
-    <uses-permission android:name="com.sddksxjgod.money.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.sddksxjgod.com.permission.MIPUSH_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".App"
+        android:name="com.smileflowpig.money.moneyplatfrom.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_pig"
         android:label="@string/app_name"
@@ -47,11 +47,11 @@
             android:value="667" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".LaunchActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.LaunchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -61,14 +61,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AccountActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.AccountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.ApActivity1"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.ApActivity1"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".activities.Activity_AddressBook" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_AddressBook" />
 
         <service
             android:name="com.xiaomi.push.service.XMPushService"
@@ -109,7 +109,7 @@
 
         <!-- 将自定义的BroadcastReceiver注册到AndroidManifest.xml文件中 -->
         <receiver
-            android:name=".MiPushReceiver"
+            android:name="com.smileflowpig.money.moneyplatfrom.MiPushReceiver"
             android:exported="true">
 
             <!-- 这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名 -->
@@ -125,77 +125,77 @@
         </receiver>
 
         <activity
-            android:name=".activities.DetailActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.DetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".activities.Activity_HouseCalc" />
-        <activity android:name=".guoshen.activity.HomeActivity" />
-        <activity android:name=".activities.Activity_Average_Capital_Interest" />
-        <activity android:name=".activities.Activity_Average_Capital" />
-        <activity android:name=".activities.Activity_Average_Capital_Calc" />
-        <activity android:name=".activities.Activity_Average_Capital_Interest_Calc" />
-        <activity android:name=".activities.Activity_loanCarCalc" />
-        <activity android:name=".activities.Activity_CreditCard_ByStages" />
-        <activity android:name=".activities.Activity_Income_Tax_Calc" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_HouseCalc" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.guoshen.activity.HomeActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_Average_Capital_Interest" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_Average_Capital" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_Average_Capital_Calc" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_Average_Capital_Interest_Calc" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_loanCarCalc" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_CreditCard_ByStages" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.Activity_Income_Tax_Calc" />
         <activity
-            android:name=".activities.ChildProductActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.ChildProductActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.AdActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.AdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.MessageActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.MessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
 
         <service
-            android:name="money.kuxuan.platform.factory.service.MyService"
+            android:name="com.smileflowpig.money.factory.service.MyService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name="money.kuxuan.platform.factory.service.DownService"
+            android:name="com.smileflowpig.money.factory.service.DownService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".guoshen.activity.MineActivity" />
-        <activity android:name=".guoshen.activity.AddActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.guoshen.activity.MineActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.guoshen.activity.AddActivity" />
         <activity
-            android:name=".activities.SetActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.SetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.ActionActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.ActionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.ForgetActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.ForgetActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".web.WebActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.web.WebActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.ApActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.ApActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.AboutActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.PlaceActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.PlaceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.InfoActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.InfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.RadiersActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.RadiersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
 
@@ -204,15 +204,15 @@
             android:value="4a9704d3771a6b8d967408f43191a5c00ffcaa49" />
 
         <activity
-            android:name=".activities.UpdateActivity"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.UpdateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".activities.DetailActivityC"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.DetailActivityC"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -226,16 +226,16 @@
             android:value="${UMENG_CHANNEL_VALUE}" />
 
         <activity
-            android:name=".activities.Webview_protocol"
+            android:name="com.smileflowpig.money.moneyplatfrom.activities.Webview_protocol"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".activities.GuoShenDetail" />
-        <activity android:name=".activities.MyHomeActivity" />
-        <activity android:name=".activities.MyBillActivity" />
-        <activity android:name=".activities.MyTypeActivity" />
-        <activity android:name=".activities.MySetActivity" />
-        <activity android:name=".activities.MyDaiActivity" />
-        <activity android:name=".activities.NewDetailActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.GuoShenDetail" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MyHomeActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MyBillActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MyTypeActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MySetActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MyDaiActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.NewDetailActivity" />
 
         <!-- 高德定位 -->
         <meta-data
@@ -244,22 +244,22 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".activities.CityotherActivity" />
-        <activity android:name=".activities.DiscloseActivity" />
-        <activity android:name=".activities.MyCollectActivity" />
-        <activity android:name=".activities.RecordActivity" />
-        <activity android:name=".activities.MemoActivity" />
-        <activity android:name=".activities.MemoTwoActivity" />
-        <activity android:name=".activities.MySetTwoActivity" />
-        <activity android:name=".activities.TypeActivity" />
-        <activity android:name=".activities.CaseurlActivity" />
-        <activity android:name=".activities.FeedbackActivity" />
-        <activity android:name=".activities.TableActivity"></activity>
-        <activity android:name=".activities.BillManagerActivity" />
-        <activity android:name=".activities.BillDetialActivity" />
-        <activity android:name=".activities.BillAddActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.CityotherActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.DiscloseActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MyCollectActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.RecordActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MemoActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MemoTwoActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.MySetTwoActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.TypeActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.FeedbackActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.TableActivity"></activity>
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.BillManagerActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.BillDetialActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.BillAddActivity" />
         <receiver
-            android:name="money.kuxuan.platform.moneyplatfrom.util.AlarmReceiver"
+            android:name="com.smileflowpig.money.moneyplatfrom.util.AlarmReceiver"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></receiver>
     </application>

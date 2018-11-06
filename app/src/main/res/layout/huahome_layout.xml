@@ -227,7 +227,7 @@
 
             <!--滚动文字-->
 
-                <money.kuxuan.platform.moneyplatfrom.LampView
+                <com.smileflowpig.money.moneyplatfrom.LampView
                     android:layout_width="match_parent"
                     android:id="@+id/homelampview"
                     android:layout_height="match_parent"

@@ -49,7 +49,7 @@
             android:layout_height="46px"
             android:gravity="center_vertical"
             >
-            <money.kuxuan.platform.moneyplatfrom.LampView
+            <com.smileflowpig.money.moneyplatfrom.LampView
                 android:layout_width="match_parent"
                 android:id="@+id/lampview"
                 android:layout_height="wrap_content"

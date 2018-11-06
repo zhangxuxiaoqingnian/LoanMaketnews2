@@ -78,7 +78,7 @@
 
     </LinearLayout>
 
-    <money.kuxuan.platform.common.widget.PortraitView
+    <com.smileflowpig.money.common.widget.PortraitView
         android:id="@+id/im_message"
         android:layout_width="@dimen/len_88"
         android:layout_height="@dimen/len_56"

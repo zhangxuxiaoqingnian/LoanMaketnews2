@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
     android:orientation="vertical"
-    tools:context="money.kuxuan.platform.moneyplatfrom.frags.main.CreditCardFragment">
+    tools:context="com.smileflowpig.money.moneyplatfrom.frags.main.CreditCardFragment">
 
 
     <LinearLayout
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>
-    <money.kuxuan.platform.common.widget.EmptyView
+    <com.smileflowpig.money.common.widget.EmptyView
         android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

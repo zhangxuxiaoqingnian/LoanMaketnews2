@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.ChildProductActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.ChildProductActivity">
     <android.support.v7.widget.Toolbar
         android:id="@id/toolbar"
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    <money.kuxuan.platform.common.widget.EmptyView
+    <com.smileflowpig.money.common.widget.EmptyView
         android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

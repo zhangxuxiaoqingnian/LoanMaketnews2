@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.DetailActivity"
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.DetailActivity"
     >
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <LinearLayout
         android:id="@+id/lin_button"
         android:layout_width="match_parent"
         android:layout_height="71px"
@@ -52,7 +52,7 @@
             android:background="#3491FF"
             />
 
-    </com.zhy.autolayout.AutoLinearLayout>
+    </LinearLayout>
 
 
 
@@ -66,7 +66,7 @@
     >
 
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -124,7 +124,7 @@
             <!--android:orientation="horizontal"-->
             <!--android:padding="@dimen/len_16">-->
 
-            <!--<money.kuxuan.platform.common.widget.PortraitView-->
+        <smileflowpiglowpigxuan.platform.common.widget.PortraitView--></smileflowpiglowpigxuan.platform.common.widget.PortraitView-->
                 <!--android:id="@+id/im_portrait"-->
                 <!--android:layout_width="@dimen/len_52"-->
                 <!--android:layout_height="@dimen/len_52"-->
@@ -537,7 +537,7 @@
                         android:layout_marginLeft="13px"
                         >
 
-                        <money.kuxuan.platform.moneyplatfrom.util.MarkView
+                        <com.smileflowpig.money.moneyplatfrom.util.MarkView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:contentSize="18dp"
@@ -545,7 +545,7 @@
                             app:leftPadding="3dp"
                             >
 
-                        </money.kuxuan.platform.moneyplatfrom.util.MarkView>
+                        </com.smileflowpig.money.moneyplatfrom.util.MarkView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -815,10 +815,10 @@
 
 
 
-    </com.zhy.autolayout.AutoLinearLayout>
+    </LinearLayout>
 
 </ScrollView>
 
 
 
-</com.zhy.autolayout.AutoRelativeLayout>
+</RelativeLayout>

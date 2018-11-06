@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <money.kuxuan.platform.common.widget.PortraitView
+    <com.smileflowpig.money.common.widget.PortraitView
         android:id="@+id/im_portrait"
         android:layout_width="@dimen/len_52"
         android:layout_height="@dimen/len_52"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/default_portrait" >
-    </money.kuxuan.platform.common.widget.PortraitView>
+    </com.smileflowpig.money.common.widget.PortraitView>
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"

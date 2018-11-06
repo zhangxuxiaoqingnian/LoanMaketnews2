@@ -45,7 +45,7 @@
             android:textSize="18sp"
             android:textColor="#000000"
             android:text="热门城市"/>
-        <money.kuxuan.platform.moneyplatfrom.util.QGridView
+        <com.smileflowpig.money.moneyplatfrom.util.QGridView
             android:id="@+id/item_header_city_gridview"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:columnWidth="60dp"
             android:verticalSpacing="10dp"
             android:horizontalSpacing="15dp">
-        </money.kuxuan.platform.moneyplatfrom.util.QGridView>
+        </com.smileflowpig.money.moneyplatfrom.util.QGridView>
 
         <View
             android:layout_width="match_parent"

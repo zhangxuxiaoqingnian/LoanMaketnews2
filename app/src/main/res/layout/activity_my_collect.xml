@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.MyCollectActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.MyCollectActivity">
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"

@@ -120,7 +120,7 @@
 
     </com.zhy.autolayout.AutoLinearLayout>
 
-    <money.kuxuan.platform.common.widget.EmptyView
+    <com.smileflowpig.money.common.widget.EmptyView
         android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

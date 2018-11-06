@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#ffffff"
     android:id="@+id/layout"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.GuoShenDetail">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.GuoShenDetail">
 
     <include layout="@layout/guoshen_title"/>
 

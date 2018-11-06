@@ -15,7 +15,7 @@
 
 
 
-    <money.kuxuan.platform.moneyplatfrom.helper.VerticalLampView
+    <com.smileflowpig.money.moneyplatfrom.helper.VerticalLampView
         android:id="@+id/lamp_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_24"

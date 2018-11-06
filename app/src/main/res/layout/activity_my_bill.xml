@@ -8,7 +8,7 @@
     android:background="#F6F6F6"
     android:gravity="center_horizontal"
     android:id="@+id/select_layout"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.MyBillActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.MyBillActivity">
 
 
     <include layout="@layout/guoshen_title"/>

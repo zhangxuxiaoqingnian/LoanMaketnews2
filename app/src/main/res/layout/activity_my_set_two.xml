@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F6F6F6"
     android:id="@+id/newmysetlayout"
-    tools:context="money.kuxuan.platform.moneyplatfrom.activities.MySetTwoActivity">
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.MySetTwoActivity">
 
     <TextView
         android:layout_width="match_parent"

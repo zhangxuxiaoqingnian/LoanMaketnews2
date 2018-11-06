@@ -220,14 +220,14 @@
 
                 <!--滚动文字-->
 
-                <money.kuxuan.platform.moneyplatfrom.LampView
+                <com.smileflowpig.money.moneyplatfrom.LampView
                     android:layout_width="wrap_content"
                     android:id="@+id/piglampview"
                     android:layout_height="match_parent"
                     />
             </LinearLayout>
 
-            <money.kuxuan.platform.moneyplatfrom.util.CustomViewpagerView
+            <com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView
                 android:layout_width="match_parent"
                 android:layout_height="174px"
                 android:layout_marginLeft="54px"
