@@ -135,6 +135,7 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
         comRecyclerView.setLayoutManager(cominearLayoutManager);
         recyclerView.setAdapter(adapter);
         comRecyclerView.setAdapter(comAdapter);
+        comAdapter.setEmptyView(R.layout.item_nobill_layout);
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -272,6 +273,7 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
                     data.remove(data.size() - 1);
                 }
                 if (billData != null && billData.getData() != null && billData.getData().size() != 0) {
+
                     isHaveNext = billData.getPageInfoBean().hasNext;
                     if(!isHaveNextCom)
                         adapter.loadMoreEnd(true);
@@ -299,15 +301,24 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
                     recyclerView.setVisibility(View.INVISIBLE);
                 if (isRefresh)
                     comAdapter.loadMoreComplete();
-                if (billData != null && billData.getData() != null && billData.getData().size() != 0) {
-                    isHaveNextCom = billData.getPageInfoBean().hasNext;
-                    if(!isHaveNextCom)
-                        comAdapter.loadMoreEnd(true);
-                    if (!isRefresh) {
-                        comAdapter.addData(billData.getData());
-                    } else {
-                        comAdapter.setNewData(billData.getData());
+                if (billData != null) {
+                    if(billData.getData()==null){
+                        if(isRefresh){
+                            //清空数据
+                            comAdapter.setNewData(new ArrayList<BillManagerBean>());
+                        }
+                    }else{
+                        if (!isRefresh) {
+                            comAdapter.addData(billData.getData());
+                        } else {
+                            comAdapter.setNewData(billData.getData());
+                        }
+                        isHaveNextCom = billData.getPageInfoBean().hasNext;
+                        if(!isHaveNextCom)
+                            comAdapter.loadMoreEnd(true);
                     }
+
+
 
                 }
             }
