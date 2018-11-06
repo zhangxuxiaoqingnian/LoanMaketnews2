@@ -23,6 +23,7 @@ public class MessageTwoAdapter extends RecyclerView.Adapter<MessageTwoAdapter.My
 
     private Context context;
     private List<MessageBean.RstBean.NewListBean> list;
+    private getitemposition getitemposition;
 
     public MessageTwoAdapter(Context context, List<MessageBean.RstBean.NewListBean> list) {
         this.context = context;
@@ -37,7 +38,7 @@ public class MessageTwoAdapter extends RecyclerView.Adapter<MessageTwoAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.name.setText(list.get(position).title);
         Glide.with(context).load(list.get(position).picture).into(holder.icon);
@@ -48,6 +49,12 @@ public class MessageTwoAdapter extends RecyclerView.Adapter<MessageTwoAdapter.My
         }else {
             holder.uper.setVisibility(View.GONE);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getitemposition.success(position);
+            }
+        });
     }
 
     @Override
@@ -74,5 +81,12 @@ public class MessageTwoAdapter extends RecyclerView.Adapter<MessageTwoAdapter.My
 
 
         }
+    }
+    public interface getitemposition{
+
+        void success(int pos);
+    }
+    public void setitemposition(getitemposition getitemposition){
+        this.getitemposition=getitemposition;
     }
 }

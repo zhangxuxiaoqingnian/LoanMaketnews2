@@ -6,14 +6,26 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import butterknife.BindView;
 import money.kuxuan.platform.common.app.PresenterActivity;
@@ -23,6 +35,7 @@ import money.kuxuan.platform.factory.net.Network;
 import money.kuxuan.platform.factory.util.SPUtil;
 import money.kuxuan.platform.moneyplatfrom.Bean.CaseClase;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.util.ToastUtil;
 
 public class CaseurlActivity extends PresenterActivity implements View.OnClickListener{
 
@@ -32,22 +45,33 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     TextView casename;
     @BindView(R.id.case_back)
     ImageView case_back;
+    @BindView(R.id.data_share)
+    TextView share;
+    @BindView(R.id.sharelayout)
+    LinearLayout layout;
     private String urlname;
+    private LinearLayout wei_circle;
+    private LinearLayout wei_chat;
+    private TextView cancle;
+    private String strurl;
+    private String urlid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        int urlid = intent.getIntExtra("urlid", -1);
+        urlid = intent.getStringExtra("urlid");
         urlname = intent.getStringExtra("urlname");
+
         String urladdress = intent.getStringExtra("urladdress");
         case_back.setOnClickListener(this);
+        share.setOnClickListener(this);
 //       SharedPreferences sharedPreferences = getSharedPreferences("Logintype", Context.MODE_PRIVATE);
        String sessionid = (String) SPUtil.get(this, Constant.UserInfo.SESSIONID,"");
        String channelId = Network.channelId;
 
-       casename.setText(urlname);
+       //casename.setText(urlname);
         wv.getSettings().setUseWideViewPort(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setDisplayZoomControls(true);
@@ -57,6 +81,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         wv.getSettings().setSupportZoom(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setBlockNetworkImage(false);
+        wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             wv.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
@@ -98,7 +123,10 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         });
 
         //资讯h5
-        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+urlid+"&view_num="+urlname+"&sessionid="+sessionid);
+        strurl = "http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid;
+        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
+
+        //第一版被抛弃的小花猪
 //        if(urlid!=0){
 //
 //            wv.loadUrl(urladdress+"?id="+urlid+"&title="+urlname+"&sessionid="+sessionid+"&channel_id"+channelId);
@@ -132,6 +160,108 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
                     finish();
                 }
                 break;
+            case R.id.data_share:
+                getsharepopwindow();
+                break;
         }
     }
+
+    public void getsharepopwindow(){
+
+        View inflate = LayoutInflater.from(CaseurlActivity.this).inflate(R.layout.activity_share_popup, null, false);
+        final PopupWindow popupWindow=new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        popupWindow.setAnimationStyle(R.style.pop_anim);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+        light(0.8f);
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                light(1.0f);
+            }
+        });
+
+        wei_circle = (LinearLayout) inflate.findViewById(R.id.m_share_pop_up_wei_circle);
+        wei_chat = (LinearLayout) inflate.findViewById(R.id.m_share_pop_up_wei_chat);
+        cancle = (TextView) inflate.findViewById(R.id.m_share_pop_up_cancel);
+
+        //朋友圈
+        wei_circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                UMImage image = new UMImage(CaseurlActivity.this, "");
+                UMWeb web = new UMWeb(strurl);
+                      web.setTitle("This is music title");//标题
+                        web.setThumb(image);  //缩略图
+                        web.setDescription("my description");//描述
+
+                new ShareAction(CaseurlActivity.this)
+                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)
+                        .withMedia(web)
+                        .setCallback(umShareListener)
+                        .share();
+                popupWindow.dismiss();
+            }
+        });
+        wei_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                UMImage image = new UMImage(CaseurlActivity.this, "");
+                UMWeb web = new UMWeb(strurl);
+                web.setTitle("This is music title");//标题
+                web.setThumb(image);  //缩略图
+                web.setDescription("my description");//描述
+
+                new ShareAction(CaseurlActivity.this)
+                        .setPlatform(SHARE_MEDIA.WEIXIN)
+                        .withMedia(web)
+                        .setCallback(umShareListener)
+                        .share();
+                popupWindow.dismiss();
+            }
+        });
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
+    public void light(float t){
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = t;
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().setAttributes(lp);
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA share_media) {
+
+            Toast.makeText(CaseurlActivity.this,"分享成功",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+            Toast.makeText(CaseurlActivity.this,"分享失败",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media) {
+
+            Toast.makeText(CaseurlActivity.this,"分享取消",Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }

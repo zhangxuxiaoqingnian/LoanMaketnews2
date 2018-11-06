@@ -1,5 +1,6 @@
 package money.kuxuan.platform.moneyplatfrom.frags.main.state;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -26,6 +27,7 @@ import money.kuxuan.platform.factory.bean.MessageBean;
 import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.moneyplatfrom.Adapter.MessageAdapter;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.activities.CaseurlActivity;
 import money.kuxuan.platform.moneyplatfrom.util.DividerItemDecoration3;
 
 /**
@@ -41,6 +43,7 @@ public class FourFragment extends PresenterFragment implements OnRefreshLoadmore
 
     private int page=1;
     private List<MessageBean.RstBean.NewListBean> list;
+    private MessageAdapter messageAdapter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -77,9 +80,25 @@ public class FourFragment extends PresenterFragment implements OnRefreshLoadmore
                 }
                 List<MessageBean.RstBean.NewListBean> new_list = messageBean.rst.get(0).new_list;
                 list.addAll(new_list);
-                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),list);
-                rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-                rv.setAdapter(messageAdapter);
+                if(messageAdapter==null){
+                    messageAdapter = new MessageAdapter(getActivity(),list);
+                    rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    rv.setAdapter(messageAdapter);
+                }else {
+                    messageAdapter.notifyDataSetChanged();
+                }
+
+                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
+                    @Override
+                    public void success(int pos) {
+                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
+                        intent.putExtra("urlid",list.get(pos).id);
+                        intent.putExtra("urlname",list.get(pos).view_num);
+                        intent.putExtra("urladdress","");
+                        startActivity(intent);
+                    }
+                });
+
             }
 
             @Override

@@ -68,7 +68,7 @@ public class DataGenerator {
         list.add("首页");
         list.add("贷款");
         list.add("信用卡");
-        list.add("发现");
+        list.add("资讯");
         list.add("我的");
         return list;
     }

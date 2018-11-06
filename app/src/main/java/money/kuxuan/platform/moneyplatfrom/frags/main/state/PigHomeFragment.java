@@ -204,6 +204,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             @Override
             public void onError(Throwable e) {
 
+                System.out.println(e.toString()+"错误");
             }
 
             @Override

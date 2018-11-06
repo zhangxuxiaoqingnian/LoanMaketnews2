@@ -61,47 +61,6 @@
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/m_share_pop_up_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/share_icon_qq" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:textColor="#000000"
-                    android:text="QQ好友" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/m_share_pop_up_weibo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/share_icon_weibo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:textColor="#000000"
-                    android:text="新浪微博" />
-            </LinearLayout>
         </LinearLayout>
 
         <View

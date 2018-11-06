@@ -265,6 +265,7 @@
                                     android:inputType="number"
                                     android:singleLine="true"
                                     android:imeOptions="actionDone"
+                                    android:textStyle="bold"
                                     android:textCursorDrawable="@drawable/ic_cursor"
                                     />
                                 <ImageView
@@ -311,6 +312,7 @@
                                     android:textColor="#ffffff"
                                     android:textSize="20px"
                                     android:gravity="center"
+                                    android:textStyle="bold"
                                     />
                                 <ImageView
                                     android:layout_width="15px"

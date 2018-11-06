@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/sharelayout"
     tools:context="money.kuxuan.platform.moneyplatfrom.activities.CaseurlActivity">
 
     <android.support.v7.widget.Toolbar
@@ -30,9 +31,18 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="还款备忘录"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16"
+            />
+        <TextView
+            android:id="@+id/data_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/len_10"
+            android:layout_gravity="right|center_vertical"
+            android:text="分享"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
             />
 
 

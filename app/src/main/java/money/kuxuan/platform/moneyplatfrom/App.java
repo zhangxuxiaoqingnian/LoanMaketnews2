@@ -8,6 +8,9 @@ import android.os.Process;
 import android.os.StrictMode;
 //import com.crashlytics.android.Crashlytics;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import java.util.List;
 //import io.fabric.sdk.android.Fabric;
@@ -33,6 +36,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        UMConfigure.init(this,"5a12384aa40fa3551f0001d1"
+                        ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
@@ -51,6 +57,9 @@ public class App extends Application {
         Network.channelId = money.kuxuan.platform.moneyplatfrom.BuildConfig.CHANNLE;
 //        Fabric.with(this, new Crashlytics());
 
+        //友盟
+        UMShareAPI.get(this);
+        PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
 
     }
 

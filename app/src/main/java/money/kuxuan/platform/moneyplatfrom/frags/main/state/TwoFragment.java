@@ -1,5 +1,6 @@
 package money.kuxuan.platform.moneyplatfrom.frags.main.state;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -27,6 +28,7 @@ import money.kuxuan.platform.factory.netword.NetRequestUtils;
 import money.kuxuan.platform.moneyplatfrom.Adapter.MessageAdapter;
 import money.kuxuan.platform.moneyplatfrom.Adapter.MessageTwoAdapter;
 import money.kuxuan.platform.moneyplatfrom.R;
+import money.kuxuan.platform.moneyplatfrom.activities.CaseurlActivity;
 import money.kuxuan.platform.moneyplatfrom.util.DividerItemDecoration3;
 
 /**
@@ -85,6 +87,16 @@ public class TwoFragment extends PresenterFragment implements OnRefreshLoadmoreL
                 }else {
                     messageAdapter.notifyDataSetChanged();
                 }
+                messageAdapter.setitemposition(new MessageTwoAdapter.getitemposition() {
+                    @Override
+                    public void success(int pos) {
+                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
+                        intent.putExtra("urlid",list.get(pos).id);
+                        intent.putExtra("urlname",list.get(pos).view_num);
+                        intent.putExtra("urladdress","");
+                        startActivity(intent);
+                    }
+                });
 
             }
 
