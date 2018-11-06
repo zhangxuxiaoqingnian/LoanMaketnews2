@@ -188,7 +188,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 vp.setAdapter(myAdapter);
                 vp.setCurrentItem(10000*data.size()+1);
                 vp.setOffscreenPageLimit(3);
-                vp.setPageMargin(-50);
+                vp.setPageMargin(-120);
                 vp.setPageTransformer(false,new ScaleTransformer());
             }
 
@@ -430,7 +430,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         fourdata.setOnClickListener(this);
 //        featurerv.setNestedScrollingEnabled(false);
 //        featurerv.addItemDecoration(new DisplayUtils5.SpacesItemDecoration());
-        platformrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
+        //platformrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         messagerv.addItemDecoration(decoration);

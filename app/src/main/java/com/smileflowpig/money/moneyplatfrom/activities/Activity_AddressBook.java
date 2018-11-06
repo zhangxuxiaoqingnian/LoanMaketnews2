@@ -56,7 +56,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
     private TextView mTvSideBarHint;
     private List<AllApp.HBean> list=new ArrayList();
     private boolean all_app;
-    private EmptyView empty;
+    //private EmptyView empty;
     private SharedPreferences sharedPreferences;
 
     public void getDataOfAllApp(List<AllApp.HBean> a){
@@ -182,7 +182,7 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
 
         }
         mRv = (RecyclerView) findViewById(R.id.rv);
-        empty = (EmptyView) findViewById(R.id.empty);
+        //empty = (EmptyView) findViewById(R.id.empty);
 
         mRv.setLayoutManager(mManager = new LinearLayoutManager(this));
 
@@ -283,13 +283,13 @@ setResult(Constant.Code.RESULT_CHOOSEAPP_CODE);
     public void showError(int str) {
         super.showError(str);
         mPlaceHolderView.triggerNetError();
-        Button button = (Button) empty.findViewById(R.id.bu_re);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.start();
-            }
-        });
+        //Button button = (Button) empty.findViewById(R.id.bu_re);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mPresenter.start();
+//            }
+//        });
     }
 
     /**

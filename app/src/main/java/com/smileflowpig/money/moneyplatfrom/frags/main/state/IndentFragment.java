@@ -166,7 +166,7 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
         rv = (RecyclerView) inflate.findViewById(R.id.indentallrv);
         rv.addItemDecoration(new DisplayUtils4.SpacesItemDecoration());
         indentrv = (RecyclerView) inflate.findViewById(R.id.indentrv);
-        indentrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
+        //indentrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         refreshlayout = (SmartRefreshLayout) inflate.findViewById(R.id.refreshlayout);
         refreshlayout.setOnRefreshLoadmoreListener(this).
                 setEnableLoadmore(true)

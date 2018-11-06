@@ -68,7 +68,7 @@
         tools:text="A"
         tools:visibility="visible"/>
 
-    <smileflowpiglowpigxuan.platform.common.widget.EmptyView--></smileflowpiglowpigxuan.platform.common.widget.EmptyView-->
+    <!--<com.smileflowpig.money.common.widget.EmptyView-->
         <!--android:id="@+id/empty"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent" />-->

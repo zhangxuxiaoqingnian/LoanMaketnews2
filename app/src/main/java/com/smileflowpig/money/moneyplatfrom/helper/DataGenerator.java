@@ -32,11 +32,11 @@ public class DataGenerator {
 
     public static final List<Integer> icon(){
         list2 = new ArrayList<>();
-        list2.add(R.drawable.tabbar_home15);
-        list2.add(R.drawable.tabbar_search15);
+        list2.add(R.drawable.tabbar_home16);
+        list2.add(R.drawable.tabbar_search16);
         list2.add(R.drawable.tabbar_creditcard8);
-        list2.add(R.drawable.tabbar_active15);
-        list2.add(R.drawable.tabbar_mine15);
+        list2.add(R.drawable.tabbar_active16);
+        list2.add(R.drawable.tabbar_mine16);
         return list2;
     }
     public static final int[] mTabChannelRes = new int[]{
@@ -49,11 +49,11 @@ public class DataGenerator {
     };
     public static final List<Integer> icon2(){
         list3 = new ArrayList<>();
-        list3.add(R.drawable.tabbar_home_highligh15);
-        list3.add(R.drawable.tabbar_search_highlight15);
+        list3.add(R.drawable.tabbar_home_highligh16);
+        list3.add(R.drawable.tabbar_search_highlight16);
         list3.add(R.drawable.tabbar_creditcard_highlight8);
-        list3.add(R.drawable.tabbar_active_hightlight15);
-        list3.add(R.drawable.tabbar_mine_highligh15);
+        list3.add(R.drawable.tabbar_active_hightlight16);
+        list3.add(R.drawable.tabbar_mine_highligh16);
         return list3;
     }
     public static final int[] mTabResChanelPressed = new int[]{

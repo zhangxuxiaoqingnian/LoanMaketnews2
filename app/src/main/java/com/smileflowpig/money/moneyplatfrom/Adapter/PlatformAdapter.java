@@ -51,7 +51,7 @@ public class PlatformAdapter extends RecyclerView.Adapter<PlatformAdapter.MyView
         double v = Double.parseDouble(applicants);
         double v1 = v / 10000;
         String format = String.format("%.2f", v1);
-        holder.people.setText(format+"万人已经申请成功");
+        holder.people.setText(format+"万人申请成功");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

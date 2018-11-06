@@ -173,7 +173,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
         rv = (RecyclerView) inflate.findViewById(R.id.typeallrv);
         moneyrv = (RecyclerView) inflate.findViewById(R.id.money_rv);
-        moneyrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
+        //moneyrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         rv.addItemDecoration(new DisplayUtils4.SpacesItemDecoration());
         refreshlayout = (SmartRefreshLayout) inflate.findViewById(R.id.refreshlayout);
 

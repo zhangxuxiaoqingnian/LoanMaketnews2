@@ -75,7 +75,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         wv.getSettings().setSupportZoom(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setBlockNetworkImage(false);
-        wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
+        //wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             wv.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
@@ -95,8 +95,14 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                casename.setText(view.getTitle());
+                if(view.getTitle().equals("资讯")){
 
+                    casename.setVisibility(View.VISIBLE);
+                    share.setVisibility(View.VISIBLE);
+                }else {
+                    casename.setVisibility(View.GONE);
+                    share.setVisibility(View.GONE);
+                }
 
             }
         });
