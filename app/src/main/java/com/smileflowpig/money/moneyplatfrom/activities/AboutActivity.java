@@ -20,8 +20,7 @@ public class AboutActivity extends Activity {
 
     @BindView(R.id.banben)
     TextView banben;
-
-
+    //修改
     /**
      * 关于我们现实的入口
      * @param context Context
