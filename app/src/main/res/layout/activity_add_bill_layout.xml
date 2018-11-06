@@ -41,25 +41,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="241px"
         android:layout_margin="10px"
-        android:background="@drawable/login_edit_bg"
+        android:background="@mipmap/icon_billmanager_bg"
         android:orientation="vertical">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70px"
             android:paddingLeft="20px"
-            android:paddingTop="15px"
             android:paddingRight="20px"
-            android:paddingBottom="15px">
+           >
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="贷款平台"
+                android:paddingTop="10px"
+                android:layout_centerVertical="true"
                 android:textColor="#ff5f00"
                 android:textSize="18px" />
 
@@ -68,6 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:paddingTop="10px"
                 android:layout_centerVertical="true"
                 android:orientation="horizontal">
 
