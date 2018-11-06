@@ -36,7 +36,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_pig"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
         <meta-data
@@ -257,7 +257,7 @@
         <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.TableActivity"></activity>
         <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.BillManagerActivity" />
         <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.BillDetialActivity" />
-        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.BillAddActivity" />
+        <activity android:name="com.smileflowpig.money.moneyplatfrom.activities.WebviewActivity" />
         <receiver
             android:name="com.smileflowpig.money.moneyplatfrom.util.AlarmReceiver"
             android:screenOrientation="portrait"
