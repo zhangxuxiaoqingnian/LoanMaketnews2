@@ -17,6 +17,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.stx.xhb.xbanner.XBanner;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -197,4 +198,51 @@ public class MessageFragment extends PresenterFragment {
         return transaction;
 
     }
+
+//    //获取当前时间
+//    calendar = Calendar.getInstance();
+//    // 获取当前年份
+//    int nian = calendar.get(Calendar.YEAR);
+//    // 获取当前月份以（0开头，所以要+1）
+//    int mMonth = calendar.get(Calendar.MONTH);
+//    // 获取当前为几号以（0开头）
+//    int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//    String week = getWeek();
+//        day.setText(mDay+"号");
+//       month.setText(nian+"年"+(mMonth+1)+"月");
+//       year.setText(week);
+
+//    public  String getWeek(){
+//
+//        int i = calendar.get(Calendar.DAY_OF_WEEK);
+//        switch (i){
+//            case 1:
+//                return "星期天";
+//
+//            case 2:
+//                return "星期一";
+//
+//            case 3:
+//                return "星期二";
+//
+//            case 4:
+//                return "星期三";
+//
+//            case 5:
+//                return "星期四";
+//
+//            case 6:
+//                return "星期五";
+//
+//            case 7:
+//                return "星期六";
+//
+//            default:
+//
+//                return "";
+//
+//        }
+//
+//    }
 }

@@ -242,7 +242,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getmessage(){
 
-        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("12", "0", 1).subscribeOn(Schedulers.io())
+        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "0", 1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         messageBeanObservable.subscribe(new Observer<MessageBean>() {
             @Override

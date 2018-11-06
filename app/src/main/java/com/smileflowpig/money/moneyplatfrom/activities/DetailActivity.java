@@ -345,8 +345,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         name.setText(product.getName());
         text.setText(product.getDescription());
         mark.setValue(Double.parseDouble(product.getStar()));
-        money1.setText("金额 （"+ product.getUpper_amount()+"-"+ product.getLower_amount()+")");
-        timer.setText("期限 （"+ product.getTerm()+")");
+        money1.setText("金额（"+ product.getUpper_amount()+"-"+ product.getLower_amount()+")");
+        timer.setText("期限（"+ product.getTerm()+")");
         if(product.getIs_quality().equals("0")){
               quality.setVisibility(View.GONE);
         }else {

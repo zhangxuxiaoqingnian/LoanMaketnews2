@@ -68,7 +68,7 @@
         android:layout_height="57px"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20px"
-
+        android:scaleType="fitXY"
         />
 
     </RelativeLayout>

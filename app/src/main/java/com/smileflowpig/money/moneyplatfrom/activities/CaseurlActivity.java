@@ -125,7 +125,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         });
 
         //资讯h5
-        strurl = "http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid;
+        //https://m.henhaojie.com/xiaohuazhu/information.html?id=3&view_num=1&sessionid=fdhof410su74rraob9matto0r4
+        strurl = "https://m.henhaojie.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid;
 //        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
         wv.loadUrl(strurl);
 
