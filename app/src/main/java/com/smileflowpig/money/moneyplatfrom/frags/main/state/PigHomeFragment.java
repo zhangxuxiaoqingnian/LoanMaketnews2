@@ -11,6 +11,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -135,7 +136,20 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         //热门平台
         getplatform();
         //热门资讯
-        getmessage();
+        //getmessage();
+
+        List<String> list=new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            list.add("没有数据");
+        }
+        MessageAdapter messageAdapter=new MessageAdapter(getActivity(),list);
+        messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+        messagerv.setAdapter(messageAdapter);
 
         //滑动模块
         getclose();
@@ -251,27 +265,27 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             @Override
             public void onNext(MessageBean messageBean) {
 
-                List<MessageBean.RstBean> rst = messageBean.rst;
-                final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
-                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
-                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                });
-                messagerv.setAdapter(messageAdapter);
-
-                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
-                    @Override
-                    public void success(int pos) {
-                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
-                        intent.putExtra("urlid",new_list.get(pos).id);
-                        intent.putExtra("urlname",new_list.get(pos).view_num);
-                        intent.putExtra("urladdress","");
-                        startActivity(intent);
-                    }
-                });
+//                List<MessageBean.RstBean> rst = messageBean.rst;
+//                final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
+//                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
+//                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
+//                    @Override
+//                    public boolean canScrollVertically() {
+//                        return false;
+//                    }
+//                });
+//                messagerv.setAdapter(messageAdapter);
+//
+//                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
+//                    @Override
+//                    public void success(int pos) {
+//                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
+//                        intent.putExtra("urlid",new_list.get(pos).id);
+//                        intent.putExtra("urlname",new_list.get(pos).view_num);
+//                        intent.putExtra("urladdress","");
+//                        startActivity(intent);
+//                    }
+//                });
 
             }
 

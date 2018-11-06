@@ -22,10 +22,10 @@ import com.smileflowpig.money.factory.bean.MessageBean;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
 
     private Context context;
-    private List<MessageBean.RstBean.NewListBean> list;
+    private List<String> list;
     private getItemposition getItemposition;
 
-    public MessageAdapter(Context context, List<MessageBean.RstBean.NewListBean> list) {
+    public MessageAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
     }
@@ -40,21 +40,22 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        holder.name.setText(list.get(position).title);
-        Glide.with(context).load(list.get(position).picture).into(holder.icon);
-        holder.num.setText(list.get(position).view_num+"阅读");
-        holder.time.setText(list.get(position).publish_time);
-        if(list.get(position).is_up.equals("1")){
-            holder.uper.setVisibility(View.VISIBLE);
-        }else {
-            holder.uper.setVisibility(View.GONE);
-        }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getItemposition.success(position);
-            }
-        });
+//        holder.name.setText(list.get(position).title);
+//        Glide.with(context).load(list.get(position).picture).into(holder.icon);
+//        holder.num.setText(list.get(position).view_num+"阅读");
+//        holder.time.setText(list.get(position).publish_time);
+//        if(list.get(position).is_up.equals("1")){
+//            holder.uper.setVisibility(View.VISIBLE);
+//        }else {
+//            holder.uper.setVisibility(View.GONE);
+//        }
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getItemposition.success(position);
+//            }
+//        });
+        holder.name.setText(list.get(position));
     }
 
     @Override
