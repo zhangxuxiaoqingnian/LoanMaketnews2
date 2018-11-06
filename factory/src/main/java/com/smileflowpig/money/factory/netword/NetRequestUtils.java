@@ -8,6 +8,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.smileflowpig.money.common.Common;
 import com.smileflowpig.money.factory.Factory;
 
 import java.util.concurrent.TimeUnit;
@@ -71,7 +72,7 @@ public class NetRequestUtils {
                 okHttpClient.writeTimeout(30, TimeUnit.SECONDS);
         //https://newapi.henhaojie.com/user/
         //http://bw.quyaqu.com/user/
-        Retrofit.Builder retrofit=new Retrofit.Builder().baseUrl("http://bw.quyaqu.com/user/").client(okHttpClient.build());
+        Retrofit.Builder retrofit=new Retrofit.Builder().baseUrl(Common.Constance.API_URL).client(okHttpClient.build());
         retrofit.addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         Baseretrofit baseretrofit = retrofit.build().create(Baseretrofit.class);

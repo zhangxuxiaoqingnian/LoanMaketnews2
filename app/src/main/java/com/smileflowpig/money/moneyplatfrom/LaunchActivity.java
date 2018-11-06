@@ -226,10 +226,11 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
     }
 
     private boolean checkChannel() {
-        SharedPreferences sp = getSharedPreferences(CHANNEL,
-                Context.MODE_PRIVATE);
-        String channelOk = sp.getString(CHANNELOKORNOTOK, "1");
-        return channelOk.equals("0");
+//        SharedPreferences sp = getSharedPreferences(CHANNEL,
+//                Context.MODE_PRIVATE);
+//        String channelOk = sp.getString(CHANNELOKORNOTOK, "1");
+//        return channelOk.equals("0");
+        return true;
     }
 
 

@@ -760,10 +760,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
      * @return 线上
      */
     private boolean checkChannel() {
-        SharedPreferences sp = getSharedPreferences(CHANNEL,
-                Context.MODE_PRIVATE);
-        String channelOk = sp.getString(CHANNELOKORNOTOK, "1");
-        return channelOk.equals("0");
+//        SharedPreferences sp = getSharedPreferences(CHANNEL,
+//                Context.MODE_PRIVATE);
+//        String channelOk = sp.getString(CHANNELOKORNOTOK, "1");
+//        return channelOk.equals("0");
+        return true;
     }
 
     @Override
