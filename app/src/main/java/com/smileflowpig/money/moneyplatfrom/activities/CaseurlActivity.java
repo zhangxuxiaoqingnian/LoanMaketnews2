@@ -17,7 +17,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -34,7 +33,7 @@ import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.net.Network;
 import com.smileflowpig.money.factory.util.SPUtil;
 
-public class CaseurlActivity extends Activity implements View.OnClickListener{
+public class CaseurlActivity extends PresenterActivity implements View.OnClickListener{
 
     @BindView(R.id.case_wv)
     WebView wv;
@@ -56,6 +55,7 @@ public class CaseurlActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Intent intent = getIntent();
         urlid = intent.getStringExtra("urlid");
         urlname = intent.getStringExtra("urlname");
@@ -64,60 +64,66 @@ public class CaseurlActivity extends Activity implements View.OnClickListener{
         case_back.setOnClickListener(this);
         share.setOnClickListener(this);
 //       SharedPreferences sharedPreferences = getSharedPreferences("Logintype", Context.MODE_PRIVATE);
-        String sessionid = (String) SPUtil.get(this, Constant.UserInfo.SESSIONID,"");
-        String channelId = Network.channelId;
+       String sessionid = (String) SPUtil.get(this, Constant.UserInfo.SESSIONID,"");
+       String channelId = Network.channelId;
 
-        //casename.setText(urlname);
-//        wv.getSettings().setUseWideViewPort(true);
-//        wv.getSettings().setLoadWithOverviewMode(true);
-//        wv.getSettings().setDisplayZoomControls(true);
-//        wv.getSettings().setDomStorageEnabled(true);
-//        wv.getSettings().setJavaScriptEnabled(true);
-//        wv.getSettings().setUseWideViewPort(true);
-//        wv.getSettings().setSupportZoom(true);
-//        wv.getSettings().setLoadWithOverviewMode(true);
-//        wv.getSettings().setBlockNetworkImage(false);
-//        wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
-//        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-//            wv.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-//        }
-//        wv.goBack(); //后退
-//        wv.goForward();//前进
-//        wv.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        wv.setWebViewClient(new WebViewClient() {
-//            public boolean shouldOverrideUrlLoading(WebView view, String url)
-//            { //  重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
-//                view.loadUrl(url);
-//                return true;
-//            }
-//        });
-//
-//        wv.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                super.onPageFinished(view, url);
-//
-//                casename.setText(view.getTitle());
-//
-//
-//            }
-//        });
-//
-//        wv.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-//                    if (keyCode == KeyEvent.KEYCODE_BACK && wv.canGoBack()) { // 表示按返回键
-//                        // 时的操作
-//                        wv.goBack(); // 后退
-//                        // webview.goForward();//前进
-//                        return true; // 已处理
-//                    }
-//                }
-//                return false;
-//            }
-//        });
-initWebview();
+       //casename.setText(urlname);
+        wv.getSettings().setUseWideViewPort(true);
+        wv.getSettings().setLoadWithOverviewMode(true);
+        wv.getSettings().setDisplayZoomControls(true);
+        wv.getSettings().setDomStorageEnabled(true);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setUseWideViewPort(true);
+        wv.getSettings().setSupportZoom(true);
+        wv.getSettings().setLoadWithOverviewMode(true);
+        wv.getSettings().setBlockNetworkImage(false);
+        //wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            wv.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+        wv.goBack(); //后退
+        wv.goForward();//前进
+        wv.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        wv.setWebViewClient(new WebViewClient() {
+             public boolean shouldOverrideUrlLoading(WebView view, String url)
+               { //  重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
+                  view.loadUrl(url);
+                  return true;
+               }
+         });
+
+        wv.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                if(view.getTitle().equals("资讯")){
+
+                    casename.setVisibility(View.VISIBLE);
+                    share.setVisibility(View.VISIBLE);
+                }else {
+                    casename.setVisibility(View.GONE);
+                    share.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
+        wv.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK && wv.canGoBack()) { // 表示按返回键
+                        // 时的操作
+                        wv.goBack(); // 后退
+                        // webview.goForward();//前进
+                        return true; // 已处理
+                    }
+                }
+                return false;
+            }
+        });
+
         //资讯h5
         strurl = "http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid;
 //        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
@@ -136,35 +142,16 @@ initWebview();
 //        }
 
     }
-    private void initWebview() {
-        WebSettings webSettings = wv.getSettings();
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setAllowContentAccess(true);
-        webSettings.setUseWideViewPort(true);
-        wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
-        wv.setInitialScale(57);
-        wv.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        //   支持弹窗式 显示 div
-        wv.getSettings().setDomStorageEnabled(true);
-        wv.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        wv.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        wv.getSettings().setLayoutAlgorithm(
-                WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        wv.getSettings().setSupportZoom(false);
-        wv.getSettings().setPluginState(WebSettings.PluginState.ON);
-        wv.getSettings().setLoadWithOverviewMode(true);
-        wv.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        wv.getSettings().setSupportMultipleWindows(true);
-        wv.setWebViewClient(new WebViewClient());
-    }
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_caseurl;
     }
 
+    @Override
+    protected BaseContract.Presenter initPresenter() {
+        return null;
+    }
 
     @Override
     public void onClick(View v) {
@@ -315,6 +302,10 @@ initWebview();
             Toast.makeText(CaseurlActivity.this,"分享取消",Toast.LENGTH_SHORT).show();
         }
     };
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
 
 }

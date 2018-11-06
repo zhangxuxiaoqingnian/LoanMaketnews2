@@ -372,7 +372,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         double v = Double.parseDouble(applicants);
         double v1 = v / 10000;
         String format = String.format("%.1f", v1);
-        apply.setText("立即申请 ("+format+"万人申请)");
+        apply.setText("立即申请 ("+format+"万人已经申请)");
 
 //        if(product.getCustomer_service_number()!=null){
 //            if(product.getCustomer_service_number().equals("")){

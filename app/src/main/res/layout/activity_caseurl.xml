@@ -15,7 +15,7 @@
         app:contentInsetStart="0dp"
         android:paddingTop="@dimen/statusBarSize"
         app:titleTextAppearance="@style/TextAppearance.Title"
-        android:background="#FFAA48"
+        android:background="#FFCE25"
         >
 
 
@@ -33,6 +33,7 @@
             android:layout_gravity="center"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16"
+            android:text="资讯"
             />
         <TextView
             android:id="@+id/data_share"

@@ -117,7 +117,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     public void initview(){
         back.setOnClickListener(this);
         edit.setOnClickListener(this);
-        rv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
+        //rv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         refreshLayout.setOnRefreshLoadmoreListener(this).
                 setEnableLoadmore(true)
                 .setEnableRefresh(true);

@@ -36,12 +36,6 @@
             android:textColor="#ffffff"
             android:layout_marginLeft="13px"
             />
-        <ImageView
-            android:layout_width="23px"
-            android:layout_height="24px"
-            android:src="@mipmap/loginicon"
-            android:layout_marginLeft="8px"
-            />
     </LinearLayout>
     </LinearLayout>
 
@@ -87,12 +81,6 @@
                     android:textColor="#000000"
                     android:layout_marginLeft="13px"
                     />
-                <ImageView
-                    android:layout_width="23px"
-                    android:layout_height="24px"
-                    android:src="@mipmap/loginicon"
-                    android:layout_marginLeft="8px"
-                    />
             </LinearLayout>
             </LinearLayout>
             <View
@@ -118,7 +106,7 @@
                     <ImageView
                         android:layout_width="59px"
                         android:layout_height="58px"
-                        android:src="@mipmap/smilmoney"
+                        android:src="@mipmap/qucklist"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -140,7 +128,7 @@
                     <ImageView
                         android:layout_width="59px"
                         android:layout_height="58px"
-                        android:src="@mipmap/newmoney"
+                        android:src="@mipmap/qucknews"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -162,7 +150,7 @@
                     <ImageView
                         android:layout_width="59px"
                         android:layout_height="58px"
-                        android:src="@mipmap/successmoney"
+                        android:src="@mipmap/qucksuccess"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -184,7 +172,7 @@
                     <ImageView
                         android:layout_width="59px"
                         android:layout_height="58px"
-                        android:src="@mipmap/cardmoney"
+                        android:src="@mipmap/quckcard"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -230,8 +218,8 @@
             <com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView
                 android:layout_width="match_parent"
                 android:layout_height="174px"
-                android:layout_marginLeft="54px"
-                android:layout_marginRight="54px"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
                 android:layout_marginTop="11px"
                 android:id="@+id/pigvp"
                 android:clipChildren="false"
@@ -244,7 +232,6 @@
                 app:pointsPosition="CENTER"
                 app:pointContainerPosition="BOTTOM"
                 app:isHandLoop="true"
-                android:layout_marginTop="12px"
                 android:id="@+id/pigbanner"
                 >
             </com.stx.xhb.xbanner.XBanner>

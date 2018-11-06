@@ -168,7 +168,7 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
         rv = (RecyclerView) inflate.findViewById(R.id.dataallrv);
         rv.addItemDecoration(new DisplayUtils4.SpacesItemDecoration());
         datarv = (RecyclerView) inflate.findViewById(R.id.datarv);
-        datarv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
+        //datarv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         refreshlayout = (SmartRefreshLayout) inflate.findViewById(R.id.refreshlayout);
         refreshlayout.setOnRefreshLoadmoreListener(this).
                 setEnableLoadmore(true)

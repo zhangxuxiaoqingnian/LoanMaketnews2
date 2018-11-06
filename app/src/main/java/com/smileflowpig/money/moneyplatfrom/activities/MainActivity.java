@@ -320,9 +320,24 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
             @Override
             public void onNext(PaoBean paoBean) {
-                String content = paoBean.rst.content;
-                String icon = paoBean.rst.icon;
-                getpopshort(content,icon);
+                final String content = paoBean.rst.content;
+                final String icon = paoBean.rst.icon;
+
+                countDownTimer = new CountDownTimer(10*1000,1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        if(millisUntilFinished/1000==0){
+                            getpopshort(content,icon);
+                        }
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+                };
+                countDownTimer.start();
+
 
             }
 
@@ -465,13 +480,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         ImageView ggicon = (ImageView) inflate.findViewById(R.id.ggicon);
         timer.setText(cont);
         Glide.with(MainActivity.this).load(img).into(ggicon);
-        timer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-                countDownTimer.onFinish();
-            }
-        });
+
         countDownTimer = new CountDownTimer(5*1000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -533,13 +542,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             if (checkChannel()) {
                 if (i == position) {
                     switchFragment(list2.get(i)).commit();
-                    if(position==1){
-                        if(popupWindow!=null){
-                            popupWindow.dismiss();
-                            countDownTimer.onFinish();
-                        }
-
-                    }
                     getvisible2(i);
                     icon3.setImageResource(icon2.get(i));
                     text.setTextColor(Color.parseColor("#FFAA48"));

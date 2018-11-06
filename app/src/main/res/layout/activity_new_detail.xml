@@ -9,11 +9,6 @@
     android:id="@+id/detaillayout"
     tools:context="com.smileflowpig.money.moneyplatfrom.activities.DetailActivity"
     >
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="134px"
-        android:background="#FEA034"
-        />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/lin_button"
@@ -60,7 +55,7 @@
                 android:text="立即申请"
                 android:textColor="#ffffff"
                 android:textSize="16px"
-                android:background="#FEA034"
+                android:background="#FFCE25"
                 />
 
 
@@ -75,6 +70,7 @@
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         android:paddingTop="@dimen/statusBarSize"
+        android:background="#FFCE25"
         app:titleTextAppearance="@style/TextAppearance.Title">
 
         <ImageView
@@ -125,14 +121,13 @@
                 android:layout_width="355px"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#ffffff"
                 android:gravity="center_horizontal"
 
                 >
                 <LinearLayout
                     android:layout_width="323px"
                     android:layout_height="191px"
-                    android:background="@mipmap/detail_back"
+                    android:background="@drawable/getdetailover"
                     android:orientation="vertical"
                     android:layout_marginTop="20px"
                     >
@@ -421,7 +416,7 @@
                 <LinearLayout
                     android:layout_width="323px"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginTop="13px"
                     >
                     <TextView
@@ -437,7 +432,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#FC2E39"
                         android:textSize="12px"
-                        android:layout_marginLeft="13px"
+                        android:layout_marginTop="20px"
                         />
 
                 </LinearLayout>
@@ -503,7 +498,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="20px"
-                    android:background="#ffffff"
+
                     />
 
             </LinearLayout>

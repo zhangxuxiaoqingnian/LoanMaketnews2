@@ -29,8 +29,8 @@ public class WebviewActivity extends Activity {
         setContentView(R.layout.activity_caseurl);
         String url = getIntent().getExtras().getString(URL);
 
-        mWebview  = findViewById(R.id.case_wv);
-        initWebview();
+//        mWebview  = findViewById(R.id.case_wv);
+//        initWebview();
 //        getTitleView(1).setTitle(getIntent().getExtras().getString(TITLE));
 //        getTitleView(1).setLeft_text("返回", new View.OnClickListener() {
 //            @Override
@@ -44,13 +44,13 @@ public class WebviewActivity extends Activity {
 //        });
 //        url = "http://mzb.quyaqu.com/divide_red_envelopes/index.html" +
 //                "?userId=11855587&activityId=1&appName=金牛记账";
-        url = "http://bw.quyaqu.com/xiaohuazhu/information.html?id=1&view_num=3&sessionid=";
-        if (url == null) {
-//            ToastUtil.show(this, "无效链接");
-            return;
-        } else {
-            mWebview.loadUrl(url);
-        }
+//        url = "http://bw.quyaqu.com/xiaohuazhu/information.html?id=1&view_num=3&sessionid=";
+//        if (url == null) {
+////            ToastUtil.show(this, "无效链接");
+//            return;
+//        } else {
+//            mWebview.loadUrl(url);
+//        }
     }
 
 

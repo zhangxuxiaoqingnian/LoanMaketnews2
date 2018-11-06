@@ -82,17 +82,17 @@ public class NewSearchFragment extends PresenterFragment implements View.OnClick
         switch (v.getId()){
             case R.id.newmoney:
                 switchFragment(moneyFragment).commit();
-                //com.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                money.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 data.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 identity.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-                //com.setTextColor(Color.parseColor("#000000"));
+                money.setTextColor(Color.parseColor("#000000"));
                 data.setTextColor(Color.parseColor("#444444"));
                 identity.setTextColor(Color.parseColor("#444444"));
                 break;
             case R.id.newdata:
                 switchFragment(dataFragment).commit();
                 data.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                //com.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                money.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 identity.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 
                 data.setTextColor(Color.parseColor("#000000"));
