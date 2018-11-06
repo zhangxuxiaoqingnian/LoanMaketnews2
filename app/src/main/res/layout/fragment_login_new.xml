@@ -193,7 +193,7 @@
                     android:layout_marginRight="@dimen/len_8">
                     <TextView
                         android:id="@+id/code_tv"
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:drawablePadding="3dp"
                         android:text="验证码"
@@ -204,7 +204,7 @@
                         android:id="@+id/pwd_tv"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_gravity="center_vertical"
                         android:drawablePadding="3dp"
                         android:text="密码"
                         android:visibility="invisible"
