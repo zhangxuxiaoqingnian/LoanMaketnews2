@@ -235,7 +235,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
 
             //请求气泡
-            getpao();
+            //getpao();
 
             list2 = new ArrayList<>();
             //保留一份

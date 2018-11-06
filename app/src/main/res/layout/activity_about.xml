@@ -55,7 +55,7 @@
             android:layout_height="80dp"
            android:layout_marginTop="@dimen/len_100"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_pig" />
+            android:src="@mipmap/ic_flowpig" />
 
         <TextView
             android:id="@+id/name"

@@ -40,8 +40,6 @@ import com.smileflowpig.money.factory.presenter.bill.BillPresenter;
  */
 public class BillManagerActivity extends PresenterActivity<BillContract.Presenter> implements BillContract.View {
 
-
-
     @BindView(R.id.billmanager_radiogroup)
     RadioGroup radioGroup;
 

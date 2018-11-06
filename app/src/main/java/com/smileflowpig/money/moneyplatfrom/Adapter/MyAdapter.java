@@ -53,7 +53,7 @@ public class MyAdapter extends PagerAdapter {
         goset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DetailActivity.show(context, list.get(position%list.size()).id+"","notice",0);
+                DetailActivity.show(context, list.get(position%list.size()).id+"","notice",0);
 
             }
         });

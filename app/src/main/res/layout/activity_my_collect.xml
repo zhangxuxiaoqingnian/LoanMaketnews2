@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="134px"
-            android:background="#FFAA48"
+            android:background="#FFCE25"
             />
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"

@@ -71,7 +71,7 @@ public class NetRequestUtils {
                 okHttpClient.writeTimeout(30, TimeUnit.SECONDS);
         //https://newapi.henhaojie.com/user/
         //http://bw.quyaqu.com/user/
-        Retrofit.Builder retrofit=new Retrofit.Builder().baseUrl("http://bw.quyaqu.com/user/").client(okHttpClient.build());
+        Retrofit.Builder retrofit=new Retrofit.Builder().baseUrl("https://newapi.henhaojie.com/user/").client(okHttpClient.build());
         retrofit.addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         Baseretrofit baseretrofit = retrofit.build().create(Baseretrofit.class);

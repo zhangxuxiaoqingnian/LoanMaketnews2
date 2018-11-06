@@ -32,9 +32,9 @@
     <application
         android:name="com.smileflowpig.money.moneyplatfrom.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_pig"
+        android:icon="@mipmap/ic_flowpig"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_pig"
+        android:roundIcon="@mipmap/ic_flowpig"
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
@@ -47,10 +47,11 @@
 
         <activity
             android:name="com.smileflowpig.money.moneyplatfrom.activities.MainActivity"
-            android:screenOrientation="portrait"
+
             android:theme="@style/AppTheme.Main" />
         <activity
             android:name="com.smileflowpig.money.moneyplatfrom.LaunchActivity"
+
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

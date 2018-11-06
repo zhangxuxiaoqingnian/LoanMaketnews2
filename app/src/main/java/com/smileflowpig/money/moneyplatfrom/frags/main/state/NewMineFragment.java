@@ -245,6 +245,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         selfDialog.setNoOnclickListener("确定", new SelfDialog.onNoOnclickListener() {
             @Override
             public void onNoClick() {
+                Intent intent = new Intent(getActivity(), AccountActivity.class);
+                startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 selfDialog.dismiss();
             }
         });

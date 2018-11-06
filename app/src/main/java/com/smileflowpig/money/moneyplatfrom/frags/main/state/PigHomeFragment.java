@@ -170,7 +170,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getclose(){
 
-        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(3, changid,6,1).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(13, changid,6,1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<HomedataBean>() {
             @Override
@@ -290,7 +290,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getplatform(){
 
-        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(2, changid,18,1).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(12, changid,18,1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<HomedataBean>() {
             @Override

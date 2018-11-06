@@ -199,7 +199,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
                 UMWeb web = new UMWeb(strurl);
                 web.setTitle("测试");
                 web.setDescription("测试地址");
-                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_pig));
+                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_flowpig));
                 new ShareAction(CaseurlActivity.this)
                         .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)//传入平台
                         .withMedia(web)
@@ -234,7 +234,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
                 UMWeb web = new UMWeb(strurl);
                 web.setTitle("测试");
                 web.setDescription("测试地址");
-                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_pig));
+                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_flowpig));
                 new ShareAction(CaseurlActivity.this)
                         .setPlatform(SHARE_MEDIA.WEIXIN)//传入平台
                         .withMedia(web)
