@@ -254,12 +254,15 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 List<MessageBean.RstBean> rst = messageBean.rst;
                 final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
                 MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
-                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                });
+//                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
+//                    @Override
+//                    public boolean canScrollVertically() {
+//                        return false;
+//                    }
+//                });
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                messagerv.setLayoutManager(linearLayoutManager);
                 messagerv.setAdapter(messageAdapter);
 
                 messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
@@ -303,12 +306,16 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
                 PlatformAdapter platformAdapter=new PlatformAdapter(getActivity(),data);
-                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                });
+//                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
+//                    @Override
+//                    public boolean canScrollVertically() {
+//                        return false;
+//                    }
+//
+//                });
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                platformrv.setLayoutManager(linearLayoutManager);
                 platformrv.setAdapter(platformAdapter);
 
                 platformAdapter.setItempostion(new PlatformAdapter.getItempostion() {

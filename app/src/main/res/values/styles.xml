@@ -33,14 +33,14 @@
 
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@mipmap/bg_welcome_pig</item>
-        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
         <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <style name="AppTheme.TransStatusBar.Base" parent="AppTheme">
         <!--去除顶部的状态栏-->
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowFrame">@null</item>
@@ -54,6 +54,7 @@
 
     <style name="AppTheme.Main" parent="AppTheme.TransStatusBar">
         <item name="windowActionBar">false</item>
+        <item name="android:windowIsTranslucent">false</item>
         <item name="windowNoTitle">true</item>
         <item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert.Self</item>
         <item name="toolbarTitleColor">@color/white</item>

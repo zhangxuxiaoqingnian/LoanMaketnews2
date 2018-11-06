@@ -307,6 +307,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10px"
                 android:id="@+id/platform_rv"
+                android:nestedScrollingEnabled="false"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -355,6 +356,7 @@
                 android:layout_width="325px"
                 android:layout_height="wrap_content"
                 android:id="@+id/message_rv"
+                android:nestedScrollingEnabled="false"
                 />
             </LinearLayout>
         </LinearLayout>
