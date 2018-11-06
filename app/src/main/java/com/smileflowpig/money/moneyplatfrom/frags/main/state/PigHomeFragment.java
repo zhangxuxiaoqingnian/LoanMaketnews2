@@ -42,7 +42,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
@@ -58,7 +57,7 @@ import com.smileflowpig.money.factory.presenter.notice.Notice;
  * Created by 小狼 on 2018/11/1.
  */
 
-public class PigHomeFragment extends PresenterFragment implements View.OnClickListener {
+public class PigHomeFragment extends PresenterFragment implements View.OnClickListener{
 
     @BindView(R.id.piglampview)
     LampView lampView;
@@ -113,7 +112,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     private int changid;
     private Alldatacont alldatacont;
     private AnimatorSet animatorSet;
-    private boolean isscrll = false;
+    private boolean isscrll=false;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -169,9 +168,9 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         return R.layout.pighome_layout;
     }
 
-    public void getclose() {
+    public void getclose(){
 
-        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(3, changid, 6, 1).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(13, changid,6,1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<HomedataBean>() {
             @Override
@@ -183,23 +182,22 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onNext(HomedataBean o) {
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
-                if (data == null || data.size() == 0) {
-                    return;
+                if(data!=null&&data.size()>0){
+                    MyAdapter myAdapter=new MyAdapter(getActivity(),data);
+                    vp.setAdapter(myAdapter);
+                    vp.setCurrentItem(10000*data.size()+1);
+                    vp.setOffscreenPageLimit(3);
+                    vp.setPageMargin(-120);
+                    vp.setPageTransformer(false,new ScaleTransformer());
                 }
 
-                MyAdapter myAdapter = new MyAdapter(getActivity(), data);
 
-                vp.setAdapter(myAdapter);
-                vp.setCurrentItem(10000 * data.size() + 1);
-                vp.setOffscreenPageLimit(3);
-                vp.setPageMargin(-120);
-                vp.setPageTransformer(false, new ScaleTransformer());
             }
 
             @Override
             public void onError(Throwable e) {
 
-                System.out.println(e.toString() + "错误");
+                System.out.println(e.toString()+"错误");
             }
 
             @Override
@@ -208,9 +206,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             }
         });
     }
-
     //滚动文字资源
-    public void getlapview() {
+    public void getlapview(){
         Observable<LapviewBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getgao().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<LapviewBean>() {
@@ -223,9 +220,9 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onNext(LapviewBean o) {
 
                 List<LapviewBean.RstBean.DataBean> data = o.rst.data;
-                List<Notice> list = new ArrayList<>();
+                List<Notice> list=new ArrayList<>();
                 for (int i = 0; i < data.size(); i++) {
-                    list.add(new Notice(data.get(i).product_id, data.get(i).content, data.get(i).link, data.get(i).skip_type + ""));
+                    list.add(new Notice(data.get(i).product_id,data.get(i).content,data.get(i).link,data.get(i).skip_type+""));
                 }
                 lampView.setList(list);
 
@@ -243,9 +240,9 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         });
     }
 
-    public void getmessage() {
+    public void getmessage(){
 
-        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "0", 1).subscribeOn(Schedulers.io())
+        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("12", "0", 1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         messageBeanObservable.subscribe(new Observer<MessageBean>() {
             @Override
@@ -258,7 +255,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
                 List<MessageBean.RstBean> rst = messageBean.rst;
                 final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
-                MessageAdapter messageAdapter = new MessageAdapter(getActivity(), new_list);
+                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
 //                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
 //                    @Override
 //                    public boolean canScrollVertically() {
@@ -273,10 +270,10 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
                     @Override
                     public void success(int pos) {
-                        Intent intent = new Intent(getActivity(), CaseurlActivity.class);
-                        intent.putExtra("urlid", new_list.get(pos).id);
-                        intent.putExtra("urlname", new_list.get(pos).view_num);
-                        intent.putExtra("urladdress", "");
+                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
+                        intent.putExtra("urlid",new_list.get(pos).id);
+                        intent.putExtra("urlname",new_list.get(pos).view_num);
+                        intent.putExtra("urladdress","");
                         startActivity(intent);
                     }
                 });
@@ -296,9 +293,9 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     }
 
-    public void getplatform() {
+    public void getplatform(){
 
-        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(2, changid, 18, 1).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(12, changid,18,1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<HomedataBean>() {
             @Override
@@ -310,7 +307,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onNext(HomedataBean o) {
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
-                PlatformAdapter platformAdapter = new PlatformAdapter(getActivity(), data);
+                PlatformAdapter platformAdapter=new PlatformAdapter(getActivity(),data);
 //                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
 //                    @Override
 //                    public boolean canScrollVertically() {
@@ -326,7 +323,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 platformAdapter.setItempostion(new PlatformAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(getActivity(), data.get(pos).id + "", "notice", 0);
+                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0);
 
                     }
                 });
@@ -346,7 +343,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     }
 
-    public void getfeature() {
+    public void getfeature(){
 
 //        FeatureAdapter featureAdapter=new FeatureAdapter(getActivity(),list);
 //        LinearLayoutManager ms=new LinearLayoutManager(getActivity());
@@ -355,7 +352,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 //        featurerv.setAdapter(featureAdapter);
     }
 
-    public void getbannerdata() {
+    public void getbannerdata(){
 
         Observable<Allbanner> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getallbanner(2).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -367,11 +364,11 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
             @Override
             public void onNext(Allbanner o) {
-                if (o != null) {
+                if(o!=null){
                     final List<Allbanner.RstBean.HomeactBean> homeact = o.rst.homeact;
-                    if (homeact != null && homeact.size() > 0) {
+                    if(homeact!=null&&homeact.size()>0){
 
-                        banner.setData(homeact, null);
+                        banner.setData(homeact,null);
                         banner.loadImage(new XBanner.XBannerAdapter() {
                             @Override
                             public void loadBanner(XBanner banner, Object model, View view, int position2) {
@@ -381,8 +378,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                         });
                         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
                             @Override
-                            public void onItemClick(XBanner banner, Object model, View view, int position) {
-                                DetailActivity.show(getActivity(), homeact.get(position).product_id + "", "notice", 0);
+                            public void onItemClick(XBanner banner, Object model,View view, int position) {
+                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0);
                             }
                         });
 
@@ -403,7 +400,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     }
 
 
-    //    public class MyAdapter extends PagerAdapter{
+//    public class MyAdapter extends PagerAdapter{
 //
 //        @Override
 //        public int getCount() {
@@ -427,7 +424,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 //            container.removeView((View) object);
 //        }
 //    }
-    public void initview() {
+    public void initview(){
 
         animatorSet = new AnimatorSet();
         platformrv.setFocusable(false);
@@ -443,35 +440,36 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 //        featurerv.setNestedScrollingEnabled(false);
 //        featurerv.addItemDecoration(new DisplayUtils5.SpacesItemDecoration());
         //platformrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
-        DividerItemDecoration3 decoration = new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
-        decoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.item_shap));  //把样式放进去
+        DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
+        decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         messagerv.addItemDecoration(decoration);
         scroll.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
-                if (scrollY >= measuredHeight) {
-                    if (piglayout.getVisibility() != View.VISIBLE)
+                if(scrollY>=measuredHeight){
+                    if(piglayout.getVisibility()!=View.VISIBLE)
                         piglayout.setVisibility(View.VISIBLE);
-                    if (shoulayout.getVisibility() != View.GONE)
+                    if(shoulayout.getVisibility()!=View.GONE)
                         shoulayout.setVisibility(View.GONE);
-                } else {
-                    if (piglayout.getVisibility() != View.GONE)
+                }else {
+                    if(piglayout.getVisibility()!=View.GONE)
                         piglayout.setVisibility(View.GONE);
-                    if (shoulayout.getVisibility() != View.VISIBLE)
+                    if(shoulayout.getVisibility()!=View.VISIBLE)
                         shoulayout.setVisibility(View.VISIBLE);
 
                 }
+
 
             }
         });
         scroll.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                if(event.getAction()==MotionEvent.ACTION_MOVE){
                     Animetion(overimg);
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    isscrll = false;
+                }else if(event.getAction()==MotionEvent.ACTION_UP){
+                    isscrll=false;
                     Animetion2(overimg);
                 }
                 return false;
@@ -479,28 +477,27 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         });
     }
 
-    public void Animetion(ImageView ic) {
+    public void Animetion(ImageView ic){
 
-        if (!isscrll) {
-            ObjectAnimator translationX = new ObjectAnimator().ofFloat(ic, "translationX", 0, 200f);
-            ObjectAnimator translationY = new ObjectAnimator().ofFloat(ic, "translationY", 0, 0);
+        if(!isscrll){
+            ObjectAnimator translationX = new ObjectAnimator().ofFloat(ic,"translationX",0,200f);
+            ObjectAnimator translationY = new ObjectAnimator().ofFloat(ic,"translationY",0,0);
 
             //组合动画
-            animatorSet.playTogether(translationX, translationY); //设置动画
+            animatorSet.playTogether(translationX,translationY); //设置动画
             animatorSet.setDuration(500);  //设置动画时间
             animatorSet.start(); //启动
-            isscrll = true;
+            isscrll=true;
         }
 
 
     }
+    public void Animetion2(ImageView ic){
 
-    public void Animetion2(ImageView ic) {
+        ObjectAnimator translationX = new ObjectAnimator().ofFloat(ic,"translationX",200,0);
+        ObjectAnimator translationY = new ObjectAnimator().ofFloat(ic,"translationY",0,0);
 
-        ObjectAnimator translationX = new ObjectAnimator().ofFloat(ic, "translationX", 200, 0);
-        ObjectAnimator translationY = new ObjectAnimator().ofFloat(ic, "translationY", 0, 0);
-
-        animatorSet.playTogether(translationX, translationY); //设置动画
+        animatorSet.playTogether(translationX,translationY); //设置动画
         animatorSet.setDuration(500);  //设置动画时间
         animatorSet.start(); //启动
 
@@ -516,46 +513,44 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     }
 
 
-    public interface Alldatacont {
+    public interface Alldatacont{
 
         void daikuan();
-
         void message();
     }
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
             case R.id.pig_alldata:
-                if (listener != null)
+                if(listener!=null)
                     listener.daikuan();
                 break;
             case R.id.pig_allnum:
-                if (listener != null)
+                if(listener!=null)
                     listener.message();
                 break;
             case R.id.onedata:
-                Intent intent = new Intent(getActivity(), TableActivity.class);
-                intent.putExtra("tabtitle", "快借1500");
-                intent.putExtra("tabid", 1);
+                Intent intent=new Intent(getActivity(), TableActivity.class);
+                intent.putExtra("tabtitle","快借1500");
+                intent.putExtra("tabid",1);
                 startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.twodata:
-                Intent intent2 = new Intent(getActivity(), TableActivity.class);
-                intent2.putExtra("tabtitle", "最新口子");
-                intent2.putExtra("tabid", 2);
+                Intent intent2=new Intent(getActivity(), TableActivity.class);
+                intent2.putExtra("tabtitle","最新口子");
+                intent2.putExtra("tabid",2);
                 startActivityForResult(intent2, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.threedata:
-                Intent intent3 = new Intent(getActivity(), TableActivity.class);
-                intent3.putExtra("tabtitle", "一定借到钱");
-                intent3.putExtra("tabid", 3);
+                Intent intent3=new Intent(getActivity(), TableActivity.class);
+                intent3.putExtra("tabtitle","一定借到钱");
+                intent3.putExtra("tabid",3);
                 startActivityForResult(intent3, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.fourdata:
-                Intent intent4 = new Intent(getActivity(), TableActivity.class);
-                intent4.putExtra("tabtitle", "信用卡");
-                intent4.putExtra("tabid", 4);
+                Intent intent4=new Intent(getActivity(), TableActivity.class);
+                intent4.putExtra("tabtitle","信用卡");
+                intent4.putExtra("tabid",4);
                 startActivityForResult(intent4, Constant.Code.REQUEST_CODEF);
                 break;
         }

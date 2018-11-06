@@ -13,7 +13,7 @@
     <string name="data_upload_error">文件上传失败！</string>
     <string name="apply">本次是否完成了申请</string>
     <string name="no_login"> 您未登录,点击 登录/注册 去登录</string>
-    <string name="no_login2"> 您未登录,点击 登录 去登录</string>
+    <string name="no_login2"> 您未登录,点击 确定 去登录</string>
     <string name="data_rsp_error_missing_data">缺少数据，请重新提交！</string>
     <string name="data_rsp_error_parameters">抱歉，参数错误哦! O_o</string>
     <string name="missing_data">缺少数据，请重新提交</string>

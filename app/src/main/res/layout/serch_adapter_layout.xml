@@ -21,7 +21,7 @@
             android:id="@+id/hot_icon"
             android:layout_width="40px"
             android:layout_height="40px"
-            android:src="@mipmap/ic_pig"
+            android:src="@mipmap/ic_flowpig"
             android:layout_marginTop="30px"
             />
         <RelativeLayout

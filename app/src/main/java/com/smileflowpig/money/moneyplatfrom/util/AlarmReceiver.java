@@ -25,7 +25,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setSmallIcon(R.mipmap.ic_pig);
+        builder.setSmallIcon(R.mipmap.ic_flowpig);
         String name = intent.getStringExtra("name");
         String content = intent.getStringExtra("content");
         long ids = intent.getLongExtra("id", 11);
