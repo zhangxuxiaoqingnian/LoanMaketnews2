@@ -72,33 +72,33 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
             @Override
             public void onNext(MessageBean messageBean) {
 
-//                refreshLayout.finishLoadmore();
-//                refreshLayout.finishRefresh();
-//                if(messageBean.rst.get(0).pageinfo.hasNext){
-//                    page++;
-//                }else {
-//                    refreshLayout.setLoadmoreFinished(true);
-//                }
-//                List<MessageBean.RstBean.NewListBean> new_list = messageBean.rst.get(0).new_list;
-//                list.addAll(new_list);
-//                if(messageAdapter==null){
-//                    messageAdapter = new MessageAdapter(getActivity(),list);
-//                    allrv.setLayoutManager(new LinearLayoutManager(getActivity()));
-//                    allrv.setAdapter(messageAdapter);
-//                }else {
-//                    messageAdapter.notifyDataSetChanged();
-//                }
-//
-//                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
-//                    @Override
-//                    public void success(int pos) {
-//                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
-//                        intent.putExtra("urlid",list.get(pos).id);
-//                        intent.putExtra("urlname",list.get(pos).view_num);
-//                        intent.putExtra("urladdress","");
-//                        startActivity(intent);
-//                    }
-//                });
+                refreshLayout.finishLoadmore();
+                refreshLayout.finishRefresh();
+                if(messageBean.rst.get(0).pageinfo.hasNext){
+                    page++;
+                }else {
+                    refreshLayout.setLoadmoreFinished(true);
+                }
+                List<MessageBean.RstBean.NewListBean> new_list = messageBean.rst.get(0).new_list;
+                list.addAll(new_list);
+                if(messageAdapter==null){
+                    messageAdapter = new MessageAdapter(getActivity(),list);
+                    allrv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    allrv.setAdapter(messageAdapter);
+                }else {
+                    messageAdapter.notifyDataSetChanged();
+                }
+
+                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
+                    @Override
+                    public void success(int pos) {
+                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
+                        intent.putExtra("urlid",list.get(pos).id);
+                        intent.putExtra("urlname",list.get(pos).view_num);
+                        intent.putExtra("urladdress","");
+                        startActivity(intent);
+                    }
+                });
 
             }
 

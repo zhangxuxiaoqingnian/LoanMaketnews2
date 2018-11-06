@@ -11,7 +11,6 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -136,20 +135,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         //热门平台
         getplatform();
         //热门资讯
-        //getmessage();
-
-        List<String> list=new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            list.add("没有数据");
-        }
-        MessageAdapter messageAdapter=new MessageAdapter(getActivity(),list);
-        messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        });
-        messagerv.setAdapter(messageAdapter);
+        getmessage();
 
         //滑动模块
         getclose();
@@ -196,14 +182,16 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onNext(HomedataBean o) {
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
+                if(data!=null&&data.size()>0){
+                    MyAdapter myAdapter=new MyAdapter(getActivity(),data);
+                    vp.setAdapter(myAdapter);
+                    vp.setCurrentItem(10000*data.size()+1);
+                    vp.setOffscreenPageLimit(3);
+                    vp.setPageMargin(-120);
+                    vp.setPageTransformer(false,new ScaleTransformer());
+                }
 
 
-                MyAdapter myAdapter=new MyAdapter(getActivity(),data);
-                vp.setAdapter(myAdapter);
-                vp.setCurrentItem(10000*data.size()+1);
-                vp.setOffscreenPageLimit(3);
-                vp.setPageMargin(-120);
-                vp.setPageTransformer(false,new ScaleTransformer());
             }
 
             @Override
@@ -254,7 +242,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getmessage(){
 
-        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "0", 1).subscribeOn(Schedulers.io())
+        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("12", "0", 1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         messageBeanObservable.subscribe(new Observer<MessageBean>() {
             @Override
@@ -265,27 +253,30 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             @Override
             public void onNext(MessageBean messageBean) {
 
-//                List<MessageBean.RstBean> rst = messageBean.rst;
-//                final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
-//                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
+                List<MessageBean.RstBean> rst = messageBean.rst;
+                final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
+                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
 //                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
 //                    @Override
 //                    public boolean canScrollVertically() {
 //                        return false;
 //                    }
 //                });
-//                messagerv.setAdapter(messageAdapter);
-//
-//                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
-//                    @Override
-//                    public void success(int pos) {
-//                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
-//                        intent.putExtra("urlid",new_list.get(pos).id);
-//                        intent.putExtra("urlname",new_list.get(pos).view_num);
-//                        intent.putExtra("urladdress","");
-//                        startActivity(intent);
-//                    }
-//                });
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                messagerv.setLayoutManager(linearLayoutManager);
+                messagerv.setAdapter(messageAdapter);
+
+                messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
+                    @Override
+                    public void success(int pos) {
+                        Intent intent=new Intent(getActivity(), CaseurlActivity.class);
+                        intent.putExtra("urlid",new_list.get(pos).id);
+                        intent.putExtra("urlname",new_list.get(pos).view_num);
+                        intent.putExtra("urladdress","");
+                        startActivity(intent);
+                    }
+                });
 
             }
 
@@ -317,12 +308,16 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
                 PlatformAdapter platformAdapter=new PlatformAdapter(getActivity(),data);
-                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                });
+//                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
+//                    @Override
+//                    public boolean canScrollVertically() {
+//                        return false;
+//                    }
+//
+//                });
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                platformrv.setLayoutManager(linearLayoutManager);
                 platformrv.setAdapter(platformAdapter);
 
                 platformAdapter.setItempostion(new PlatformAdapter.getItempostion() {
@@ -453,13 +448,18 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
                 if(scrollY>=measuredHeight){
-                    piglayout.setVisibility(View.VISIBLE);
-                    shoulayout.setVisibility(View.GONE);
+                    if(piglayout.getVisibility()!=View.VISIBLE)
+                        piglayout.setVisibility(View.VISIBLE);
+                    if(shoulayout.getVisibility()!=View.GONE)
+                        shoulayout.setVisibility(View.GONE);
                 }else {
-                    piglayout.setVisibility(View.GONE);
-                    shoulayout.setVisibility(View.VISIBLE);
+                    if(piglayout.getVisibility()!=View.GONE)
+                        piglayout.setVisibility(View.GONE);
+                    if(shoulayout.getVisibility()!=View.VISIBLE)
+                        shoulayout.setVisibility(View.VISIBLE);
 
                 }
+
 
             }
         });
