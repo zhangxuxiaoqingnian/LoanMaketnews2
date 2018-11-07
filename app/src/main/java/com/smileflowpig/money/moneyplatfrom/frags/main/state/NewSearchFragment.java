@@ -56,7 +56,7 @@ public class NewSearchFragment extends PresenterFragment implements View.OnClick
         initview();
 
         switchFragment(new MoneyFragment()).commit();
-        money.setTextColor(Color.parseColor("#000000"));
+        money.setTextColor(Color.parseColor("#FFCE25"));
         money.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 
         money.setOnClickListener(this);
@@ -85,7 +85,7 @@ public class NewSearchFragment extends PresenterFragment implements View.OnClick
                 money.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 data.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 identity.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-                money.setTextColor(Color.parseColor("#000000"));
+                money.setTextColor(Color.parseColor("#FFCE25"));
                 data.setTextColor(Color.parseColor("#444444"));
                 identity.setTextColor(Color.parseColor("#444444"));
                 break;
@@ -95,7 +95,7 @@ public class NewSearchFragment extends PresenterFragment implements View.OnClick
                 money.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 identity.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 
-                data.setTextColor(Color.parseColor("#000000"));
+                data.setTextColor(Color.parseColor("#FFCE25"));
                 money.setTextColor(Color.parseColor("#444444"));
                 identity.setTextColor(Color.parseColor("#444444"));
                 break;
@@ -105,7 +105,7 @@ public class NewSearchFragment extends PresenterFragment implements View.OnClick
                 data.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 money.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 
-                identity.setTextColor(Color.parseColor("#000000"));
+                identity.setTextColor(Color.parseColor("#FFCE25"));
                 data.setTextColor(Color.parseColor("#444444"));
                 money.setTextColor(Color.parseColor("#444444"));
                 break;
