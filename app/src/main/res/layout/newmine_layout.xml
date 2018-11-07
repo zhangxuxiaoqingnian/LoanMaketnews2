@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10px"
             android:layout_marginTop="6px"
-            android:background="@mipmap/icon_billmanager_bg"
+            android:background="@drawable/login_edit_bg"
             android:orientation="vertical">
 
             <RelativeLayout
