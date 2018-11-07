@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+import com.smileflowpig.money.factory.bean.CardBean;
+import com.smileflowpig.money.moneyplatfrom.Adapter.CardAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.TabAdapter;
 import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
 
@@ -29,6 +31,7 @@ import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.TabBean;
 import com.smileflowpig.money.factory.net.Network;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 
 public class TableActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
@@ -48,6 +51,9 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     private int page=1;
     private List<TabBean.RstBean.DataBean> list;
     private TabAdapter tabAdapter;
+    private List<CardBean.RstBean.ListBean> list2;
+    private CardAdapter cardAdapter;
+    private String tabtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +61,17 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
 
         initview();
         list = new ArrayList<>();
+        list2 = new ArrayList<>();
         channelId = Network.channelId;
         Intent intent = getIntent();
-        String tabtitle = intent.getStringExtra("tabtitle");
+        tabtitle = intent.getStringExtra("tabtitle");
         tabid = intent.getIntExtra("tabid", -1);
         title.setText(tabtitle);
         //请求数据
         if(tabtitle.equals("信用卡")){
             //信用卡
+            edit.setVisibility(View.GONE);
+            rv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
             getcardlist();
         }else {
             //其他类型
@@ -73,18 +82,43 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
 
     public void getcardlist(){
 
-        Observable<Object> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getcardlist(1).subscribeOn(Schedulers.io())
+        Observable<CardBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getcardlist(page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        objectObservable.subscribe(new Observer<Object>() {
+        objectObservable.subscribe(new Observer<CardBean>() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(Object o) {
+            public void onNext(CardBean o) {
+                refreshLayout.finishLoadmore();
+                refreshLayout.finishRefresh();
+                if(o.rst.pageInfo.hasNext){
+                    page++;
+                }else {
+                    refreshLayout.setLoadmoreFinished(true);
+                }
 
-                System.out.println("成功了");
+                List<CardBean.RstBean.ListBean> list = o.rst.list;
+                list2.addAll(list);
+                if(cardAdapter==null){
+                    cardAdapter = new CardAdapter(TableActivity.this,list2);
+                    rv.setLayoutManager(new LinearLayoutManager(TableActivity.this));
+                    rv.setAdapter(cardAdapter);
+                }else {
+                    cardAdapter.notifyDataSetChanged();
+                }
+
+                cardAdapter.setItemposition(new CardAdapter.getItemposition() {
+                    @Override
+                    public void success(int pos) {
+
+                        WebActivity.show(TableActivity.this, list2.get(pos).name,
+                                list2.get(pos).url);
+                    }
+                });
+
             }
 
             @Override
@@ -182,7 +216,12 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-        getdatalist();
+        if(tabtitle.equals("信用卡")){
+            getcardlist();
+        }else {
+            getdatalist();
+        }
+
     }
 
     @Override

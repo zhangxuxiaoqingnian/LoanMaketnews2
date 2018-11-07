@@ -104,8 +104,8 @@
                     android:layout_weight="1"
                     >
                     <ImageView
-                        android:layout_width="59px"
-                        android:layout_height="58px"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
                         android:src="@mipmap/qucklist"
                         />
                     <TextView
@@ -126,8 +126,8 @@
                     android:layout_weight="1"
                     >
                     <ImageView
-                        android:layout_width="59px"
-                        android:layout_height="58px"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
                         android:src="@mipmap/qucknews"
                         />
                     <TextView
@@ -148,8 +148,8 @@
                     android:layout_weight="1"
                     >
                     <ImageView
-                        android:layout_width="59px"
-                        android:layout_height="58px"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
                         android:src="@mipmap/qucksuccess"
                         />
                     <TextView
@@ -170,8 +170,8 @@
                     android:layout_weight="1"
                     >
                     <ImageView
-                        android:layout_width="59px"
-                        android:layout_height="58px"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
                         android:src="@mipmap/quckcard"
                         />
                     <TextView

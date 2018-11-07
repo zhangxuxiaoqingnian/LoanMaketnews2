@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.annotation.StringRes;
@@ -13,10 +14,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.common.app.Activity;
+import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.HuaHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.MessageFragment;
@@ -38,10 +43,12 @@ import com.smileflowpig.money.moneyplatfrom.frags.main.state.PigHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.helper.DataGenerator;
 import com.smileflowpig.money.moneyplatfrom.helper.FragmentHelper;
 import com.smileflowpig.money.moneyplatfrom.helper.SPUtil;
+import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,7 +92,7 @@ import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabChan
 import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
-        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View,HuaHomeFragment.OnDaikuanClickListener,PigHomeFragment.Alldatacont{
+        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View,HuaHomeFragment.OnDaikuanClickListener,PigHomeFragment.Alldatacont {
     @BindView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.lay_container)
@@ -144,15 +151,17 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     private List<String> cx;
     private SharedPreferences sp;
     private String credit_hidden;
-    private  Fragment  currentFragment=new Fragment();
+    private Fragment currentFragment = new Fragment();
     private List<Fragment> list;
     private SelfDialog selfDialog;
     private boolean liulang2;
     private List<Fragment> list2;
-    private int mPosition=0;
+    private int mPosition = 0;
     private int position;
     private CountDownTimer countDownTimer;
     private PopupWindow popupWindow;
+    private int contvert = 0;
+    private int measuredHeight;
 
 
     public static void show(Context context) {
@@ -221,7 +230,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     }
 
-    public void getcarvter(){
+    public void getcarvter() {
 
         mFragmentHelper = new FragmentHelper(this, R.id.lay_container,
                 getSupportFragmentManager(), this);
@@ -238,7 +247,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
             list2 = new ArrayList<>();
             //保留一份
-  //         list2.add(new HuaHomeFragment());
+            //         list2.add(new HuaHomeFragment());
 //            list2.add(new NewSearchFragment());
 //            list2.add(new ActiveFragment());
 //            list2.add(new NewMineFragment());
@@ -277,13 +286,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 //            }
 
 
-
-
-
         } else {
-     //      mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(ExaimeNewFragment.class, R.string.title_quick))
+            //      mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(ExaimeNewFragment.class, R.string.title_quick))
 //                    .add(1, new FragmentHelper.Tab<Integer>(ExpertFragment.class, R.string.title_special))
-     //               .add(2, new FragmentHelper.Tab<Integer>(Calculate2Fragment.class, R.string.title_cal))
+            //               .add(2, new FragmentHelper.Tab<Integer>(Calculate2Fragment.class, R.string.title_cal))
 //                    .add(3, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
 
 
@@ -301,14 +307,39 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             mPresenter.start();
 
 
-
         }
         //添加底部导航的监听
         mTabLayout.addOnTabSelectedListener(this);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+//        if (hasFocus) {
+//            ViewTreeObserver vto = mTabLayout.getViewTreeObserver();
+//            vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+//                public boolean onPreDraw() {
+//                    measuredHeight = mTabLayout.getMeasuredHeight();
+//                    System.out.println(measuredHeight + "没有呢");
+//                    return true;
+//                }
+//            });
+//            boolean b = checkDeviceHasNavigationBar(MainActivity.this);
+//            if (b) {
+//                System.out.println("有虚拟键");
+//                //获取虚拟键高度
+//                int actionBarHeight = getActionBarHeight(MainActivity.this);
+//                contvert = actionBarHeight + measuredHeight;
+//            } else {
+//                System.out.println("没有虚拟键");
+//                contvert = measuredHeight;
+//            }
+//
+//        }
 
-    public void getpao(){
+        super.onWindowFocusChanged(hasFocus);
+    }
+
+    public void getpao() {
         Observable<PaoBean> paoBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextpao().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         paoBeanObservable.subscribe(new Observer<PaoBean>() {
@@ -322,11 +353,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                 final String content = paoBean.rst.content;
                 final String icon = paoBean.rst.icon;
 
-                countDownTimer = new CountDownTimer(10*1000,1000) {
+                countDownTimer = new CountDownTimer(2 * 1000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        if(millisUntilFinished/1000==0){
-                            getpopshort(content,icon);
+                        if (millisUntilFinished / 1000 == 0) {
+                            getpopshort(content, icon);
                         }
                     }
 
@@ -352,33 +383,34 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         });
     }
 
-    public void getvisible(int pos){
+    public void getvisible(int pos) {
 
-        if(pos==0){
+        if (pos == 0) {
             //line.setVisibility(View.GONE);
             mTitle.setText("首页");
             headset.setVisibility(View.GONE);
-        }else if(pos==2){
+        } else if (pos == 2) {
             mTitle.setText("我的订单");
             headset.setVisibility(View.GONE);
-        }else if(pos==3){
+        } else if (pos == 3) {
             mTitle.setText("我的");
             headset.setVisibility(View.VISIBLE);
         }
     }
-    public void getvisible2(int pos){
 
-        if(pos==0){
+    public void getvisible2(int pos) {
+
+        if (pos == 0) {
             mTitle.setVisibility(View.GONE);
             line.setVisibility(View.GONE);
             //mTitle.setText("首页");
-        }else if(pos==2){
+        } else if (pos == 2) {
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("发现");
-        }else if(pos==3){
+        } else if (pos == 3) {
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("我的");
-        }else if(pos==1){
+        } else if (pos == 1) {
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("贷款");
         }
@@ -406,7 +438,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             if (currentFragment != null) {
                 transaction.hide(currentFragment);
             }
-            transaction.add(R.id.lay_container, targetFragment,targetFragment.getClass().getName());
+            transaction.add(R.id.lay_container, targetFragment, targetFragment.getClass().getName());
 
         } else {
             transaction.hide(currentFragment).show(targetFragment);
@@ -415,6 +447,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         return transaction;
 
     }
+
     private void initBottomTitle() {
         View view = mTabLayout.getTabAt(0).getCustomView();
         ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
@@ -422,6 +455,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         icon3.setImageResource(icon2.get(0));
         text.setTextColor(Color.parseColor("#FFAA48"));
     }
+
     private void initBottomTitle2() {
         View view = mTabLayout.getTabAt(0).getCustomView();
         ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
@@ -430,7 +464,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         text.setTextColor(Color.parseColor("#FFAA48"));
     }
 
-    public void cardvisible(){
+    public void cardvisible() {
 
         RemoteService service = Network.remote();
         Call<RspModel<LaunchRspModel>> call = service.getChannel(Network.channelId);
@@ -441,7 +475,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
                 RspModel<LaunchRspModel> rspModel = response.body();
 
-                if (rspModel!=null&&rspModel.success()) {
+                if (rspModel != null && rspModel.success()) {
 
                     LaunchRspModel rst = rspModel.getRst();
                     String version = rst.create_time;
@@ -459,30 +493,45 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             }
         });
     }
+
     @Override
     protected void initData() {
         super.initData();
-        position = getIntent().getIntExtra(RecordActivity.POSITION,0);
+        position = getIntent().getIntExtra(RecordActivity.POSITION, 0);
         getcarvter();
 
     }
-    public void getpopshort(String cont,String img){
+
+    public void getpopshort(String cont, String img) {
+
+        //获取屏幕宽度
+        int screenWidth = DisplayUtil.getScreenWidth();
+        int i = screenWidth / 4;
 
         View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
-        popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,true);
+        popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(false);
         popupWindow.setFocusable(false);
-        popupWindow.showAtLocation(mTabLayout, Gravity.BOTTOM,-130,120);
+        //获取自身的长宽高
+        inflate.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int popupHeight = inflate.getMeasuredHeight();
+        int popupWidth = inflate.getMeasuredWidth();
+        int i1 = (i - popupWidth) / 2;
+        contvert=i+i1;
+        //获取控件在屏幕上的位置，并赋值给location数组
+        int[] location = new int[2];
+        mTabLayout.getLocationOnScreen(location);
+        popupWindow.showAtLocation(mTabLayout, Gravity.NO_GRAVITY, contvert, location[1]-popupHeight);
 
         TextView timer = (TextView) inflate.findViewById(R.id.ggtimer);
         ImageView ggicon = (ImageView) inflate.findViewById(R.id.ggicon);
         timer.setText(cont);
         Glide.with(MainActivity.this).load(img).into(ggicon);
 
-        countDownTimer = new CountDownTimer(5*1000,1000) {
+        countDownTimer = new CountDownTimer(5 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if(millisUntilFinished/1000==0){
+                if (millisUntilFinished / 1000 == 0) {
                     popupWindow.dismiss();
                     countDownTimer.onFinish();
                 }
@@ -509,16 +558,16 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== Constant.Code.REQUEST_CODE){
-            if(resultCode== Constant.Code.RESULT_LOGINSUC_CODE){
+        if (requestCode == Constant.Code.REQUEST_CODE) {
+            if (resultCode == Constant.Code.RESULT_LOGINSUC_CODE) {
                 //登录之后
                 mTabLayout.getTabAt(0).select();
             }
         }
-        if (resultCode==2){
+        if (resultCode == 2) {
             mTabLayout.getTabAt(1).select();
 
-        }else if (resultCode==3){
+        } else if (resultCode == 3) {
             mTabLayout.getTabAt(1).select();
         }
     }
@@ -547,38 +596,39 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     icon3.setImageResource(icon.get(i));
                     text.setTextColor(getResources().getColor(R.color.textSecond));
                 }
-            } else {
-
-                if(position!=1) {
-                    if (i == position) {
-                        if(i!=1){
-                            switchFragment(list.get(i)).commit();
-                            getvisible(i);
-                            icon3.setImageResource(DataGenerator.mTabResChanelPressed[i]);
-                            text.setTextColor(Color.parseColor("#FFAA48"));
-                        }
-
-                    } else {
-                        icon3.setImageResource(DataGenerator.mTabChannelRes[i]);
-                        text.setTextColor(getResources().getColor(R.color.textSecond));
-
-
-                    }
-                }else {
-
-                    if(position==1&&i==1) {
-                        SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
-                        boolean liulang = sp.getBoolean("liulang", false);
-                        if (liulang) {
-                            Intent intent = new Intent(MainActivity.this, MyBillActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
-                            startActivityForResult(intent, Constant.Code.REQUEST_CODE);
-                        }
-                    }
-                }
             }
+//            } else {
+//
+//                if(position!=1) {
+//                    if (i == position) {
+//                        if(i!=1){
+//                            switchFragment(list.get(i)).commit();
+//                            getvisible(i);
+//                            icon3.setImageResource(DataGenerator.mTabResChanelPressed[i]);
+//                            text.setTextColor(Color.parseColor("#FFAA48"));
+//                        }
+//
+//                    } else {
+//                        icon3.setImageResource(DataGenerator.mTabChannelRes[i]);
+//                        text.setTextColor(getResources().getColor(R.color.textSecond));
+//
+//
+//                    }
+//                }else {
+//
+//                    if(position==1&&i==1) {
+//                        SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
+//                        boolean liulang = sp.getBoolean("liulang", false);
+//                        if (liulang) {
+//                            Intent intent = new Intent(MainActivity.this, MyBillActivity.class);
+//                            startActivity(intent);
+//                        } else {
+//                            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+//                            startActivityForResult(intent, Constant.Code.REQUEST_CODE);
+//                        }
+//                    }
+//                }
+//            }
 
         }
         mFragmentHelper.performClickMenu(position);
@@ -592,22 +642,8 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
-        if (checkChannel()) {
-            int position = tab.getPosition();
-            if (position == 1) {
-                SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
-                boolean liulang = sp.getBoolean("liulang", false);
-                if (liulang) {
-                    Intent intent = new Intent(MainActivity.this, MyBillActivity.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(MainActivity.this, AccountActivity.class);
-                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
-                }
-            }
-        }
-
     }
+
 
     private void setTabs(TabLayout tabLayout, LayoutInflater inflater) {
             mFragmentHelper.performClickMenu(position);
@@ -869,5 +905,41 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     public void message() {
         mTabLayout.getTabAt(2).select();
     }
+
+    /**
+     * 获取是否存在NavigationBar，是否有虚拟按钮
+     */
+    public static boolean checkDeviceHasNavigationBar(Context context) {
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+
+        }
+        return hasNavigationBar;
+
+    }
+    //获取虚拟键高度
+    public static int getActionBarHeight(Activity activity) {
+        TypedValue tv = new TypedValue();
+        if (activity.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            return TypedValue.complexToDimensionPixelSize(tv.data, activity.getResources().getDisplayMetrics());
+        }
+        return 0;
+    }
+
+
 }
 

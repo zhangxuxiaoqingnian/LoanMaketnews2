@@ -5,6 +5,7 @@ import com.smileflowpig.money.factory.bean.AllMyBean;
 import com.smileflowpig.money.factory.bean.Allbanner;
 import com.smileflowpig.money.factory.bean.CancelMyBean;
 import com.smileflowpig.money.factory.bean.CancleCollectBean;
+import com.smileflowpig.money.factory.bean.CardBean;
 import com.smileflowpig.money.factory.bean.CollectBean;
 import com.smileflowpig.money.factory.bean.CollectListBean;
 import com.smileflowpig.money.factory.bean.DaiBanner;
@@ -255,7 +256,7 @@ public interface Baseretrofit {
     //获取信用卡列表
     @POST("CreditCard/list")
     @FormUrlEncoded
-    Observable<Object> getcardlist(@Field("pageId") int id);
+    Observable<CardBean> getcardlist(@Field("pageId") int id);
 
 
 }

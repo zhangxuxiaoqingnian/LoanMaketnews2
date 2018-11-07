@@ -3,6 +3,7 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.frags.account.AccountTrigger;
@@ -76,6 +77,8 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
     @Override
     public void onLoginSuccess(boolean isSuccess) {
         if(isSuccess) {
+            Toast.makeText(AccountActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+
             sp.edit().putBoolean("liulang", true).commit();
             setResult(Constant.Code.RESULT_LOGINSUC_CODE);
             finish();

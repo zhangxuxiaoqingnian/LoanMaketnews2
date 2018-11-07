@@ -336,5 +336,4 @@ public class CreditCardFragment extends PresenterFragment<CreditcardContract.Pre
         mPresenter.SoundCode(phone);
     }
 
-
 }

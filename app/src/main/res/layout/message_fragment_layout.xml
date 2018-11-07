@@ -27,18 +27,89 @@
             />
     </android.support.v7.widget.Toolbar>
 
-    <com.stx.xhb.xbanner.XBanner
+    <RelativeLayout
         android:layout_width="355px"
         android:layout_height="122px"
-        app:AutoPlayTime="3000"
-        app:isAutoPlay="true"
-        app:pointsPosition="CENTER"
-        app:pointContainerPosition="BOTTOM"
-        app:isHandLoop="true"
-        android:layout_marginTop="16px"
-        android:id="@+id/mess_banner"
+        android:layout_marginTop="12px"
         >
-    </com.stx.xhb.xbanner.XBanner>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/messimage"
+            android:scaleType="fitXY"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50px"
+            android:orientation="horizontal"
+            android:layout_marginTop="19px"
+            android:layout_marginLeft="14px"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/mess_day"
+                android:layout_width="44px"
+                android:layout_height="match_parent"
+                android:textSize="36px"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="09"
+                />
+            <View
+                android:layout_width="1px"
+                android:layout_height="39px"
+                android:background="#ffffff"
+                android:layout_marginLeft="6px"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="9px"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:id="@+id/mess_orgin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="星期三"
+                    android:textColor="#ffffff"
+                    android:textSize="12px"
+                    />
+                <TextView
+                    android:id="@+id/mess_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2018年11月"
+                    android:textColor="#ffffff"
+                    android:textSize="12px"
+                    android:layout_marginTop="6px"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/messtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="肯德基付款是了"
+            android:textSize="15px"
+            android:textColor="#ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="14px"
+            android:layout_marginBottom="16px"
+            />
+        <ImageView
+            android:layout_width="22px"
+            android:layout_height="55px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="26px"
+            android:layout_marginTop="12px"
+            android:src="@mipmap/day_sign"
+            />
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="355px"

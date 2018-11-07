@@ -31,7 +31,7 @@
 
 
      <style name="SplashTheme" parent="AppTheme">
-         <item name="android:windowBackground">@mipmap/bg_welcome_pig</item>
+         <item name="android:windowBackground">@mipmap/bg_welcome_flow</item>
          <item name="android:windowFullscreen">true</item>
          <item name="android:windowIsTranslucent">false</item>
      </style>
