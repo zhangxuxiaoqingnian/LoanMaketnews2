@@ -449,19 +449,25 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
 //                    //shangchuan(file);
 ///
 //                }
-                    if (data != null) {
-                        if (data.hasExtra("data")) {
-                            Log.i("URI", "data is not null");
-                            Bitmap bitmap = data.getParcelableExtra("data");
-                            icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
-                        }
-                    } else {
-                        Log.i("URI", "Data is null");
+                    try {
+
+                        if (data != null) {
+                            if (data.hasExtra("data")) {
+                                Log.i("URI", "data is not null");
+                                Bitmap bitmap = data.getParcelableExtra("data");
+                                icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
+                            }
+                        } else {
+                            Log.i("URI", "Data is null");
 //                        Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath());
-                        Glide.with(MySetTwoActivity.this).load(fileUri.getPath()).error(R.mipmap.loginicon).into(icon);
+                            Glide.with(MySetTwoActivity.this).load(fileUri.getPath()).error(R.mipmap.loginicon).into(icon);
 //                        icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
-                        fileover = new File(fileUri.getPath());
+                            fileover = new File(fileUri.getPath());
+                        }
+                    }catch (Exception e){
+
                     }
+
 
                 }
                 break;
