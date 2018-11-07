@@ -335,7 +335,6 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     private Uri fileUri;
 
     private void gotoCamera() {
-        Log.d("evan", "*****************打开相机********************");
 
         if (cameraIsCanUse()) {
 //            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

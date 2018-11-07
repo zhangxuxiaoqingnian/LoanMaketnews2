@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/sharelayout"
+    android:background="#ffffff"
     tools:context="com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity">
 
     <android.support.v7.widget.Toolbar
