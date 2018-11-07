@@ -185,11 +185,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         Manifest.permission.READ_CALENDAR,
                         Manifest.permission.READ_CALL_LOG,
                         Manifest.permission.READ_CONTACTS,
-                        Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.READ_SMS,
                         Manifest.permission.RECORD_AUDIO,
                         Manifest.permission.CAMERA,
-                        Manifest.permission.CALL_PHONE,
                         Manifest.permission.SEND_SMS)
                 .subscribe(new io.reactivex.functions.Consumer<Permission>() {
                     @Override

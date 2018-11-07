@@ -61,7 +61,7 @@ public class FourFragment extends PresenterFragment implements OnRefreshLoadmore
     }
     public void getdata(){
 
-        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "0", page).subscribeOn(Schedulers.io())
+        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "3", page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         messageBeanObservable.subscribe(new Observer<MessageBean>() {
             @Override

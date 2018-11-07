@@ -26,10 +26,9 @@
         android:layout_height="6px"
         android:background="#F5F4F9"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20px"
+        android:layout_height="20dp"
         android:orientation="horizontal"
         android:background="#ffffff"
         android:gravity="center"
@@ -65,7 +64,6 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11px"
         android:id="@+id/indentrv"
         />
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter

@@ -55,7 +55,6 @@
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="09"
                 />
             <View
                 android:layout_width="1px"
@@ -74,7 +73,6 @@
                     android:id="@+id/mess_orgin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="星期三"
                     android:textColor="#ffffff"
                     android:textSize="12px"
                     />
@@ -82,7 +80,6 @@
                     android:id="@+id/mess_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2018年11月"
                     android:textColor="#ffffff"
                     android:textSize="12px"
                     android:layout_marginTop="6px"
@@ -93,12 +90,15 @@
             android:id="@+id/messtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="肯德基付款是了"
             android:textSize="15px"
             android:textColor="#ffffff"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="14px"
+            android:layout_marginRight="14px"
             android:layout_marginBottom="16px"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
             />
         <ImageView
             android:layout_width="22px"

@@ -59,7 +59,7 @@ public class ThreeFragment extends PresenterFragment implements OnRefreshLoadmor
     }
     public void getdata(){
 
-        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "0", page).subscribeOn(Schedulers.io())
+        Observable<MessageBean> messageBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextlist("1", "2", page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         messageBeanObservable.subscribe(new Observer<MessageBean>() {
             @Override
