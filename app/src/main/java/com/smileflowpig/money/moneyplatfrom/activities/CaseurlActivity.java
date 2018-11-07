@@ -1,13 +1,18 @@
 package com.smileflowpig.money.moneyplatfrom.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -17,6 +22,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -26,6 +32,7 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 
 import butterknife.BindView;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
@@ -33,8 +40,14 @@ import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.net.Network;
 import com.smileflowpig.money.factory.util.SPUtil;
 
-public class CaseurlActivity extends PresenterActivity implements View.OnClickListener{
+import org.json.JSONException;
+import org.json.JSONObject;
 
+public class CaseurlActivity extends PresenterActivity implements View.OnClickListener {
+
+
+    private final String TEST_URL = "http://bw.quyaqu.com/xiaohuazhu/information.html?";
+    private final String ONLINE_URL = "https://m.henhaojie.com/xiaohuazhu/information.html?";
     @BindView(R.id.case_wv)
     WebView wv;
     @BindView(R.id.casename)
@@ -52,6 +65,10 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     private String strurl;
     private String urlid;
 
+
+    private String shareTitle = null;
+    private String shareCotnent = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +81,10 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         case_back.setOnClickListener(this);
         share.setOnClickListener(this);
 //       SharedPreferences sharedPreferences = getSharedPreferences("Logintype", Context.MODE_PRIVATE);
-       String sessionid = (String) SPUtil.get(this, Constant.UserInfo.SESSIONID,"");
-       String channelId = Network.channelId;
+        String sessionid = (String) SPUtil.get(this, Constant.UserInfo.SESSIONID, "");
+        String channelId = Network.channelId;
 
-       //casename.setText(urlname);
+        //casename.setText(urlname);
         wv.getSettings().setUseWideViewPort(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setDisplayZoomControls(true);
@@ -77,37 +94,22 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         wv.getSettings().setSupportZoom(true);
         wv.getSettings().setLoadWithOverviewMode(true);
         wv.getSettings().setBlockNetworkImage(false);
+        wv.addJavascriptInterface(new ShareJavaScriptInterface(this), "messageHandlers");
         //wv.setLayerType(View.LAYER_TYPE_HARDWARE,null);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             wv.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
         wv.goBack(); //后退
         wv.goForward();//前进
         wv.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         wv.setWebViewClient(new WebViewClient() {
-             public boolean shouldOverrideUrlLoading(WebView view, String url)
-               { //  重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
-                  view.loadUrl(url);
-                  return true;
-               }
-         });
-
-        wv.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-                if(view.getTitle().equals("资讯")){
-
-                    casename.setVisibility(View.VISIBLE);
-                    share.setVisibility(View.VISIBLE);
-                }else {
-                    casename.setVisibility(View.GONE);
-                    share.setVisibility(View.GONE);
-                }
-
+            public boolean shouldOverrideUrlLoading(WebView view, String url) { //  重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
+                view.loadUrl(url);
+                return true;
             }
         });
+
+        wv.setWebViewClient(new WebViewClient());
 
         wv.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -126,8 +128,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 
         //资讯h5
         //https://m.henhaojie.com/xiaohuazhu/information.html?id=3&view_num=1&sessionid=fdhof410su74rraob9matto0r4
-        strurl = "https://m.henhaojie.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid;
-//        wv.loadUrl("http://bw.quyaqu.com/xiaohuazhu/information.html?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
+        strurl = ONLINE_URL + "id=" + urlid + "&view_num=" + urlname + "&sessionid=" + sessionid;
+//        wv.loadUrl("?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
         wv.loadUrl(strurl);
 
         //第一版被抛弃的小花猪
@@ -144,6 +146,72 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 
     }
 
+
+    private void showShareBtn() {
+        if (!TextUtils.isEmpty(shareTitle) && !TextUtils.isEmpty(shareCotnent)) {
+            share.setVisibility(View.VISIBLE);
+//            share.setTextColor(Color.BLUE);
+        } else {
+            share.setVisibility(View.INVISIBLE);
+//            share.setTextColor(Color.BLACK);
+        }
+    }
+
+    final class ShareJavaScriptInterface {
+        Context context;
+
+        public ShareJavaScriptInterface(Context c) {
+            this.context = c;
+        }
+
+
+        /**
+         * 获取webviewtitle和cotnent
+         *
+         * @param json
+         */
+        @JavascriptInterface
+        public void webViewTitleContent(String json) {
+//            ToastUtil.show(context, "分享微信");
+            JSONObject jsonObject = null;
+            Log.e("currentThread",Thread.currentThread().toString());
+            try {
+                jsonObject = new JSONObject(json);
+                shareTitle = jsonObject.getString("title");
+//                shareCotnent = getContent(jsonObject.getString("desc"));
+                shareCotnent = jsonObject.getString("desc");
+                showShareBtn();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+
+
+    private String getContent(String content) {
+        if (TextUtils.isEmpty(content)) {
+            return null;
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        boolean isStartLab = false;
+        for (int i = 0; i < content.length(); i++) {
+            String c = String.valueOf(content.charAt(i));
+            if (c.equals("<")) {
+                isStartLab = true;
+            }
+            if (!isStartLab) {
+                stringBuffer.append(c);
+            }
+            if (c.equals(">")) {
+                isStartLab = false;
+            }
+        }
+        return stringBuffer.toString();
+    }
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_caseurl;
@@ -156,11 +224,11 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.case_back:
-                if(wv.canGoBack()){
+                if (wv.canGoBack()) {
                     wv.goBack();
-                }else {
+                } else {
                     finish();
                 }
                 break;
@@ -170,14 +238,14 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         }
     }
 
-    public void getsharepopwindow(){
+    public void getsharepopwindow() {
 
         View inflate = LayoutInflater.from(CaseurlActivity.this).inflate(R.layout.activity_share_popup, null, false);
-        final PopupWindow popupWindow=new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         popupWindow.setAnimationStyle(R.style.pop_anim);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+        popupWindow.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
         light(0.8f);
 
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -198,8 +266,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 
 //                UMImage image = new UMImage(CaseurlActivity.this, "");
                 UMWeb web = new UMWeb(strurl);
-                web.setTitle("测试");
-                web.setDescription("测试地址");
+                web.setTitle(shareTitle);
+                web.setDescription(shareCotnent);
                 web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_flowpig));
                 new ShareAction(CaseurlActivity.this)
                         .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)//传入平台
@@ -233,8 +301,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 UMWeb web = new UMWeb(strurl);
-                web.setTitle("测试");
-                web.setDescription("测试地址");
+                web.setTitle(shareTitle);
+                web.setDescription(shareCotnent);
                 web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_flowpig));
                 new ShareAction(CaseurlActivity.this)
                         .setPlatform(SHARE_MEDIA.WEIXIN)//传入平台
@@ -272,7 +340,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         });
 
     }
-    public void light(float t){
+
+    public void light(float t) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = t;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
@@ -282,27 +351,28 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     private UMShareListener umShareListener = new UMShareListener() {
         @Override
         public void onStart(SHARE_MEDIA share_media) {
-            Toast.makeText(CaseurlActivity.this,"开始分享",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CaseurlActivity.this, "开始分享", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onResult(SHARE_MEDIA share_media) {
 
-            Toast.makeText(CaseurlActivity.this,"分享成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CaseurlActivity.this, "分享成功", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onError(SHARE_MEDIA share_media, Throwable throwable) {
 
-            Toast.makeText(CaseurlActivity.this,"分享失败",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CaseurlActivity.this, "分享失败", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onCancel(SHARE_MEDIA share_media) {
 
-            Toast.makeText(CaseurlActivity.this,"分享取消",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CaseurlActivity.this, "分享取消", Toast.LENGTH_SHORT).show();
         }
     };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -53,6 +53,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.widget.AdDialog;
@@ -69,6 +70,7 @@ import com.smileflowpig.money.factory.net.RemoteService;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.factory.presenter.home.MainContract;
 import com.smileflowpig.money.factory.presenter.home.MainPresenter;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,7 +87,7 @@ import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabChan
 import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
-        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View,HuaHomeFragment.OnDaikuanClickListener,PigHomeFragment.Alldatacont{
+        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View, HuaHomeFragment.OnDaikuanClickListener, PigHomeFragment.Alldatacont {
     @BindView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.lay_container)
@@ -144,12 +146,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     private List<String> cx;
     private SharedPreferences sp;
     private String credit_hidden;
-    private  Fragment  currentFragment=new Fragment();
+    private Fragment currentFragment = new Fragment();
     private List<Fragment> list;
     private SelfDialog selfDialog;
     private boolean liulang2;
     private List<Fragment> list2;
-    private int mPosition=0;
+    private int mPosition = 0;
     private int position;
     private CountDownTimer countDownTimer;
     private PopupWindow popupWindow;
@@ -221,7 +223,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     }
 
-    public void getcarvter(){
+    public void getcarvter() {
 
         mFragmentHelper = new FragmentHelper(this, R.id.lay_container,
                 getSupportFragmentManager(), this);
@@ -238,7 +240,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
             list2 = new ArrayList<>();
             //保留一份
-  //         list2.add(new HuaHomeFragment());
+            //         list2.add(new HuaHomeFragment());
 //            list2.add(new NewSearchFragment());
 //            list2.add(new ActiveFragment());
 //            list2.add(new NewMineFragment());
@@ -277,13 +279,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 //            }
 
 
-
-
-
         } else {
-     //      mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(ExaimeNewFragment.class, R.string.title_quick))
+            //      mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(ExaimeNewFragment.class, R.string.title_quick))
 //                    .add(1, new FragmentHelper.Tab<Integer>(ExpertFragment.class, R.string.title_special))
-     //               .add(2, new FragmentHelper.Tab<Integer>(Calculate2Fragment.class, R.string.title_cal))
+            //               .add(2, new FragmentHelper.Tab<Integer>(Calculate2Fragment.class, R.string.title_cal))
 //                    .add(3, new FragmentHelper.Tab<Integer>(MineFragment.class, R.string.title_mine));
 
 
@@ -301,14 +300,13 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             mPresenter.start();
 
 
-
         }
         //添加底部导航的监听
         mTabLayout.addOnTabSelectedListener(this);
     }
 
 
-    public void getpao(){
+    public void getpao() {
         Observable<PaoBean> paoBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettextpao().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         paoBeanObservable.subscribe(new Observer<PaoBean>() {
@@ -322,11 +320,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                 final String content = paoBean.rst.content;
                 final String icon = paoBean.rst.icon;
 
-                countDownTimer = new CountDownTimer(10*1000,1000) {
+                countDownTimer = new CountDownTimer(10 * 1000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        if(millisUntilFinished/1000==0){
-                            getpopshort(content,icon);
+                        if (millisUntilFinished / 1000 == 0) {
+                            getpopshort(content, icon);
                         }
                     }
 
@@ -352,33 +350,34 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         });
     }
 
-    public void getvisible(int pos){
+    public void getvisible(int pos) {
 
-        if(pos==0){
+        if (pos == 0) {
             //line.setVisibility(View.GONE);
             mTitle.setText("首页");
             headset.setVisibility(View.GONE);
-        }else if(pos==2){
+        } else if (pos == 2) {
             mTitle.setText("我的订单");
             headset.setVisibility(View.GONE);
-        }else if(pos==3){
+        } else if (pos == 3) {
             mTitle.setText("我的");
             headset.setVisibility(View.VISIBLE);
         }
     }
-    public void getvisible2(int pos){
 
-        if(pos==0){
+    public void getvisible2(int pos) {
+
+        if (pos == 0) {
             mTitle.setVisibility(View.GONE);
             line.setVisibility(View.GONE);
             //mTitle.setText("首页");
-        }else if(pos==2){
+        } else if (pos == 2) {
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("发现");
-        }else if(pos==3){
+        } else if (pos == 3) {
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("我的");
-        }else if(pos==1){
+        } else if (pos == 1) {
             mTitle.setVisibility(View.VISIBLE);
             mTitle.setText("贷款");
         }
@@ -406,7 +405,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             if (currentFragment != null) {
                 transaction.hide(currentFragment);
             }
-            transaction.add(R.id.lay_container, targetFragment,targetFragment.getClass().getName());
+            transaction.add(R.id.lay_container, targetFragment, targetFragment.getClass().getName());
 
         } else {
             transaction.hide(currentFragment).show(targetFragment);
@@ -415,6 +414,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         return transaction;
 
     }
+
     private void initBottomTitle() {
         View view = mTabLayout.getTabAt(0).getCustomView();
         ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
@@ -422,6 +422,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         icon3.setImageResource(icon2.get(0));
         text.setTextColor(Color.parseColor("#FFAA48"));
     }
+
     private void initBottomTitle2() {
         View view = mTabLayout.getTabAt(0).getCustomView();
         ImageView icon3 = (ImageView) view.findViewById(R.id.tab_content_image);
@@ -430,7 +431,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         text.setTextColor(Color.parseColor("#FFAA48"));
     }
 
-    public void cardvisible(){
+    public void cardvisible() {
 
         RemoteService service = Network.remote();
         Call<RspModel<LaunchRspModel>> call = service.getChannel(Network.channelId);
@@ -441,7 +442,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
                 RspModel<LaunchRspModel> rspModel = response.body();
 
-                if (rspModel!=null&&rspModel.success()) {
+                if (rspModel != null && rspModel.success()) {
 
                     LaunchRspModel rst = rspModel.getRst();
                     String version = rst.create_time;
@@ -459,30 +460,32 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             }
         });
     }
+
     @Override
     protected void initData() {
         super.initData();
-        position = getIntent().getIntExtra(RecordActivity.POSITION,0);
+        position = getIntent().getIntExtra(RecordActivity.POSITION, 0);
         getcarvter();
 
     }
-    public void getpopshort(String cont,String img){
+
+    public void getpopshort(String cont, String img) {
 
         View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
-        popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT,true);
+        popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(false);
         popupWindow.setFocusable(false);
-        popupWindow.showAtLocation(mTabLayout, Gravity.BOTTOM,-130,120);
+        popupWindow.showAtLocation(mTabLayout, Gravity.BOTTOM, -130, 120);
 
         TextView timer = (TextView) inflate.findViewById(R.id.ggtimer);
         ImageView ggicon = (ImageView) inflate.findViewById(R.id.ggicon);
         timer.setText(cont);
         Glide.with(MainActivity.this).load(img).into(ggicon);
 
-        countDownTimer = new CountDownTimer(5*1000,1000) {
+        countDownTimer = new CountDownTimer(5 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if(millisUntilFinished/1000==0){
+                if (millisUntilFinished / 1000 == 0) {
                     popupWindow.dismiss();
                     countDownTimer.onFinish();
                 }
@@ -509,16 +512,16 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== Constant.Code.REQUEST_CODE){
-            if(resultCode== Constant.Code.RESULT_LOGINSUC_CODE){
+        if (requestCode == Constant.Code.REQUEST_CODE) {
+            if (resultCode == Constant.Code.RESULT_LOGINSUC_CODE) {
                 //登录之后
                 mTabLayout.getTabAt(0).select();
             }
         }
-        if (resultCode==2){
+        if (resultCode == 2) {
             mTabLayout.getTabAt(1).select();
 
-        }else if (resultCode==3){
+        } else if (resultCode == 3) {
             mTabLayout.getTabAt(1).select();
         }
     }
@@ -549,9 +552,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                 }
             } else {
 
-                if(position!=1) {
+                if (position != 1) {
                     if (i == position) {
-                        if(i!=1){
+                        if (i != 1) {
                             switchFragment(list.get(i)).commit();
                             getvisible(i);
                             icon3.setImageResource(DataGenerator.mTabResChanelPressed[i]);
@@ -564,9 +567,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
 
                     }
-                }else {
+                } else {
 
-                    if(position==1&&i==1) {
+                    if (position == 1 && i == 1) {
                         SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
                         boolean liulang = sp.getBoolean("liulang", false);
                         if (liulang) {
@@ -610,7 +613,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     }
 
     private void setTabs(TabLayout tabLayout, LayoutInflater inflater) {
-            mFragmentHelper.performClickMenu(position);
+        mFragmentHelper.performClickMenu(position);
         //修改底部标题栏
         if (checkChannel()) {
 
@@ -664,19 +667,18 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         } else {
             mLayAppbar.setVisibility(View.VISIBLE);
             line.setVisibility(View.VISIBLE);
-       }
-        if(checkChannel()){
-            if(newTab.extra.equals(R.string.title_mine)){
+        }
+        if (checkChannel()) {
+            if (newTab.extra.equals(R.string.title_mine)) {
                 timemore.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 timemore.setVisibility(View.GONE);
             }
-        }else {
+        } else {
 
             line.setVisibility(View.GONE);
 
         }
-
 
 
         Log.e(TAG, newTab.extra + "");
@@ -684,7 +686,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         timemore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,MessageActivity.class);
+                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
                 startActivity(intent);
             }
         });
@@ -717,7 +719,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     if (rspAdModel.getData().getProduct_id().equals("0")) {
                         WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
                     } else {
-                       DetailActivity.show(MainActivity.this, product_id,"homeAd",0);
+                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0);
                     }
                     adDialog.dismiss();
                 } else {

@@ -32,6 +32,7 @@ import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.bean.CancleCollectBean;
 import com.smileflowpig.money.factory.bean.CollectListBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 public class MyCollectActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener{
 
@@ -147,6 +148,7 @@ public class MyCollectActivity extends PresenterActivity implements View.OnClick
                                     checkBox.setChecked(false);
                                 }
                             }else {
+                                MobclickAgent.onEvent(MyCollectActivity.this,"mineCollectInto");
                                 DetailActivity.show(MyCollectActivity.this, list2.get(pos).id+"","notice",0);
 
                             }

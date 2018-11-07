@@ -27,6 +27,7 @@ import butterknife.BindView;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
+import com.umeng.analytics.MobclickAgent;
 
 public class RecordActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
@@ -76,6 +77,7 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
             daiAdapter.setItemposition(new DaiAdapter3.getItemposition() {
                 @Override
                 public void success(int pos) {
+                    MobclickAgent.onEvent(RecordActivity.this,"mineBrowseList");
                     DetailActivity.show(RecordActivity.this, limits.get(pos).productid+"","notice",0);
                 }
 
