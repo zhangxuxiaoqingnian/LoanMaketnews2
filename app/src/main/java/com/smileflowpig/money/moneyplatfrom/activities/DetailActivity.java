@@ -60,6 +60,7 @@ import com.smileflowpig.money.factory.presenter.detail.DetailContract;
 import com.smileflowpig.money.factory.presenter.detail.DetailPresenter;
 import com.smileflowpig.money.factory.util.LoginUtil;
 import com.smileflowpig.money.factory.util.SPUtil;
+import com.umeng.analytics.MobclickAgent;
 
 
 //产品详情页
@@ -79,6 +80,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private String mProductId;
     //入口
     private String enter_source;
+    private int convert;
     //产品Name
     private String mProductName;
     //产品icon
@@ -133,6 +135,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private TextView cancle;
     private AlertFragment alertFragment;
     private ImageView quality;
+    private int pricessid;
 
 
     @Override
@@ -193,13 +196,14 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      *
      * @param context context
      */
-    public static void show(Context context, String id, String type_channel,int num) {
+    public static void show(Context context, String id, String type_channel,int num,int convert) {
 
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(PRODUCT_ID, id);
         intent.putExtra(TYPE_CHANNEL, type_channel);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("Lang",num);
+        intent.putExtra("pricessid",convert);
         context.startActivity(intent);
 
 
@@ -229,6 +233,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         enter_source = bundle.getString(TYPE_CHANNEL);
         flag = bundle.getString(PRODUCT_FLAG);
         lang = bundle.getInt("Lang");
+        pricessid = bundle.getInt("pricessid", -1);
         return !TextUtils.isEmpty(mProductId);
 
     }
@@ -604,6 +609,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             if(iscont){
                 //进行收藏
                 getcollect(num);
+                MobclickAgent.onEvent(DetailActivity.this, "collectClick");
             }else {
                 //取消收藏
                 String[] arr=new String[]{num};
@@ -612,6 +618,50 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
                 getnocollect(list);
             }
         }else {
+            if(pricessid==1){
+               //快借
+                MobclickAgent.onEvent(DetailActivity.this, "homeFastKindApply");
+            }else if(pricessid==2){
+                //最新口子
+                MobclickAgent.onEvent(DetailActivity.this, "homeFreshKindApply");            }
+            else if(pricessid==3){
+                //一定借到
+                MobclickAgent.onEvent(DetailActivity.this, "homeMastKindApply");            }
+            else if(pricessid==4){
+                //公告
+                MobclickAgent.onEvent(DetailActivity.this, "noticeApply");
+            }
+            else if(pricessid==5){
+                //viewpager
+                MobclickAgent.onEvent(DetailActivity.this, "homeRecommendTurnsApply");
+            }
+            else if(pricessid==6){
+                //banner
+                MobclickAgent.onEvent(DetailActivity.this, "homeBannerApply");
+            }else if(pricessid==7){
+                //热门平台
+                MobclickAgent.onEvent(DetailActivity.this, "homeHotLoanLIstApply");
+            }
+            else if(pricessid==8){
+                //贷款列表
+                MobclickAgent.onEvent(DetailActivity.this, "loanListApply");
+            }
+            else if(pricessid==9){
+                //我的收藏列表
+                MobclickAgent.onEvent(DetailActivity.this, "minecollectListApply");
+            }
+            else if(pricessid==10){
+                //我的足迹列表
+                MobclickAgent.onEvent(DetailActivity.this, "mineBrowseListApply");
+            }
+            else if(pricessid==11){
+                //首页消息
+                MobclickAgent.onEvent(DetailActivity.this, "homeNewsApply");
+            }
+            else if(pricessid==12){
+                //我的消息
+                MobclickAgent.onEvent(DetailActivity.this, "mineNewsApply");
+            }
             WebActivity.show(this, mProductDetail.getName(),
                     mProductDetail.getLink(), mProductDetail.getId(), id, "0",ispop);
         }

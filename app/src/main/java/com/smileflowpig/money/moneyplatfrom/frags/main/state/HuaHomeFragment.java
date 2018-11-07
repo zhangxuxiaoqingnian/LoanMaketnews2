@@ -219,7 +219,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                     @Override
                     public void success(int pos) {
 
-                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0);
+                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0,20);
                     }
                 });
             }
@@ -258,7 +258,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 loseAdapter.SetItemposition(new LoseAdapter.Getitempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(getActivity(), data.get(pos).id,"notice",0);
+                        DetailActivity.show(getActivity(), data.get(pos).id,"notice",0,20);
 
                     }
                 });
@@ -330,7 +330,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                     @Override
                     public void successover(int pos) {
 
-                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0);
+                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0,20);
 
                     }
                 });
@@ -369,7 +369,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                     @Override
                     public void successover(int pos) {
 
-                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0);
+                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0,20);
 
                     }
                 });
@@ -447,7 +447,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                     @Override
                     public void successover(int pos) {
 
-                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0);
+                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0,20);
 
                     }
                 });
@@ -525,7 +525,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
                             @Override
                             public void onItemClick(XBanner banner, Object model,View view, int position) {
-                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0);
+                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0,20);
                             }
                         });
 

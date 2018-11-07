@@ -32,6 +32,7 @@ import com.smileflowpig.money.factory.bean.TabBean;
 import com.smileflowpig.money.factory.net.Network;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
+import com.umeng.analytics.MobclickAgent;
 
 public class TableActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
@@ -114,6 +115,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
                     @Override
                     public void success(int pos) {
 
+                        MobclickAgent.onEvent(TableActivity.this, "homeCreditCardApply");
                         WebActivity.show(TableActivity.this, list2.get(pos).name,
                                 list2.get(pos).url);
                     }
@@ -166,7 +168,15 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
                 tabAdapter.setItempostion(new TabAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0);
+                        if(title.equals("快借1500")){
+                            DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0,1);
+                        }else if(title.equals("最新口子")){
+                            DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0,2);
+
+                        }else if(title.equals("一定借到钱")){
+                            DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0,3);
+
+                        }
 
                     }
                 });

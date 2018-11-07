@@ -586,7 +586,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
             H5Model data = gson.fromJson(message,H5Model.class);
             Log.e(TAG,message);
             if(data.getType().equals("0")){
-                DetailActivity.show(WebActivity.this,data.getProduct_id(),enter_type,0);
+                DetailActivity.show(WebActivity.this,data.getProduct_id(),enter_type,0,20);
             }else{
                 show(WebActivity.this,null,data.getLink(),data.getProduct_id(),data.getType());
             }

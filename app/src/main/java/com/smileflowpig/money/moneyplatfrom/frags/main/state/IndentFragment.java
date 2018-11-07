@@ -32,6 +32,7 @@ import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.DaiBanner;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/10/18.
@@ -108,6 +109,16 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
                 typeadapter.notifyDataSetChanged();
                 getdata(list2.get(pos));
                 type=list2.get(pos);
+
+                if(pos==0){
+                    MobclickAgent.onEvent(getActivity(), "loanVocationAll");
+                }else if(pos==1){
+                    MobclickAgent.onEvent(getActivity(), "loanVocationWork");
+                }else if(pos==2){
+                    MobclickAgent.onEvent(getActivity(), "loanVocationSelf");
+                }else if(pos==3){
+                    MobclickAgent.onEvent(getActivity(), "loanVocationCompany");
+                }
             }
         });
 
@@ -145,7 +156,7 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
                 serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0);
+                        DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0,8);
                     }
                 });
             }

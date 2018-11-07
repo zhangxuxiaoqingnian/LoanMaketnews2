@@ -33,6 +33,7 @@ import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.model.db.User;
 import com.smileflowpig.money.factory.presenter.account.LoginContract;
 import com.smileflowpig.money.factory.presenter.account.LoginPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 public class NewLoginFragment extends PresenterFragment<LoginContract.Presenter>
         implements LoginContract.View, TabLayout.OnTabSelectedListener {
@@ -342,11 +343,13 @@ TextView pwd_tv;
             String password = mPassword.getText().toString();
             // 调用P层进行登录
             mPresenter.login(phone, password);
+            MobclickAgent.onEvent(getActivity(), "loginPassword");
         } else {
             String phone = mPhone.getText().toString();
             String code = mPassword.getText().toString();
             // 调用P层进行登录
             mPresenter.loginByCode(phone, code);
+            MobclickAgent.onEvent(getActivity(), "loginVerCode");
         }
 
     }

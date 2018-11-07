@@ -76,6 +76,8 @@ import com.smileflowpig.money.factory.net.RemoteService;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.factory.presenter.home.MainContract;
 import com.smileflowpig.money.factory.presenter.home.MainPresenter;
+import com.umeng.analytics.MobclickAgent;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -592,6 +594,15 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     getvisible2(i);
                     icon3.setImageResource(icon2.get(i));
                     text.setTextColor(Color.parseColor("#FFAA48"));
+                    if(i==0){
+                        MobclickAgent.onEvent(MainActivity.this, "homeTab");
+                    }else if(i==1){
+                        MobclickAgent.onEvent(MainActivity.this, "loanTab");
+                    }else if(i==2){
+                        MobclickAgent.onEvent(MainActivity.this, "informTab");
+                    }else if(i==3){
+                        MobclickAgent.onEvent(MainActivity.this, "mineTab");
+                    }
                 } else {
                     icon3.setImageResource(icon.get(i));
                     text.setTextColor(getResources().getColor(R.color.textSecond));
@@ -753,7 +764,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     if (rspAdModel.getData().getProduct_id().equals("0")) {
                         WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
                     } else {
-                       DetailActivity.show(MainActivity.this, product_id,"homeAd",0);
+                       DetailActivity.show(MainActivity.this, product_id,"homeAd",0,15);
                     }
                     adDialog.dismiss();
                 } else {

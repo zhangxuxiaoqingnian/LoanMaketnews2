@@ -33,6 +33,7 @@ import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.MessBannerBean;
 import com.smileflowpig.money.factory.bean.MessTypeBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/11/4.
@@ -87,6 +88,7 @@ public class MessageFragment extends PresenterFragment {
     }
        messdata.setText(nian+"年"+(mMonth+1)+"月");
        orgin.setText(week);
+
 
     }
 

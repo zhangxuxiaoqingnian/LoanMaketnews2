@@ -17,6 +17,7 @@ import java.util.List;
 
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.factory.bean.CollectListBean;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/10/19.
@@ -82,6 +83,7 @@ public class DaiAdapter extends RecyclerView.Adapter<DaiAdapter.MyViewHolder> {
             @Override
             public void onClick(View v) {
 
+                MobclickAgent.onEvent(context, "mineCollectApply");
                 WebActivity.show(context, list.get(position).name,
                         list.get(position).link, list.get(position).id+"","","0",false);
             }

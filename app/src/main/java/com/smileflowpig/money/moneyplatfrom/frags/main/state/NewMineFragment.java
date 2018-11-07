@@ -9,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,19 +18,24 @@ import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.activities.AccountActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.BillManagerActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.FeedbackActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MyCollectActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MySetTwoActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.RadiersActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.RecordActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.SetActivity;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.model.db.User;
 import com.smileflowpig.money.factory.presenter.state.StateContract;
 import com.smileflowpig.money.factory.presenter.state.StatePresenter;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/10/24.
@@ -55,6 +61,9 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     private String mytype;
     private RelativeLayout layout;
     private SharedPreferences sharedPreferences;
+
+    @BindView(R.id.fragment_mine_message_img)
+    ImageView message_img;
 
     @Nullable
     @Override
@@ -83,6 +92,12 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         feenback = (RelativeLayout) inflate.findViewById(R.id.my_feenback);
         set = (RelativeLayout) inflate.findViewById(R.id.my_set);
         layout = (RelativeLayout) inflate.findViewById(R.id.mine_layout);
+        message_img = (ImageView) inflate.findViewById(R.id.fragment_mine_message_img);
+        message_img.setOnClickListener(this);
+        login.setOnClickListener(this);
+        loginicon.setOnClickListener(this);
+        inflate.findViewById(R.id.mine_data).setOnClickListener(this);
+        inflate.findViewById(R.id.mine_data).setOnClickListener(this);
         //login.setOnClickListener(this);
         collect.setOnClickListener(this);
         record.setOnClickListener(this);
@@ -137,6 +152,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 
     }
 
+
     @Override
     public void setNoLogin() {
         login.setText("注册/登录");
@@ -159,7 +175,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     public void onClick(View v) {
         switch (v.getId()) {
             //登录
-            case R.id.mine_layout:
+            case R.id.mine_data:
                 if (flag == 0) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
@@ -174,6 +190,26 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     //把现有的信息传过去展示
                     startActivity(intent);
                 }
+
+                MobclickAgent.onEvent(getActivity(), "mineData");
+                break;
+            case R.id.mine_icon:
+            case R.id.mine_login:
+                if (flag == 0) {
+                    //未登录  跳转到登录页面
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
+                } else {
+                    //进入更换信息页面
+                    Intent intent = new Intent(getActivity(), MySetTwoActivity.class);
+                    intent.putExtra("loginicon", myiconurl);
+                    intent.putExtra("loginname", myname);
+                    intent.putExtra("loginsex", mysex);
+                    intent.putExtra("loginindent", mytype);
+                    //把现有的信息传过去展示
+                    startActivity(intent);
+                }
+
                 break;
             //我的收藏
             case R.id.my_collect:
@@ -184,11 +220,13 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     Intent intent = new Intent(getActivity(), MyCollectActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
                 }
+                MobclickAgent.onEvent(getActivity(), "mineCollectInto");
                 break;
             //我的足迹
             case R.id.my_record:
                 Intent intent1 = new Intent(getActivity(), RecordActivity.class);
                 startActivityForResult(intent1, Constant.Code.REQUEST_CODE);
+                MobclickAgent.onEvent(getActivity(), "mineBrowseInto");
                 break;
             //还款备忘录
             case R.id.my_forget:
@@ -199,11 +237,13 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     Intent intent2 = new Intent(getActivity(), BillManagerActivity.class);
                     startActivity(intent2);
                 }
+                MobclickAgent.onEvent(getActivity(), "mineMemoInto");
 
                 break;
             //常见问题
             case R.id.my_question:
                 RadiersActivity.show(getActivity());
+                MobclickAgent.onEvent(getActivity(), "mineQuestionInto");
                 break;
             //意见反馈
             case R.id.my_feenback:
@@ -214,7 +254,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     Intent intent = new Intent(getActivity(), FeedbackActivity.class);
                     startActivity(intent);
                 }
-
+                MobclickAgent.onEvent(getActivity(), "mineFeedbackInto");
                 break;
             //设置
             case (R.id.my_set):
@@ -224,7 +264,12 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 } else {
                     SetActivity.show(getContext());
                 }
-
+                MobclickAgent.onEvent(getActivity(), "mineSetting");
+                break;
+            case R.id.fragment_mine_message_img:
+                MessageActivity.show(getActivity(),2);
+                message_img.setImageResource(R.mipmap.icon_message_mine);
+                MobclickAgent.onEvent(getActivity(), "mineNews");
                 break;
 
         }

@@ -268,7 +268,7 @@
             android:layout_marginTop="50px"
             android:gravity="center"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/agree"
@@ -281,14 +281,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="同意"
-                android:textColor="#000000" />
+                android:textColor="#ffffff" />
 
             <TextView
                 android:id="@+id/protocol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="《用户注册协议》"
-                android:textColor="#3b86fc" />
+                android:textColor="#ffffff" />
         </com.zhy.autolayout.AutoLinearLayout>
 
 
