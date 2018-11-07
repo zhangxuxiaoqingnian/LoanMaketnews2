@@ -45,6 +45,6 @@ dependencies {
     compile project(':lang')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.umeng.analytics:analytics:latest.integration'
+//    compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.zhy:autolayout:1.4.5'
 }

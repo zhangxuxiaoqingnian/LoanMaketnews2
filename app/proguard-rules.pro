@@ -107,6 +107,19 @@
 -dontwarn org.apache.thrift.**
 
 
+复制代码到剪切板
+-dontshrink
+-dontoptimize
+-dontwarn com.google.android.maps.**
+-dontwarn android.webkit.WebView
+-dontwarn com.umeng.**
+-dontwarn com.tencent.weibo.sdk.**
+-dontwarn com.facebook.**
+-keep public class javax.**
+-keep public class android.webkit.**
+-dontwarn android.support.v4.**
+
+
 # This is a configuration file for ProGuard.
 # http://proguard.sourceforge.net/index.html#manual/usage.html
 
@@ -369,3 +382,9 @@
  -keep class org.apache.commons.**{*;}
  -keep class org.apache.http.**{*;}
 
+
+
+#友盟统计
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}

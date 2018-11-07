@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
+import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;

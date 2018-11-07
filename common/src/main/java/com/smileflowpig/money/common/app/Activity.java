@@ -15,7 +15,6 @@ import android.view.WindowManager;
 import com.smileflowpig.money.common.utils.NotchUtil;
 import com.smileflowpig.money.common.widget.StatusBarUtil;
 import com.smileflowpig.money.common.widget.convention.PlaceHolderView;
-import com.umeng.analytics.MobclickAgent;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.List;
@@ -156,12 +155,10 @@ public abstract class Activity extends AutoLayoutActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

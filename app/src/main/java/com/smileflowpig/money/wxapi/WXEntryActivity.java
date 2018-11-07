@@ -2,7 +2,6 @@ package com.smileflowpig.money.wxapi;
 
 import android.util.Log;
 
-import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.umeng.socialize.weixin.view.WXCallbackActivity;
 
 /**
@@ -12,9 +11,4 @@ import com.umeng.socialize.weixin.view.WXCallbackActivity;
 public class WXEntryActivity extends WXCallbackActivity {
 
 
-    @Override
-    public void onResp(BaseResp resp) {
-        super.onResp(resp);
-        Log.e("resp",resp.toString());
-    }
 }
