@@ -29,6 +29,7 @@ import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.MessageBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/11/4.
@@ -89,6 +90,7 @@ public class TwoFragment extends PresenterFragment implements OnRefreshLoadmoreL
                 messageAdapter.setitemposition(new MessageTwoAdapter.getitemposition() {
                     @Override
                     public void success(int pos) {
+                        MobclickAgent.onEvent(getActivity(), "informGuide");
                         Intent intent=new Intent(getActivity(), CaseurlActivity.class);
                         intent.putExtra("urlid",list.get(pos).id);
                         intent.putExtra("urlname",list.get(pos).view_num);

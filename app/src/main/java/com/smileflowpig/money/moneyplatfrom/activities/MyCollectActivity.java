@@ -149,7 +149,7 @@ public class MyCollectActivity extends PresenterActivity implements View.OnClick
                                 }
                             }else {
                                 MobclickAgent.onEvent(MyCollectActivity.this,"mineCollectInto");
-                                DetailActivity.show(MyCollectActivity.this, list2.get(pos).id+"","notice",0);
+                                DetailActivity.show(MyCollectActivity.this, list2.get(pos).id+"","notice",0,9);
 
                             }
                         }

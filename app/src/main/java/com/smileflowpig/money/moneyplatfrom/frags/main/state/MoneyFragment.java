@@ -32,6 +32,7 @@ import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.DaiBanner;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/10/18.
@@ -79,6 +80,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
         list3 = new ArrayList<>();
         getdata("不限");
+
         final List<String> list=new ArrayList<>();
         list.add("不限");
         list.add("2千以下");
@@ -114,6 +116,17 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
                 //请求数据
                 getdata(list2.get(pos));
                 type=list2.get(pos);
+                if(pos==0){
+                    MobclickAgent.onEvent(getActivity(), "loanMoneyAll");
+                }else if(pos==1){
+                    MobclickAgent.onEvent(getActivity(), "loanMoney1");
+                }else if(pos==2){
+                    MobclickAgent.onEvent(getActivity(), "loanMoney2");
+                }else if(pos==3){
+                    MobclickAgent.onEvent(getActivity(), "loanMoney3");
+                }else if(pos==4){
+                    MobclickAgent.onEvent(getActivity(), "loanMoney4");
+                }
             }
         });
 
@@ -150,7 +163,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
                 serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0);
+                        DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0,8);
                     }
                 });
 

@@ -172,7 +172,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
                 @Override
                 public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
-                    DetailActivity.show(ApActivity1.this,product.getProduct_id(),"applicationList",2);
+                    DetailActivity.show(ApActivity1.this,product.getProduct_id(),"applicationList",2,20);
                 }
 
                 @Override

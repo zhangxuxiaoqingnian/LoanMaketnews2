@@ -108,7 +108,7 @@ public class HomeHeaderLayout extends RelativeLayout implements OnBannerListener
                 HomePresenter.save(mContext,max_id);
                 bage.hide(false);
 
-                MessageActivity.show(mContext);
+                MessageActivity.show(mContext,2);
 
             }
         });
@@ -207,7 +207,7 @@ public class HomeHeaderLayout extends RelativeLayout implements OnBannerListener
     @Override
     public void OnBannerClick(int position) {
         if(TextUtils.isEmpty(bannerList.get(position).getLink())){
-            DetailActivity.show(mContext,bannerList.get(position).getId(),"banner",0);
+            DetailActivity.show(mContext,bannerList.get(position).getId(),"banner",0,20);
         }else{
             WebActivity.show(mContext,null,
                     bannerList.get(position).getLink(),bannerList.get(position).getId(),bannerList.get(position).getSkip_type());

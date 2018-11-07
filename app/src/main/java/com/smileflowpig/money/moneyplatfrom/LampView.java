@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.widget.BaseAutoScrollTextView;
 import com.smileflowpig.money.factory.presenter.notice.Notice;
+import com.umeng.analytics.MobclickAgent;
 
 import static com.raizlabs.android.dbflow.config.FlowLog.TAG;
 
@@ -64,7 +65,8 @@ public class LampView extends FrameLayout {
                                 list.get(position).getLink(),list.get(position).getProduct_id(),
                                 list.get(position).getSkip_type());
                     }else{
-                        DetailActivity.show(getContext(),list.get(position).getProduct_id(),"notice",0);
+                        MobclickAgent.onEvent(getContext(), "homeNoticeClick");
+                        DetailActivity.show(getContext(),list.get(position).getProduct_id(),"notice",0,4);
 //                        Intent intent=new Intent(getContext(),NewDetailActivity.class);
 //                        intent.putExtra("typeid",list.get(position).getProduct_id());
 //                        getContext().startActivity(intent);

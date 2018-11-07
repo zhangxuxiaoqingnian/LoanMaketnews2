@@ -78,12 +78,13 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
                 @Override
                 public void success(int pos) {
                     MobclickAgent.onEvent(RecordActivity.this,"mineBrowseList");
-                    DetailActivity.show(RecordActivity.this, limits.get(pos).productid+"","notice",0);
+                    DetailActivity.show(RecordActivity.this, limits.get(pos).productid+"","notice",0,10);
                 }
 
                 @Override
                 public void requst(int pos) {
                     if(liulang){
+                        MobclickAgent.onEvent(RecordActivity.this, "mineBrowseApply");
                         WebActivity.show(RecordActivity.this, limits.get(pos).title,
                                 limits.get(pos).url, limits.get(pos).productid, "", "0",false);
                     }else {

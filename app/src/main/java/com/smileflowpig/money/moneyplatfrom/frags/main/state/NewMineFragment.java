@@ -267,7 +267,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 MobclickAgent.onEvent(getActivity(), "mineSetting");
                 break;
             case R.id.fragment_mine_message_img:
-                MessageActivity.show(getActivity());
+                MessageActivity.show(getActivity(),2);
                 message_img.setImageResource(R.mipmap.icon_message_mine);
                 MobclickAgent.onEvent(getActivity(), "mineNews");
                 break;

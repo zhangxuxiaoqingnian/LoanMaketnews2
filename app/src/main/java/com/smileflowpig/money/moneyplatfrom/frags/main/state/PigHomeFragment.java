@@ -26,6 +26,7 @@ import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.LampView;
 import com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.DetailActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.TableActivity;
 import com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView;
 import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
@@ -52,6 +53,7 @@ import com.smileflowpig.money.factory.bean.MessageBean;
 import com.smileflowpig.money.factory.net.Network;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.factory.presenter.notice.Notice;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/11/1.
@@ -106,6 +108,11 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     @BindView(R.id.fourdata)
     LinearLayout fourdata;
+
+    @BindView(R.id.pighomemess)
+    ImageView mess;
+    @BindView(R.id.pigmess)
+    ImageView mess2;
 
     private List<String> list;
     private int measuredHeight;
@@ -270,6 +277,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 messageAdapter.setitemposition(new MessageAdapter.getItemposition() {
                     @Override
                     public void success(int pos) {
+                        MobclickAgent.onEvent(getActivity(), "homeInform");
                         Intent intent=new Intent(getActivity(), CaseurlActivity.class);
                         intent.putExtra("urlid",new_list.get(pos).id);
                         intent.putExtra("urlname",new_list.get(pos).view_num);
@@ -323,7 +331,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 platformAdapter.setItempostion(new PlatformAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0);
+                        MobclickAgent.onEvent(getActivity(), "homeHotLoanLIst");
+                        DetailActivity.show(getActivity(), data.get(pos).id+"","notice",0,7);
 
                     }
                 });
@@ -379,7 +388,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
                             @Override
                             public void onItemClick(XBanner banner, Object model,View view, int position) {
-                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0);
+                                MobclickAgent.onEvent(getActivity(), "homeBanner");
+                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0,6);
                             }
                         });
 
@@ -437,6 +447,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         twodata.setOnClickListener(this);
         threedata.setOnClickListener(this);
         fourdata.setOnClickListener(this);
+        mess.setOnClickListener(this);
+        mess2.setOnClickListener(this);
 //        featurerv.setNestedScrollingEnabled(false);
 //        featurerv.addItemDecoration(new DisplayUtils5.SpacesItemDecoration());
         //platformrv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
@@ -522,37 +534,56 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.pig_alldata:
+                MobclickAgent.onEvent(getActivity(), "homeAllLoan");
                 if(listener!=null)
                     listener.daikuan();
                 break;
             case R.id.pig_allnum:
+                MobclickAgent.onEvent(getActivity(), "homeAllInform");
                 if(listener!=null)
                     listener.message();
                 break;
             case R.id.onedata:
+                MobclickAgent.onEvent(getActivity(), "homeFastKind");
                 Intent intent=new Intent(getActivity(), TableActivity.class);
                 intent.putExtra("tabtitle","快借1500");
                 intent.putExtra("tabid",1);
                 startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.twodata:
+                MobclickAgent.onEvent(getActivity(), "homeFreshKind");
                 Intent intent2=new Intent(getActivity(), TableActivity.class);
                 intent2.putExtra("tabtitle","最新口子");
                 intent2.putExtra("tabid",2);
                 startActivityForResult(intent2, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.threedata:
+                MobclickAgent.onEvent(getActivity(), "homeMastKind");
                 Intent intent3=new Intent(getActivity(), TableActivity.class);
                 intent3.putExtra("tabtitle","一定借到钱");
                 intent3.putExtra("tabid",3);
                 startActivityForResult(intent3, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.fourdata:
+                MobclickAgent.onEvent(getActivity(), "homeCreditCard");
                 Intent intent4=new Intent(getActivity(), TableActivity.class);
                 intent4.putExtra("tabtitle","信用卡");
                 intent4.putExtra("tabid",4);
                 startActivityForResult(intent4, Constant.Code.REQUEST_CODEF);
                 break;
+            case R.id.pighomemess:
+                MobclickAgent.onEvent(getActivity(), "homeNews");
+                MessageActivity.show(getActivity(),1);
+                mess.setImageResource(R.mipmap.notmessage);
+                mess2.setImageResource(R.mipmap.icon_message_mine);
+                break;
+            case R.id.pigmess:
+                MobclickAgent.onEvent(getActivity(), "homeNews");
+                MessageActivity.show(getActivity(),1);
+                mess2.setImageResource(R.mipmap.icon_message_mine);
+                mess.setImageResource(R.mipmap.notmessage);
+                break;
+
         }
     }
 

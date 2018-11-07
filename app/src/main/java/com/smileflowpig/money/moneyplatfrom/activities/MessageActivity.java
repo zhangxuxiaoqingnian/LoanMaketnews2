@@ -3,6 +3,7 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -43,18 +44,26 @@ implements MessageContract.View{
     TextView tv_title;
 
     private static final String TAG = "MessageActivity";
+    private int cont;
 
     List<Message> messageList;
+    private int coverd;
 
     /**
      * 消息界面的入口
      * @param context
      */
-    public static void show(Context context){
+    public static void show(Context context,int nums){
         Intent intent = new Intent(context, MessageActivity.class);
+        intent.putExtra("coverd",nums);
         context.startActivity(intent);
     }
 
+    @Override
+    protected boolean initArgs(Bundle bundle) {
+        coverd = bundle.getInt("coverd", -1);
+        return super.initArgs(bundle);
+    }
 
     @Override
     protected int getContentLayoutId() {
@@ -96,12 +105,23 @@ implements MessageContract.View{
                 mPresenter.relodeMessage();
             }
         });
-        mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Message>() {
-            @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, Message message,int pos) {
-                DetailActivity.show(MessageActivity.this,message.getProduct_id(),"news",0);
-            }
-        });
+
+        if(coverd==1){
+            mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Message>() {
+                @Override
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, Message message,int pos) {
+                    DetailActivity.show(MessageActivity.this,message.getProduct_id(),"news",0,11);
+                }
+            });
+        }else {
+            mAdapter.setListener(new RecyclerAdapter.AdapterListenerImpl<Message>() {
+                @Override
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, Message message,int pos) {
+                    DetailActivity.show(MessageActivity.this,message.getProduct_id(),"news",0,12);
+                }
+            });
+        }
+
     }
 
     @Override

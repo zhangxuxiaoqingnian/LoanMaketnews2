@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.gson.JsonObject;
 import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -266,6 +267,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
             public void onClick(View v) {
 
 //                UMImage image = new UMImage(CaseurlActivity.this, "");
+                MobclickAgent.onEvent(CaseurlActivity.this, "informShare");
                 UMWeb web = new UMWeb(strurl);
                 web.setTitle(shareTitle);
                 web.setDescription(shareCotnent);
@@ -301,6 +303,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         wei_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MobclickAgent.onEvent(CaseurlActivity.this, "informShare");
                 UMWeb web = new UMWeb(strurl);
                 web.setTitle(shareTitle);
                 web.setDescription(shareCotnent);

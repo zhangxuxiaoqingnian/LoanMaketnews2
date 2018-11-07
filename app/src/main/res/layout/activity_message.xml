@@ -11,7 +11,7 @@
         android:id="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionBarWithStatusBarSize"
-        android:background="@color/white"
+        android:background="#FFCE25"
         android:paddingTop="@dimen/statusBarSize"
         android:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
@@ -19,10 +19,10 @@
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/len_8"
-            android:src="@drawable/back1" />
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -31,7 +31,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:text="消息"
-            android:textColor="@color/textPrimary"
+            android:textColor="#ffffff"
             android:textSize="@dimen/font_16"
            />
     </android.support.v7.widget.Toolbar>

@@ -25,7 +25,7 @@ public class CaseClase {
         ItemBean itemBean = gson.fromJson(json, ItemBean.class);
         String productId = itemBean.productId;
 
-        DetailActivity.show(context, productId,"notice",0);
+        DetailActivity.show(context, productId,"notice",0,20);
 
     }
     @JavascriptInterface

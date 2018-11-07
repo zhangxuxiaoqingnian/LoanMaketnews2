@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="134px"
-        android:background="#FEA034"
+        android:background="#FFCE25"
         />
     <android.support.v7.widget.Toolbar
         android:id="@id/toolbar"
@@ -23,10 +23,10 @@
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/len_8"
-            android:src="@drawable/back1" />
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/overback" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -68,9 +68,9 @@
 
         <TextView
             android:id="@+id/banben"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:text="@string/app_name"
             android:textColor="#000000" />

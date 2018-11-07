@@ -25,7 +25,7 @@
             android:layout_marginTop="30px"
             />
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="52px"
             android:layout_marginTop="30px"
@@ -59,7 +59,7 @@
             </LinearLayout>
             <TextView
                 android:id="@+id/hot_destory"
-                android:layout_width="130px"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="随时随地,想借就借"
                 android:textSize="12px"

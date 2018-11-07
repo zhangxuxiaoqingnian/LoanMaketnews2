@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.factory.bean.HomedataBean;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by 小狼 on 2018/11/2.
@@ -53,7 +54,8 @@ public class MyAdapter extends PagerAdapter {
         goset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailActivity.show(context, list.get(position%list.size()).id+"","notice",0);
+                MobclickAgent.onEvent(context, "homeRecommendTurns");
+                DetailActivity.show(context, list.get(position%list.size()).id+"","notice",0,5);
 
             }
         });

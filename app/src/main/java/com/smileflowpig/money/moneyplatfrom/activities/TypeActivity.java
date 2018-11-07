@@ -117,7 +117,7 @@ public class TypeActivity extends PresenterActivity implements View.OnClickListe
                     @Override
                     public void success(int pos) {
 
-                        DetailActivity.show(TypeActivity.this, list.get(pos).id+"","notice",0);
+                        DetailActivity.show(TypeActivity.this, list.get(pos).id+"","notice",0,20);
 
                     }
 
