@@ -252,5 +252,10 @@ public interface Baseretrofit {
     @FormUrlEncoded
     Observable<TabBean> gettablist(@Field("id") int id, @Field("page") int page, @Field("source") String soure);
 
+    //获取信用卡列表
+    @POST("CreditCard/list")
+    @FormUrlEncoded
+    Observable<Object> getcardlist(@Field("pageId") int id);
+
 
 }

@@ -169,7 +169,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         StatusBarUtil.StatusBarLightMode(this);
         RxPermissions rxPermission = new RxPermissions(MainActivity.this);
         rxPermission
-                .requestEach(Manifest.permission.ACCESS_FINE_LOCATION,
+                .requestEach(
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_CALENDAR,
                         Manifest.permission.READ_CALL_LOG,

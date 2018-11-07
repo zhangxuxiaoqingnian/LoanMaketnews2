@@ -61,7 +61,42 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
         tabid = intent.getIntExtra("tabid", -1);
         title.setText(tabtitle);
         //请求数据
-        getdatalist();
+        if(tabtitle.equals("信用卡")){
+            //信用卡
+            getcardlist();
+        }else {
+            //其他类型
+            getdatalist();
+        }
+
+    }
+
+    public void getcardlist(){
+
+        Observable<Object> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getcardlist(1).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        objectObservable.subscribe(new Observer<Object>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+                System.out.println("成功了");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     public void getdatalist(){
