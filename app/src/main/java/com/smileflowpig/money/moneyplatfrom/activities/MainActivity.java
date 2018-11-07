@@ -546,7 +546,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         };
         countDownTimer.start();
 
-
     }
 
 

@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
+        android:layout_marginTop="@dimen/title_marginheight"
         android:layout_centerHorizontal="true"
         >
         <RelativeLayout
@@ -219,7 +219,7 @@
         android:textSize="20px"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="394px"
+        android:layout_marginTop="400px"
         android:gravity="center"
         android:background="@drawable/buttonshap"
         />
