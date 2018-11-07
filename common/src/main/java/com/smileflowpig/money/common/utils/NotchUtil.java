@@ -80,7 +80,7 @@ public class NotchUtil {
 
     public static final int VIVO_NOTCH = 0x00000020;//是否有刘海
     public static final int VIVO_FILLET = 0x00000008;//是否有圆角
-    public static final int VIVO_NOTCHHEIGHT = 30;//刘海屏固定高度
+    public static final int VIVO_NOTCHHEIGHT = 35;//刘海屏固定高度
 
 
     //vivo是否有刘海屏
@@ -139,27 +139,27 @@ public class NotchUtil {
 //            return;
 //        }
         if (!TextUtils.isEmpty(phoneMessage)) {
-            if (phoneMessage.equals("Huawei")) {
-                if (hasNotchAtHuawei(context)) {
-                    int[] notchSizeAtHuawei = getNotchSizeAtHuawei(context);
-                    padTop = padTop + notchSizeAtHuawei[1];
-
-                }
-            } else if (phoneMessage.equals("Oppo")) {
-                if (hasNotchAtOPPO(context)) {
-                    padTop = padTop + DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
-                }
-            } else if (phoneMessage.equals("Vivo")) {
-                if (hasNotchAtVivo(context)) {
-                    padTop = padTop + DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
-                }
-            } else if (phoneMessage.equals("Xiaomi")) {
-                padTop = padTop + getStatusBarHeight(context);
-            } else if (phoneMessage.equals("google")) {
-                padTop = padTop + DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
-            }
+//            if (phoneMessage.equals("Huawei")) {
+//                if (hasNotchAtHuawei(context)) {
+//                    int[] notchSizeAtHuawei = getNotchSizeAtHuawei(context);
+//                    padTop = padTop + notchSizeAtHuawei[1];
+//
+//                }
+//            } else if (phoneMessage.equals("Oppo")) {
+//                if (hasNotchAtOPPO(context)) {
+//                    padTop = padTop + DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
+//                }
+//            } else if (phoneMessage.equals("Vivo")) {
+//                if (hasNotchAtVivo(context)) {
+//                    padTop = padTop + DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
+//                }
+//            } else if (phoneMessage.equals("Xiaomi")) {
+//                padTop = padTop + getStatusBarHeight(context);
+//            } else if (phoneMessage.equals("google")) {
+//                padTop = padTop + DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
+//            }
 //            view.setPadding(padLeft, padTop, padrigth, padBottom);
-            pa.height = padTop;
+            pa.height = DisplayUtil.dip2px(VIVO_NOTCHHEIGHT);
 //            ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
 //            layoutParams.height = layoutParams.height + paddingTop;
 //            childAt.setLayoutParams(layoutParams);
