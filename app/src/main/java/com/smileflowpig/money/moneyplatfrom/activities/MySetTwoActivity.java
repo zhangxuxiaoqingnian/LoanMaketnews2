@@ -7,9 +7,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,6 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.moneyplatfrom.util.CropUtils;
+import com.smileflowpig.money.moneyplatfrom.util.DialogPermission;
+import com.smileflowpig.money.moneyplatfrom.util.FileUtil;
+import com.smileflowpig.money.moneyplatfrom.util.PermissionUtil;
 import com.smileflowpig.money.moneyplatfrom.util.SelfDialog2;
 
 import java.io.File;
@@ -41,6 +48,7 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.smileflowpig.money.moneyplatfrom.util.SharedPreferenceMark;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -78,6 +86,11 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     //请求相册
     private static final int REQUEST_PICK = 101;
 
+    private static final int REQUEST_CODE_TAKE_PHOTO = 1;
+    private static final int REQUEST_CODE_ALBUM = 2;
+    private static final int REQUEST_CODE_CROUP_PHOTO = 3;
+    private File file;
+    private Uri uri;
     //请求访问外部存储
     private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 103;
     //请求写入外部存储
@@ -98,6 +111,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
 
         initview();
+        init();
 
         Intent intent = getIntent();
         String loginicon = intent.getStringExtra("loginicon");
@@ -332,162 +346,116 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     }
 
 
-    private Uri fileUri;
+    private void init() {
+        file = new File(FileUtil.getCachePath(this), "user-avatar.jpg");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            uri = Uri.fromFile(file);
+        } else {
+            //通过FileProvider创建一个content类型的Uri(android 7.0需要这样的方法跨应用访问)
+            uri = FileProvider.getUriForFile(MySetTwoActivity.this, "com.yf.useravatar", file);
+        }
+    }
 
     private void gotoCamera() {
 
-        if (cameraIsCanUse()) {
-//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            photofileName = "IMG_" + new Date() + ".jpg";
-//            //必须使用已经存在的文件夹tempWhy
-//            imgUrl = Environment.getExternalStorageDirectory() + File.separator + "tempWhy" + File.separator + photofileName;
-//            File file = new File(imgUrl);
-//            judeFileExists(file);
-//            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-//            startActivityForResult(intent, REQUEST_CAPTURE);
-            Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            Uri photoUri = getMediaFileUri(REQUEST_CAPTURE);
-            fileUri = photoUri;
-            takeIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-            startActivityForResult(takeIntent, REQUEST_CAPTURE);
-        } else {
-            Toast.makeText(MySetTwoActivity.this, "请去设置中开启相机权限", Toast.LENGTH_SHORT).show();
-
-        }
-
-    }
-
-    // 判断文件是否存在
-    public static void judeFileExists(File file) {
-
-        if (file.exists()) {
-            System.out.println("file exists");
-        } else {
-            System.out.println("file not exists, create it ...");
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+        if (PermissionUtil.hasCameraPermission(MySetTwoActivity.this)) {
+            uploadAvatarFromPhotoRequest();
         }
     }
 
     private void gotoPhoto() {
-        Log.d("evan", "*****************打开图库********************");
-        if (hasPermission(MySetTwoActivity.this, permissionName)) {
-            //跳转到调用系统图库
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(Intent.createChooser(intent, "请选择图片"), REQUEST_PICK);
-        } else {
-            Toast.makeText(MySetTwoActivity.this, "请去设置中开启存储权限", Toast.LENGTH_SHORT).show();
-        }
-
+        uploadAvatarFromAlbumRequest();
     }
 
-    public boolean cameraIsCanUse() {
-        boolean isCanUse = true;
-        Camera mCamera = null;
-        try {
-            mCamera = Camera.open();
-            Camera.Parameters mParameters = mCamera.getParameters(); //针对魅族手机
-            mCamera.setParameters(mParameters);
-        } catch (Exception e) {
-            isCanUse = false;
-        }
-
-        if (mCamera != null) {
-            try {
-                mCamera.release();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return isCanUse;
-            }
-        }
-        return isCanUse;
+    private void uploadAvatarFromPhotoRequest() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(intent, REQUEST_CODE_TAKE_PHOTO);
+    }
+    private void uploadAvatarFromAlbumRequest() {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, REQUEST_CODE_ALBUM);
     }
 
-    public Uri getMediaFileUri(int type) {
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "相册名字");
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                return null;
-            }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+
+            case PermissionUtil.REQUEST_SHOWCAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted
+                    uploadAvatarFromPhotoRequest();
+
+                } else {
+                    if (!SharedPreferenceMark.getHasShowCamera()) {
+                        SharedPreferenceMark.setHasShowCamera(true);
+                        new DialogPermission(this, "关闭摄像头权限影响扫描功能");
+
+                    } else {
+                        Toast.makeText(this, "未获取摄像头权限", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        //创建Media File
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile;
-        if (type == REQUEST_CAPTURE) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
-        } else {
-            return null;
-        }
-        return Uri.fromFile(mediaFile);
     }
 
-    //判断是否有某个权限
-    public static boolean hasPermission(Context context, String permission) {
-        int perm = context.checkCallingOrSelfPermission(permission);
-        return perm == PackageManager.PERMISSION_GRANTED;
-    }
+
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_CAPTURE: //调用系统相机返回
-                if (resultCode == RESULT_OK) {
-//
-//                    File file = new File(imgUrl);
-//                    if (file.exists()) {
-//                        Bitmap bm = BitmapFactory.decodeFile(imgUrl);
-////                        icon.setImageBitmap(bm);
-//                        Glide.with(MySetTwoActivity.this).load(imgUrl).error(R.mipmap.loginicon).into(icon);
-//
-//                    }
-//                    fileover = file;
-//                    //shangchuan(file);
-///
-//                }
-                    try {
-
-                        if (data != null) {
-                            if (data.hasExtra("data")) {
-                                Log.i("URI", "data is not null");
-                                Bitmap bitmap = data.getParcelableExtra("data");
-                                icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
-                            }
-                        } else {
-                            Log.i("URI", "Data is null");
-//                        Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath());
-                            Glide.with(MySetTwoActivity.this).load(fileUri.getPath()).error(R.mipmap.loginicon).into(icon);
-//                        icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
-                            fileover = new File(fileUri.getPath());
-                        }
-                    }catch (Exception e){
-
-                    }
-
-
-                }
-                break;
-            case REQUEST_PICK:  //调用系统相册返回
-                if (resultCode == RESULT_OK) {
-                    Uri uri = data.getData();
-                    if (uri == null) {
-                        return;
-                    }
-                    String cropImagePath = getRealFilePathFromUri(getApplicationContext(), uri);
-//                    bitMap = BitmapFactory.decodeFile(cropImagePath);
-//                    icon.setImageBitmap(bitMap);
-                    Glide.with(MySetTwoActivity.this).load(cropImagePath).error(R.mipmap.loginicon).into(icon);
-
-                    fileover = new File(cropImagePath);
-                    //可以上传服务器了
-                    //shangchuan(new File(cropImagePath));
-                }
-                break;
+        if (resultCode != -1) {
+            return;
         }
+        if (requestCode == REQUEST_CODE_ALBUM && data != null) {
+            Uri newUri;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                newUri = Uri.parse("file:///" + CropUtils.getPath(this, data.getData()));
+            } else {
+                newUri = data.getData();
+            }
+            if (newUri != null) {
+                startPhotoZoom(newUri);
+            } else {
+                Toast.makeText(this, "没有得到相册图片", Toast.LENGTH_LONG).show();
+            }
+        } else if (requestCode == REQUEST_CODE_TAKE_PHOTO) {
+            startPhotoZoom(uri);
+        } else if (requestCode == REQUEST_CODE_CROUP_PHOTO) {
+            //uploadAvatarFromPhoto();
+            fileover = FileUtil.getSmallBitmap(this, file.getPath());
+            Uri uri = Uri.fromFile(fileover);
+            icon.setImageURI(uri);
+
+        }
+    }
+
+    /**
+     * 裁剪拍照裁剪
+     *
+     * @param uri
+     */
+    public void startPhotoZoom(Uri uri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.putExtra("crop", "true");// crop=true 有这句才能出来最后的裁剪页面.
+        intent.putExtra("aspectX", 1);// 这两项为裁剪框的比例.
+        intent.putExtra("aspectY", 1);// x:y=1:1
+//        intent.putExtra("outputX", 400);//图片输出大小
+//        intent.putExtra("outputY", 400);
+        intent.putExtra("output", Uri.fromFile(file));
+        intent.putExtra("outputFormat", "JPEG");// 返回格式
+        startActivityForResult(intent, REQUEST_CODE_CROUP_PHOTO);
     }
 
     private void shangchuan(String nick, File file, String gendel, String ident) {
