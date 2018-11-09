@@ -353,7 +353,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                 final String content = paoBean.rst.content;
                 final String icon = paoBean.rst.icon;
 
-                countDownTimer = new CountDownTimer(2 * 1000, 1000) {
+                countDownTimer = new CountDownTimer(10 * 1000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         if (millisUntilFinished / 1000 == 0) {

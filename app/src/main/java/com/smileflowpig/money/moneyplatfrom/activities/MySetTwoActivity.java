@@ -25,6 +25,8 @@ import com.bumptech.glide.Glide;
 import com.smileflowpig.money.moneyplatfrom.util.SelfDialog2;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -34,17 +36,19 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 import static com.smileflowpig.money.moneyplatfrom.util.FileUtil.getRealFilePathFromUri;
 
-public class MySetTwoActivity extends PresenterActivity implements View.OnClickListener{
+public class MySetTwoActivity extends PresenterActivity implements View.OnClickListener {
 
     @BindView(R.id.myset_back)
     ImageView back;
@@ -83,7 +87,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     String permissionName = "android.permission.WRITE_EXTERNAL_STORAGE";
     private String imgUrl;
     private Bitmap bitMap;
-    private File fileover=null;
+    private File fileover = null;
     private MultipartBody.Part avatar;
     private String sexid;
     private String identid;
@@ -101,13 +105,14 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         String loginsex = intent.getStringExtra("loginsex");
         String loginindent = intent.getStringExtra("loginindent");
 
-        Glide.with(MySetTwoActivity.this).load(loginicon).into(icon);
+        Glide.with(MySetTwoActivity.this).load(loginicon).error(R.mipmap.loginicon).into(icon);
         name.setText(loginname);
         sex.setText(loginsex);
         typetext.setText(loginindent);
 
     }
-    public void initview(){
+
+    public void initview() {
         back.setOnClickListener(this);
         seticon.setOnClickListener(this);
         newname.setOnClickListener(this);
@@ -128,7 +133,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.myset_back:
                 finish();
                 break;
@@ -154,31 +159,31 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
                 String s = name.getText().toString();
                 String s1 = sex.getText().toString();
                 String s2 = typetext.getText().toString();
-                if(s1.equals("男")){
-                    sexid="man";
-                }else {
-                    sexid="woman";
+                if (s1.equals("男")) {
+                    sexid = "man";
+                } else {
+                    sexid = "woman";
                 }
-                if(s2.equals("上班族")){
-                    identid="1";
-                }else if(s2.equals("个体户")){
-                    identid="2";
-                }else {
-                    identid="3";
+                if (s2.equals("上班族")) {
+                    identid = "1";
+                } else if (s2.equals("个体户")) {
+                    identid = "2";
+                } else {
+                    identid = "3";
                 }
-                shangchuan(s,fileover,sexid,identid);
+                shangchuan(s, fileover, sexid, identid);
                 break;
         }
     }
 
-    public void getsetsex(){
+    public void getsetsex() {
 
         View inflate = LayoutInflater.from(MySetTwoActivity.this).inflate(R.layout.newsex_layout, null, false);
-        final PopupWindow popupWindow=new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         popupWindow.setAnimationStyle(R.style.pop_anim);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+        popupWindow.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
         light(0.8f);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -205,14 +210,14 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         });
     }
 
-    public void getsettype(){
+    public void getsettype() {
 
         View inflate = LayoutInflater.from(MySetTwoActivity.this).inflate(R.layout.newtype_layout, null, false);
-        final PopupWindow popupWindow=new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         popupWindow.setAnimationStyle(R.style.pop_anim);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+        popupWindow.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
         light(0.8f);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -246,16 +251,17 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
             }
         });
     }
-    public void getsetname(){
+
+    public void getsetname() {
         //修改昵称
-        final SelfDialog2 selfDialogt=new SelfDialog2(MySetTwoActivity.this);
+        final SelfDialog2 selfDialogt = new SelfDialog2(MySetTwoActivity.this);
         selfDialogt.setTitle("修改昵称");
         selfDialogt.setYesOnclickListener("确定", new SelfDialog2.onYesOnclickListener() {
             @Override
             public void onYesClick(String text) {
-                if(text.equals("")){
-                    Toast.makeText(MySetTwoActivity.this,"昵称不能为空",Toast.LENGTH_SHORT).show();
-                }else {
+                if (text.equals("")) {
+                    Toast.makeText(MySetTwoActivity.this, "昵称不能为空", Toast.LENGTH_SHORT).show();
+                } else {
                     name.setText(text);
                     selfDialogt.dismiss();
                 }
@@ -272,14 +278,14 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         selfDialogt.show();
     }
 
-    public void getpopuwindow(){
+    public void getpopuwindow() {
 
         View inflate = LayoutInflater.from(MySetTwoActivity.this).inflate(R.layout.newphoto_layout, null, false);
-        final PopupWindow popupWindow=new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         popupWindow.setAnimationStyle(R.style.pop_anim);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+        popupWindow.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
         light(0.8f);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -317,38 +323,68 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         });
 
     }
-    public void light(float t){
+
+    public void light(float t) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = t;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setAttributes(lp);
     }
+
+
+    private Uri fileUri;
+
     private void gotoCamera() {
 
-        if(cameraIsCanUse()){
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            photofileName = "IMG_" + new Date() + ".jpg";
-            //必须使用已经存在的文件夹tempWhy
-            imgUrl = Environment.getExternalStorageDirectory() + File.separator + "tempWhy"+ File.separator + photofileName;
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(imgUrl)));
-            startActivityForResult(intent, REQUEST_CAPTURE);
-        }else {
-            Toast.makeText(MySetTwoActivity.this,"请去设置中开启相机权限",Toast.LENGTH_SHORT).show();
+        if (cameraIsCanUse()) {
+//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//            photofileName = "IMG_" + new Date() + ".jpg";
+//            //必须使用已经存在的文件夹tempWhy
+//            imgUrl = Environment.getExternalStorageDirectory() + File.separator + "tempWhy" + File.separator + photofileName;
+//            File file = new File(imgUrl);
+//            judeFileExists(file);
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+//            startActivityForResult(intent, REQUEST_CAPTURE);
+            Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Uri photoUri = getMediaFileUri(REQUEST_CAPTURE);
+            fileUri = photoUri;
+            takeIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            startActivityForResult(takeIntent, REQUEST_CAPTURE);
+        } else {
+            Toast.makeText(MySetTwoActivity.this, "请去设置中开启相机权限", Toast.LENGTH_SHORT).show();
 
         }
 
     }
+
+    // 判断文件是否存在
+    public static void judeFileExists(File file) {
+
+        if (file.exists()) {
+            System.out.println("file exists");
+        } else {
+            System.out.println("file not exists, create it ...");
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void gotoPhoto() {
         Log.d("evan", "*****************打开图库********************");
-        if(hasPermission(MySetTwoActivity.this,permissionName)){
+        if (hasPermission(MySetTwoActivity.this, permissionName)) {
             //跳转到调用系统图库
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(Intent.createChooser(intent, "请选择图片"), REQUEST_PICK);
-        }else {
-            Toast.makeText(MySetTwoActivity.this,"请去设置中开启存储权限",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MySetTwoActivity.this, "请去设置中开启存储权限", Toast.LENGTH_SHORT).show();
         }
 
     }
+
     public boolean cameraIsCanUse() {
         boolean isCanUse = true;
         Camera mCamera = null;
@@ -370,8 +406,27 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         }
         return isCanUse;
     }
+
+    public Uri getMediaFileUri(int type) {
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "相册名字");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+        //创建Media File
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == REQUEST_CAPTURE) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+        } else {
+            return null;
+        }
+        return Uri.fromFile(mediaFile);
+    }
+
     //判断是否有某个权限
-    public static boolean hasPermission(Context context, String permission){
+    public static boolean hasPermission(Context context, String permission) {
         int perm = context.checkCallingOrSelfPermission(permission);
         return perm == PackageManager.PERMISSION_GRANTED;
     }
@@ -382,14 +437,37 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         switch (requestCode) {
             case REQUEST_CAPTURE: //调用系统相机返回
                 if (resultCode == RESULT_OK) {
+//
+//                    File file = new File(imgUrl);
+//                    if (file.exists()) {
+//                        Bitmap bm = BitmapFactory.decodeFile(imgUrl);
+////                        icon.setImageBitmap(bm);
+//                        Glide.with(MySetTwoActivity.this).load(imgUrl).error(R.mipmap.loginicon).into(icon);
+//
+//                    }
+//                    fileover = file;
+//                    //shangchuan(file);
+///
+//                }
+                    try {
 
-                    File file = new File(imgUrl);
-                    if(file.exists()){
-                        Bitmap bm = BitmapFactory.decodeFile(imgUrl);
-                        icon.setImageBitmap(bm);
+                        if (data != null) {
+                            if (data.hasExtra("data")) {
+                                Log.i("URI", "data is not null");
+                                Bitmap bitmap = data.getParcelableExtra("data");
+                                icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
+                            }
+                        } else {
+                            Log.i("URI", "Data is null");
+//                        Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath());
+                            Glide.with(MySetTwoActivity.this).load(fileUri.getPath()).error(R.mipmap.loginicon).into(icon);
+//                        icon.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
+                            fileover = new File(fileUri.getPath());
+                        }
+                    }catch (Exception e){
+
                     }
-                    fileover=file;
-                    //shangchuan(file);
+
 
                 }
                 break;
@@ -400,26 +478,29 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
                         return;
                     }
                     String cropImagePath = getRealFilePathFromUri(getApplicationContext(), uri);
-                    bitMap = BitmapFactory.decodeFile(cropImagePath);
-                    icon.setImageBitmap(bitMap);
+//                    bitMap = BitmapFactory.decodeFile(cropImagePath);
+//                    icon.setImageBitmap(bitMap);
+                    Glide.with(MySetTwoActivity.this).load(cropImagePath).error(R.mipmap.loginicon).into(icon);
 
-                    fileover=new File(cropImagePath);
+                    fileover = new File(cropImagePath);
                     //可以上传服务器了
                     //shangchuan(new File(cropImagePath));
                 }
                 break;
-        }}
+        }
+    }
 
-    private void shangchuan(String nick,File file,String gendel,String ident) {
-        if(file==null){
-            avatar = MultipartBody.Part.createFormData("",""); ;
-        }else {
+    private void shangchuan(String nick, File file, String gendel, String ident) {
+        if (file == null) {
+            avatar = MultipartBody.Part.createFormData("", "");
+            ;
+        } else {
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
             avatar = MultipartBody.Part.createFormData("avatar", "avatar", requestFile);
         }
-        MultipartBody.Part no = MultipartBody.Part.createFormData("nick",nick);
-        MultipartBody.Part no2 = MultipartBody.Part.createFormData("gender",gendel);
-        MultipartBody.Part no3 = MultipartBody.Part.createFormData("identity",ident);
+        MultipartBody.Part no = MultipartBody.Part.createFormData("nick", nick);
+        MultipartBody.Part no2 = MultipartBody.Part.createFormData("gender", gendel);
+        MultipartBody.Part no3 = MultipartBody.Part.createFormData("identity", ident);
         Observable<Object> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getmylisticon(no, avatar, no2, no3).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<Object>() {
@@ -436,7 +517,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
 
             @Override
             public void onError(Throwable e) {
-        Log.e("TAG",e.getMessage());
+                Log.e("TAG", e.getMessage());
 
             }
 
@@ -447,16 +528,16 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         });
     }
 
-    public void getpopwindow(){
+    public void getpopwindow() {
         light(0.5f);
         int width = getWindowManager().getDefaultDisplay().getWidth();
         View inflate = LayoutInflater.from(MySetTwoActivity.this).inflate(R.layout.loading_layout, null, false);
         TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
         loading.setText("保存中...");
-        popupWindow = new PopupWindow(inflate, width/3,width/3);
+        popupWindow = new PopupWindow(inflate, width / 3, width / 3);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.CENTER,0,0);
+        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override

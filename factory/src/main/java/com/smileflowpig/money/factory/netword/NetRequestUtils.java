@@ -8,6 +8,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.smileflowpig.money.common.Common;
 import com.smileflowpig.money.factory.Factory;
 
 import java.util.concurrent.TimeUnit;
@@ -32,51 +33,51 @@ public class NetRequestUtils {
 
     public NetRequestUtils(Baseretrofit baseretrofit) {
 
-        this.baseretrofit=baseretrofit;
+        this.baseretrofit = baseretrofit;
     }
 
     static {
         cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(Factory.app()));
     }
+
     public NetRequestUtils() {
 
     }
 
-    public Baseretrofit getbaseretrofit(){
+    public Baseretrofit getbaseretrofit() {
 
         return baseretrofit;
     }
 
 
+    public NetRequestUtils bucuo() {
 
-    public NetRequestUtils bucuo(){
-
-        HttpLoggingInterceptor loggingInterceptor=new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
 
-                Log.i("RetrofitLog","retrofitBack = "+message);
+                Log.i("RetrofitLog", "retrofitBack = " + message);
             }
         });
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        OkHttpClient.Builder okHttpClient= new OkHttpClient.Builder();
-        int maxcache=10*1024*1024;
-        Cache cache=new Cache(Environment.getDataDirectory(),maxcache);
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        int maxcache = 10 * 1024 * 1024;
+        Cache cache = new Cache(Environment.getDataDirectory(), maxcache);
         okHttpClient.cache(cache);
         okHttpClient.addInterceptor(loggingInterceptor);
         okHttpClient.cookieJar(cookieJar);
-       okHttpClient.connectTimeout(30, TimeUnit.SECONDS);
-               okHttpClient.readTimeout(30, TimeUnit.SECONDS);
-                okHttpClient.writeTimeout(30, TimeUnit.SECONDS);
+        okHttpClient.connectTimeout(30, TimeUnit.SECONDS);
+        okHttpClient.readTimeout(30, TimeUnit.SECONDS);
+        okHttpClient.writeTimeout(30, TimeUnit.SECONDS);
         //https://newapi.henhaojie.com/user/
         //http://bw.quyaqu.com/user/
-        Retrofit.Builder retrofit=new Retrofit.Builder().baseUrl("https://newapi.henhaojie.com/user/").client(okHttpClient.build());
+        Retrofit.Builder retrofit = new Retrofit.Builder().baseUrl(Common.Constance.API_URL).client(okHttpClient.build());
         retrofit.addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         Baseretrofit baseretrofit = retrofit.build().create(Baseretrofit.class);
 
-        Instance=new NetRequestUtils(baseretrofit);
+        Instance = new NetRequestUtils(baseretrofit);
 
         return Instance;
 
