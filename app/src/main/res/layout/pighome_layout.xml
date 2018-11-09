@@ -47,212 +47,207 @@
     </RelativeLayout>
     </LinearLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/home_scroll"
-        android:overScrollMode= "never"
-        android:fadingEdge="none"
-        >
-        <LinearLayout
+        <com.smileflowpig.money.moneyplatfrom.util.MyScrollView
+            android:id="@+id/home_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#F7F7F7"
-            android:gravity="center_horizontal"
-            android:clipChildren="false"
-            >
-            <LinearLayout
-                android:id="@+id/shoulayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#ffffff"
-                />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="#ffffff"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="小花猪"
-                    android:textSize="24px"
-                    android:textColor="#000000"
-                    android:layout_marginLeft="13px"
-                    />
-                <ImageView
-                    android:id="@+id/pighomemess"
-                    android:layout_width="24px"
-                    android:layout_height="24px"
-                    android:src="@mipmap/havemessage"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20px"
-                    />
-            </RelativeLayout>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="9px"
-                android:background="#ffffff"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="123px"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="#ffffff"
-                >
-                <LinearLayout
-                    android:id="@+id/onedata"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    >
-                    <ImageView
-                        android:layout_width="40px"
-                        android:layout_height="40px"
-                        android:src="@mipmap/qucklist"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="快借1500"
-                        android:textColor="#333333"
-                        android:textSize="12px"
-                        android:layout_marginTop="12px"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/twodata"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    >
-                    <ImageView
-                        android:layout_width="40px"
-                        android:layout_height="40px"
-                        android:src="@mipmap/qucknews"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="最新口子"
-                        android:textColor="#333333"
-                        android:textSize="12px"
-                        android:layout_marginTop="12px"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/threedata"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    >
-                    <ImageView
-                        android:layout_width="40px"
-                        android:layout_height="40px"
-                        android:src="@mipmap/qucksuccess"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="一定借到钱"
-                        android:textColor="#333333"
-                        android:textSize="12px"
-                        android:layout_marginTop="12px"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/fourdata"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    >
-                    <ImageView
-                        android:layout_width="40px"
-                        android:layout_height="40px"
-                        android:src="@mipmap/quckcard"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="信用卡"
-                        android:textColor="#333333"
-                        android:textSize="12px"
-                        android:layout_marginTop="12px"
-                        />
-                </LinearLayout>
-
-            </LinearLayout>
+            android:fadingEdge="none"
+            android:fillViewport="true"
+            android:overScrollMode="never">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="16px"
-                android:orientation="horizontal"
-                android:layout_marginTop="10px"
-                android:gravity="center"
-                android:layout_marginLeft="45px"
-                >
-                <ImageView
-                    android:layout_width="27px"
-                    android:layout_height="16px"
-                    android:src="@mipmap/xiaohuazhu"
-                    />
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="10px"
-                    android:background="#FF5D49"
-                    android:layout_marginLeft="8px"
-                    />
-
-                <!--滚动文字-->
-
-                <com.smileflowpig.money.moneyplatfrom.LampView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/piglampview"
-                    android:layout_height="match_parent"
-                    />
-            </LinearLayout>
-
-            <com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView
                 android:layout_width="match_parent"
-                android:layout_height="174px"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="11px"
-                android:id="@+id/pigvp"
+                android:layout_height="match_parent"
+                android:background="#F7F7F7"
                 android:clipChildren="false"
-                />
-            <com.stx.xhb.xbanner.XBanner
-                android:layout_width="355px"
-                android:layout_height="108px"
-                app:AutoPlayTime="3000"
-                app:isAutoPlay="true"
-                app:pointsPosition="CENTER"
-                app:pointContainerPosition="BOTTOM"
-                app:isHandLoop="true"
-                android:id="@+id/pigbanner"
-                >
-            </com.stx.xhb.xbanner.XBanner>
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <!--<LinearLayout-->
+                <LinearLayout
+                    android:id="@+id/shoulayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="#ffffff" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="13px"
+                            android:text="小花猪"
+                            android:textColor="#000000"
+                            android:textSize="24px" />
+
+                        <ImageView
+                            android:id="@+id/pighomemess"
+                            android:layout_width="24px"
+                            android:layout_height="24px"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20px"
+                            android:src="@mipmap/havemessage" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="9px"
+                    android:background="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="123px"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/onedata"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:src="@mipmap/qucklist" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12px"
+                            android:text="快借1500"
+                            android:textColor="#333333"
+                            android:textSize="12px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/twodata"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:src="@mipmap/qucknews" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12px"
+                            android:text="最新口子"
+                            android:textColor="#333333"
+                            android:textSize="12px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/threedata"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:src="@mipmap/qucksuccess" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12px"
+                            android:text="一定借到钱"
+                            android:textColor="#333333"
+                            android:textSize="12px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fourdata"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40px"
+                            android:layout_height="40px"
+                            android:src="@mipmap/quckcard" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12px"
+                            android:text="信用卡"
+                            android:textColor="#333333"
+                            android:textSize="12px" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="16px"
+                    android:layout_marginLeft="45px"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="27px"
+                        android:layout_height="16px"
+                        android:src="@mipmap/xiaohuazhu" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="10px"
+                        android:layout_marginLeft="8px"
+                        android:background="#FF5D49" />
+
+                    <!--滚动文字-->
+
+                    <com.smileflowpig.money.moneyplatfrom.LampView
+                        android:id="@+id/piglampview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView
+                    android:id="@+id/pigvp"
+                    android:layout_width="match_parent"
+                    android:layout_height="174px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginTop="11px"
+                    android:clipChildren="false" />
+
+                <com.stx.xhb.xbanner.XBanner
+                    android:id="@+id/pigbanner"
+                    android:layout_width="355px"
+                    android:layout_height="108px"
+                    app:AutoPlayTime="3000"
+                    app:isAutoPlay="true"
+                    app:isHandLoop="true"
+                    app:pointContainerPosition="BOTTOM"
+                    app:pointsPosition="CENTER"></com.stx.xhb.xbanner.XBanner>
+
+                <!--<LinearLayout-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
                 <!--android:orientation="horizontal"-->
@@ -261,21 +256,21 @@
                 <!--android:gravity="center_vertical"-->
                 <!--&gt;-->
                 <!--<ImageView-->
-                    <!--android:layout_width="20px"-->
-                     <!--android:layout_height="20px"-->
-                    <!--android:src="@mipmap/loginicon"-->
-                    <!--/>-->
+                <!--android:layout_width="20px"-->
+                <!--android:layout_height="20px"-->
+                <!--android:src="@mipmap/loginicon"-->
+                <!--/>-->
                 <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="特色功能"-->
-                    <!--android:textSize="18px"-->
-                    <!--android:textColor="#000000"-->
-                    <!--android:layout_marginLeft="10px"-->
-                    <!--android:textStyle="bold"-->
-                    <!--/>-->
-            <!--</LinearLayout>-->
-            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="特色功能"-->
+                <!--android:textSize="18px"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_marginLeft="10px"-->
+                <!--android:textStyle="bold"-->
+                <!--/>-->
+                <!--</LinearLayout>-->
+                <!--<android.support.v7.widget.RecyclerView-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="100px"-->
                 <!--android:layout_marginLeft="10px"-->
@@ -284,99 +279,101 @@
                 <!--android:overScrollMode="never"-->
                 <!--android:scrollbars="none"-->
                 <!--/>-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24px"
-                android:layout_marginRight="18px"
-                android:layout_marginTop="12px"
-                >
-                <ImageView
-                    android:layout_width="20px"
-                    android:layout_height="20px"
-                    android:src="@mipmap/hot_platform"
-                    android:layout_centerVertical="true"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="热门平台"
-                    android:textColor="#000000"
-                    android:textSize="18px"
-                    android:layout_marginLeft="28px"
-                    android:layout_centerVertical="true"
-                    android:textStyle="bold"
-                    />
+                    android:layout_marginLeft="24px"
+                    android:layout_marginRight="18px"
+                    android:layout_marginTop="12px">
 
-                <TextView
-                    android:id="@+id/pig_alldata"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:text="全部贷款>>"
-                    android:textColor="#FF8D24"
-                    android:textSize="12px" />
-            </RelativeLayout>
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="355px"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
-                android:id="@+id/platform_rv"
-                android:nestedScrollingEnabled="false"
-                />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24px"
-                android:layout_marginRight="18px"
-                android:layout_marginTop="12px"
-                >
-                <ImageView
-                    android:layout_width="20px"
-                    android:layout_height="20px"
-                    android:src="@mipmap/hot_message"
-                    android:layout_centerVertical="true"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="热门资讯"
-                    android:textColor="#000000"
-                    android:textSize="18px"
-                    android:layout_marginLeft="28px"
-                    android:layout_centerVertical="true"
-                    android:textStyle="bold"
-                    />
-                <TextView
-                    android:id="@+id/pig_allnum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="全部资讯>>"
-                    android:textSize="12px"
-                    android:textColor="#FF8D24"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    />
+                    <ImageView
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/hot_platform" />
 
-            </RelativeLayout>
-            <LinearLayout
-                android:layout_width="355px"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10px"
-                android:gravity="center_horizontal"
-                android:background="#ffffff"
-                >
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="325px"
-                android:layout_height="wrap_content"
-                android:id="@+id/message_rv"
-                android:nestedScrollingEnabled="false"
-                />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="28px"
+                        android:text="热门平台"
+                        android:textColor="#000000"
+                        android:textSize="18px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pig_alldata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="全部贷款>>"
+                        android:textColor="#FF8D24"
+                        android:textSize="12px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="355px"
+                    android:layout_height="wrap_content"
+                    >
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/platform_rv"
+                    android:layout_width="355px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24px"
+                    android:layout_marginRight="18px"
+                    android:layout_marginTop="12px">
+
+                    <ImageView
+                        android:layout_width="20px"
+                        android:layout_height="20px"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/hot_message" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="28px"
+                        android:text="热门资讯"
+                        android:textColor="#000000"
+                        android:textSize="18px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pig_allnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="全部资讯>>"
+                        android:textColor="#FF8D24"
+                        android:textSize="12px" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="355px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:background="#ffffff"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/message_rv"
+                        android:layout_width="325px"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        </com.smileflowpig.money.moneyplatfrom.util.MyScrollView>
 
     </LinearLayout>
 

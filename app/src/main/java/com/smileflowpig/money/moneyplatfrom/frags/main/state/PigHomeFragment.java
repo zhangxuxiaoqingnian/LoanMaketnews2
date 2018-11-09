@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +32,7 @@ import com.smileflowpig.money.moneyplatfrom.activities.TableActivity;
 import com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView;
 import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
 import com.smileflowpig.money.moneyplatfrom.util.DividerItemDecoration3;
+import com.smileflowpig.money.moneyplatfrom.util.MyScrollView;
 import com.smileflowpig.money.moneyplatfrom.util.ScaleTransformer;
 import com.stx.xhb.xbanner.XBanner;
 
@@ -80,7 +82,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     RecyclerView messagerv;
 
     @BindView(R.id.home_scroll)
-    NestedScrollView scroll;
+    MyScrollView scroll;
 
     @BindView(R.id.piglayout)
     LinearLayout piglayout;
@@ -263,12 +265,12 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 List<MessageBean.RstBean> rst = messageBean.rst;
                 final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
                 MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
-//                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
-//                    @Override
-//                    public boolean canScrollVertically() {
-//                        return false;
-//                    }
-//                });
+                messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                });
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 messagerv.setLayoutManager(linearLayoutManager);
@@ -315,14 +317,15 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onNext(HomedataBean o) {
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
+                System.out.println(data.size()+"有几个");
                 PlatformAdapter platformAdapter=new PlatformAdapter(getActivity(),data);
-//                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
-//                    @Override
-//                    public boolean canScrollVertically() {
-//                        return false;
-//                    }
-//
-//                });
+                platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+
+                });
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 platformrv.setLayoutManager(linearLayoutManager);
@@ -436,6 +439,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 //    }
     public void initview(){
 
+        scroll.setFillViewport(true);
         animatorSet = new AnimatorSet();
         platformrv.setFocusable(false);
         platformrv.setNestedScrollingEnabled(false);
@@ -455,9 +459,30 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         messagerv.addItemDecoration(decoration);
-        scroll.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+//        scroll.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//
+//                if(scrollY>=measuredHeight){
+//                    if(piglayout.getVisibility()!=View.VISIBLE)
+//                        piglayout.setVisibility(View.VISIBLE);
+//                    if(shoulayout.getVisibility()!=View.GONE)
+//                        shoulayout.setVisibility(View.GONE);
+//                }else {
+//                    if(piglayout.getVisibility()!=View.GONE)
+//                        piglayout.setVisibility(View.GONE);
+//                    if(shoulayout.getVisibility()!=View.VISIBLE)
+//                        shoulayout.setVisibility(View.VISIBLE);
+//
+//                }
+//
+//
+//            }
+//        });
+
+        scroll.setOnScrollListener(new MyScrollView.OnScrollListener() {
             @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+            public void onScroll(int scrollY) {
 
                 if(scrollY>=measuredHeight){
                     if(piglayout.getVisibility()!=View.VISIBLE)
@@ -471,10 +496,9 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                         shoulayout.setVisibility(View.VISIBLE);
 
                 }
-
-
             }
         });
+
         scroll.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

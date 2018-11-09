@@ -359,6 +359,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         if (millisUntilFinished / 1000 == 0) {
                             getpopshort(content, icon);
                         }
+
                     }
 
                     @Override
