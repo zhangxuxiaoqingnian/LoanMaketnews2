@@ -2,6 +2,7 @@ package com.smileflowpig.money.factory.net;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -68,7 +69,7 @@ public class Network {
     //                        Request.Builder builder = original.newBuilder();
     ////                        if (!TextUtils.isEmpty(Account.getToken())) {
     ////                            // 注入一个token
-    ////                            builder.addHeader("token", Account.getToken());
+
     ////                        }
     //                        long time = System.currentTimeMillis() / 1000;
     //                        try {
@@ -133,6 +134,7 @@ public class Network {
         // Create an ssl socket factory with our all-trusting manager
         return sslContext
                 .getSocketFactory();
+
     }
 
 
