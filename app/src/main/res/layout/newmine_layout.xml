@@ -32,8 +32,7 @@
             android:layout_marginLeft="15px"
             android:layout_marginRight="12px"
             android:src="@mipmap/loginicon"
-            app:civ_border_color="#ffffff"
-            app:civ_border_width="6dp" />
+         />
 
 
         <TextView

@@ -260,9 +260,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             switchFragment(list2.get(position)).commit();
             getvisible2(position);
             //显示隐藏
-            cx.remove(2);
-            icon.remove(2);
-            icon2.remove(2);
+//            cx.remove(2);
+//            icon.remove(2);
+//            icon2.remove(2);
             setTabs(mTabLayout, this.getLayoutInflater());
             initBottomTitle();
             mPresenter.start();
