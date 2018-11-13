@@ -876,7 +876,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         String newData = stampToData(newTime);
         String oldData = stampToData(oldTime);
         String newDataSpli[] = newData.split("-");
-        String oldDataSpli[] = oldData.split("-");
+            String oldDataSpli[] = oldData.split("-");
 
         if (Integer.parseInt(newDataSpli[0]) > Integer.parseInt(oldDataSpli[0])) {
             return true;

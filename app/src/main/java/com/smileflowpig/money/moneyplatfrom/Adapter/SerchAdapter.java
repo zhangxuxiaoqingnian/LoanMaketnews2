@@ -33,10 +33,10 @@ public class SerchAdapter extends RecyclerView.Adapter<SerchAdapter.MyViewHolder
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.serch_adapter_layout, null);
-        MyViewHolder myViewHolder=new MyViewHolder(inflate);
+    View inflate = LayoutInflater.from(context).inflate(R.layout.serch_adapter_layout, null);
+    MyViewHolder myViewHolder=new MyViewHolder(inflate);
         return myViewHolder;
-    }
+}
 
     @SuppressLint("DefaultLocale")
     @Override

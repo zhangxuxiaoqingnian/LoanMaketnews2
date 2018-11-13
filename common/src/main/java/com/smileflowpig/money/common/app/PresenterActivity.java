@@ -77,8 +77,28 @@ public abstract class PresenterActivity<Presenter extends BaseContract.Presenter
             dialog.show();
         }
     }
+    public void showLoadingPro() {
 
-    protected void hideDialogLoading() {
+            ProgressDialog dialog = mLoadingDialog;
+            if (dialog == null) {
+                dialog = new ProgressDialog(this, R.style.AppTheme_Dialog_Alert_Light);
+                // 不可触摸取消
+                dialog.setCanceledOnTouchOutside(false);
+                // 强制取消关闭界面
+                dialog.setCancelable(true);
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        finish();
+                    }
+                });
+                mLoadingDialog = dialog;
+            }
+
+            dialog.setMessage(getText(R.string.prompt_loading));
+            dialog.show();
+    }
+    public void hideDialogLoading() {
         ProgressDialog dialog = mLoadingDialog;
         if (dialog != null) {
             mLoadingDialog = null;
@@ -86,7 +106,7 @@ public abstract class PresenterActivity<Presenter extends BaseContract.Presenter
         }
     }
 
-    protected void hideLoading() {
+    public void hideLoading() {
         // 不管你怎么样，我先隐藏我
         hideDialogLoading();
 
