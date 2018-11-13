@@ -2,12 +2,18 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.asm.base.android.ui.launcher.BaseApplication;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
@@ -37,7 +43,7 @@ import com.umeng.analytics.MobclickAgent;
 public class TableActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
     @BindView(R.id.table_back)
-    ImageView back;
+    LinearLayout back;
     @BindView(R.id.table_edit)
     TextView edit;
     @BindView(R.id.tab_title)
@@ -46,6 +52,8 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     RecyclerView rv;
     @BindView(R.id.refreshlayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.table_layout)
+    LinearLayout layout;
 
     private int tabid;
     private String channelId;
@@ -55,6 +63,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     private List<CardBean.RstBean.ListBean> list2;
     private CardAdapter cardAdapter;
     private String tabtitle;
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +156,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
 
             @Override
             public void onNext(TabBean tabBean) {
+
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
                 if(tabBean.rst.pageinfo.hasNext){
@@ -168,14 +178,13 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
                 tabAdapter.setItempostion(new TabAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        if(title.equals("快借1500")){
+
+                        if(tabtitle.equals("快借1500")){
                             DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0,1);
-                        }else if(title.equals("最新口子")){
+                        }else if(tabtitle.equals("最新口子")){
                             DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0,2);
-
-                        }else if(title.equals("一定借到钱")){
+                        }else if(tabtitle.equals("一定借到钱")){
                             DetailActivity.show(TableActivity.this, list.get(pos).id+"","notice",0,3);
-
                         }
 
                     }
@@ -237,5 +246,25 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
         refreshLayout.finishRefresh();
+    }
+
+
+    public void getpopwindow() {
+
+        int width = getWindowManager().getDefaultDisplay().getWidth();
+        View inflate = LayoutInflater.from(TableActivity.this).inflate(R.layout.loadingtwo_layout, null, false);
+        TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
+        loading.setText("加载中...");
+        popupWindow = new PopupWindow(inflate, width / 3, width / 3);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

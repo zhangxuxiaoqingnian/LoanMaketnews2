@@ -19,13 +19,19 @@
         android:background="#FFCE25"
         >
 
-
-        <ImageView
+        <LinearLayout
             android:id="@+id/case_back"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="8dp"
-            android:src="@mipmap/overback" />
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/overback" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/casename"
             android:layout_width="wrap_content"
@@ -46,7 +52,6 @@
             android:textColor="#ffffff"
             android:textSize="14sp"
             />
-
 
     </android.support.v7.widget.Toolbar>
 

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:id="@+id/money_layout"
     >
 
     <LinearLayout
@@ -140,4 +141,11 @@ android:gravity="center"
 
     <!--</LinearLayout>-->
 
+    <com.smileflowpig.money.common.widget.EmptyView
+        android:id="@+id/money_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </com.smileflowpig.money.common.widget.EmptyView>
 </LinearLayout>

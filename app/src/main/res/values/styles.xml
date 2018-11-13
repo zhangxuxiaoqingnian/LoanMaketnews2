@@ -21,6 +21,9 @@
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
+    <style name="MyAppTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">colorPrimary
          <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/bu_yellow_bg</item>

@@ -156,10 +156,10 @@ public class SearchFragment extends PresenterFragment<SearchContract.Presenter>
 
             }
         });
-        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+        RefreshLayout refreshLayout = this.refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                mPresenter.refreshData(term, amount, user_title, ranking_list,1);
+                mPresenter.refreshData(term, amount, user_title, ranking_list, 1);
             }
         });
 

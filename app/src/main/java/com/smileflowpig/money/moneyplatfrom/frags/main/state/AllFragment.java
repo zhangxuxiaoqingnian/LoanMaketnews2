@@ -7,6 +7,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -43,9 +49,13 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
     @BindView(R.id.refreshlayout)
     SmartRefreshLayout refreshLayout;
 
+    @BindView(R.id.all_layout)
+    LinearLayout layout;
+
     private int page=1;
     private MessageAdapter messageAdapter;
     private List<MessageBean.RstBean.NewListBean> list;
+    private PopupWindow popupWindow;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -58,6 +68,10 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
         DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         allrv.addItemDecoration(decoration);
+        if(!getActivity().isFinishing()) {
+            getpopwindow();
+        }
+
         getdata();
     }
     public void getdata(){
@@ -72,7 +86,9 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
 
             @Override
             public void onNext(MessageBean messageBean) {
-
+                if(popupWindow!=null){
+                    popupWindow.dismiss();
+                }
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
                 if(messageBean.rst.get(0).pageinfo.hasNext){
@@ -135,5 +151,17 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
     public void onRefresh(RefreshLayout refreshlayout) {
 
         refreshLayout.finishRefresh();
+    }
+
+    public void getpopwindow() {
+        int width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
+        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.loadingtwo_layout, null, false);
+        TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
+        loading.setText("加载中...");
+        popupWindow = new PopupWindow(inflate, width / 3, width / 3);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
+
     }
 }

@@ -65,11 +65,14 @@ public class SerchAdapter extends RecyclerView.Adapter<SerchAdapter.MyViewHolder
             holder.title.setVisibility(View.VISIBLE);
             holder.title.setText(list.get(position).prod_title);
         }
-        if(list.get(position).is_quality.equals("0")){
-            holder.hotgo.setVisibility(View.GONE);
-        }else {
-            holder.hotgo.setVisibility(View.VISIBLE);
+        if(list.get(position).is_quality!=null){
+            if(list.get(position).is_quality.equals("0")){
+                holder.hotgo.setVisibility(View.GONE);
+            }else {
+                holder.hotgo.setVisibility(View.VISIBLE);
+            }
         }
+
     }
 
     @Override

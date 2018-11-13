@@ -17,12 +17,18 @@
         app:contentInsetStart="0dp"
         app:titleTextAppearance="@style/TextAppearance.Title">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/back"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="8dp"
-            android:src="@mipmap/overback" />
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/overback" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_title"

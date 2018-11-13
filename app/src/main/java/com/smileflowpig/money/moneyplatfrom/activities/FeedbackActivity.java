@@ -1,11 +1,14 @@
 package com.smileflowpig.money.moneyplatfrom.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import com.smileflowpig.money.R;
@@ -17,7 +20,7 @@ import com.smileflowpig.money.factory.util.SPUtil;
 public class FeedbackActivity extends PresenterActivity {
 
     @BindView(R.id.feed_back)
-    ImageView back;
+    LinearLayout back;
     @BindView(R.id.feed_wv)
     WebView wv;
     @Override
@@ -27,6 +30,8 @@ public class FeedbackActivity extends PresenterActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm2 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm2.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 finish();
             }
         });

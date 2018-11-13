@@ -370,7 +370,8 @@
                         android:id="@+id/message_rv"
                         android:layout_width="325px"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false" />
+                        android:nestedScrollingEnabled="false"
+                        />
                 </LinearLayout>
             </LinearLayout>
         </com.smileflowpig.money.moneyplatfrom.util.MyScrollView>
