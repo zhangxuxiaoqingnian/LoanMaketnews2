@@ -20,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.moneyplatfrom.Adapter.MessageAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.MyAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.PlatformAdapter;
@@ -129,6 +130,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         initview();
         list5 = new ArrayList<>();
         //获取当前渠道号
@@ -195,11 +197,14 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
                 if(data!=null&&data.size()>0){
+                    //获取屏幕宽度
+                    int screenWidth = DisplayUtil.getScreenWidth();
+                    int i = screenWidth / 9;
                     MyAdapter myAdapter=new MyAdapter(getActivity(),data);
                     vp.setAdapter(myAdapter);
                     vp.setCurrentItem(10000*data.size()+1);
                     vp.setOffscreenPageLimit(3);
-                    vp.setPageMargin(-120);
+                    vp.setPageMargin(-i);
                     vp.setPageTransformer(false,new ScaleTransformer());
                 }
 
