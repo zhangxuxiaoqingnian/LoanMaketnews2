@@ -532,7 +532,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         countDownTimer = new CountDownTimer(5 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+
+                //System.out.println("剩余时间"+millisUntilFinished / 1000);
                 if (millisUntilFinished / 1000 == 0) {
+                    //System.out.println("剩余不进来");
                     popupWindow.dismiss();
                     countDownTimer.onFinish();
                 }

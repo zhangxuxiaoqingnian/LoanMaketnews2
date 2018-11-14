@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,7 +60,7 @@ import static com.smileflowpig.money.moneyplatfrom.util.FileUtil.getRealFilePath
 public class MySetTwoActivity extends PresenterActivity implements View.OnClickListener {
 
     @BindView(R.id.myset_back)
-    ImageView back;
+    LinearLayout back;
     @BindView(R.id.newset_icon)
     RelativeLayout seticon;
     @BindView(R.id.newname)
@@ -392,7 +393,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
                 } else {
                     if (!SharedPreferenceMark.getHasShowCamera()) {
                         SharedPreferenceMark.setHasShowCamera(true);
-                        new DialogPermission(this, "关闭摄像头权限影响扫描功能");
+                        new DialogPermission(this, "关闭摄像头权限影相机功能");
 
                     } else {
                         Toast.makeText(this, "未获取摄像头权限", Toast.LENGTH_SHORT)
@@ -404,11 +405,6 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
-
-
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -435,7 +431,6 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
             fileover = FileUtil.getSmallBitmap(this, file.getPath());
             Uri uri = Uri.fromFile(fileover);
             icon.setImageURI(uri);
-
         }
     }
 

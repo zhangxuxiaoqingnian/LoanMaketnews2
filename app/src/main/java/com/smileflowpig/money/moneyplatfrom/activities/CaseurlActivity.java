@@ -55,7 +55,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     @BindView(R.id.casename)
     TextView casename;
     @BindView(R.id.case_back)
-    ImageView case_back;
+    LinearLayout case_back;
     @BindView(R.id.data_share)
     TextView share;
     @BindView(R.id.sharelayout)

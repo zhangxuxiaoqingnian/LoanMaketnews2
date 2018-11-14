@@ -317,7 +317,6 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onNext(HomedataBean o) {
 
                 final List<HomedataBean.RstBean.DataBean> data = o.rst.data;
-                System.out.println(data.size()+"有几个");
                 PlatformAdapter platformAdapter=new PlatformAdapter(getActivity(),data);
                 platformrv.setLayoutManager(new LinearLayoutManager(getActivity()){
                     @Override

@@ -255,7 +255,7 @@
         <activity android:name=".moneyplatfrom.activities.MySetTwoActivity" />
         <activity android:name=".moneyplatfrom.activities.TypeActivity" />
         <activity android:name=".moneyplatfrom.activities.CaseurlActivity" />
-        <activity android:name=".moneyplatfrom.activities.FeedbackActivity" />
+        <activity android:name=".moneyplatfrom.activities.FeedbackActivity"/>
         <activity android:name=".moneyplatfrom.activities.TableActivity" />
         <activity android:name=".moneyplatfrom.activities.BillManagerActivity" />
         <activity android:name=".moneyplatfrom.activities.BillDetialActivity" />

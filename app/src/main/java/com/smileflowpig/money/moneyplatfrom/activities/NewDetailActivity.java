@@ -56,7 +56,7 @@ public class NewDetailActivity extends PresenterActivity
     private TextView datum;
     private TextView state;
     private TextView title;
-    private ImageView back;
+    private LinearLayout back;
     private TextView timetype;
     private DetailBean.RstBean rst;
     private LinearLayout moneylayout;
@@ -285,7 +285,7 @@ public class NewDetailActivity extends PresenterActivity
         datum = (TextView) findViewById(R.id.pp_datum);
         state = (TextView) findViewById(R.id.pp_state);
         title = (TextView) findViewById(R.id.tv_title);
-        back = (ImageView) findViewById(R.id.detal_back);
+        back = (LinearLayout) findViewById(R.id.detal_back);
         timetype = (TextView) findViewById(R.id.pp_timetype);
         moneyedit = (ImageView) findViewById(R.id.money_edit);
         collectlayout = (LinearLayout) findViewById(R.id.collect_layout);

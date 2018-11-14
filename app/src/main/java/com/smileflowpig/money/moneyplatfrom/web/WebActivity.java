@@ -192,11 +192,11 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 
 
 //url = "https://biz-api.jindanfenqi.com/h5/register.html?source=298";
-        url = "https://m-stg2.tianxiaxinyong.com/cooperation/b-test.html";
-        webview.loadUrl(url);
+//        url = "https://m-stg2.tianxiaxinyong.com/cooperation/b-test.html";
         webview.setWebViewClient(new MyWebViewClient());
         webview.setWebChromeClient(new MyWebChromeClient());
         webview.addJavascriptInterface(new AndroidtoJs(), "native");//AndroidtoJS类对象映射到js的test对象
+        webview.loadUrl(url);
 
 
         if (isPop) {
@@ -273,43 +273,51 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     @OnClick(R.id.back)
     void onBack() {
 
-        if (TextUtils.isEmpty(skip_type)) {
-            finish();
-            hideSoftKeyboard();
-        } else {
-            if (skip_type.equals("1")) {
-                Log.e(TAG, type + "--------------type");
-                if (type == 0) {
-                    finish();
-                    hideSoftKeyboard();
-                } else {
-                    MainActivity.show(WebActivity.this);
-                }
-            } else {
+        if (webview != null&&webview.canGoBack()) {
+            webview.goBack();
+
+        }else{
+            if (TextUtils.isEmpty(skip_type)) {
                 finish();
                 hideSoftKeyboard();
+            } else {
+                if (skip_type.equals("1")) {
+                    Log.e(TAG, type + "--------------type");
+                    if (type == 0) {
+                        finish();
+                    } else {
+                        MainActivity.show(WebActivity.this);
+                    }
+                } else {
+                    finish();
+                }
             }
-        }
 
+        }
 
     }
 
     @OnClick(R.id.back_text)
     void onBackText() {
+        if (webview != null&&webview.canGoBack()) {
+                webview.goBack();
 
-        if (TextUtils.isEmpty(skip_type)) {
-            finish();
-        } else {
-            if (skip_type.equals("1")) {
-                Log.e(TAG, type + "--------------type");
-                if (type == 0) {
-                    finish();
-                } else {
-                    MainActivity.show(WebActivity.this);
-                }
-            } else {
+        }else{
+            if (TextUtils.isEmpty(skip_type)) {
                 finish();
+            } else {
+                if (skip_type.equals("1")) {
+                    Log.e(TAG, type + "--------------type");
+                    if (type == 0) {
+                        finish();
+                    } else {
+                        MainActivity.show(WebActivity.this);
+                    }
+                } else {
+                    finish();
+                }
             }
+
         }
 
     }

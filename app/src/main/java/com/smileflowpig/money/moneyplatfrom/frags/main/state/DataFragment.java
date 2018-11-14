@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -32,6 +36,7 @@ import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.DaiBanner;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.smileflowpig.money.moneyplatfrom.util.WrapContentLinearLayoutManager;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -54,6 +59,8 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
     private int page=1;
     private String type;
     private SerchAdapter serchAdapter;
+    private PopupWindow popupWindow;
+    private LinearLayout layout;
 
     @Override
     protected BaseContract.Presenter initPresenter() {
@@ -79,6 +86,9 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
         initview();
 
         list3 = new ArrayList<>();
+        if(!getActivity().isFinishing()){
+            getpopwindow();
+        }
         getdata("不限");
         List<String> list=new ArrayList<>();
         list.add("不限");
@@ -105,9 +115,13 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
             public void success(int pos) {
                 refreshlayout.setLoadmoreFinished(false);
                 list3.clear();
+                serchAdapter.notifyDataSetChanged();
                 page=1;
                 typeadapter.selectedItemPosition(pos);
                 typeadapter.notifyDataSetChanged();
+                if(!getActivity().isFinishing()){
+                    getpopwindow();
+                }
                 getdata(list2.get(pos));
                 type=list2.get(pos);
                 if(pos==0){
@@ -138,6 +152,9 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
 
             @Override
             public void onNext(DaiBanner daiBanner) {
+                if(popupWindow!=null){
+                    popupWindow.dismiss();
+                }
                 refreshlayout.finishRefresh();
                 refreshlayout.finishLoadmore();
                 if(daiBanner.rst.pageinfo.hasNext){
@@ -149,7 +166,7 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
                 list3.addAll(data);
                 if(serchAdapter==null){
                     serchAdapter = new SerchAdapter(getActivity(),list3);
-                    datarv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    datarv.setLayoutManager(new WrapContentLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
                     datarv.setAdapter(serchAdapter);
                 }else {
                     serchAdapter.notifyDataSetChanged();
@@ -180,6 +197,7 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
         rv = (RecyclerView) inflate.findViewById(R.id.dataallrv);
         rv.addItemDecoration(new DisplayUtils4.SpacesItemDecoration());
         datarv = (RecyclerView) inflate.findViewById(R.id.datarv);
+        layout = (LinearLayout) inflate.findViewById(R.id.data_layout);
         //datarv.addItemDecoration(new DisplayUtils3.SpacesItemDecoration());
         refreshlayout = (SmartRefreshLayout) inflate.findViewById(R.id.refreshlayout);
         refreshlayout.setOnRefreshLoadmoreListener(this).
@@ -197,5 +215,16 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
         refreshlayout.finishRefresh();
+    }
+
+    public void getpopwindow() {
+        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.loadingtwo_layout, null, false);
+        TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
+        loading.setText("加载中...");
+        popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
+
     }
 }

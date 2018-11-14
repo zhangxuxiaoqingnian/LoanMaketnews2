@@ -119,7 +119,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private TextView state;
     private TextView phone;
     private TextView title;
-    private ImageView back;
+    private LinearLayout back;
     private TextView timetype;
     private LinearLayout moneylayout;
     private ImageView moneyedit;
@@ -164,7 +164,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         datum = (TextView) findViewById(R.id.pp_datum);
         state = (TextView) findViewById(R.id.pp_state);
         title = (TextView) findViewById(R.id.tv_title);
-        back = (ImageView) findViewById(R.id.detal_back);
+        back = (LinearLayout) findViewById(R.id.detal_back);
         timetype = (TextView) findViewById(R.id.pp_timetype);
         moneyedit = (ImageView) findViewById(R.id.money_edit);
         collectlayout = (LinearLayout) findViewById(R.id.collect_layout);
@@ -841,6 +841,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.detal_back:
+                InputMethodManager imm2 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm2.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 finish();
                 break;
             case R.id.money_edit:

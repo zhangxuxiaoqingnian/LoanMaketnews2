@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="#F7F7F7"
+    android:id="@+id/table_layout"
     tools:context="com.smileflowpig.money.moneyplatfrom.activities.TableActivity">
 
     <android.support.v7.widget.Toolbar
@@ -18,13 +19,18 @@
         android:background="#FFCE25"
         app:titleTextAppearance="@style/TextAppearance.Title">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/table_back"
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+        <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="8dp"
             android:src="@mipmap/overback" />
-
+        </LinearLayout>
         <TextView
             android:id="@+id/tab_title"
             android:layout_width="wrap_content"

@@ -37,7 +37,7 @@ import com.umeng.analytics.MobclickAgent;
 public class MyCollectActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener{
 
     @BindView(R.id.collect_back)
-    ImageView back;
+    LinearLayout back;
     @BindView(R.id.collect_edit)
     TextView edit;
     @BindView(R.id.collect_checkall)

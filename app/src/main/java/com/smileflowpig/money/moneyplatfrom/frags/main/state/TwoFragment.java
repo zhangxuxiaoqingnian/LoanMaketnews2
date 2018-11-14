@@ -7,6 +7,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -41,9 +47,12 @@ public class TwoFragment extends PresenterFragment implements OnRefreshLoadmoreL
     RecyclerView rv;
     @BindView(R.id.refreshlayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.two_layout)
+    LinearLayout layout;
     private int page=1;
     private MessageTwoAdapter messageAdapter;
     private List<MessageBean.RstBean.NewListBean> list;
+    private PopupWindow popupWindow;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -70,7 +79,6 @@ public class TwoFragment extends PresenterFragment implements OnRefreshLoadmoreL
 
             @Override
             public void onNext(MessageBean messageBean) {
-
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
                 if(messageBean.rst.get(0).pageinfo.hasNext){
@@ -132,4 +140,5 @@ public class TwoFragment extends PresenterFragment implements OnRefreshLoadmoreL
 
         refreshLayout.finishRefresh();
     }
+
 }

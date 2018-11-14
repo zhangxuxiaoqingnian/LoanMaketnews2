@@ -32,7 +32,7 @@ import com.umeng.analytics.MobclickAgent;
 public class RecordActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
     @BindView(R.id.record_back)
-    ImageView back;
+    LinearLayout back;
     @BindView(R.id.record_edit)
     TextView edit;
     @BindView(R.id.record_rv)

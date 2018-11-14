@@ -27,7 +27,7 @@ public class NewSearchFragment extends PresenterFragment implements View.OnClick
     private TextView money;
     private TextView data;
     private TextView identity;
-    private  Fragment  currentFragment=new Fragment();
+    private Fragment  currentFragment=new Fragment();
     private MoneyFragment moneyFragment;
     private IndentFragment indentFragment;
     private DataFragment dataFragment;
