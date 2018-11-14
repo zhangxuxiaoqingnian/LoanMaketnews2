@@ -13,6 +13,7 @@ import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.factory.net.Network;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -45,6 +46,8 @@ public class App extends Application {
                 , "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
         //友盟
         UMShareAPI.get(this);
+        //友盟渠道配置
+        UMUtils.setChannel(this,BuildConfig.CHANNLE);
         PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();

@@ -10,6 +10,7 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.smileflowpig.money.common.Common;
 import com.smileflowpig.money.factory.Factory;
+import com.smileflowpig.money.factory.net.Network;
 import com.smileflowpig.money.factory.util.LoginInterceptor;
 
 import java.io.IOException;
@@ -72,15 +73,17 @@ public class NetRequestUtils {
 //        });
 //
 //        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
+        // 存储起来
+        LoginInterceptor interceptor = new LoginInterceptor();
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         int maxcache = 10 * 1024 * 1024;
         Cache cache = new Cache(Environment.getDataDirectory(), maxcache);
         okHttpClient.cache(cache);
         //okHttpClient.addInterceptor(new RetrofitLogInterceptor());
         okHttpClient.cookieJar(cookieJar);
+
         okHttpClient.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-        //okHttpClient.addInterceptor(loggingInterceptor);
+        okHttpClient.addInterceptor(interceptor);
         okHttpClient.connectTimeout(30, TimeUnit.SECONDS);
         okHttpClient.readTimeout(30, TimeUnit.SECONDS);
         okHttpClient.writeTimeout(30, TimeUnit.SECONDS);
@@ -90,6 +93,9 @@ public class NetRequestUtils {
         //http://bw.quyaqu.com/user/
         Retrofit.Builder retrofit = new Retrofit.Builder().baseUrl(Common.Constance.API_URL).client(okHttpClient.build());
         retrofit.addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+
+//        Baseretrofit baseretrofit =
+//                Network.getRetrofit().create(Baseretrofit.class)
 
         Baseretrofit baseretrofit = retrofit.build().create(Baseretrofit.class);
 
