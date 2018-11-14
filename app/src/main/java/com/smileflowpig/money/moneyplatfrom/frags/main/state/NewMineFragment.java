@@ -215,7 +215,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
             case R.id.my_collect:
                 if (flag == 0) {
                     //提示登录
-                    createDialog(R.string.no_login2);
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
                     Intent intent = new Intent(getActivity(), MyCollectActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
@@ -232,7 +233,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
             case R.id.my_forget:
                 if (flag == 0) {
                     //提示登录
-                    createDialog(R.string.no_login2);
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
                     Intent intent2 = new Intent(getActivity(), BillManagerActivity.class);
                     startActivity(intent2);
@@ -249,7 +251,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
             case R.id.my_feenback:
                 if (flag == 0) {
                     //提示登录
-                    createDialog(R.string.no_login2);
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
                     Intent intent = new Intent(getActivity(), FeedbackActivity.class);
                     startActivity(intent);
@@ -260,7 +263,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
             case (R.id.my_set):
                 if (flag == 0) {
                     //提示登录
-                    createDialog(R.string.no_login2);
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
                     SetActivity.show(getContext());
                 }
@@ -283,18 +287,4 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 
     }
 
-    public void createDialog(@StringRes int str) {
-        selfDialog = new SelfDialog(getActivity());
-        selfDialog.setTitle("温馨提示");
-        selfDialog.setMessage(str);
-        selfDialog.setNoOnclickListener("确定", new SelfDialog.onNoOnclickListener() {
-            @Override
-            public void onNoClick() {
-                Intent intent = new Intent(getActivity(), AccountActivity.class);
-                startActivityForResult(intent, Constant.Code.REQUEST_CODE);
-                selfDialog.dismiss();
-            }
-        });
-        selfDialog.show();
-    }
 }

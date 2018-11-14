@@ -85,9 +85,12 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
         initview();
 
         list3 = new ArrayList<>();
-        if(!getActivity().isFinishing()){
-            getpopwindow();
-        }
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                getpopwindow();
+            }
+        });
         getdata("不限");
         List<String> list=new ArrayList<>();
         list.add("不限");
@@ -135,6 +138,13 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
                 }
             }
         });
+
+    }
+
+    @Override
+    public void onDestroy() {
+        popupWindow.dismiss();
+        super.onDestroy();
 
     }
 

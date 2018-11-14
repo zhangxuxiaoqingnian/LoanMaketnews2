@@ -458,26 +458,6 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         messagerv.addItemDecoration(decoration);
-//        scroll.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-//            @Override
-//            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//
-//                if(scrollY>=measuredHeight){
-//                    if(piglayout.getVisibility()!=View.VISIBLE)
-//                        piglayout.setVisibility(View.VISIBLE);
-//                    if(shoulayout.getVisibility()!=View.GONE)
-//                        shoulayout.setVisibility(View.GONE);
-//                }else {
-//                    if(piglayout.getVisibility()!=View.GONE)
-//                        piglayout.setVisibility(View.GONE);
-//                    if(shoulayout.getVisibility()!=View.VISIBLE)
-//                        shoulayout.setVisibility(View.VISIBLE);
-//
-//                }
-//
-//
-//            }
-//        });
 
         scroll.setOnScrollListener(new MyScrollView.OnScrollListener() {
             @Override
@@ -502,12 +482,19 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction()==MotionEvent.ACTION_MOVE){
-                    Animetion(overimg);
+                    //Animetion(overimg);
                 }else if(event.getAction()==MotionEvent.ACTION_UP){
-                    isscrll=false;
-                    Animetion2(overimg);
+                    //isscrll=false;
                 }
                 return false;
+            }
+        });
+        scroll.setmListener(new MyScrollView.onFinishedListener() {
+            @Override
+            public void onFinish(boolean isFinish) {
+                if(isFinish){
+                    //Animetion2(overimg);
+                }
             }
         });
     }

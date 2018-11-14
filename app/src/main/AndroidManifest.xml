@@ -42,6 +42,7 @@
 
         <activity
             android:name=".moneyplatfrom.activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
             android:name=".moneyplatfrom.LaunchActivity"
@@ -231,13 +232,34 @@
             android:name=".moneyplatfrom.activities.Webview_protocol"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".moneyplatfrom.activities.GuoShenDetail" />
-        <activity android:name=".moneyplatfrom.activities.MyHomeActivity" />
-        <activity android:name=".moneyplatfrom.activities.MyBillActivity" />
-        <activity android:name=".moneyplatfrom.activities.MyTypeActivity" />
-        <activity android:name=".moneyplatfrom.activities.MySetActivity" />
-        <activity android:name=".moneyplatfrom.activities.MyDaiActivity" />
-        <activity android:name=".moneyplatfrom.activities.NewDetailActivity" />
+        <activity android:name=".moneyplatfrom.activities.GuoShenDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MyHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MyBillActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MyTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MySetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MyDaiActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.NewDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
 
         <!-- 高德定位 -->
         <meta-data
@@ -246,28 +268,76 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".moneyplatfrom.activities.CityotherActivity" />
-        <activity android:name=".moneyplatfrom.activities.DiscloseActivity" />
-        <activity android:name=".moneyplatfrom.activities.MyCollectActivity" />
-        <activity android:name=".moneyplatfrom.activities.RecordActivity" />
-        <activity android:name=".moneyplatfrom.activities.MemoActivity" />
-        <activity android:name=".moneyplatfrom.activities.MemoTwoActivity" />
-        <activity android:name=".moneyplatfrom.activities.MySetTwoActivity" />
-        <activity android:name=".moneyplatfrom.activities.TypeActivity" />
-        <activity android:name=".moneyplatfrom.activities.CaseurlActivity" />
-        <activity android:name=".moneyplatfrom.activities.FeedbackActivity"/>
-        <activity android:name=".moneyplatfrom.activities.TableActivity" />
-        <activity android:name=".moneyplatfrom.activities.BillManagerActivity" />
-        <activity android:name=".moneyplatfrom.activities.BillDetialActivity" />
-        <activity android:name=".moneyplatfrom.activities.BillAddActivity" />
-        <activity android:name=".moneyplatfrom.activities.WebviewActivity" />
+        <activity android:name=".moneyplatfrom.activities.CityotherActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.DiscloseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MyCollectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.RecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MemoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MemoTwoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MySetTwoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.TypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.CaseurlActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.FeedbackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.TableActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.BillManagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.BillDetialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.BillAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.WebviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
 
         <receiver
             android:name=".moneyplatfrom.util.AlarmReceiver"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".moneyplatfrom.activities.CardPigActivity"></activity>
+        <activity android:name=".moneyplatfrom.activities.CardPigActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            ></activity>
     </application>
 
 </manifest>

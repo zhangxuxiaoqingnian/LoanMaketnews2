@@ -34,7 +34,7 @@ public class DataGenerator {
         list2 = new ArrayList<>();
         list2.add(R.drawable.tabbar_home16);
         list2.add(R.drawable.tabbar_search16);
-        list2.add(R.drawable.tabbar_creditcard8);
+        list2.add(R.drawable.tabbar_creditcard6);
         list2.add(R.drawable.tabbar_active16);
         list2.add(R.drawable.tabbar_mine16);
         return list2;
@@ -51,7 +51,7 @@ public class DataGenerator {
         list3 = new ArrayList<>();
         list3.add(R.drawable.tabbar_home_highligh16);
         list3.add(R.drawable.tabbar_search_highlight16);
-        list3.add(R.drawable.tabbar_creditcard_highlight8);
+        list3.add(R.drawable.tabbar_creditcard_highlight6);
         list3.add(R.drawable.tabbar_active_hightlight16);
         list3.add(R.drawable.tabbar_mine_highligh16);
         return list3;
@@ -61,14 +61,14 @@ public class DataGenerator {
             R.drawable.tabbar_color_highligh10,R.drawable.tabbar_mine_highligh10
     };
 
-    public static final String[] mTabTitle = new String[]{"首页", "贷款","信用卡","资讯", "我的"};
+    public static final String[] mTabTitle = new String[]{"首页", "贷款","征信","资讯", "我的"};
     private static List<String> list;
 
     public static final List<String> cx(){
         list = new ArrayList<>();
         list.add("首页");
         list.add("贷款");
-        list.add("信用卡");
+        list.add("征信");
         list.add("资讯");
         list.add("我的");
         return list;

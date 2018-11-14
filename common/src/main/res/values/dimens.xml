@@ -17,7 +17,7 @@
     <dimen name="actionBarWithStatusBarSize">60dp</dimen>
 
     //标题栏距离
-    <dimen name="title_marginheight">80dp</dimen>
+    <dimen name="title_marginheight">60dp</dimen>
 
     <!--名字字体的大小-->
     <dimen name="fontNameSize">15sp</dimen>

@@ -17,6 +17,7 @@ import com.smileflowpig.money.common.widget.StatusBarUtil;
 import com.smileflowpig.money.common.widget.convention.PlaceHolderView;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -67,19 +68,51 @@ public abstract class Activity extends AutoLayoutActivity {
      * 初始化窗口
      */
     protected void initWidows() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
+
+        if(isFlymeOS()){
+
+            System.out.println("是魅族手机");
+
+        }else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+                window.setNavigationBarColor(Color.TRANSPARENT);
+            }
+            StatusBarUtil.StatusBarLightMode(this);
         }
-        StatusBarUtil.StatusBarLightMode(this);
+
     }
+
+    /**
+     * 获取魅族系统操作版本标识
+     */
+    private static String getMeizuFlymeOSFlag() {
+        String str = getSystemProperty("ro.build.display.id", "");
+        return str;
+    }
+
+    private static String getSystemProperty(String key, String defaultValue) {
+        try {
+            Class<?> clz = Class.forName("android.os.SystemProperties");
+            Method get = clz.getMethod("get", String.class, String.class);
+            return (String) get.invoke(clz, key, defaultValue);
+        } catch (Exception e) {
+        }
+        return defaultValue;
+    }
+
+    // 判断是魅族操作系统
+    private static boolean isFlymeOS() {
+        return getMeizuFlymeOSFlag().toLowerCase().contains("flyme");
+    }
+
 
     /**
      * 初始化相关参数

@@ -89,9 +89,13 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
         list3 = new ArrayList<>();
         getdata("不限");
-        if(!getActivity().isFinishing()){
-            getpopwindow();
-        }
+
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                getpopwindow();
+            }
+        });
         final List<String> list=new ArrayList<>();
         list.add("不限");
         list.add("2千以下");
@@ -197,6 +201,13 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        popupWindow.dismiss();
+        super.onDestroy();
+
     }
 
     public void initview(){

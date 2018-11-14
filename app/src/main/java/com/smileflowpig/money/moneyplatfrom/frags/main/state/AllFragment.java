@@ -68,9 +68,12 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
         DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         allrv.addItemDecoration(decoration);
-        if(!getActivity().isFinishing()) {
-            getpopwindow();
-        }
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                getpopwindow();
+            }
+        });
 
         getdata();
     }

@@ -20,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.moneyplatfrom.Constant;
+import com.smileflowpig.money.moneyplatfrom.frags.main.state.CreditFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.HuaHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.MessageFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.MineMyFragment;
@@ -170,13 +172,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
-
-
     }
 
     @Override
     protected void initWidows() {
         super.initWidows();
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         StatusBarUtil.StatusBarLightMode(this);
         RxPermissions rxPermission = new RxPermissions(MainActivity.this);
         rxPermission
@@ -247,22 +248,23 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
             list2 = new ArrayList<>();
             //保留一份
-            //         list2.add(new HuaHomeFragment());
+            //list2.add(new HuaHomeFragment());
 //            list2.add(new NewSearchFragment());
 //            list2.add(new ActiveFragment());
 //            list2.add(new NewMineFragment());
 //            list2.add(new NewMineFragment());
             list2.add(new PigHomeFragment());
             list2.add(new NewSearchFragment());
+            list2.add(new CreditFragment());
             list2.add(new MessageFragment());
             list2.add(new NewMineFragment());
 //            list2.add(new NewMineFragment());
             switchFragment(list2.get(position)).commit();
             getvisible2(position);
             //显示隐藏
-            cx.remove(2);
-            icon.remove(2);
-            icon2.remove(2);
+//            cx.remove(2);
+//            icon.remove(2);
+//            icon2.remove(2);
             setTabs(mTabLayout, this.getLayoutInflater());
             initBottomTitle();
             mPresenter.start();
@@ -356,6 +358,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                 countDownTimer = new CountDownTimer(10 * 1000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
+
                         if (millisUntilFinished / 1000 == 0) {
                             getpopshort(content, icon);
                         }
@@ -375,6 +378,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             @Override
             public void onError(Throwable e) {
 
+                System.out.println("错误了"+e.toString());
             }
 
             @Override
@@ -507,7 +511,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         //获取屏幕宽度
         int screenWidth = DisplayUtil.getScreenWidth();
-        int i = screenWidth / 4;
+        int i = screenWidth / 5;
 
         View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
         popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -533,9 +537,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             @Override
             public void onTick(long millisUntilFinished) {
 
-                //System.out.println("剩余时间"+millisUntilFinished / 1000);
+                System.out.println("剩余时间"+millisUntilFinished / 1000);
                 if (millisUntilFinished / 1000 == 0) {
-                    //System.out.println("剩余不进来");
+                    System.out.println("剩余不进来");
                     popupWindow.dismiss();
                     countDownTimer.onFinish();
                 }
@@ -555,7 +559,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     protected void onDestroy() {
         super.onDestroy();
 
-        countDownTimer.onFinish();
+        if(countDownTimer!=null){
+            countDownTimer.onFinish();
+        }
+
     }
 
     @Override

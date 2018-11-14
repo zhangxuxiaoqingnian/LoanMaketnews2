@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+import com.smileflowpig.money.common.widget.StatusBarUtil;
 import com.smileflowpig.money.moneyplatfrom.Adapter.DaiAdapter3;
 import com.smileflowpig.money.moneyplatfrom.Bean.NoteEntity;
 import com.smileflowpig.money.moneyplatfrom.sqlite.DatabaseAdapter;
@@ -53,6 +54,7 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StatusBarUtil.StatusBarLightMode(this);
         super.onCreate(savedInstanceState);
 
         initview();
