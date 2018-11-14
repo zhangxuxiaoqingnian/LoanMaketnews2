@@ -844,6 +844,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
                 InputMethodManager imm2 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm2.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 finish();
+                if (!TextUtils.isEmpty(flag)) {
+                    MainActivity.show(this);
+                }
                 break;
             case R.id.money_edit:
                 money.requestFocus();

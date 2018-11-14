@@ -71,6 +71,8 @@ public class SerchAdapter extends RecyclerView.Adapter<SerchAdapter.MyViewHolder
             }else {
                 holder.hotgo.setVisibility(View.VISIBLE);
             }
+        }else {
+            holder.hotgo.setVisibility(View.GONE);
         }
 
     }

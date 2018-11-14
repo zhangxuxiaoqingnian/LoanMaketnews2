@@ -73,6 +73,8 @@ public class NetRequestUtils {
 //
 //        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
+
+
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         int maxcache = 10 * 1024 * 1024;
         Cache cache = new Cache(Environment.getDataDirectory(), maxcache);

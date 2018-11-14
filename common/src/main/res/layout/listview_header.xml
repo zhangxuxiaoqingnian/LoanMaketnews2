@@ -126,7 +126,6 @@
                     android:layout_alignStart="@+id/tv_fastloans"
                     />
 
-
             </com.zhy.autolayout.AutoRelativeLayout>
 
             <View

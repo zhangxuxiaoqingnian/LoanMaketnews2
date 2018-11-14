@@ -255,16 +255,16 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 //            list2.add(new NewMineFragment());
             list2.add(new PigHomeFragment());
             list2.add(new NewSearchFragment());
-            list2.add(new CreditFragment());
+            //list2.add(new CreditFragment());
             list2.add(new MessageFragment());
             list2.add(new NewMineFragment());
 //            list2.add(new NewMineFragment());
             switchFragment(list2.get(position)).commit();
             getvisible2(position);
             //显示隐藏
-//            cx.remove(2);
-//            icon.remove(2);
-//            icon2.remove(2);
+            cx.remove(2);
+            icon.remove(2);
+            icon2.remove(2);
             setTabs(mTabLayout, this.getLayoutInflater());
             initBottomTitle();
             mPresenter.start();
@@ -511,7 +511,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         //获取屏幕宽度
         int screenWidth = DisplayUtil.getScreenWidth();
-        int i = screenWidth / 5;
+        int i = screenWidth / 4;
 
         View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
         popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
