@@ -62,6 +62,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.widget.AdDialog;
@@ -96,7 +97,7 @@ import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabChan
 import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
-        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View,HuaHomeFragment.OnDaikuanClickListener,PigHomeFragment.Alldatacont {
+        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View, HuaHomeFragment.OnDaikuanClickListener, PigHomeFragment.Alldatacont {
     @BindView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.lay_container)
@@ -255,16 +256,16 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 //            list2.add(new NewMineFragment());
             list2.add(new PigHomeFragment());
             list2.add(new NewSearchFragment());
-            list2.add(new CreditFragment());
+            //list2.add(new CreditFragment());
             list2.add(new MessageFragment());
             list2.add(new NewMineFragment());
 //            list2.add(new NewMineFragment());
             switchFragment(list2.get(position)).commit();
             getvisible2(position);
             //显示隐藏
-//            cx.remove(2);
-//            icon.remove(2);
-//            icon2.remove(2);
+            cx.remove(2);
+            icon.remove(2);
+            icon2.remove(2);
             setTabs(mTabLayout, this.getLayoutInflater());
             initBottomTitle();
             mPresenter.start();
@@ -378,7 +379,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             @Override
             public void onError(Throwable e) {
 
-                System.out.println("错误了"+e.toString());
+                System.out.println("错误了" + e.toString());
             }
 
             @Override
@@ -511,7 +512,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         //获取屏幕宽度
         int screenWidth = DisplayUtil.getScreenWidth();
-        int i = screenWidth / 5;
+        int i = screenWidth / 4;
 
         View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
         popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -522,11 +523,11 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         int popupHeight = inflate.getMeasuredHeight();
         int popupWidth = inflate.getMeasuredWidth();
         int i1 = (i - popupWidth) / 2;
-        contvert=i+i1;
+        contvert = i + i1;
         //获取控件在屏幕上的位置，并赋值给location数组
         int[] location = new int[2];
         mTabLayout.getLocationOnScreen(location);
-        popupWindow.showAtLocation(mTabLayout, Gravity.NO_GRAVITY, contvert, location[1]-popupHeight);
+        popupWindow.showAtLocation(mTabLayout, Gravity.NO_GRAVITY, contvert, location[1] - popupHeight);
 
         TextView timer = (TextView) inflate.findViewById(R.id.ggtimer);
         ImageView ggicon = (ImageView) inflate.findViewById(R.id.ggicon);
@@ -537,7 +538,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             @Override
             public void onTick(long millisUntilFinished) {
 
-                System.out.println("剩余时间"+millisUntilFinished / 1000);
+                System.out.println("剩余时间" + millisUntilFinished / 1000);
                 if (millisUntilFinished / 1000 == 0) {
                     System.out.println("剩余不进来");
                     popupWindow.dismiss();
@@ -559,7 +560,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     protected void onDestroy() {
         super.onDestroy();
 
-        if(countDownTimer!=null){
+        if (countDownTimer != null) {
             countDownTimer.onFinish();
         }
 
@@ -602,13 +603,13 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     getvisible2(i);
                     icon3.setImageResource(icon2.get(i));
                     text.setTextColor(Color.parseColor("#FFAA48"));
-                    if(i==0){
+                    if (i == 0) {
                         MobclickAgent.onEvent(MainActivity.this, "homeTab");
-                    }else if(i==1){
+                    } else if (i == 1) {
                         MobclickAgent.onEvent(MainActivity.this, "loanTab");
-                    }else if(i==2){
+                    } else if (i == 2) {
                         MobclickAgent.onEvent(MainActivity.this, "informTab");
-                    }else if(i==3){
+                    } else if (i == 3) {
                         MobclickAgent.onEvent(MainActivity.this, "mineTab");
                     }
                 } else {
@@ -665,7 +666,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
 
     private void setTabs(TabLayout tabLayout, LayoutInflater inflater) {
-            mFragmentHelper.performClickMenu(position);
+        mFragmentHelper.performClickMenu(position);
         //修改底部标题栏
         if (checkChannel()) {
 
@@ -719,19 +720,18 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         } else {
             mLayAppbar.setVisibility(View.VISIBLE);
             line.setVisibility(View.VISIBLE);
-       }
-        if(checkChannel()){
-            if(newTab.extra.equals(R.string.title_mine)){
+        }
+        if (checkChannel()) {
+            if (newTab.extra.equals(R.string.title_mine)) {
                 timemore.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 timemore.setVisibility(View.GONE);
             }
-        }else {
+        } else {
 
             line.setVisibility(View.GONE);
 
         }
-
 
 
         Log.e(TAG, newTab.extra + "");
@@ -739,7 +739,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         timemore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,MessageActivity.class);
+                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
                 startActivity(intent);
             }
         });
@@ -772,7 +772,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     if (rspAdModel.getData().getProduct_id().equals("0")) {
                         WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
                     } else {
-                       DetailActivity.show(MainActivity.this, product_id,"homeAd",0,15);
+                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
                     }
                     adDialog.dismiss();
                 } else {
@@ -950,6 +950,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         return hasNavigationBar;
 
     }
+
     //获取虚拟键高度
     public static int getActionBarHeight(Activity activity) {
         TypedValue tv = new TypedValue();

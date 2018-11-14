@@ -150,6 +150,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
         });
 
     }
+
     public void getdata(String amout){
         Observable<DaiBanner> daiBannerObservable = new NetRequestUtils().bucuo().getbaseretrofit().getlistdata("1","不限",amout,"不限",12,page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

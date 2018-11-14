@@ -122,12 +122,15 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
     private Alldatacont alldatacont;
     private AnimatorSet animatorSet;
     private boolean isscrll=false;
+    private List<MessageBean.RstBean.NewListBean> list5;
+    private MessageAdapter messageAdapter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         initview();
+        list5 = new ArrayList<>();
         //获取当前渠道号
         String channelId = Network.channelId;
         changid = Integer.parseInt(channelId);
@@ -264,7 +267,15 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
                 List<MessageBean.RstBean> rst = messageBean.rst;
                 final List<MessageBean.RstBean.NewListBean> new_list = rst.get(0).new_list;
-                MessageAdapter messageAdapter=new MessageAdapter(getActivity(),new_list);
+                if(new_list.size()<=4){
+                    messageAdapter = new MessageAdapter(getActivity(),new_list);
+                }else {
+                    for (int i = 0; i <4 ; i++) {
+                        list5.add(new_list.get(i));
+                    }
+                    messageAdapter = new MessageAdapter(getActivity(),list5);
+                }
+
                 messagerv.setLayoutManager(new LinearLayoutManager(getActivity()){
                     @Override
                     public boolean canScrollVertically() {
