@@ -15,5 +15,13 @@ public class Constant {
         public static final String CODETOKEN = "codetoken";
         public static final String ISEXITE = "isexite";
     }
+    public static class Code {
+        public static final int RESULT_LOGINSUC_CODE = 10000;
+        public static final int RESULT_DELETEBILL_CODE = 10005;
+        public static final int RESULT_ADDBILL_CODE = 10007;
+        public static final int REQUEST_CODE = 10001;
+        public static final int REQUEST_CODEF = 10002;
+        public static final int RESULT_CHOOSEAPP_CODE = 10008;
+    }
 
 }

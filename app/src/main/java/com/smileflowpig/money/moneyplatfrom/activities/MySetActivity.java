@@ -30,7 +30,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.smileflowpig.money.moneyplatfrom.helper.SPUtil;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.util.SelfDialog2;
 
 import net.qiujuer.genius.ui.widget.Button;

@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.SecondEvent;
 import com.smileflowpig.money.common.app.PresenterActivity;
@@ -28,7 +29,7 @@ import com.umeng.analytics.MobclickAgent;
  * Created by Allence on 2018/5/8 0008.
  */
 
-public class MineActivity extends PresenterActivity<MineConreact.Presenter> implements MineConreact.View{
+public class MineActivity extends PresenterActivity<MineConreact.Presenter> implements MineConreact.View {
 
     private static final String CHANNEL = "CHANNEL";
 
@@ -50,6 +51,7 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
     @Override
     protected void initWidget() {
         super.initWidget();
@@ -63,7 +65,7 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
         });
     }
 
-    public static void show(Context context){
+    public static void show(Context context) {
         Intent intent = new Intent(context, MineActivity.class);
         context.startActivity(intent);
     }
@@ -93,7 +95,7 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
             flag = 0;
         } else {
             flag = 1;
-            if(frameLayout.getVisibility()==View.GONE) {
+            if (frameLayout.getVisibility() == View.GONE) {
                 frameLayout.setVisibility(View.VISIBLE);
             }
             finish();
@@ -136,14 +138,14 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
         phoneTv.setText(user.phone);
         flag = 1;
 
-        if(frameLayout.getVisibility()==View.GONE) {
+        if (frameLayout.getVisibility() == View.GONE) {
             frameLayout.setVisibility(View.VISIBLE);
         }
 
     }
 
     @OnClick(R.id.exist_button)
-    public void loginOut(){
+    public void loginOut() {
         mPresenter.exist();
     }
 
@@ -173,12 +175,10 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
     @Override
     public void ExistSuccess() {
         EventBus.getDefault().post(new SecondEvent("登录/注册"));
-        com.smileflowpig.money.moneyplatfrom.helper.SPUtil.clear(this);
         SPUtil.clear(this);
         SPUtil.putAndApply(this, Constant.UserInfo.ISEXITE, true);
         finish();
     }
-
 
 
     @Override

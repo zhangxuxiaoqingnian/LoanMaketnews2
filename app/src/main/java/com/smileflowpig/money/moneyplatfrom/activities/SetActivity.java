@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 
-import com.smileflowpig.money.moneyplatfrom.helper.SPUtil;
-
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.OnClick;
@@ -19,6 +17,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.presenter.account.ExistContract;
 import com.smileflowpig.money.factory.presenter.account.ExistPresenter;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.umeng.analytics.MobclickAgent;
 
 

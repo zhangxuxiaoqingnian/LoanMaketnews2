@@ -8,11 +8,6 @@ package com.smileflowpig.money.moneyplatfrom;
 public class Constant {
 
 
-    public static class UserInfo {
-        public static final String USERNAME = "userName";
-        public static final String PASSWORD = "password";
-
-    }
 
     public static class Code {
         public static final int RESULT_LOGINSUC_CODE = 10000;

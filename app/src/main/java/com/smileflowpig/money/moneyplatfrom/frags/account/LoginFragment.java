@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.smileflowpig.money.moneyplatfrom.Constant;
+import com.smileflowpig.money.factory.Constant;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.activities.ForgetActivity;
-import com.smileflowpig.money.moneyplatfrom.helper.SPUtil;
 
 import net.qiujuer.genius.ui.widget.Loading;
 
