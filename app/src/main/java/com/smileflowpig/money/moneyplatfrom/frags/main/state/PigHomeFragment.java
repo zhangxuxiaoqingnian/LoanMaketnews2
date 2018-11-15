@@ -407,7 +407,9 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                             @Override
                             public void onItemClick(XBanner banner, Object model,View view, int position) {
                                 MobclickAgent.onEvent(getActivity(), "homeBanner");
-                                DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0,6);
+                                if(homeact.get(position).product_id.equals("0")==false){
+                                    DetailActivity.show(getActivity(), homeact.get(position).product_id+"","notice",0,6);
+                                }
                             }
                         });
 

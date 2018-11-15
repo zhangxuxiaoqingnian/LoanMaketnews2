@@ -121,8 +121,11 @@ public class AdActivity extends Activity
 //            }
 //        });
 
-        //加载
-        Glide.with(AdActivity.this).load(filePath).into(imageView);
+
+            //加载
+            Glide.with(AdActivity.this).load(filePath).into(imageView);
+
+
 
     }
 
