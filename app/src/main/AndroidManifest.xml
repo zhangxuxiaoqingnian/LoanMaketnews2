@@ -338,7 +338,8 @@
         <activity
             android:name=".moneyplatfrom.activities.CardPigActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"></activity>
+            android:theme="@style/AppTheme.Main" />
+        <activity android:name=".moneyplatfrom.activities.NewTaskActivity"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.moneyplatfrom.activities.AdActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MainActivity;
 
@@ -57,6 +58,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
 
     private boolean showAdDialog = true;
     private SharedPreferences sp;
+    private SharedPreferences sp2;
 
     @Override
     protected int getContentLayoutId() {
@@ -71,6 +73,8 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         mImageView.setAlpha(0.1f);
 
         sp = getSharedPreferences("Overs",MODE_PRIVATE);
+        sp2= getSharedPreferences("isshowimg",
+                Context.MODE_PRIVATE);
 
     }
     public void onResume() {
@@ -130,16 +134,22 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         if (checkChannel()) {
             // 检查跳转到广告页还是跳转到主页
 //            if (checkData()==false) {
-
+            boolean iscover = sp2.getBoolean("iscover", false);
             boolean oldwer = sp.getBoolean("oldwer", false);
-            if(oldwer){
-                AdActivity.show(this);
-                finish();
-            }else {
-                sp.edit().putBoolean("oldwer",true).commit();
+            if(iscover){
                 MainActivity.show(this);
                 finish();
+            }else {
+                if(oldwer){
+                    AdActivity.show(this);
+                    finish();
+                }else {
+                    sp.edit().putBoolean("oldwer",true).commit();
+                    MainActivity.show(this);
+                    finish();
+                }
             }
+
             finish();
         } else {
       //     HomeActivity.show(this);

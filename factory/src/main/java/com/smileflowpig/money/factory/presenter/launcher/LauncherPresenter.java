@@ -103,6 +103,7 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
 
         });
 
+
         LauncherHelper.getAdPicture(new DataSource.Callback<RspModel>() {
 
             @Override
@@ -115,11 +116,19 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
                 RspAdModel rspAdModel = (RspAdModel) rspModel.getRst();
                 Log.e(TAG, rspAdModel.getData().getImage_url());
 
+                SharedPreferences sp = Factory.app().getSharedPreferences("isshowimg",
+                        Context.MODE_PRIVATE);
 
                 if(getView()!=null){
                     getView().setImage(rspAdModel.getData().getImage_url());
                 }
-                downloadImage(rspAdModel);
+                if(rspAdModel.getData().getImage_url().equals("")){
+                    sp.edit().putBoolean("iscover",true).commit();
+                }else {
+                    sp.edit().putBoolean("iscover",false).commit();
+                    downloadImage(rspAdModel);
+                }
+
 
             }
         });
@@ -139,7 +148,6 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
             public void run() {
                 try {
                     String url = rspAdModel.getData().getImage_url();
-
                     final Context context = Factory.app();
                     FutureTarget<File> target = Glide.with(context)
                             .load(url)
