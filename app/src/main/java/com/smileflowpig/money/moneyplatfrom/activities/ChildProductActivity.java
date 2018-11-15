@@ -29,6 +29,7 @@ import com.smileflowpig.money.common.widget.recycler.RecyclerAdapter;
 import com.smileflowpig.money.factory.model.db.Product;
 import com.smileflowpig.money.factory.presenter.child.ChildContract;
 import com.smileflowpig.money.factory.presenter.child.ChildPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class ChildProductActivity extends PresenterActivity<ChildContract.Presenter>
@@ -135,6 +136,15 @@ public class ChildProductActivity extends PresenterActivity<ChildContract.Presen
 
         footer.setFinishDuration(0);//设置刷新完成显示的停留时间
 
+    }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     /**

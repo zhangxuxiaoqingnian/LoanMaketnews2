@@ -23,6 +23,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.presenter.account.ForgetContract;
 import com.smileflowpig.money.factory.presenter.account.ForgetPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 public class ForgetActivity extends PresenterActivity<ForgetContract.Presenter>
 implements ForgetContract.View{
@@ -41,7 +42,15 @@ implements ForgetContract.View{
 
     @BindView(R.id.code)
     TextView code;
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 
     TimeCount time;

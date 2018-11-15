@@ -14,6 +14,7 @@ import com.smileflowpig.money.moneyplatfrom.frags.account.RegisterFragment;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.app.Fragment;
+import com.umeng.analytics.MobclickAgent;
 
 //账户activity
 public class AccountActivity extends Activity implements AccountTrigger, LoginFragment.onLoginListener, RegisterFragment.onRegistListener {
@@ -84,7 +85,15 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
             finish();
         }
     }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     public void onRegistSuccess(boolean isGoToLogin) {
         if (isGoToLogin) {

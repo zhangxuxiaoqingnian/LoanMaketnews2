@@ -145,6 +145,16 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
 
     }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     public void initview(){
         money = (EditText) findViewById(R.id.summoney);
         data = (LinearLayout) findViewById(R.id.ppdata);

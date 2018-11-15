@@ -17,6 +17,7 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.widget.DividerItemDecoration;
 import com.smileflowpig.money.factory.model.api.guoshen.Average_CaptialBean;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2017/12/21 0021.
@@ -65,7 +66,15 @@ public class Activity_Average_Capital extends Activity implements View.OnClickLi
         super.initBefore();
         ButterKnife.bind(this);
     }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void initWidget() {

@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.smileflowpig.money.R;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -16,6 +17,16 @@ import com.smileflowpig.money.R;
  */
 
 public class WebviewActivity extends Activity {
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     WebView mWebview;
 
     public static final String URL = "url";

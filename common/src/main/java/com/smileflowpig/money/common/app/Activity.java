@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.smileflowpig.money.common.utils.NavigationBarUtil;
 import com.smileflowpig.money.common.utils.NotchUtil;
 import com.smileflowpig.money.common.widget.StatusBarUtil;
 import com.smileflowpig.money.common.widget.convention.PlaceHolderView;
@@ -38,6 +39,8 @@ public abstract class Activity extends AutoLayoutActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 在界面未初始化之前调用的初始化窗口
+
+
         initWidows();
 
         if (initArgs(getIntent().getExtras())) {
@@ -52,9 +55,15 @@ public abstract class Activity extends AutoLayoutActivity {
             initBefore();
             initWidget();
             initData();
+            //虚拟键适配
+            if (NavigationBarUtil.hasNavigationBar(this)) {
+                NavigationBarUtil.initActivity(findViewById(android.R.id.content));
+            }
         } else {
             finish();
         }
+
+
     }
 
     /**
@@ -69,24 +78,26 @@ public abstract class Activity extends AutoLayoutActivity {
      */
     protected void initWidows() {
 
-        if(isFlymeOS()){
 
-            System.out.println("是魅族手机");
-
-        }else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.TRANSPARENT);
-                window.setNavigationBarColor(Color.TRANSPARENT);
-            }
-            StatusBarUtil.StatusBarLightMode(this);
-        }
+//
+//        if(isFlymeOS()){
+//
+//            System.out.println("是魅族手机");
+//
+//        }else {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                Window window = getWindow();
+//                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+//                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                window.setStatusBarColor(Color.TRANSPARENT);
+//                window.setNavigationBarColor(Color.TRANSPARENT);
+//            }
+//            StatusBarUtil.StatusBarLightMode(this);
+//        }
 
     }
 

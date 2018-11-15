@@ -19,6 +19,7 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.timer.BaseTimerTask;
 import com.smileflowpig.money.common.timer.ITimerListener;
+import com.umeng.analytics.MobclickAgent;
 
 public class AdActivity extends Activity
     implements ITimerListener
@@ -71,7 +72,15 @@ public class AdActivity extends Activity
         return R.layout.activity_ad;
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void initWidget() {

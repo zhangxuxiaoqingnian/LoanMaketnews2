@@ -32,6 +32,7 @@ import com.smileflowpig.money.factory.bean.BillData;
 import com.smileflowpig.money.factory.bean.BillManagerBean;
 import com.smileflowpig.money.factory.presenter.bill.BillContract;
 import com.smileflowpig.money.factory.presenter.bill.BillPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -39,7 +40,15 @@ import com.smileflowpig.money.factory.presenter.bill.BillPresenter;
  * create by xiaoxie
  */
 public class BillManagerActivity extends PresenterActivity<BillContract.Presenter> implements BillContract.View {
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.billmanager_radiogroup)
     RadioGroup radioGroup;
 

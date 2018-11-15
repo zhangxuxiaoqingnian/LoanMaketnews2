@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2017/12/21 0021.
@@ -44,7 +45,15 @@ public class Activity_CreditCard_ByStages extends Activity implements View.OnCli
         return R.layout.activity_credicard_bystages_calc;
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void initBefore() {
         super.initBefore();

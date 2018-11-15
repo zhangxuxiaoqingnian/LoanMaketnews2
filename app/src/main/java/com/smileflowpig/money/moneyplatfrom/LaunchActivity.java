@@ -19,6 +19,7 @@ import com.smileflowpig.money.factory.model.api.launcher.RspAdModel;
 import com.smileflowpig.money.factory.model.db.AdModel;
 import com.smileflowpig.money.factory.presenter.launcher.LauncherContract;
 import com.smileflowpig.money.factory.presenter.launcher.LauncherPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter>
@@ -72,7 +73,15 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         sp = getSharedPreferences("Overs",MODE_PRIVATE);
 
     }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void initWidows() {
         super.initWidows();

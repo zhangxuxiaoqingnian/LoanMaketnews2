@@ -25,6 +25,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.model.api.guoshen.AddModel;
 import com.smileflowpig.money.factory.model.api.guoshen.AddModel1;
 import com.smileflowpig.money.factory.model.api.guoshen.GetRepaymentModel;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2018/5/8 0008.
@@ -43,7 +44,15 @@ public class AddActivity extends PresenterActivity<AddConreact.Presenter> implem
         return R.layout.guoshen_add;
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.iv_mine)
     ImageView iv_mine;
 

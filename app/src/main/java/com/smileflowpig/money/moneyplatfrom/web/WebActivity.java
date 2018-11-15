@@ -55,6 +55,7 @@ import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.model.db.H5Model;
 import com.smileflowpig.money.factory.presenter.web.WebContract;
 import com.smileflowpig.money.factory.presenter.web.WebPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -133,6 +134,10 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
         context.startActivity(intent);
     }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     boolean isPop=false;
     @Override
@@ -462,6 +467,8 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     protected void onResume() {
         super.onResume();
 
+
+        MobclickAgent.onResume(this);
         //从相机或相册取出照片后如果重新选择需要制空变量
         if (mUploadCallbackAboveL != null) {
             mUploadCallbackAboveL.onReceiveValue(null);

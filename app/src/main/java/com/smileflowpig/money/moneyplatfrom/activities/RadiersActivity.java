@@ -13,6 +13,7 @@ import java.util.List;
 import butterknife.OnClick;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -29,6 +30,16 @@ public class RadiersActivity extends Activity {
 
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_radiers;
@@ -41,11 +52,7 @@ public class RadiersActivity extends Activity {
         initView();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
 
-    }
     private void initView() {
 
         List<String> data = new ArrayList<String>();

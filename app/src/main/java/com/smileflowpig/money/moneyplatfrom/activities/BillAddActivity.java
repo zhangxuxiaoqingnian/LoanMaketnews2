@@ -36,6 +36,7 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.factory.data.DataSource;
 import com.smileflowpig.money.factory.data.helper.BillHelper;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -43,7 +44,15 @@ import com.smileflowpig.money.factory.data.helper.BillHelper;
  */
 public class BillAddActivity extends Activity {
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @BindView(R.id.addbill_text)
     TextView addBill_text;

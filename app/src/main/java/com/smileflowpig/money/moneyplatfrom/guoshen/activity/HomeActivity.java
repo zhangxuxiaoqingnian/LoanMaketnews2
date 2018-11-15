@@ -36,6 +36,7 @@ import com.smileflowpig.money.factory.model.api.guoshen.GetRepaymentModel;
 import com.smileflowpig.money.factory.model.api.guoshen.PopModel;
 import com.smileflowpig.money.factory.model.api.guoshen.RepaymentListBean;
 import com.smileflowpig.money.factory.model.db.User;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2018/5/7 0007.
@@ -69,6 +70,16 @@ public class HomeActivity extends PresenterActivity<HomeConreact.Presenter> impl
             context.startActivity(intent);
     }
 
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void initWidget() {

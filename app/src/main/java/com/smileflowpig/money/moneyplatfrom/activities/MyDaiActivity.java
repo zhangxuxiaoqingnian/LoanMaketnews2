@@ -17,6 +17,7 @@ import java.util.List;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
+import com.umeng.analytics.MobclickAgent;
 
 public class MyDaiActivity extends PresenterActivity implements View.OnClickListener{
 
@@ -24,6 +25,16 @@ public class MyDaiActivity extends PresenterActivity implements View.OnClickList
     private ImageView back;
     private RecyclerView rv;
 
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

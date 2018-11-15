@@ -16,6 +16,7 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.common.QueuedWork;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.List;
@@ -42,12 +43,16 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_DUM_NORMAL);
+        UMConfigure.setLogEnabled(true);
+//        UMConfigure.init(this,"5b1ddad3f43e485f4d00003e","umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+//        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null);
         UMConfigure.init(this, "5bda5fdaf1f5564485000223"
                 , "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
-        //友盟
+        UMUtils.setChannel(this, BuildConfig.CHANNLE);
+        QueuedWork.isUseThreadPool = false;
         UMShareAPI.get(this);
-        //友盟渠道配置
-        UMUtils.setChannel(this,BuildConfig.CHANNLE);
         PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -57,7 +62,7 @@ public class App extends Application {
         this.context = getApplicationContext();
         //初始化
         Factory.setup();
-        MobclickAgent.setDebugMode(true);
+//        MobclickAgent.setDebugMode(true);
 //        MobclickAgent.startWithConfigure(
 //                new MobclickAgent.UMAnalyticsConfig(this, UMENG_APP_KEY, BASE_CHANNEL));
         //推送进行初始化

@@ -16,9 +16,18 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.util.SPUtil;
+import com.umeng.analytics.MobclickAgent;
 
 public class FeedbackActivity extends PresenterActivity {
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.feed_back)
     LinearLayout back;
     @BindView(R.id.feed_wv)

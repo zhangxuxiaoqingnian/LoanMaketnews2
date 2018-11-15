@@ -34,6 +34,7 @@ import com.smileflowpig.money.factory.bean.CancelMyBean;
 import com.smileflowpig.money.factory.bean.MyDetailBean;
 import com.smileflowpig.money.factory.bean.QiangBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 public class MyHomeActivity extends PresenterActivity {
 
@@ -80,7 +81,15 @@ public class MyHomeActivity extends PresenterActivity {
     private TextView title;
     private TextView success;
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

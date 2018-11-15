@@ -19,6 +19,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.presenter.account.ExistContract;
 import com.smileflowpig.money.factory.presenter.account.ExistPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class SetActivity extends PresenterActivity<ExistContract.Presenter>
@@ -33,6 +34,15 @@ public class SetActivity extends PresenterActivity<ExistContract.Presenter>
 
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     public static void show(Context context) {
         Intent intent = new Intent(context, SetActivity.class);
         context.startActivity(intent);

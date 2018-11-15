@@ -22,6 +22,7 @@ import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.model.db.User;
 import com.smileflowpig.money.factory.util.LoginUtil;
 import com.smileflowpig.money.factory.util.SPUtil;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2018/5/8 0008.
@@ -40,7 +41,15 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
     @BindView(R.id.back)
     public ImageView back;
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void initWidget() {
         super.initWidget();

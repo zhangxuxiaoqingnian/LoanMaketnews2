@@ -53,6 +53,8 @@ import com.smileflowpig.money.factory.bean.MynameBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.factory.presenter.account.ExistContract;
 import com.smileflowpig.money.factory.presenter.account.ExistPresenter;
+import com.umeng.analytics.MobclickAgent;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -89,6 +91,16 @@ public class MySetActivity extends PresenterActivity<ExistContract.Presenter>
     String permissionName = "android.permission.WRITE_EXTERNAL_STORAGE";
     private String imgUrl;
 
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

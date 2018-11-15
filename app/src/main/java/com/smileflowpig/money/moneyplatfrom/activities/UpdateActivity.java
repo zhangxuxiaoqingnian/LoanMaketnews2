@@ -14,6 +14,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.presenter.account.UpdateContract;
 import com.smileflowpig.money.factory.presenter.account.UpdatePresenter;
+import com.umeng.analytics.MobclickAgent;
 
 //修改密码
 public class UpdateActivity extends PresenterActivity<UpdateContract.Presenter>
@@ -33,6 +34,16 @@ public class UpdateActivity extends PresenterActivity<UpdateContract.Presenter>
     public static void show(Context context) {
         Intent intent = new Intent(context, UpdateActivity.class);
         context.startActivity(intent);
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

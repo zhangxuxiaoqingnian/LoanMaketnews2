@@ -31,10 +31,16 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.HomedataBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 
 public class TypeActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener{
 
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.type_back)
     ImageView back;
     @BindView(R.id.typename)
@@ -71,6 +77,7 @@ public class TypeActivity extends PresenterActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
         liulang = sp.getBoolean("liulang", false);
     }

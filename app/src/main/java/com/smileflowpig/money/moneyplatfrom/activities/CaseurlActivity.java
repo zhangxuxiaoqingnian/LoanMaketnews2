@@ -46,6 +46,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CaseurlActivity extends PresenterActivity implements View.OnClickListener {
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 
     private final String TEST_URL = "http://bw.quyaqu.com/xiaohuazhu/information.html?";

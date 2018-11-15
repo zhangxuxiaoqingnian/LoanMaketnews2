@@ -174,7 +174,15 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void initWidows() {
         super.initWidows();

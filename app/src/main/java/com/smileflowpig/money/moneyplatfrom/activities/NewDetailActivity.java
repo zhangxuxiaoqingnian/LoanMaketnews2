@@ -34,6 +34,7 @@ import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.DetailBean;
 import com.smileflowpig.money.factory.model.db.Dialogs;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 public class NewDetailActivity extends PresenterActivity
         implements View.OnClickListener {
@@ -95,6 +96,16 @@ public class NewDetailActivity extends PresenterActivity
         getdetails(typeid);
 
 
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
     public void getdetails(String pos){
 

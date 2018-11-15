@@ -41,7 +41,15 @@ import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class TableActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.table_back)
     LinearLayout back;
     @BindView(R.id.table_edit)

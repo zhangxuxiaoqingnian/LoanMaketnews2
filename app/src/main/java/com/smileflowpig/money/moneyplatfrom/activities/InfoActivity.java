@@ -21,6 +21,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.model.api.examine.InfoModel;
 import com.smileflowpig.money.factory.presenter.statehome.InfoContract;
 import com.smileflowpig.money.factory.presenter.statehome.InfoPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 过审界面的详情页
@@ -33,6 +34,16 @@ implements InfoContract.View{
     @BindView(R.id.title)
     TextView title;
 
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     String id;
     public static final void show(Context context,String id){

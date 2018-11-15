@@ -50,6 +50,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.moneyplatfrom.util.SharedPreferenceMark;
+import com.umeng.analytics.MobclickAgent;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -58,7 +59,15 @@ import okhttp3.RequestBody;
 import static com.smileflowpig.money.moneyplatfrom.util.FileUtil.getRealFilePathFromUri;
 
 public class MySetTwoActivity extends PresenterActivity implements View.OnClickListener {
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.myset_back)
     LinearLayout back;
     @BindView(R.id.newset_icon)

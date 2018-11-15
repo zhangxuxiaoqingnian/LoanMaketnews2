@@ -54,6 +54,15 @@ public class MyCollectActivity extends PresenterActivity implements View.OnClick
     SmartRefreshLayout refreshlayout;
     @BindView(R.id.collect_goto)
     TextView gotosele;
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @BindView(R.id.collect_null)
     LinearLayout layoutnull;

@@ -31,9 +31,14 @@ import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.bean.MemoBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 public class MemoActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener{
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.memo_back)
     ImageView back;
     @BindView(R.id.memo_add)
@@ -216,6 +221,7 @@ public class MemoActivity extends PresenterActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         page=1;
         list2.clear();
         getdata();

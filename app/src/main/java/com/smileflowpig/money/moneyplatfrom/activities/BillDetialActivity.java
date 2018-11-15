@@ -22,6 +22,7 @@ import com.smileflowpig.money.factory.bean.BillDetialBean;
 import com.smileflowpig.money.factory.bean.BillDetialData;
 import com.smileflowpig.money.factory.bean.BillStatusData;
 import com.smileflowpig.money.factory.data.helper.BillHelper;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -29,7 +30,15 @@ import com.smileflowpig.money.factory.data.helper.BillHelper;
  */
 public class BillDetialActivity extends Activity {
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.activity_billdetial_daihuanmoney_text)
     TextView daihuan_text;
     @BindView(R.id.activity_billdetial_jiekuanmoney_text)

@@ -27,6 +27,7 @@ import com.smileflowpig.money.common.widget.recycler.RecyclerAdapter;
 import com.smileflowpig.money.factory.model.db.Message;
 import com.smileflowpig.money.factory.presenter.message.MessageContract;
 import com.smileflowpig.money.factory.presenter.message.MessagePresenter;
+import com.umeng.analytics.MobclickAgent;
 
 //消息界面
 public class MessageActivity extends PresenterActivity<MessageContract.Presenter>
@@ -65,6 +66,15 @@ implements MessageContract.View{
         return super.initArgs(bundle);
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_message;

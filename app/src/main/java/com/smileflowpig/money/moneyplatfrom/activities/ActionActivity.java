@@ -18,6 +18,7 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.presenter.user.ActionContract;
 import com.smileflowpig.money.factory.presenter.user.ActionPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 意见反馈activity
@@ -54,7 +55,15 @@ implements  ActionContract.View{
         finish();
         hideSoftKeyboard();
     }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     // 隐藏软件盘
     private void hideSoftKeyboard() {
         // 当前焦点的View

@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
@@ -18,6 +19,17 @@ import com.smileflowpig.money.common.app.Activity;
  */
 public class AboutActivity extends Activity {
 
+
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.banben)
     TextView banben;
     //修改

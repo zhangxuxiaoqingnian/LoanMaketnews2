@@ -34,6 +34,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.MyHomeListBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 public class MyTypeActivity extends PresenterActivity implements View.OnClickListener{
 
@@ -56,7 +57,15 @@ public class MyTypeActivity extends PresenterActivity implements View.OnClickLis
     private MyHomeAdapter myHomeAdapter;
     private LinearLayout layout;
     private PopupWindow popupWindow;
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

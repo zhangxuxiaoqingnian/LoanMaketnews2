@@ -12,6 +12,7 @@ import butterknife.BindView;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.app.Fragment;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * @author HFRX hfrx1314@qq.com
@@ -21,6 +22,17 @@ public class PlaceActivity extends Activity {
     private Fragment mCurFragment;
     private Fragment mCalculateFragment;
 
+
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.place)
     FrameLayout frameLayout;
 

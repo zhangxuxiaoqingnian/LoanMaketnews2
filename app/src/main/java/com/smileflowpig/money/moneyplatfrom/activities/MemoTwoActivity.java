@@ -32,11 +32,17 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.MemoShowBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import static com.smileflowpig.money.moneyplatfrom.activities.MyBillActivity.dateToString;
 
 public class MemoTwoActivity extends PresenterActivity implements View.OnClickListener{
 
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.platform_text)
     TextView plattext;
     @BindView(R.id.platform)
@@ -273,7 +279,7 @@ public class MemoTwoActivity extends PresenterActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-
+MobclickAgent.onResume(this);
         if(istrue){
             SharedPreferences sharedPreferences=getSharedPreferences("DaiData",MODE_PRIVATE);
             String daiimg = sharedPreferences.getString("daiimg", null);

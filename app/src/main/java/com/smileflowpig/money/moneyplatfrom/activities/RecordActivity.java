@@ -32,6 +32,12 @@ import com.umeng.analytics.MobclickAgent;
 
 public class RecordActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
 
+
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @BindView(R.id.record_back)
     LinearLayout back;
     @BindView(R.id.record_edit)
@@ -141,6 +147,7 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         SharedPreferences sp = getSharedPreferences("Deng", Context.MODE_PRIVATE);
         liulang = sp.getBoolean("liulang", false);
     }

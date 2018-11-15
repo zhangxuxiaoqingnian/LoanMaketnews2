@@ -26,6 +26,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
+import com.umeng.analytics.MobclickAgent;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.data.DataSource;
@@ -46,6 +48,7 @@ import com.smileflowpig.money.factory.model.db.CreditCardAppliProduct;
 import com.smileflowpig.money.factory.model.db.DeleteApp;
 import com.smileflowpig.money.factory.presenter.application.ApplicationContract;
 import com.smileflowpig.money.factory.presenter.application.ApplicationPresenter;
+
 import okhttp3.FormBody;
 
 //我的申请activity
@@ -82,14 +85,14 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
     RecyclerAdapter.AdapterListenerImpl adapterListener;
 
-    private boolean flag=true;
+    private boolean flag = true;
 
     private static final String TAG = "ApActivity";
     private View view2;
     private View inflate;
     private List<ApplyProduct> productData;
     private List<CreditCardAppliProduct> cardData;
-    private List<String> deleteData=new ArrayList<>();
+    private List<String> deleteData = new ArrayList<>();
     private LinearLayout lin_checkall;
     private CheckBox checkBox1;
 
@@ -103,6 +106,11 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
         context.startActivity(intent);
     }
 
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected int getContentLayoutId() {
@@ -121,15 +129,16 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     }
 
 
-    boolean isEdit=false;
-    @OnClick(R.id.tv_edit)
-    void click(){
+    boolean isEdit = false;
 
-        String edit= tv_edit.getText().toString().trim();
+    @OnClick(R.id.tv_edit)
+    void click() {
+
+        String edit = tv_edit.getText().toString().trim();
         lin_checkall = (LinearLayout) lin_bottomtitel.findViewById(R.id.lin_checkall);
         checkBox1 = (CheckBox) lin_bottomtitel.findViewById(R.id.checkbox);
 
-        if(edit.equals("编辑")){
+        if (edit.equals("编辑")) {
             isEdit = true;
             tv_edit.setText("取消");
             checklist.clear();
@@ -138,14 +147,14 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 lin_bottomtitel.setVisibility(View.VISIBLE);
             }
 
-            if(flag) {
+            if (flag) {
                 editDeleteLoans();
-            }else {
+            } else {
 
                 editDeleteLoans1();
             }
 
-        }else {
+        } else {
             isEdit = false;
             tv_edit.setText("编辑");
             checklist.clear();
@@ -154,17 +163,17 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 lin_bottomtitel.setVisibility(View.GONE);
             }
 
-            if(flag) {
+            if (flag) {
                 editCancelDelete();
-            }else {
+            } else {
                 editCancelDelete1();
             }
         }
 
-        if(flag) {
+        if (flag) {
             adapter1.setListener(adapterListener);
             adapter1.notifyDataSetChanged();
-        }else {
+        } else {
             adapter2.setListener(adapterListener);
             adapter2.notifyDataSetChanged();
         }
@@ -175,7 +184,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         adapterListener = new RecyclerAdapter.AdapterListenerImpl<CreditCardAppliProduct>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product,int pos) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product, int pos) {
 
                 WebActivity.show(ApActivity.this, product.getProduct_name(),
                         product.getUrl());
@@ -196,7 +205,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product, int pos) {
                 //DetailActivity.show(ApActivity.this, product.getProduct_id(), "applicationList",0);
 
             }
@@ -215,9 +224,9 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         adapterListener = new RecyclerAdapter.AdapterListenerImpl<CreditCardAppliProduct>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product,int pos) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product, int pos) {
 
-                boolean checked = ((CreditCardAppliViewHolder)holder).checkBox.isChecked();
+                boolean checked = ((CreditCardAppliViewHolder) holder).checkBox.isChecked();
                 checked = !checked;
                 ((CreditCardAppliViewHolder) holder).checkBox.setChecked(checked);
                 if (checked && !checklist.contains(holder.getLayoutPosition())) {
@@ -226,9 +235,9 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                     int index = checklist.indexOf(holder.getLayoutPosition());
                     checklist.remove(index);
                 }
-                if(checklist.size()==cardData.size()){
+                if (checklist.size() == cardData.size()) {
                     checkBox1.setChecked(true);
-                }else {
+                } else {
                     checkBox1.setChecked(false);
                 }
             }
@@ -250,9 +259,9 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                     } else {
                         checkBox1.setChecked(true);
 
-                            for (int i = 0; i < adapter2.getItemCount(); i++) {
-                                checklist.add(i);
-                            }
+                        for (int i = 0; i < adapter2.getItemCount(); i++) {
+                            checklist.add(i);
+                        }
 
 
                     }
@@ -268,7 +277,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
             @Override
-            public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
+            public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product, int pos) {
                 boolean checked = ((ApplyViewHolder) holder).checkBox.isChecked();
                 checked = !checked;
                 ((ApplyViewHolder) holder).checkBox.setChecked(checked);
@@ -278,10 +287,10 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                     int index = checklist.indexOf(holder.getLayoutPosition());
                     checklist.remove(index);
                 }
-                if(checklist.size()==productData.size()){
+                if (checklist.size() == productData.size()) {
                     checkBox1.setChecked(true);
 
-                }else {
+                } else {
                     checkBox1.setChecked(false);
                 }
 
@@ -322,15 +331,15 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     }
 
     //点击改变数据
-    @OnClick({ R.id.tv_tv_borrow_money, R.id.tv_credit_card,R.id.all_delete2})
-    public void onClicks(View view){
+    @OnClick({R.id.tv_tv_borrow_money, R.id.tv_credit_card, R.id.all_delete2})
+    public void onClicks(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.tv_tv_borrow_money:
                 flag = true;
                 refreshLayout.setLoadmoreFinished(false);
-                applicationPresenter.setIsClick(flag,"2");
+                applicationPresenter.setIsClick(flag, "2");
                 clickChange(flag);
                 //这个是网络请求
                 mPresenter.start();
@@ -340,7 +349,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             case R.id.tv_credit_card:
                 flag = false;
                 refreshLayout.setLoadmoreFinished(false);
-                applicationPresenter.setIsClick(flag,"2");
+                applicationPresenter.setIsClick(flag, "2");
                 clickChange(flag);
                 //这个是网络请求
                 mPresenter.start();
@@ -350,26 +359,25 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 view2 = getLayoutInflater().inflate(R.layout.activity_delete2_layout, null);
                 TextView phone = (TextView) view2.findViewById(R.id.phone_name2);
                 phone.setText("确定删除？");
-                if(flag){
-                    if(checklist.size()==0){
-                        Toast.makeText(ApActivity.this,"请先选择您要删除的足迹",Toast.LENGTH_SHORT).show();
-                    }else {
+                if (flag) {
+                    if (checklist.size() == 0) {
+                        Toast.makeText(ApActivity.this, "请先选择您要删除的足迹", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                        showDialog(view2,5,2);
+                        showDialog(view2, 5, 2);
                     }
 
-                }else {
-                    if(checklist.size()==0){
-                        Toast.makeText(ApActivity.this,"请先选择您要删除的足迹",Toast.LENGTH_SHORT).show();
-                    }else {
-                        showDialog(view2,6,2);
+                } else {
+                    if (checklist.size() == 0) {
+                        Toast.makeText(ApActivity.this, "请先选择您要删除的足迹", Toast.LENGTH_SHORT).show();
+                    } else {
+                        showDialog(view2, 6, 2);
                     }
                 }
 
                 break;
 
         }
-
 
 
     }
@@ -381,9 +389,9 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     protected void initWidget() {
         super.initWidget();
 
-        if(flag){
+        if (flag) {
 
-            if(adapter1==null) {
+            if (adapter1 == null) {
                 adapter1 = new RecyclerAdapter<ApplyProduct>() {
                     @Override
                     protected int getItemViewType(int position, ApplyProduct product) {
@@ -403,8 +411,8 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
                 @Override
-                public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
-                  // DetailActivity.show(ApActivity.this,product.getProduct_id(),"applicationList",0);
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product, int pos) {
+                    // DetailActivity.show(ApActivity.this,product.getProduct_id(),"applicationList",0);
                 }
 
                 @Override
@@ -415,10 +423,10 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             };
             initwidget1(adapter1);
 
-        }else {
+        } else {
 
             //初始化
-            if(adapter2==null) {
+            if (adapter2 == null) {
                 adapter2 = new RecyclerAdapter<CreditCardAppliProduct>() {
                     @Override
                     protected int getItemViewType(int position, CreditCardAppliProduct product) {
@@ -436,7 +444,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<CreditCardAppliProduct>() {
                 @Override
-                public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product,int pos) {
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product, int pos) {
 
                     WebActivity.show(ApActivity.this, product.getProduct_name(),
                             product.getUrl());
@@ -464,25 +472,25 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     @Override
     public void onBackPressed() {
 
-        if(isEdit){
+        if (isEdit) {
 
-                isEdit = false;
-                tv_edit.setText("编辑");
-                if(lin_bottomtitel.getVisibility()==View.VISIBLE){
-                 lin_bottomtitel.setVisibility(View.GONE);
-                }
+            isEdit = false;
+            tv_edit.setText("编辑");
+            if (lin_bottomtitel.getVisibility() == View.VISIBLE) {
+                lin_bottomtitel.setVisibility(View.GONE);
+            }
 
-                if(flag){
-                    editCancelDelete();
-                    adapter1.setListener(adapterListener);
-                    adapter1.notifyDataSetChanged();
-                }else {
-                    editCancelDelete1();
-                    adapter2.setListener(adapterListener);
-                    adapter2.notifyDataSetChanged();
-                }
+            if (flag) {
+                editCancelDelete();
+                adapter1.setListener(adapterListener);
+                adapter1.notifyDataSetChanged();
+            } else {
+                editCancelDelete1();
+                adapter2.setListener(adapterListener);
+                adapter2.notifyDataSetChanged();
+            }
 
-        }else {
+        } else {
 
             finish();
 
@@ -491,17 +499,17 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     }
 
 
-    private void showPopupwindow(final int pos){
+    private void showPopupwindow(final int pos) {
 
 
-        View popview = getLayoutInflater().inflate(R.layout.apply_popview,null,false);
+        View popview = getLayoutInflater().inflate(R.layout.apply_popview, null, false);
 
-        final PopupWindow popupWindow = new PopupWindow(popview, DisplayUtil.dip2px(160),DisplayUtil.dip2px(80));
+        final PopupWindow popupWindow = new PopupWindow(popview, DisplayUtil.dip2px(160), DisplayUtil.dip2px(80));
 
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(lin_bottomtitel, Gravity.NO_GRAVITY,x,y);
+        popupWindow.showAtLocation(lin_bottomtitel, Gravity.NO_GRAVITY, x, y);
 
         TextView label_ok = (TextView) popview.findViewById(R.id.label_ok);
         TextView delete = (TextView) popview.findViewById(R.id.label_delete);
@@ -514,12 +522,12 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 popupWindow.dismiss();
                 inflate = getLayoutInflater().inflate(R.layout.activity_delete_layout, null);
                 TextView tt = (TextView) inflate.findViewById(R.id.phone_name);
-                if(flag==true){
+                if (flag == true) {
                     tt.setText("亲，标记为已申请后，可直接在“我的申请”查看已标记的产品~");
-                    showDialog(inflate,1,pos);
-                }else{
+                    showDialog(inflate, 1, pos);
+                } else {
                     tt.setText("亲，标记为已申请后，可直接在“我的申请”查看已标记的信用卡~");
-                    showDialog(inflate,3,pos);
+                    showDialog(inflate, 3, pos);
                 }
 
             }
@@ -530,10 +538,10 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             public void onClick(View v) {
                 popupWindow.dismiss();
                 view2 = getLayoutInflater().inflate(R.layout.activity_delete2_layout, null);
-                if(flag==true){
-                    showDialog(view2,2,pos);
-                }else {
-                    showDialog(view2,4,pos);
+                if (flag == true) {
+                    showDialog(view2, 2, pos);
+                } else {
+                    showDialog(view2, 4, pos);
                 }
 
             }
@@ -543,16 +551,17 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     }
 
     AlertDialog alertDialog;
-    public void showDialog(View view, final int num, final int pos){
+
+    public void showDialog(View view, final int num, final int pos) {
 
         alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
-        WindowManager.LayoutParams  lp= alertDialog.getWindow().getAttributes();
+        WindowManager.LayoutParams lp = alertDialog.getWindow().getAttributes();
         int width = DisplayUtil.dip2px(264);
         int height = DisplayUtil.dip2px(130);
-        lp.width=width;//定义宽度
-        lp.height=height;//定义高度
+        lp.width = width;//定义宽度
+        lp.height = height;//定义高度
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.update_border);
         alertDialog.getWindow().setAttributes(lp);
         Window window = alertDialog.getWindow();
@@ -565,7 +574,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             @Override
             public void onClick(View v) {
 
-                if(alertDialog!=null&&alertDialog.isShowing())
+                if (alertDialog != null && alertDialog.isShowing())
                     alertDialog.dismiss();
             }
         });
@@ -574,7 +583,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                if(num==1){
+                if (num == 1) {
                     //此处进行标记申请的网络请求
                     MineHelper.addapp(productData.get(pos).getProduct_id(), new DataSource.Callback<DeleteApp>() {
                         @Override
@@ -586,14 +595,13 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         public void onDataLoaded(DeleteApp deleteApp) {
 
 
-
                         }
                     });
-                }else if(num==2){
+                } else if (num == 2) {
                     //此处进行删除足迹的网络请求
 
-                    FormBody.Builder builder=new FormBody.Builder();
-                    builder.add("product_apply_ids[0]",productData.get(pos).getId()+"");
+                    FormBody.Builder builder = new FormBody.Builder();
+                    builder.add("product_apply_ids[0]", productData.get(pos).getId() + "");
                     FormBody build = builder.build();
 
                     MineHelper.deletetapp(build, new DataSource.Callback<Integer>() {
@@ -606,13 +614,13 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         @Override
                         public void onDataLoaded(Integer integer) {
 
-                            Toast.makeText(ApActivity.this,"已删除",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ApActivity.this, "已删除", Toast.LENGTH_SHORT).show();
                             productData.remove(pos);
                             adapter1.replace(productData);
 
-                            if(productData.size()==0){
+                            if (productData.size() == 0) {
                                 //网络请求
-                                applicationPresenter.setIsClick(flag,"2");
+                                applicationPresenter.setIsClick(flag, "2");
                                 clickChange(flag);
                                 //这个是网络请求
                                 mPresenter.start();
@@ -622,7 +630,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         }
                     });
 
-                }else if(num==3){
+                } else if (num == 3) {
                     //进行信用卡标记申请的网络请求
                     MineHelper.addcard(cardData.get(pos).getProduct_id(), new DataSource.Callback<DeleteApp>() {
                         @Override
@@ -637,11 +645,11 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         }
                     });
 
-                }else if(num==4){
+                } else if (num == 4) {
                     //进行信用卡进行删除的网络请求
 
-                    FormBody.Builder builder=new FormBody.Builder();
-                    builder.add("credit_card_apply_ids[0]",cardData.get(pos).getId()+"");
+                    FormBody.Builder builder = new FormBody.Builder();
+                    builder.add("credit_card_apply_ids[0]", cardData.get(pos).getId() + "");
                     FormBody build = builder.build();
 
                     MineHelper.deletetcard(build, new DataSource.Callback<Integer>() {
@@ -653,13 +661,13 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         @Override
                         public void onDataLoaded(Integer deleteApp) {
 
-                            Toast.makeText(ApActivity.this,"已删除",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ApActivity.this, "已删除", Toast.LENGTH_SHORT).show();
                             cardData.remove(pos);
                             adapter2.replace(cardData);
 
-                            if(cardData.size()==0){
+                            if (cardData.size() == 0) {
                                 //网络请求
-                                applicationPresenter.setIsClick(flag,"2");
+                                applicationPresenter.setIsClick(flag, "2");
                                 clickChange(flag);
                                 //这个是网络请求
                                 mPresenter.start();
@@ -668,7 +676,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                             }
                         }
                     });
-                }else if(num==5){
+                } else if (num == 5) {
 
                     //编辑删除产品
                     isEdit = false;
@@ -682,9 +690,9 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         deleteData.add(productData.get(checklist.get(i)).getId());
                     }
 
-                    FormBody.Builder builder=new FormBody.Builder();
+                    FormBody.Builder builder = new FormBody.Builder();
                     for (int i = 0; i < deleteData.size(); i++) {
-                        builder.add("product_apply_ids["+i+"]",deleteData.get(i)+"");
+                        builder.add("product_apply_ids[" + i + "]", deleteData.get(i) + "");
                     }
                     FormBody build = builder.build();
                     //调用删除产品接口
@@ -697,10 +705,10 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         @Override
                         public void onDataLoaded(Integer integer) {
 
-                            Toast.makeText(ApActivity.this,"已删除",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ApActivity.this, "已删除", Toast.LENGTH_SHORT).show();
                             deleteData.clear();
                             checklist.clear();
-                            applicationPresenter.setIsClick(flag,"2");
+                            applicationPresenter.setIsClick(flag, "2");
                             clickChange(flag);
                             //这个是网络请求
                             mPresenter.start();
@@ -711,7 +719,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                     });
 
 
-                }else if(num==6){
+                } else if (num == 6) {
 
                     //编辑删除信用卡
                     deleteData.clear();
@@ -727,9 +735,9 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                     for (int i = 0; i < checklist.size(); i++) {
                         deleteData.add(cardData.get(checklist.get(i)).getId());
                     }
-                    FormBody.Builder builder=new FormBody.Builder();
+                    FormBody.Builder builder = new FormBody.Builder();
                     for (int i = 0; i < deleteData.size(); i++) {
-                        builder.add("credit_card_apply_ids["+i+"]",deleteData.get(i)+"");
+                        builder.add("credit_card_apply_ids[" + i + "]", deleteData.get(i) + "");
                     }
                     FormBody build = builder.build();
                     MineHelper.deletetcard(build, new DataSource.Callback<Integer>() {
@@ -741,11 +749,11 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                         @Override
                         public void onDataLoaded(Integer integer) {
 
-                            Toast.makeText(ApActivity.this,"已删除",Toast.LENGTH_SHORT).show();
-                             checklist.clear();
-                             deleteData.clear();
+                            Toast.makeText(ApActivity.this, "已删除", Toast.LENGTH_SHORT).show();
+                            checklist.clear();
+                            deleteData.clear();
                             //信用卡删除成功
-                            applicationPresenter.setIsClick(flag,"2");
+                            applicationPresenter.setIsClick(flag, "2");
                             clickChange(flag);
                             //这个是网络请求
                             mPresenter.start();
@@ -769,13 +777,13 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
 
-        switch (ev.getAction()){
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-            x = (int) ev.getRawX();
-            y = (int) ev.getY();
+                x = (int) ev.getRawX();
+                y = (int) ev.getY();
 
 
-            break;
+                break;
         }
 
         return super.dispatchTouchEvent(ev);
@@ -784,12 +792,12 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     int y;
     int x;
 
-    private void initwidget1(RecyclerAdapter<ApplyProduct> mAdapter){
+    private void initwidget1(RecyclerAdapter<ApplyProduct> mAdapter) {
 
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
-        mRecycler.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        mRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
         setPlaceHolderView(mEmptyView);
@@ -808,7 +816,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         mAdapter.setListener(adapterListener);
 
-        ClassicsFooter footer = (ClassicsFooter)findViewById(R.id.footer);
+        ClassicsFooter footer = (ClassicsFooter) findViewById(R.id.footer);
 
         footer.setFinishDuration(0);//设置刷新完成显示的停留时间
 
@@ -816,11 +824,11 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     }
 
 
-    private void initwidget2(RecyclerAdapter<CreditCardAppliProduct> mAdapter){
+    private void initwidget2(RecyclerAdapter<CreditCardAppliProduct> mAdapter) {
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
-        mRecycler.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        mRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
         setPlaceHolderView(mEmptyView);
@@ -839,25 +847,24 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         mAdapter.setListener(adapterListener);
 
-        ClassicsFooter footer = (ClassicsFooter)findViewById(R.id.footer);
+        ClassicsFooter footer = (ClassicsFooter) findViewById(R.id.footer);
 
         footer.setFinishDuration(0);//设置刷新完成显示的停留时间
 
     }
-
 
 
     //贷款app列表
     @Override
     public void requestData(List<ApplyProduct> products) {
         hideLoading();
-        productData=products;
+        productData = products;
         adapter1.replace(products);
         adapter1.notifyDataSetChanged();
         // 如果有数据，则是OK，没有数据就显示空布局
-        if(products.size()==0){
+        if (products.size() == 0) {
             mPlaceHolderView.triggerEmpty("暂无申请记录，赶快去申请");
-        }else{
+        } else {
             mPlaceHolderView.triggerOk();
         }
     }
@@ -867,19 +874,20 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     @Override
     public void requestData1(List<CreditCardAppliProduct> products) {
         hideLoading();
-        cardData=products;
+        cardData = products;
         adapter2.replace(products);
         adapter2.notifyDataSetChanged();
         // 如果有数据，则是OK，没有数据就显示空布局
-        if(products.size()==0){
+        if (products.size() == 0) {
             mPlaceHolderView.triggerEmpty("暂无申请记录，赶快去申请");
-        }else{
+        } else {
             mPlaceHolderView.triggerOk();
         }
     }
 
     /**
      * 上拉加载
+     *
      * @param products
      */
     //上拉加载app列表
@@ -904,7 +912,8 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     protected void onResume() {
         super.onResume();
         //网络请求
-        applicationPresenter.setIsClick(flag,"2");
+        MobclickAgent.onResume(this);
+        applicationPresenter.setIsClick(flag, "2");
         clickChange(flag);
         mPresenter.start();
         initWidget();
@@ -919,12 +928,12 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
     @Override
     public void clickChange(boolean click) {
 
-        if (click){
+        if (click) {
             tv_borrow_money.setTextColor(Color.parseColor("#FFFFFF"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFAA48"));
             tv_credit_card.setTextColor(Color.parseColor("#FFAA48"));
             tv_credit_card.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }else {
+        } else {
             tv_borrow_money.setTextColor(Color.parseColor("#FFAA48"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFFFFF"));
             tv_credit_card.setTextColor(Color.parseColor("#FFFFFF"));
@@ -943,7 +952,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
     //返回键操作
     @OnClick(R.id.back)
-    void backClick(){
+    void backClick() {
         finish();
     }
 
@@ -952,6 +961,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
     /**
      * 每一个Cell的布局操作
+     *
      * @author HFRX hfrx1314@qq.com
      * @version 1.0.0
      */
@@ -963,7 +973,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
         public TextView txt_rate_number;
         //日利率或月利率
         @BindView(R.id.txt_rate)
-        public  TextView txt_rate;
+        public TextView txt_rate;
         //产品人数
         @BindView(R.id.txt_people_number)
         public TextView txt_people_number;
@@ -982,7 +992,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
         public TextView txt_name;
         //产品副标题
         @BindView(R.id.txt_prod_title)
-        public  TextView txt_prod_title;
+        public TextView txt_prod_title;
 
         @BindView(R.id.application)
         public TextView txtApplication;
@@ -992,7 +1002,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
 
         @BindView(R.id.lin_checkbox)
-        public  LinearLayout lin_checkbox;
+        public LinearLayout lin_checkbox;
 
         @BindView(R.id.checkbox)
         public CheckBox checkBox;
@@ -1005,19 +1015,19 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         protected void onBind(ApplyProduct applyProduct) {
 
-            if(isEdit){
-                if(lin_checkbox.getVisibility()==View.GONE) {
+            if (isEdit) {
+                if (lin_checkbox.getVisibility() == View.GONE) {
                     lin_checkbox.setVisibility(View.VISIBLE);
                 }
 
-                if(checklist.contains(getLayoutPosition())){
+                if (checklist.contains(getLayoutPosition())) {
                     checkBox.setChecked(true);
-                }else {
+                } else {
                     checkBox.setChecked(false);
                 }
 
-            }else {
-                if(lin_checkbox.getVisibility()==View.VISIBLE) {
+            } else {
+                if (lin_checkbox.getVisibility() == View.VISIBLE) {
                     lin_checkbox.setVisibility(View.GONE);
                 }
 
@@ -1026,7 +1036,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
             im_portrait.setup(Glide.with(context), applyProduct.getProduct_icon());
             txt_people_number.setText(applyProduct.getMoney());
             txt_name.setText(applyProduct.getProduct_name());
-             smial.setVisibility(View.GONE);
+            smial.setVisibility(View.GONE);
             txt_desc.setText(applyProduct.getCreate_time());
             txtApplication.setText("贷款金额");
             txt_prod_title.setVisibility(View.GONE);
@@ -1038,8 +1048,6 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
 
     }
-
-
 
 
     public class CreditCardAppliViewHolder extends RecyclerAdapter.ViewHolder<CreditCardAppliProduct> {
@@ -1076,13 +1084,10 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
         public TextView textqi;
 
         @BindView(R.id.lin_checkbox)
-        public  LinearLayout lin_checkbox;
+        public LinearLayout lin_checkbox;
 
         @BindView(R.id.checkbox)
         public CheckBox checkBox;
-
-
-
 
 
         public CreditCardAppliViewHolder(View itemView, Context context) {
@@ -1092,19 +1097,19 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
         protected void onBind(CreditCardAppliProduct creditCardAppliProduct) {
 
-            if(isEdit){
-                if(lin_checkbox.getVisibility()==View.GONE) {
+            if (isEdit) {
+                if (lin_checkbox.getVisibility() == View.GONE) {
                     lin_checkbox.setVisibility(View.VISIBLE);
                 }
 
-                if(checklist.contains(getLayoutPosition())){
+                if (checklist.contains(getLayoutPosition())) {
                     checkBox.setChecked(true);
-                }else {
+                } else {
                     checkBox.setChecked(false);
                 }
 
-            }else {
-                if(lin_checkbox.getVisibility()==View.VISIBLE) {
+            } else {
+                if (lin_checkbox.getVisibility() == View.VISIBLE) {
                     lin_checkbox.setVisibility(View.GONE);
                 }
 
@@ -1123,8 +1128,6 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
 
 
     }
-
-
 
 
 }

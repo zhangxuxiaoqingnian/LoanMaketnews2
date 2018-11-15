@@ -24,6 +24,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
+import com.umeng.analytics.MobclickAgent;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.data.DataSource;
@@ -43,6 +45,7 @@ import com.smileflowpig.money.factory.model.db.ApplyProduct;
 import com.smileflowpig.money.factory.model.db.CreditCardAppliProduct;
 import com.smileflowpig.money.factory.presenter.application.ApplicationContract;
 import com.smileflowpig.money.factory.presenter.application.ApplicationPresenter;
+
 import okhttp3.FormBody;
 
 //我的申请activity
@@ -70,7 +73,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
     RecyclerAdapter.AdapterListenerImpl adapterListener;
 
-    private boolean flag=true;
+    private boolean flag = true;
     private List<ApplyProduct> productData;
     private List<CreditCardAppliProduct> cardData;
     private static final String TAG = "ApActivity";
@@ -93,14 +96,19 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     }
 
 
-    @OnClick(R.id.tv_add)
-    void jump(){
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
-        intent = new Intent(this,Activity_AddressBook.class);
-        if(flag==true){
-            intent.putExtra("All_App",true);
-        }else if(flag==false){
-            intent.putExtra("All_App",false);
+    @OnClick(R.id.tv_add)
+    void jump() {
+
+        intent = new Intent(this, Activity_AddressBook.class);
+        if (flag == true) {
+            intent.putExtra("All_App", true);
+        } else if (flag == false) {
+            intent.putExtra("All_App", false);
         }
         startActivity(intent);
 
@@ -119,10 +127,10 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
 
     //点击改变数据
-    @OnClick({ R.id.tv_tv_borrow_money, R.id.tv_credit_card})
-    public void onClicks(View view){
+    @OnClick({R.id.tv_tv_borrow_money, R.id.tv_credit_card})
+    public void onClicks(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.tv_tv_borrow_money:
                 flag = true;
@@ -135,7 +143,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                 break;
 
         }
-        applicationPresenter.setIsClick(flag,"3");
+        applicationPresenter.setIsClick(flag, "3");
         clickChange(flag);
         //这个是网络请求
         mPresenter.start();
@@ -151,9 +159,9 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     protected void initWidget() {
         super.initWidget();
 
-        if(flag){
+        if (flag) {
 
-            if(adapter1==null) {
+            if (adapter1 == null) {
                 adapter1 = new RecyclerAdapter<ApplyProduct>() {
                     @Override
                     protected int getItemViewType(int position, ApplyProduct product) {
@@ -171,24 +179,24 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<ApplyProduct>() {
                 @Override
-                public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product,int pos) {
-                    DetailActivity.show(ApActivity1.this,product.getProduct_id(),"applicationList",2,20);
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, ApplyProduct product, int pos) {
+                    DetailActivity.show(ApActivity1.this, product.getProduct_id(), "applicationList", 2, 20);
                 }
 
                 @Override
                 public void onItemLongClick(RecyclerAdapter.ViewHolder holder, ApplyProduct applyProduct, int pos) {
                     //super.onItemLongClick(holder, applyProduct, pos);
                     View inflate = getLayoutInflater().inflate(R.layout.activity_delete2_layout, null);
-                    showDialog(inflate,pos);
+                    showDialog(inflate, pos);
                 }
             };
 
             initwidget1(adapter1);
 
-        }else {
+        } else {
 
             //初始化
-            if(adapter2==null) {
+            if (adapter2 == null) {
                 adapter2 = new RecyclerAdapter<CreditCardAppliProduct>() {
                     @Override
                     protected int getItemViewType(int position, CreditCardAppliProduct product) {
@@ -206,7 +214,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
             adapterListener = new RecyclerAdapter.AdapterListenerImpl<CreditCardAppliProduct>() {
                 @Override
-                public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product,int pos) {
+                public void onItemClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct product, int pos) {
 
                     WebActivity.show(ApActivity1.this, product.getProduct_name(),
                             product.getUrl());
@@ -217,7 +225,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                 public void onItemLongClick(RecyclerAdapter.ViewHolder holder, CreditCardAppliProduct creditCardAppliProduct, int pos) {
                     super.onItemLongClick(holder, creditCardAppliProduct, pos);
                     View inflate = getLayoutInflater().inflate(R.layout.activity_delete2_layout, null);
-                    showDialog(inflate,pos);
+                    showDialog(inflate, pos);
                 }
             };
 
@@ -230,28 +238,29 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @Override
     protected void onResume() {
         super.onResume();
-
-            //网络请求
-            applicationPresenter.setIsClick(flag,"3");
-            clickChange(flag);
-            //这个是网络请求
-            mPresenter.start();
-            initWidget();
+        MobclickAgent.onResume(this);
+        //网络请求
+        applicationPresenter.setIsClick(flag, "3");
+        clickChange(flag);
+        //这个是网络请求
+        mPresenter.start();
+        initWidget();
 
 
     }
 
     AlertDialog alertDialog;
-    public void showDialog(View view, final int pos){
+
+    public void showDialog(View view, final int pos) {
 
         alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
-        WindowManager.LayoutParams  lp= alertDialog.getWindow().getAttributes();
+        WindowManager.LayoutParams lp = alertDialog.getWindow().getAttributes();
         int width = DisplayUtil.dip2px(264);
         int height = DisplayUtil.dip2px(130);
-        lp.width=width;//定义宽度
-        lp.height=height;//定义高度
+        lp.width = width;//定义宽度
+        lp.height = height;//定义高度
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.update_border);
         alertDialog.getWindow().setAttributes(lp);
         Window window = alertDialog.getWindow();
@@ -266,7 +275,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
             @Override
             public void onClick(View v) {
 
-                if(alertDialog!=null&&alertDialog.isShowing())
+                if (alertDialog != null && alertDialog.isShowing())
                     alertDialog.dismiss();
             }
         });
@@ -277,11 +286,11 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
                 alertDialog.dismiss();
 
-                if(flag){
+                if (flag) {
                     //删除app申请
 
-                    FormBody.Builder builder=new FormBody.Builder();
-                    builder.add("product_apply_ids[0]",productData.get(pos).getId()+"");
+                    FormBody.Builder builder = new FormBody.Builder();
+                    builder.add("product_apply_ids[0]", productData.get(pos).getId() + "");
                     FormBody build = builder.build();
                     MineHelper.deletetapp(build, new DataSource.Callback<Integer>() {
 
@@ -299,9 +308,9 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                             adapter1.replace(productData);
 
 
-                            if(productData.size()==0){
+                            if (productData.size() == 0) {
                                 //网络请求
-                                applicationPresenter.setIsClick(flag,"3");
+                                applicationPresenter.setIsClick(flag, "3");
                                 clickChange(flag);
                                 //这个是网络请求
                                 mPresenter.start();
@@ -310,10 +319,10 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                             }
                         }
                     });
-                }else {
+                } else {
                     //删除信用卡申请
-                    FormBody.Builder builder=new FormBody.Builder();
-                    builder.add("credit_card_apply_ids[0]",cardData.get(pos).getId()+"");
+                    FormBody.Builder builder = new FormBody.Builder();
+                    builder.add("credit_card_apply_ids[0]", cardData.get(pos).getId() + "");
                     FormBody build = builder.build();
                     MineHelper.deletetcard(build, new DataSource.Callback<Integer>() {
                         @Override
@@ -328,9 +337,9 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                             cardData.remove(pos);
                             adapter2.replace(cardData);
 
-                            if(cardData.size()==0){
+                            if (cardData.size() == 0) {
                                 //网络请求
-                                applicationPresenter.setIsClick(flag,"3");
+                                applicationPresenter.setIsClick(flag, "3");
                                 clickChange(flag);
                                 //这个是网络请求
                                 mPresenter.start();
@@ -340,7 +349,6 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
                         }
                     });
                 }
-
 
 
             }
@@ -353,16 +361,17 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
     @BindView(R.id.lin_bottomtitel)
     LinearLayout lin_bottomtitel;
-    private void showPopupwindow(){
 
-        View popview = getLayoutInflater().inflate(R.layout.apply_popview,null,false);
+    private void showPopupwindow() {
 
-        PopupWindow popupWindow = new PopupWindow(popview, DisplayUtil.dip2px(160),DisplayUtil.dip2px(80));
+        View popview = getLayoutInflater().inflate(R.layout.apply_popview, null, false);
+
+        PopupWindow popupWindow = new PopupWindow(popview, DisplayUtil.dip2px(160), DisplayUtil.dip2px(80));
 
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(lin_bottomtitel, Gravity.NO_GRAVITY,x,y);
+        popupWindow.showAtLocation(lin_bottomtitel, Gravity.NO_GRAVITY, x, y);
 
     }
 
@@ -371,13 +380,13 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
 
-        switch (ev.getAction()){
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-            x = (int) ev.getRawX();
-            y = (int) ev.getY();
+                x = (int) ev.getRawX();
+                y = (int) ev.getY();
 
 
-            break;
+                break;
         }
 
         return super.dispatchTouchEvent(ev);
@@ -386,12 +395,12 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     int y;
     int x;
 
-    private void initwidget1(RecyclerAdapter<ApplyProduct> mAdapter){
+    private void initwidget1(RecyclerAdapter<ApplyProduct> mAdapter) {
 
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
-        mRecycler.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        mRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
         setPlaceHolderView(mEmptyView);
@@ -411,7 +420,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
         mAdapter.setListener(adapterListener);
 
-        ClassicsFooter footer = (ClassicsFooter)findViewById(R.id.footer);
+        ClassicsFooter footer = (ClassicsFooter) findViewById(R.id.footer);
 
         footer.setFinishDuration(0);//设置刷新完成显示的停留时间
 
@@ -419,11 +428,11 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     }
 
 
-    private void initwidget2(RecyclerAdapter<CreditCardAppliProduct> mAdapter){
+    private void initwidget2(RecyclerAdapter<CreditCardAppliProduct> mAdapter) {
 
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
-        mRecycler.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        mRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
         setPlaceHolderView(mEmptyView);
@@ -442,25 +451,23 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
         mAdapter.setListener(adapterListener);
 
-        ClassicsFooter footer = (ClassicsFooter)findViewById(R.id.footer);
+        ClassicsFooter footer = (ClassicsFooter) findViewById(R.id.footer);
 
         footer.setFinishDuration(0);//设置刷新完成显示的停留时间
 
     }
-
-
 
 
     @Override
     public void requestData(List<ApplyProduct> products) {
         hideLoading();
-        productData=products;
+        productData = products;
         adapter1.replace(products);
         adapter1.notifyDataSetChanged();
         // 如果有数据，则是OK，没有数据就显示空布局
-        if(products.size()==0){
+        if (products.size() == 0) {
             mPlaceHolderView.triggerEmpty("暂无申请记录，赶快去申请");
-        }else{
+        } else {
             mPlaceHolderView.triggerOk();
         }
     }
@@ -469,19 +476,20 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @Override
     public void requestData1(List<CreditCardAppliProduct> products) {
         hideLoading();
-        cardData=products;
+        cardData = products;
         adapter2.replace(products);
         adapter2.notifyDataSetChanged();
         // 如果有数据，则是OK，没有数据就显示空布局
-        if(products.size()==0){
+        if (products.size() == 0) {
             mPlaceHolderView.triggerEmpty("暂无申请记录，赶快去申请");
-        }else{
+        } else {
             mPlaceHolderView.triggerOk();
         }
     }
 
     /**
      * 上拉加载
+     *
      * @param products
      */
     @Override
@@ -510,12 +518,12 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
     @Override
     public void clickChange(boolean click) {
 
-        if (click){
+        if (click) {
             tv_borrow_money.setTextColor(Color.parseColor("#FFFFFF"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFAA48"));
             tv_credit_card.setTextColor(Color.parseColor("#FFAA48"));
             tv_credit_card.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }else {
+        } else {
             tv_borrow_money.setTextColor(Color.parseColor("#FFAA48"));
             tv_borrow_money.setBackgroundColor(Color.parseColor("#FFFFFF"));
             tv_credit_card.setTextColor(Color.parseColor("#FFFFFF"));
@@ -534,7 +542,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
     //返回键操作
     @OnClick(R.id.back)
-    void backClick(){
+    void backClick() {
         finish();
     }
 
@@ -543,6 +551,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
     /**
      * 每一个Cell的布局操作
+     *
      * @author HFRX hfrx1314@qq.com
      * @version 1.0.0
      */
@@ -554,7 +563,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
         public TextView txt_rate_number;
         //日利率或月利率
         @BindView(R.id.txt_rate)
-        public  TextView txt_rate;
+        public TextView txt_rate;
         //产品人数
         @BindView(R.id.txt_people_number)
         public TextView txt_people_number;
@@ -569,7 +578,7 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
         public TextView txt_name;
         //产品副标题
         @BindView(R.id.txt_prod_title)
-        public  TextView txt_prod_title;
+        public TextView txt_prod_title;
 
         @BindView(R.id.application)
         public TextView txtApplication;
@@ -600,8 +609,6 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
 
     }
-
-
 
 
     public class CreditCardAppliViewHolder extends RecyclerAdapter.ViewHolder<CreditCardAppliProduct> {
@@ -658,8 +665,6 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
 
 
     }
-
-
 
 
 }

@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2017/12/21 0021.
@@ -89,6 +90,15 @@ public class Activity_Income_Tax_Calc extends Activity implements View.OnClickLi
         }
 
 
+    }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
     // 隐藏软件盘
     private void hideSoftKeyboard() {

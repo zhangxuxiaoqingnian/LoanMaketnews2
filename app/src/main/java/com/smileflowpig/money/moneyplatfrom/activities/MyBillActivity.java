@@ -38,6 +38,7 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
+import com.umeng.analytics.MobclickAgent;
 
 public class MyBillActivity extends PresenterActivity implements OnClickListener{
 
@@ -81,6 +82,16 @@ public class MyBillActivity extends PresenterActivity implements OnClickListener
         timeover.setOnClickListener(this);
     }
 
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     public void initview(){
 
         iv_mine = (ImageView) findViewById(R.id.iv_mine);

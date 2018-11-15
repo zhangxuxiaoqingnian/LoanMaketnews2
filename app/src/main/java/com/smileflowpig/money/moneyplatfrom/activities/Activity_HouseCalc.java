@@ -31,6 +31,7 @@ import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.widget.WheelView;
 import com.smileflowpig.money.factory.model.api.guoshen.Average_CaptialBean;
 import com.smileflowpig.money.factory.model.api.guoshen.Average_Captial_Plus_InterestBean;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Allence on 2017/12/19 0019.
@@ -73,7 +74,15 @@ public class Activity_HouseCalc extends Activity implements View.OnClickListener
 
     @BindView(R.id.tv_title)
     TextView tv_title;
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected int getContentLayoutId() {

@@ -8,6 +8,7 @@ import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.model.api.product.ProductDetail;
 import com.smileflowpig.money.factory.model.db.Amount;
 import com.smileflowpig.money.factory.presenter.detail.DetailContract;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 产品详情页2
@@ -40,7 +41,15 @@ public class DetailActivityC extends PresenterActivity<DetailContract.Presenter>
     public void onDone(ProductDetail product) {
 
     }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     public void onHorData(List<Amount> amountList) {
 
