@@ -4,7 +4,10 @@ package com.smileflowpig.money.common.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
@@ -54,7 +57,7 @@ public class NavigationBarUtil {
         Rect r = new Rect();
         mObserved.getWindowVisibleDisplayFrame(r);
 //        return (r.bottom - r.top);//如果不是沉浸状态栏，需要减去顶部高度
-        return (r.bottom );//如果是沉浸状态栏
+        return (r.bottom);//如果是沉浸状态栏
     }
 
     /**
@@ -65,27 +68,45 @@ public class NavigationBarUtil {
      */
     public static boolean hasNavigationBar(Context context) {
         boolean hasNavigationBar = false;
-        Resources rs = context.getResources();
-        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
-        if (id > 0) {
-            hasNavigationBar = rs.getBoolean(id);
-        }
-        try {
-            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
-            Method m = systemPropertiesClass.getMethod("get", String.class);
-            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
-            if ("1".equals(navBarOverride)) {
-                hasNavigationBar = false;
-            } else if ("0".equals(navBarOverride)) {
-                hasNavigationBar = true;
-            }
-        } catch (Exception e) {
-
-        }
-        return hasNavigationBar;
-
+//        Resources rs = context.getResources();
+//        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+//        if (id > 0) {
+//            hasNavigationBar = rs.getBoolean(id);
+//        }
+//        try {
+//            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+//            Method m = systemPropertiesClass.getMethod("get", String.class);
+//            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+//            if ("1".equals(navBarOverride)) {
+//                hasNavigationBar = false;
+//            } else if ("0".equals(navBarOverride)) {
+//                hasNavigationBar = true;
+//            }
+//        } catch (Exception e) {
+//
+//        }
+//        return hasNavigationBar;
+        return checkDeviceHasNavigationBar2(context);
     }
 
+
+    /**
+     * 判断是否有虚拟按键
+     * @param activity
+     * @return
+     */
+    public static boolean checkDeviceHasNavigationBar2(Context activity) {
+//通过判断设备是否有返回键、菜单键(不是虚拟键,是手机屏幕外的按键)来确定是否有navigation bar
+        boolean hasMenuKey = ViewConfiguration.get(activity)
+                .hasPermanentMenuKey();
+        boolean hasBackKey = KeyCharacterMap
+                .deviceHasKey(KeyEvent.KEYCODE_BACK);
+        if (!hasMenuKey && !hasBackKey) {
+// 做任何你需要做的,这个设备有一个导航栏
+            return true;
+        }
+        return false;
+    }
 }
 
 
