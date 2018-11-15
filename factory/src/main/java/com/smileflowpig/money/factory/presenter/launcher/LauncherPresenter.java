@@ -26,7 +26,7 @@ import java.io.File;
  * @version 1.0.0
  */
 public class LauncherPresenter extends BasePresenter<LauncherContract.View>
-        implements LauncherContract.Presenter{
+        implements LauncherContract.Presenter {
 
 
     public static final String NEW_PICTURE = "NEW_PICTURE";
@@ -57,7 +57,8 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
 
 
     private static final String TAG = "LauncherPresenter";
-    public LauncherPresenter(LauncherContract.View view,AdPictureListener adPictureListener) {
+
+    public LauncherPresenter(LauncherContract.View view, AdPictureListener adPictureListener) {
         super(view);
         this.adPictureListener = adPictureListener;
     }
@@ -84,20 +85,19 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
             @Override
             public void onDataLoaded(LaunchRspModel launcherModel) {
 
-                save(launcherModel.getAndroid(),launcherModel.getVersion());
+                save(launcherModel.getAndroid(), launcherModel.getVersion());
 
 //                Intent intent = new Intent(Factory.app(),DownService.class);
 //                intent.putExtra("url",launcherModel.getUrl());
 //                Factory.app().startService(intent);
 
 
-
             }
 
             @Override
             public void onDataNotAvailable(@StringRes int strRes) {
-                if(getView()!=null)
-                  getView().showError(R.string.data_network_error);
+                if (getView() != null)
+                    getView().showError(R.string.data_network_error);
             }
 
 
@@ -114,18 +114,18 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
             @Override
             public void onDataLoaded(RspModel rspModel) {
                 RspAdModel rspAdModel = (RspAdModel) rspModel.getRst();
-                Log.e(TAG, rspAdModel.getData().getImage_url());
+//                Log.e(TAG, rspAdModel.getData().getImage_url());
 
                 SharedPreferences sp = Factory.app().getSharedPreferences("isshowimg",
                         Context.MODE_PRIVATE);
 
-                if(getView()!=null){
+                if (getView() != null) {
                     getView().setImage(rspAdModel.getData().getImage_url());
                 }
-                if(rspAdModel.getData().getImage_url().equals("")){
-                    sp.edit().putBoolean("iscover",true).commit();
-                }else {
-                    sp.edit().putBoolean("iscover",false).commit();
+                if (rspAdModel.getData().getImage_url().equals("")) {
+                    sp.edit().putBoolean("iscover", true).commit();
+                } else {
+                    sp.edit().putBoolean("iscover", false).commit();
                     downloadImage(rspAdModel);
                 }
 
@@ -137,9 +137,9 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
     }
 
 
-
     /**
      * 开启线程下载广告图片
+     *
      * @param rspAdModel
      */
     public void downloadImage(final RspAdModel rspAdModel) {
@@ -153,8 +153,8 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
                             .load(url)
                             .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
                     final File imageFile = target.get();
-                    if(adPictureListener!=null){
-                        adPictureListener.loadTry(url,rspAdModel);
+                    if (adPictureListener != null) {
+                        adPictureListener.loadTry(url, rspAdModel);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -166,6 +166,7 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
 
     /**
      * 开启线程下载弹框图片
+     *
      * @param rspAdModel
      */
     public void downDialog(final RspAdModel rspAdModel) {
@@ -179,8 +180,8 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
                             .load(url)
                             .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
                     final File imageFile = target.get();
-                    save(imageFile.getPath(),rspAdModel);
-                    Log.e(TAG,"弹框图的地址是"+imageFile.getPath());
+                    save(imageFile.getPath(), rspAdModel);
+                    Log.e(TAG, "弹框图的地址是" + imageFile.getPath());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -203,18 +204,19 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
 
     }
 
-    public interface AdPictureListener{
-       void loadTry(String filePath, RspAdModel rspAdModel);
-   }
+    public interface AdPictureListener {
+        void loadTry(String filePath, RspAdModel rspAdModel);
+    }
 
 
     /**
      * 根据版本号存储当前版本状态
+     *
      * @param channelOk 线上channel 状态
-     * @param version  本地version
+     * @param version   本地version
      */
 
-    private void save(String channelOk,String version){
+    private void save(String channelOk, String version) {
 //        int versionLocal = Integer.parseInt(HomePresenter.getVersionCode(Factory.app()));
 //        int versionNet;
 //                try{
@@ -237,18 +239,18 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
 //                    .apply();
 //        }
 
-        if(channelOk.equals("0")){
+        if (channelOk.equals("0")) {
             SharedPreferences sp = Factory.app().getSharedPreferences(CHANNEL,
                     Context.MODE_PRIVATE);
             sp.edit()
-                    .putString(CHANNELOKORNOTOK,"0")
+                    .putString(CHANNELOKORNOTOK, "0")
                     .apply();
-        }else{
+        } else {
             //过审页
             SharedPreferences sp = Factory.app().getSharedPreferences(CHANNEL,
                     Context.MODE_PRIVATE);
             sp.edit()
-                    .putString(CHANNELOKORNOTOK,channelOk)
+                    .putString(CHANNELOKORNOTOK, channelOk)
                     .apply();
         }
 
@@ -256,24 +258,21 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View>
 
     /**
      * 存储弹框图
-     * @param file   地址
-     * @param rspModel  弹框图对象
+     *
+     * @param file     地址
+     * @param rspModel 弹框图对象
      */
-    private void save(String file,RspAdModel rspModel){
+    private void save(String file, RspAdModel rspModel) {
 
         SharedPreferences sp = Factory.app().getSharedPreferences(NEW_DIALOG,
                 Context.MODE_PRIVATE);
         sp.edit()
-                .putString(FILEPATH,file)
-                .putString(SKIPTYPE,rspModel.getData().getSkip_type())
-                .putString(LINK,rspModel.getData().getLink())
-                .putString(PRODUCTID,rspModel.getData().getProduct_id())
+                .putString(FILEPATH, file)
+                .putString(SKIPTYPE, rspModel.getData().getSkip_type())
+                .putString(LINK, rspModel.getData().getLink())
+                .putString(PRODUCTID, rspModel.getData().getProduct_id())
                 .apply();
     }
-
-
-
-
 
 
 }

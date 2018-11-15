@@ -41,7 +41,6 @@ public class LauncherHelper {
             @Override
             public void onResponse(Call<RspModel<RspAdModel>> call, Response<RspModel<RspAdModel>> response) {
                 RspModel<RspAdModel> rspModel = response.body();
-
                 if (rspModel!=null&&rspModel.success()) {
                     callback.onDataLoaded(rspModel);
                 } else {
@@ -128,7 +127,6 @@ public class LauncherHelper {
         RemoteService service = Network.remote();
         Idfa idfa = new Idfa("Android",Network.channelId,imei);
         Call<RspModel> call = service.sendIdfa(idfa);
-        Log.e(TAG,"进入方法");
         // 异步的请求
         call.enqueue(new Callback<RspModel>() {
             @Override

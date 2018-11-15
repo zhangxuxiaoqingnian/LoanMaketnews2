@@ -134,6 +134,8 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         if (checkChannel()) {
             // 检查跳转到广告页还是跳转到主页
 //            if (checkData()==false) {
+
+            Log.e("LauncherPresenter","launchactivity");
             boolean iscover = sp2.getBoolean("iscover", false);
             boolean oldwer = sp.getBoolean("oldwer", false);
             if(iscover){

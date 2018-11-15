@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
@@ -45,7 +47,7 @@ import com.umeng.analytics.MobclickAgent;
  * Created by 小狼 on 2018/10/18.
  */
 
-public class MoneyFragment extends PresenterFragment implements View.OnClickListener,OnRefreshLoadmoreListener {
+public class MoneyFragment extends PresenterFragment implements View.OnClickListener, OnRefreshLoadmoreListener {
 
     private View inflate;
     private TextView all;
@@ -57,7 +59,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
     private RecyclerView moneyrv;
     private List<DaiBanner.RstBean.DataBean> list3;
     private HuaDaiAdapter huaDaiAdapter;
-    private int page=1;
+    private int page = 1;
     private String type;
     private SmartRefreshLayout refreshlayout;
     private SerchAdapter serchAdapter;
@@ -96,14 +98,14 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
                 getpopwindow();
             }
         });
-        final List<String> list=new ArrayList<>();
+        final List<String> list = new ArrayList<>();
         list.add("不限");
         list.add("2千以下");
         list.add("2千-1万");
         list.add("1万-3万");
         list.add("3万以上");
 
-        final List<String> list2=new ArrayList<>();
+        final List<String> list2 = new ArrayList<>();
         list2.add("不限");
         list2.add("2000");
         list2.add("10000");
@@ -113,8 +115,8 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
         refreshlayout.setOnRefreshLoadmoreListener(this).
                 setEnableLoadmore(true)
                 .setEnableRefresh(true);
-        final Typeadapter typeadapter=new Typeadapter(getActivity(),list);
-        LinearLayoutManager ms=new LinearLayoutManager(getActivity());
+        final Typeadapter typeadapter = new Typeadapter(getActivity(), list);
+        LinearLayoutManager ms = new LinearLayoutManager(getActivity());
         ms.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv.setLayoutManager(ms);
         rv.setAdapter(typeadapter);
@@ -123,27 +125,36 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
             @Override
             public void success(int pos) {
 
-                refreshlayout.setLoadmoreFinished(false);
-                list3.clear();
-                serchAdapter.notifyDataSetChanged();
-                page=1;
-                typeadapter.selectedItemPosition(pos);
-                typeadapter.notifyDataSetChanged();
-                //请求数据
-                if(!getActivity().isFinishing()){
-                    getpopwindow();
+                //防止魅族崩溃
+                try {
+                    refreshlayout.setLoadmoreFinished(false);
+                    list3.clear();
+                    if (serchAdapter != null)
+                        serchAdapter.notifyDataSetChanged();
+                    page = 1;
+                    if (typeadapter != null) {
+                        typeadapter.selectedItemPosition(pos);
+                        typeadapter.notifyDataSetChanged();
+                    }
+                    //请求数据
+                    if (!getActivity().isFinishing()) {
+                        getpopwindow();
+                    }
+                    getdata(list2.get(pos));
+                    type = list2.get(pos);
+                } catch (Exception e) {
+                    Log.e("崩溃", e.toString());
                 }
-                getdata(list2.get(pos));
-                type=list2.get(pos);
-                if(pos==0){
+
+                if (pos == 0) {
                     MobclickAgent.onEvent(getActivity(), "loanMoneyAll");
-                }else if(pos==1){
+                } else if (pos == 1) {
                     MobclickAgent.onEvent(getActivity(), "loanMoney1");
-                }else if(pos==2){
+                } else if (pos == 2) {
                     MobclickAgent.onEvent(getActivity(), "loanMoney2");
-                }else if(pos==3){
+                } else if (pos == 3) {
                     MobclickAgent.onEvent(getActivity(), "loanMoney3");
-                }else if(pos==4){
+                } else if (pos == 4) {
                     MobclickAgent.onEvent(getActivity(), "loanMoney4");
                 }
             }
@@ -151,8 +162,8 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
     }
 
-    public void getdata(String amout){
-        Observable<DaiBanner> daiBannerObservable = new NetRequestUtils().bucuo().getbaseretrofit().getlistdata("1","不限",amout,"不限",12,page).subscribeOn(Schedulers.io())
+    public void getdata(String amout) {
+        Observable<DaiBanner> daiBannerObservable = new NetRequestUtils().bucuo().getbaseretrofit().getlistdata("1", "不限", amout, "不限", 12, page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         daiBannerObservable.subscribe(new Observer<DaiBanner>() {
             @Override
@@ -162,30 +173,35 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
             @Override
             public void onNext(DaiBanner daiBanner) {
-                if(popupWindow!=null){
+                if (popupWindow != null) {
                     popupWindow.dismiss();
                 }
                 refreshlayout.finishLoadmore();
                 refreshlayout.finishRefresh();
                 final List<DaiBanner.RstBean.DataBean> data = daiBanner.rst.data;
-                if(daiBanner.rst.pageinfo.hasNext){
+                if (daiBanner.rst.pageinfo.hasNext) {
                     page++;
-                }else {
+                } else {
                     refreshlayout.setLoadmoreFinished(true);
                 }
                 list3.addAll(data);
-                if(serchAdapter==null){
-                    serchAdapter = new SerchAdapter(getActivity(),list3);
+                if (serchAdapter == null) {
+                    serchAdapter = new SerchAdapter(getActivity(), list3);
                     moneyrv.setLayoutManager(new WrapContentLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
                     moneyrv.setAdapter(serchAdapter);
-                }else {
+                } else {
                     serchAdapter.notifyDataSetChanged();
                 }
 
                 serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
-                        DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0,8);
+                        try {
+
+                            DetailActivity.show(getActivity(), list3.get(pos).id + "", "notice", 0, 8);
+                        } catch (Exception e) {
+
+                        }
                     }
                 });
 
@@ -211,7 +227,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
     }
 
-    public void initview(){
+    public void initview() {
 
         rv = (RecyclerView) inflate.findViewById(R.id.typeallrv);
         moneyrv = (RecyclerView) inflate.findViewById(R.id.money_rv);
@@ -224,7 +240,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
         }
     }
@@ -241,12 +257,14 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
     }
 
     public void getpopwindow() {
-        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.loadingtwo_layout, null, false);
-        TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
-        loading.setText("加载中...");
-        popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setFocusable(true);
+        if (popupWindow == null) {
+            View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.loadingtwo_layout, null, false);
+            TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
+            loading.setText("加载中...");
+            popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+        }
         popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
     }

@@ -38,6 +38,7 @@ import com.smileflowpig.money.factory.bean.DaiBanner;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.moneyplatfrom.util.WrapContentLinearLayoutManager;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.debug.E;
 
 /**
  * Created by 小狼 on 2018/10/18.
@@ -116,8 +117,12 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
         typeadapter.SetNum(new Typeadapter.GetNum() {
             @Override
             public void success(int pos) {
+
+                try {
+
                 refreshlayout.setLoadmoreFinished(false);
                 list3.clear();
+                    if(serchAdapter!=null)
                 serchAdapter.notifyDataSetChanged();
                 page=1;
                 typeadapter.selectedItemPosition(pos);
@@ -127,6 +132,9 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
                 }
                 getdata(list2.get(pos));
                 type=list2.get(pos);
+                }catch (Exception e){
+
+                }
                 if(pos==0){
                     MobclickAgent.onEvent(getActivity(), "loanTimeAll");
                 }else if(pos==1){
@@ -185,7 +193,12 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
                 serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
+                        try {
+
                         DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0,8);
+                        }catch (Exception e){
+
+                        }
                     }
                 });
 

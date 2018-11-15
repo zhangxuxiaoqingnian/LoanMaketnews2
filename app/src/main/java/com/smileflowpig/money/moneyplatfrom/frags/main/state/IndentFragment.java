@@ -115,17 +115,23 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
             @Override
             public void success(int pos) {
 
-                refreshlayout.setLoadmoreFinished(false);
-                list3.clear();
-                serchAdapter.notifyDataSetChanged();
-                page=1;
-                typeadapter.selectedItemPosition(pos);
-                typeadapter.notifyDataSetChanged();
-                if(!getActivity().isFinishing()){
-                    getpopwindow();
+                try {
+                    refreshlayout.setLoadmoreFinished(false);
+                    list3.clear();
+                    if(serchAdapter!=null)
+                    serchAdapter.notifyDataSetChanged();
+                    page=1;
+                    typeadapter.selectedItemPosition(pos);
+                    typeadapter.notifyDataSetChanged();
+                    if(!getActivity().isFinishing()){
+                        getpopwindow();
+                    }
+                    getdata(list2.get(pos));
+                    type=list2.get(pos);
+
+                }catch (Exception e){
+
                 }
-                getdata(list2.get(pos));
-                type=list2.get(pos);
 
                 if(pos==0){
                     MobclickAgent.onEvent(getActivity(), "loanVocationAll");
@@ -183,7 +189,12 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
                 serchAdapter.setItempostion(new SerchAdapter.getItempostion() {
                     @Override
                     public void success(int pos) {
+                        try{
+
                         DetailActivity.show(getActivity(), list3.get(pos).id+"","notice",0,8);
+                        }catch (Exception E){
+
+                        }
                     }
                 });
             }
