@@ -130,47 +130,47 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30060"]
             buildConfigField 'String', 'CHANNLE', '"30060"'
         }
-//        qutoutiao01 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40015"]
-//            buildConfigField 'String', 'CHANNLE', '"30078"'
-//        }
-//        qutoutiao02 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30079"]
-//            buildConfigField 'String', 'CHANNLE', '"30079"'
-//        }
-//        qutoutiao03 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30080"]
-//            buildConfigField 'String', 'CHANNLE', '"30080"'
-//        }
-//        qutoutiao04 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30081"]
-//            buildConfigField 'String', 'CHANNLE', '"30081"'
-//        }
-//        qutoutiao05 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30082"]
-//            buildConfigField 'String', 'CHANNLE', '"30082"'
-//        }
-//        qutoutiao06 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30083"]
-//            buildConfigField 'String', 'CHANNLE', '"30083"'
-//        }
-//
-//        qutoutiao07 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30084"]
-//            buildConfigField 'String', 'CHANNLE', '"30084"'
-//        }
-//        qutoutiao08 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30085"]
-//            buildConfigField 'String', 'CHANNLE', '"30085"'
-//        }
-//        qutoutiao09 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30086"]
-//            buildConfigField 'String', 'CHANNLE', '"30086"'
-//        }
-//        qutoutiao10 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30087"]
-//            buildConfigField 'String', 'CHANNLE', '"30087"'
-//        }
+        qutoutiao01 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40015"]
+            buildConfigField 'String', 'CHANNLE', '"30078"'
+        }
+        qutoutiao02 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30079"]
+            buildConfigField 'String', 'CHANNLE', '"30079"'
+        }
+        qutoutiao03 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30080"]
+            buildConfigField 'String', 'CHANNLE', '"30080"'
+        }
+        qutoutiao04 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30081"]
+            buildConfigField 'String', 'CHANNLE', '"30081"'
+        }
+        qutoutiao05 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30082"]
+            buildConfigField 'String', 'CHANNLE', '"30082"'
+        }
+        qutoutiao06 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30083"]
+            buildConfigField 'String', 'CHANNLE', '"30083"'
+        }
+
+        qutoutiao07 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30084"]
+            buildConfigField 'String', 'CHANNLE', '"30084"'
+        }
+        qutoutiao08 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30085"]
+            buildConfigField 'String', 'CHANNLE', '"30085"'
+        }
+        qutoutiao09 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30086"]
+            buildConfigField 'String', 'CHANNLE', '"30086"'
+        }
+        qutoutiao10 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30087"]
+            buildConfigField 'String', 'CHANNLE', '"30087"'
+        }
 //
 
     }
