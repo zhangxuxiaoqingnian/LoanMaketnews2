@@ -1,9 +1,13 @@
 package com.smileflowpig.money.moneyplatfrom.util;
 
 
+import android.text.TextUtils;
+
+import com.smileflowpig.money.factory.Constant;
+import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.App;
-import com.smileflowpig.money.moneyplatfrom.Constant;
+
 
 /**
  * 登录状态判断
@@ -11,8 +15,15 @@ import com.smileflowpig.money.moneyplatfrom.Constant;
 public class LoginStatusUtil {
 
 
+    /**
+     * 判断是否登陆
+     *
+     * @return
+     */
+    public static boolean isLogin() {
+        boolean isExit = (boolean) SPUtil.get(App.context, Constant.UserInfo.ISEXITE, true);
+        return isExit;
+    }
 
-//    public static boolean isLogin(){
-//        SPUtil.get(App.context,Constant.UserInfo)
-//    }
+
 }
