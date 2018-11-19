@@ -31,6 +31,7 @@ import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.util.SPUtil;
+import com.smileflowpig.money.moneyplatfrom.frags.main.state.CreditFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.HuaHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.MessageFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.MineMyFragment;
@@ -43,6 +44,7 @@ import com.smileflowpig.money.moneyplatfrom.frags.main.state.PigHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.helper.DataGenerator;
 import com.smileflowpig.money.moneyplatfrom.helper.FragmentHelper;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
+import com.smileflowpig.money.moneyplatfrom.weight.HongbaoDialog;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -170,6 +172,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
+
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
@@ -179,6 +182,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
     @Override
     protected void initWidows() {
         super.initWidows();
@@ -260,16 +264,16 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 //            list2.add(new NewMineFragment());
             list2.add(new PigHomeFragment());
             list2.add(new NewSearchFragment());
-            //list2.add(new CreditFragment());
+            list2.add(new CreditFragment());
             list2.add(new MessageFragment());
             list2.add(new NewMineFragment());
 //            list2.add(new NewMineFragment());
             switchFragment(list2.get(position)).commit();
             getvisible2(position);
             //显示隐藏
-            cx.remove(2);
-            icon.remove(2);
-            icon2.remove(2);
+//            cx.remove(2);
+//            icon.remove(2);
+//            icon2.remove(2);
             setTabs(mTabLayout, this.getLayoutInflater());
             initBottomTitle();
             mPresenter.start();
@@ -754,40 +758,54 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
      * Dialog
      */
     public void createDialog(final RspAdModel rspAdModel) {
-        adDialog = new AdDialog(this);
+//        adDialog = new AdDialog(this);
+//
+//        adDialog.setImageView(rspAdModel.getData().getImage_url());
+//        adDialog.setNoOnclickListener("确定", new AdDialog.onNoOnclickListener() {
+//            @Override
+//            public void onNoClick() {
+//                adDialog.dismiss();
+//            }
+//        });
+//
+//        adDialog.setImageClickListener(new AdDialog.onImageOnclickListener() {
+//            @Override
+//            public void onImageClick() {
+//                Log.e(TAG, rspAdModel.getData().getProduct_id() + "product_id");
+//                Log.e(TAG, rspAdModel.getData().getSkip_type() + "skiptype");
+//                product_id = rspAdModel.getData().getProduct_id();
+//                skiptype = rspAdModel.getData().getSkip_type();
+//                link = rspAdModel.getData().getLink();
+//                if (rspAdModel.getData().getSkip_type().equals("0")) {
+//                    if (rspAdModel.getData().getProduct_id().equals("0")) {
+//                        WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+//                    } else {
+//                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
+//                    }
+//                    adDialog.dismiss();
+//                } else {
+//                    WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+//                    adDialog.dismiss();
+//                }
+//
+//            }
+//        });
+//        adDialog.show();
 
-        adDialog.setImageView(rspAdModel.getData().getImage_url());
-        adDialog.setNoOnclickListener("确定", new AdDialog.onNoOnclickListener() {
+        HongbaoDialog hongbaoDialog = new HongbaoDialog(this);
+        hongbaoDialog.setNoOnclickListener(new HongbaoDialog.OnHongBaoClickListener() {
             @Override
-            public void onNoClick() {
-                adDialog.dismiss();
+            public void onCancle() {
+
+            }
+
+            @Override
+            public void onHongbaoClicck() {
+
             }
         });
 
-        adDialog.setImageClickListener(new AdDialog.onImageOnclickListener() {
-            @Override
-            public void onImageClick() {
-                Log.e(TAG, rspAdModel.getData().getProduct_id() + "product_id");
-                Log.e(TAG, rspAdModel.getData().getSkip_type() + "skiptype");
-                product_id = rspAdModel.getData().getProduct_id();
-                skiptype = rspAdModel.getData().getSkip_type();
-                link = rspAdModel.getData().getLink();
-                if (rspAdModel.getData().getSkip_type().equals("0")) {
-                    if (rspAdModel.getData().getProduct_id().equals("0")) {
-                        WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
-                    } else {
-                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
-                    }
-                    adDialog.dismiss();
-                } else {
-                    WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
-                    adDialog.dismiss();
-                }
-
-            }
-        });
-        adDialog.show();
-
+        hongbaoDialog.show();
     }
 
 

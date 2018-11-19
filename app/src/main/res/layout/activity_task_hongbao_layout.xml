@@ -34,10 +34,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="205px"
+        android:layout_height="wrap_content"
         android:layout_margin="10px"
         android:background="@drawable/bg_taskhongbao_bg"
         android:orientation="horizontal"
+        android:paddingTop="16px"
         android:paddingBottom="16px">
 
 
@@ -65,7 +66,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="231"
             android:orientation="vertical">
 
@@ -77,14 +78,14 @@
                 android:orientation="horizontal">
 
 
-                <TextView
+                <com.smileflowpig.money.moneyplatfrom.weight.MyTextView
                     android:id="@+id/activity_task_complete_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="完成"
                     android:textSize="30px" />
 
-                <TextView
+                <com.smileflowpig.money.moneyplatfrom.weight.MyTextView
                     android:id="@+id/activity_task_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,21 +101,22 @@
                 android:orientation="horizontal">
 
 
-                <TextView
+                <com.smileflowpig.money.moneyplatfrom.weight.MyTextView
                     android:id="@+id/activity_task_zhuan_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="赚"
                     android:textSize="30px" />
 
-                <TextView
+                <com.smileflowpig.money.moneyplatfrom.weight.MyMoneyTextView
                     android:id="@+id/activity_task_money_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="28.88"
-                    android:textSize="30px" />
+                    android:textColor="#FFE643"
+                    android:textSize="36px" />
 
-                <TextView
+                <com.smileflowpig.money.moneyplatfrom.weight.MyTextView
                     android:id="@+id/activity_task_xianjinhongbao_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -164,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="10px"
+                        android:layout_margin="5px"
                         android:text="天"
                         android:textColor="@color/white"
                         android:textSize="14px" />
@@ -184,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="10px"
+                        android:layout_margin="5px"
                         android:text="时"
                         android:textColor="@color/white"
                         android:textSize="14px" />
@@ -204,7 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="10px"
+                        android:layout_margin="5px"
                         android:text="分"
                         android:textColor="@color/white"
                         android:textSize="14px" />
@@ -224,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="10px"
+                        android:layout_marginLeft="5px"
                         android:text="秒"
                         android:textColor="@color/white"
                         android:textSize="14px" />

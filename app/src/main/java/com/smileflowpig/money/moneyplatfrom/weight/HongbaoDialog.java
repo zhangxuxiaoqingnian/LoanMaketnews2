@@ -1,9 +1,13 @@
 package com.smileflowpig.money.moneyplatfrom.weight;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,23 +34,20 @@ public class HongbaoDialog extends Dialog {
 
     /**
      * 设置取消按钮的显示内容和监听
-     *
-
      */
     public void setNoOnclickListener(OnHongBaoClickListener listener) {
-       this.mLis = listener;
+        this.mLis = listener;
 
     }
 
     OnHongBaoClickListener mLis;
-    public interface OnHongBaoClickListener{
+
+    public interface OnHongBaoClickListener {
         void onCancle();
 
 
         void onHongbaoClicck();
     }
-
-
 
 
     public HongbaoDialog(Context context) {
@@ -68,28 +69,74 @@ public class HongbaoDialog extends Dialog {
 
     }
 
+
+    float downx, downY;
+
     /**
      * 初始化界面的确定和取消监听器
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initEvent() {
         //设置取消按钮被点击后，向外界提供监听
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(mLis!=null)
-                   mLis.onCancle();
+                if (mLis != null)
+                    mLis.onCancle();
             }
         });
 
         //设置取消按钮被点击后，向外界提供监听
-        imageView.setOnClickListener(new View.OnClickListener() {
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(mLis!=null)
+//                    mLis.onHongbaoClicck();
+//            }
+//        });
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                if(mLis!=null)
-                    mLis.onHongbaoClicck();
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN:
+
+                        downx = event.getX();
+                        downY = event.getY();
+
+
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        float upX = event.getX();
+                        float upY = event.getY();
+                        if (Math.abs(upY - downY) <= 10 && Math.abs(upX - downx) <= 10) {
+
+                            boolean in = isIn(upX, upY, v);
+                            if (in) {
+                                if (mLis != null)
+                                    mLis.onHongbaoClicck();
+                            }
+                        }
+
+                        break;
+                }
+                return true;
             }
         });
+    }
 
+    private boolean isIn(float x, float y, View v) {
+        int[] l = {0, 0};
+        v.getLocationInWindow(l);
+        int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
+
+        int top1 = bottom / 7 * 5;
+        int bottom1 = bottom / 7 * 6;
+        Rect rect = new Rect(left, top1, right, bottom1);
+        boolean contains = rect.contains((int) x, (int) y);
+        return contains;
     }
 
     /**
@@ -119,7 +166,6 @@ public class HongbaoDialog extends Dialog {
     public void setImageView(String url) {
         this.url = url;
     }
-
 
 
     public interface onNoOnclickListener {
