@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-    <LinearLayout
-        android:id="@+id/piglayout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-        android:background="#FFCE25"
-        android:visibility="gone"
-        >
-        <View
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/piglayout"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="小花猪"
-            android:textSize="24px"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="13px"
-            android:layout_centerInParent="true"
-            />
-        <ImageView
-            android:id="@+id/pigmess"
-            android:layout_width="24px"
-            android:layout_height="24px"
-            android:src="@mipmap/icon_message_mine_red"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20px"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-    </LinearLayout>
+            android:layout_height="60dp"
+            android:background="#FFCE25"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="13px"
+                    android:text="小花猪"
+                    android:textColor="#ffffff"
+                    android:textSize="24px" />
+
+                <ImageView
+                    android:id="@+id/pigmess"
+                    android:layout_width="24px"
+                    android:layout_height="24px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20px"
+                    android:src="@mipmap/icon_message_mine_red" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <com.smileflowpig.money.moneyplatfrom.util.MyScrollView
             android:id="@+id/home_scroll"
@@ -183,7 +181,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="40px"
@@ -233,8 +232,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="174px"
                     android:layout_marginLeft="30px"
-                    android:layout_marginRight="30px"
                     android:layout_marginTop="11px"
+                    android:layout_marginRight="30px"
                     android:clipChildren="false" />
 
                 <com.stx.xhb.xbanner.XBanner
@@ -283,8 +282,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24px"
-                    android:layout_marginRight="18px"
-                    android:layout_marginTop="12px">
+                    android:layout_marginTop="12px"
+                    android:layout_marginRight="18px">
 
                     <ImageView
                         android:layout_width="20px"
@@ -306,8 +305,8 @@
                         android:id="@+id/pig_alldata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="全部贷款>>"
                         android:textColor="#FF8D24"
                         android:textSize="12px" />
@@ -315,20 +314,21 @@
 
                 <RelativeLayout
                     android:layout_width="355px"
-                    android:layout_height="wrap_content"
-                    >
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/platform_rv"
-                    android:layout_width="355px"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10px" />
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/platform_rv"
+                        android:layout_width="355px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24px"
-                    android:layout_marginRight="18px"
-                    android:layout_marginTop="12px">
+                    android:layout_marginTop="12px"
+                    android:layout_marginRight="18px">
 
                     <ImageView
                         android:layout_width="20px"
@@ -370,8 +370,7 @@
                         android:id="@+id/message_rv"
                         android:layout_width="325px"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"
-                        />
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
             </LinearLayout>
         </com.smileflowpig.money.moneyplatfrom.util.MyScrollView>
@@ -382,8 +381,8 @@
         android:id="@+id/overimg"
         android:layout_width="100px"
         android:layout_height="100px"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="50px"
 
         />

@@ -15,8 +15,8 @@ android {
         applicationId "com.smileflowpig.money"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 3
+        versionName "1.1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -132,6 +132,7 @@ android {
         }
 //        qutoutiao01 {
 //            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40015"]
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30078"]
 //            buildConfigField 'String', 'CHANNLE', '"30078"'
 //        }
 //        qutoutiao02 {
