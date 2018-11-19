@@ -171,7 +171,7 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40023"]
             buildConfigField 'String', 'CHANNLE', '"40023"'
         }
-        qutoutiao10 {
+        qutoutiao11{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40024"]
             buildConfigField 'String', 'CHANNLE', '"40024"'
         }
