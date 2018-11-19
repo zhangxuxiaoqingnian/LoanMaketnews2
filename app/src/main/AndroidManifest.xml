@@ -48,11 +48,7 @@
             android:name=".moneyplatfrom.LaunchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".moneyplatfrom.activities.AccountActivity"
@@ -330,6 +326,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
 
+
+        <activity
+            android:name=".moneyplatfrom.activities.TaskHongbaoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <receiver
             android:name=".moneyplatfrom.util.AlarmReceiver"
             android:screenOrientation="portrait"
@@ -339,7 +349,10 @@
             android:name=".moneyplatfrom.activities.CardPigActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".moneyplatfrom.activities.NewTaskActivity"></activity>
+        <activity android:name=".moneyplatfrom.activities.NewTaskActivity">
+
+
+        </activity>
     </application>
 
 </manifest>

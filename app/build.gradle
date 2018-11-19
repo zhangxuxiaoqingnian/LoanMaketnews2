@@ -15,8 +15,8 @@ android {
         applicationId "com.smileflowpig.money"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.1.0"
+        versionCode 1
+        versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -131,45 +131,49 @@ android {
             buildConfigField 'String', 'CHANNLE', '"30060"'
         }
         qutoutiao01 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40015"]
-            buildConfigField 'String', 'CHANNLE', '"30078"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40014"]
+            buildConfigField 'String', 'CHANNLE', '"40014"'
         }
         qutoutiao02 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30079"]
-            buildConfigField 'String', 'CHANNLE', '"30079"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40015"]
+            buildConfigField 'String', 'CHANNLE', '"40015"'
         }
         qutoutiao03 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30080"]
-            buildConfigField 'String', 'CHANNLE', '"30080"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40016"]
+            buildConfigField 'String', 'CHANNLE', '"40016"'
         }
         qutoutiao04 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30081"]
-            buildConfigField 'String', 'CHANNLE', '"30081"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40017"]
+            buildConfigField 'String', 'CHANNLE', '"40017"'
         }
         qutoutiao05 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30082"]
-            buildConfigField 'String', 'CHANNLE', '"30082"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40018"]
+            buildConfigField 'String', 'CHANNLE', '"40018"'
         }
         qutoutiao06 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30083"]
-            buildConfigField 'String', 'CHANNLE', '"30083"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40019"]
+            buildConfigField 'String', 'CHANNLE', '"40019"'
         }
 
         qutoutiao07 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30084"]
-            buildConfigField 'String', 'CHANNLE', '"30084"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40020"]
+            buildConfigField 'String', 'CHANNLE', '"40020"'
         }
         qutoutiao08 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30085"]
-            buildConfigField 'String', 'CHANNLE', '"30085"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40021"]
+            buildConfigField 'String', 'CHANNLE', '"40021"'
         }
         qutoutiao09 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30086"]
-            buildConfigField 'String', 'CHANNLE', '"30086"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40022"]
+            buildConfigField 'String', 'CHANNLE', '"40022"'
         }
         qutoutiao10 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30087"]
-            buildConfigField 'String', 'CHANNLE', '"30087"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40023"]
+            buildConfigField 'String', 'CHANNLE', '"40023"'
+        }
+        qutoutiao10 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40024"]
+            buildConfigField 'String', 'CHANNLE', '"40024"'
         }
 //
 
