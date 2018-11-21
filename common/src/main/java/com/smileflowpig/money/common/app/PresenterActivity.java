@@ -78,6 +78,30 @@ public abstract class PresenterActivity<Presenter extends BaseContract.Presenter
         }
     }
 
+    /**
+     * 只有progressDialog
+     */
+    public void showDialogLoadding() {
+        ProgressDialog dialog = mLoadingDialog;
+        if (dialog == null) {
+            dialog = new ProgressDialog(this, R.style.AppTheme_Dialog_Alert_Light);
+            // 不可触摸取消
+            dialog.setCanceledOnTouchOutside(false);
+            // 强制取消关闭界面
+            dialog.setCancelable(true);
+            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    finish();
+                }
+            });
+            mLoadingDialog = dialog;
+        }
+
+        dialog.setMessage(getText(R.string.prompt_loading));
+        dialog.show();
+    }
+
     protected void hideDialogLoading() {
         ProgressDialog dialog = mLoadingDialog;
         if (dialog != null) {

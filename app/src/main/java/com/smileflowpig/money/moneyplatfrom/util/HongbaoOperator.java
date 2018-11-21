@@ -83,7 +83,7 @@ public class HongbaoOperator {
     protected void init() {
         initNewPersonDialog();
         initJeiriDialog();
-        showDia();
+
     }
 
     public void init(OnDialogChangeListener onDialogChangeListener) {
@@ -93,11 +93,21 @@ public class HongbaoOperator {
     }
 
     private void showDia() {
-        if (isShowNewPerson) {
-            hongbaoDialog.show();
-        } else if (isShowJieri) {
-            jieriDialog.show();
+        if (LoginStatusUtil.isLogin()) {
+            if (isShowNewPerson && !isGetUserHongbao) {
+                hongbaoDialog.show();
+            } else if (isShowJieri && !isGetjieriHongbao) {
+                jieriDialog.show();
+            }
+        } else {
+
+            if (isShowNewPerson) {
+                hongbaoDialog.show();
+            } else if (isShowJieri) {
+                jieriDialog.show();
+            }
         }
+
     }
 
     private HongbaoDialog hongbaoDialog;
@@ -218,14 +228,12 @@ public class HongbaoOperator {
                 switch (currentType) {
                     case NEWPERSON:
                         dismissNewPersonDialog();
-                        ToastUtil.show(context, "登录成功获取新人红包");
-                        checkGet(newUser_id, NEWPERSON, true);
+                        checkGet(newUser_id, NEWPERSON, true, false);
 
                         break;
                     case JIERI:
                         dismissJieriDialog();
-                        ToastUtil.show(context, "登录成功获取节日红包");
-                        checkGet(jieri_id, JIERI, true);
+                        checkGet(jieri_id, JIERI, true, false);
                         break;
                 }
 
@@ -260,8 +268,10 @@ public class HongbaoOperator {
                         isShowJieri = true;
                         jieri_id = festical.getId() + "";
                     }
-                    init();
+
                     checkIsGetStatus(false);
+
+
                 }
             }
         });
@@ -272,13 +282,15 @@ public class HongbaoOperator {
      * 判断用户是否领取过
      */
     private void checkIsGetStatus(boolean isGoToGet) {
+        init();
         if (!LoginStatusUtil.isLogin()) {
+            showDia();
             return;
         }
         if (newUser_id != null)
-            checkGet(newUser_id, NEWPERSON, isGoToGet);
+            checkGet(newUser_id, NEWPERSON, isGoToGet, true);
         if (jieri_id != null)
-            checkGet(jieri_id, JIERI, isGoToGet);
+            checkGet(jieri_id, JIERI, isGoToGet, true);
 
 
     }
@@ -291,7 +303,7 @@ public class HongbaoOperator {
      * @param type
      * @param isGoToget 是否去领取
      */
-    private void checkGet(String id, final int type, final boolean isGoToget) {
+    private void checkGet(String id, final int type, final boolean isGoToget, final boolean isFirst) {
         HongbaoHelper.getUserHongbaoStatus(Integer.parseInt(id), new DataSource.Callback<HongbaoStatusJson>() {
             @Override
             public void onDataNotAvailable(int strRes) {
@@ -331,6 +343,10 @@ public class HongbaoOperator {
                         if (isGoToget) {
                             getHongbao(type);
                         }
+                    }
+
+                    if (isFirst) {
+                        showDia();
                     }
                 }
 

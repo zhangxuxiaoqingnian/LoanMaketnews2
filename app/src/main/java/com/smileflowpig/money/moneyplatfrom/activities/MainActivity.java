@@ -349,13 +349,13 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
             @Override
             public void showLoadding() {
-
+//showDialogLoadding();
 
             }
 
             @Override
             public void closeLoadding() {
-
+//hideDialogLoading();
             }
 
             @Override
