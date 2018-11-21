@@ -27,9 +27,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-/**
- * Created by 小狼 on 2017/11/28.
- */
 
 public class NetRequestUtils {
 
@@ -58,21 +55,6 @@ public class NetRequestUtils {
 
     public NetRequestUtils bucuo() {
 
-//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-//
-//            @Override
-//
-//            public void log(String message) {
-//
-////打印retrofit日志
-//
-//                Log.i("RetrofitLog","retrofitBack = "+message);
-//
-//            }
-//
-//        });
-//
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         // 存储起来
         LoginInterceptor interceptor = new LoginInterceptor();
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();

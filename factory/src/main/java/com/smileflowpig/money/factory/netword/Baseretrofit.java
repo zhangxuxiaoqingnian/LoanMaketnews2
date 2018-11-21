@@ -20,22 +20,31 @@ import com.smileflowpig.money.factory.bean.MemoShowBean;
 import com.smileflowpig.money.factory.bean.MessBannerBean;
 import com.smileflowpig.money.factory.bean.MessTypeBean;
 import com.smileflowpig.money.factory.bean.MessageBean;
+import com.smileflowpig.money.factory.bean.MoneygetBean;
 import com.smileflowpig.money.factory.bean.MyDetailBean;
 import com.smileflowpig.money.factory.bean.MyHomeFragmentBean;
 import com.smileflowpig.money.factory.bean.MyHomeListBean;
 import com.smileflowpig.money.factory.bean.MyiconBean;
+import com.smileflowpig.money.factory.bean.MyidentcardBean;
 import com.smileflowpig.money.factory.bean.MynameBean;
 import com.smileflowpig.money.factory.bean.NewDeatilsBean;
 import com.smileflowpig.money.factory.bean.NewListBean;
+import com.smileflowpig.money.factory.bean.OverCodeBean;
 import com.smileflowpig.money.factory.bean.PaoBean;
+import com.smileflowpig.money.factory.bean.PayoverBean;
 import com.smileflowpig.money.factory.bean.QiangBean;
 import com.smileflowpig.money.factory.bean.TabBean;
 import com.smileflowpig.money.factory.model.api.Bean.HomeBase;
+import com.smileflowpig.money.factory.model.api.RspModel;
+import com.smileflowpig.money.factory.model.api.account.CodeModel;
+import com.smileflowpig.money.factory.model.api.account.CodeRspModel;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -258,5 +267,35 @@ public interface Baseretrofit {
     @FormUrlEncoded
     Observable<CardBean> getcardlist(@Field("pageId") int id);
 
+    //获取绑定的信息
+    @POST("/user/v2/huaUser/userData")
+    Observable<MyidentcardBean> getnametext();
 
+    //完善身份证信息
+    @POST("/user/v2/huaUser/userUpdate")
+    @FormUrlEncoded
+    Observable<Object> getalltext(@Field("idcard_no") String idcard,@Field("real_name") String name);
+
+    //完善支付宝
+    @POST("/user/v2/huaUser/userUpdate")
+    @FormUrlEncoded
+    Observable<OverCodeBean> getpaytext(@Field("alipay_id") String alipay, @Field("phone") String phone, @Field("code") String code, @Field("real_name") String name);
+
+    //获取验证码
+    @POST("/user/v2/huaUser/bindZfb")
+    Observable<Object> getpay();
+
+    //提现页面
+    @POST("/user/v2/huaUser/withdrawal")
+    Observable<PayoverBean> getdeposit();
+
+    //提现操作
+    @POST("/user/v2/huaUser/doWithdrawal")
+    @FormUrlEncoded
+    Observable<Object> getmoney(@Field("real_name") String name,@Field("alipay_id") String phone,@Field("money") String money);
+
+    //提现记录
+    @POST("/user/v2/huaUser/withdrawalList")
+    @FormUrlEncoded
+    Observable<MoneygetBean> getmoneyone(@Field("page") String page);
 }

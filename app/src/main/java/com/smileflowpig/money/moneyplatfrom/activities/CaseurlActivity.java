@@ -46,6 +46,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CaseurlActivity extends PresenterActivity implements View.OnClickListener {
+
+    private LinearLayout qqlike;
+
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
@@ -269,7 +272,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         wei_circle = (LinearLayout) inflate.findViewById(R.id.m_share_pop_up_wei_circle);
         wei_chat = (LinearLayout) inflate.findViewById(R.id.m_share_pop_up_wei_chat);
         cancle = (TextView) inflate.findViewById(R.id.m_share_pop_up_cancel);
-
+        qqlike = (LinearLayout) inflate.findViewById(R.id.m_share_invite_pop_up_qq);
         //朋友圈
         wei_circle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,6 +286,43 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
                 web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_flowpig));
                 new ShareAction(CaseurlActivity.this)
                         .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)//传入平台
+                        .withMedia(web)
+                        .setCallback(new UMShareListener() {
+                            @Override
+                            public void onStart(SHARE_MEDIA share_media) {
+
+                            }
+
+                            @Override
+                            public void onResult(SHARE_MEDIA share_media) {
+                                ToastUtil.show(CaseurlActivity.this, "分享成功");
+                            }
+
+                            @Override
+                            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+                                ToastUtil.show(CaseurlActivity.this, "分享失败");
+                            }
+
+                            @Override
+                            public void onCancel(SHARE_MEDIA share_media) {
+
+                            }
+                        })//回调监听器
+                        .share();
+                popupWindow.dismiss();
+            }
+        });
+
+        qqlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                UMWeb web = new UMWeb(strurl);
+                web.setTitle(shareTitle);
+                web.setDescription(shareCotnent);
+                web.setThumb(new UMImage(CaseurlActivity.this, R.mipmap.ic_flowpig));
+                new ShareAction(CaseurlActivity.this)
+                        .setPlatform(SHARE_MEDIA.QQ)//传入平台
                         .withMedia(web)
                         .setCallback(new UMShareListener() {
                             @Override

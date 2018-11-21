@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="271px"
+        android:layout_height="303px"
+        android:orientation="vertical"
+        android:background="@drawable/contverster"
+        android:gravity="center_horizontal"
+
+        >
+        <ImageView
+            android:layout_width="201px"
+            android:layout_height="92px"
+            android:src="@mipmap/employ"
+            android:layout_marginTop="8px"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="使用说明"
+            android:textColor="#333333"
+            android:textSize="18px"
+            android:layout_marginTop="7px"
+            />
+        <TextView
+            android:layout_width="213px"
+            android:layout_height="wrap_content"
+            android:text="1.账户余额满50元即可提现,需一次性全额提取;"
+            android:textSize="14px"
+            android:textColor="#666666"
+            android:layout_marginTop="20px"
+            />
+        <TextView
+            android:layout_width="213px"
+            android:layout_height="wrap_content"
+            android:text="2.提现发起后,奖金将在3个工作日内发放到您绑定的支付宝账户中,节假日顺延。"
+            android:textSize="14px"
+            android:textColor="#666666"
+            android:layout_marginTop="20px"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/money_diss"
+        android:layout_width="41px"
+        android:layout_height="41px"
+        android:src="@mipmap/chacha"
+        android:layout_marginTop="31px"
+        />
+
+</LinearLayout>

@@ -54,6 +54,7 @@ public class App extends Application {
         QueuedWork.isUseThreadPool = false;
         UMShareAPI.get(this);
         PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
+        PlatformConfig.setQQZone("101524904","5427cfe5dbe05f72e6fc44acafbb93c3");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
