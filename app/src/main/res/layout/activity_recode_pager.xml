@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:gravity="center_horizontal"
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.RecodePagerActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        android:background="#FFCE25"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/overback" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tab_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="记录"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <LinearLayout
+        android:id="@+id/datanull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+    <RelativeLayout
+        android:id="@+id/isfaust"
+        android:layout_width="355px"
+        android:layout_height="78px"
+        android:background="@drawable/money_pageback"
+        android:layout_marginTop="12px"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共收到"
+            android:textColor="#ffffff"
+            android:textSize="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            />
+        <TextView
+            android:id="@+id/recode_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6666.66元"
+            android:textColor="#ffffff"
+            android:textSize="24px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24px"
+            />
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="325px"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="10px"
+            >
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                >
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recode_rv"
+        android:overScrollMode="never"
+        />
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:id="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/collnull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="暂无记录"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+</LinearLayout>

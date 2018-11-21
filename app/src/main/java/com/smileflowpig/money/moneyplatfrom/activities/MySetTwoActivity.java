@@ -89,7 +89,7 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     @BindView(R.id.newsetok)
     TextView setok;
     @BindView(R.id.newmysetlayout)
-    RelativeLayout layout;
+    LinearLayout layout;
 
     //请求相机
     private static final int REQUEST_CAPTURE = 100;

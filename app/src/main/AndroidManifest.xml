@@ -53,7 +53,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".moneyplatfrom.activities.AccountActivity"
@@ -222,6 +221,25 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--QQ-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <!-- 友盟 -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -349,15 +367,40 @@
             android:name=".moneyplatfrom.activities.CardPigActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".moneyplatfrom.activities.NewTaskActivity">
-
-
-        </activity>
+        <activity
+            android:name=".moneyplatfrom.activities.NewTaskActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main" />
+        <activity android:name=".moneyplatfrom.activities.FlowMeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.MyDatumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.IdentityCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.PayEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.RecodePagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            />
+        <activity android:name=".moneyplatfrom.activities.RedPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            ></activity>
 
 
         <activity android:name=".moneyplatfrom.activities.HongbaoRecordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main"/>
+
     </application>
 
 </manifest>

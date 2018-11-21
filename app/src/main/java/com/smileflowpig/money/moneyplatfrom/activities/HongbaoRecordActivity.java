@@ -34,7 +34,9 @@ public class HongbaoRecordActivity extends Activity {
     @OnClick(R.id.hongbao_record_text)
     void goToRecord() {
         // TODO: 2018/11/20 红包记录 
-
+        Intent intent=new Intent(this,RecodePagerActivity.class);
+        intent.putExtra("cardname","红包记录");
+        startActivity(intent);
     }
 
     public static final String TASK_NAME = "task_name";

@@ -3,24 +3,39 @@ package com.smileflowpig.money.moneyplatfrom.frags.main.state;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.content.FileProvider;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.activities.AccountActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.BillManagerActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.FeedbackActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.FlowMeActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MyCollectActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.MyDatumActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MySetTwoActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.NewTaskActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.RadiersActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.RecordActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.SetActivity;
@@ -35,7 +50,14 @@ import com.smileflowpig.money.common.widget.SelfDialog;
 import com.smileflowpig.money.factory.model.db.User;
 import com.smileflowpig.money.factory.presenter.state.StateContract;
 import com.smileflowpig.money.factory.presenter.state.StatePresenter;
+import com.smileflowpig.money.moneyplatfrom.util.CropUtils;
+import com.smileflowpig.money.moneyplatfrom.util.DialogPermission;
+import com.smileflowpig.money.moneyplatfrom.util.FileUtil;
+import com.smileflowpig.money.moneyplatfrom.util.PermissionUtil;
+import com.smileflowpig.money.moneyplatfrom.util.SharedPreferenceMark;
 import com.umeng.analytics.MobclickAgent;
+
+import java.io.File;
 
 /**
  * Created by 小狼 on 2018/10/24.
@@ -47,23 +69,26 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     private View inflate;
     private TextView login;
     private CircleImageView loginicon;
-    private RelativeLayout collect;
-    private RelativeLayout record;
-    private RelativeLayout forget;
-    private RelativeLayout question;
-    private RelativeLayout feenback;
-    private RelativeLayout set;
+    private LinearLayout collect;
+    private LinearLayout record;
+    private LinearLayout forget;
+    private LinearLayout question;
+    private LinearLayout feenback;
+    private ImageView set;
     private int flag = 0;
     private SelfDialog selfDialog;
     private String myiconurl;
     private String myname;
     private String mysex;
     private String mytype;
+    private String myphone;
     private RelativeLayout layout;
     private SharedPreferences sharedPreferences;
 
     @BindView(R.id.fragment_mine_message_img)
     ImageView message_img;
+    private LinearLayout mywallet;
+    private LinearLayout relationme;
 
     @Nullable
     @Override
@@ -78,6 +103,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 
         initview();
 
+
         sharedPreferences = getActivity().getSharedPreferences("Logintype", Context.MODE_PRIVATE);
 
     }
@@ -85,17 +111,21 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     public void initview() {
         login = (TextView) inflate.findViewById(R.id.mine_login);
         loginicon = (CircleImageView) inflate.findViewById(R.id.mine_icon);
-        collect = (RelativeLayout) inflate.findViewById(R.id.my_collect);
-        record = (RelativeLayout) inflate.findViewById(R.id.my_record);
-        forget = (RelativeLayout) inflate.findViewById(R.id.my_forget);
-        question = (RelativeLayout) inflate.findViewById(R.id.my_question);
-        feenback = (RelativeLayout) inflate.findViewById(R.id.my_feenback);
-        set = (RelativeLayout) inflate.findViewById(R.id.my_set);
+        collect = (LinearLayout) inflate.findViewById(R.id.my_collect);
+        record = (LinearLayout) inflate.findViewById(R.id.my_record);
+        forget = (LinearLayout) inflate.findViewById(R.id.my_forget);
+        question = (LinearLayout) inflate.findViewById(R.id.my_question);
+        feenback = (LinearLayout) inflate.findViewById(R.id.my_feenback);
+        set = (ImageView) inflate.findViewById(R.id.my_set);
         layout = (RelativeLayout) inflate.findViewById(R.id.mine_layout);
         message_img = (ImageView) inflate.findViewById(R.id.fragment_mine_message_img);
+        mywallet = (LinearLayout) inflate.findViewById(R.id.mywallet);
+        relationme = (LinearLayout) inflate.findViewById(R.id.relationme);
         message_img.setOnClickListener(this);
         login.setOnClickListener(this);
         loginicon.setOnClickListener(this);
+        mywallet.setOnClickListener(this);
+        relationme.setOnClickListener(this);
         inflate.findViewById(R.id.mine_data).setOnClickListener(this);
         inflate.findViewById(R.id.mine_data).setOnClickListener(this);
         //login.setOnClickListener(this);
@@ -107,6 +137,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         set.setOnClickListener(this);
         //loginicon.setOnClickListener(this);
         layout.setOnClickListener(this);
+
 
     }
 
@@ -129,12 +160,16 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 //        sharedPreferences.edit().putString("sessionid",user.getPHPSESSID()).commit();
         flag = 1;
         login.setText(user.nick);
+        System.out.println(user.avatar_url+"图片地址");
         if (user.avatar_url.equals("")) {
             loginicon.setImageResource(R.mipmap.loginicon);
         } else {
             Glide.with(getActivity()).load(user.avatar_url).into(loginicon);
         }
+
+        sharedPreferences.edit().putString("myphonecode",user.phone).commit();
         myiconurl = user.avatar_url;
+        myphone=user.phone;
         myname = user.nick;
         if (user.gender.equals("woman")) {
             mysex = "女";
@@ -179,15 +214,11 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 if (flag == 0) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
+
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
-                    //进入更换信息页面
-                    Intent intent = new Intent(getActivity(), MySetTwoActivity.class);
-                    intent.putExtra("loginicon", myiconurl);
-                    intent.putExtra("loginname", myname);
-                    intent.putExtra("loginsex", mysex);
-                    intent.putExtra("loginindent", mytype);
-                    //把现有的信息传过去展示
+                    Intent intent=new Intent(getActivity(), MyDatumActivity.class);
+                    intent.putExtra("myphone",myphone);
                     startActivity(intent);
                 }
 
@@ -209,7 +240,6 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     //把现有的信息传过去展示
                     startActivity(intent);
                 }
-
                 break;
             //我的收藏
             case R.id.my_collect:
@@ -220,6 +250,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 } else {
                     Intent intent = new Intent(getActivity(), MyCollectActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
+
                 }
                 MobclickAgent.onEvent(getActivity(), "mineCollectInto");
                 break;
@@ -275,6 +306,22 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 message_img.setImageResource(R.mipmap.icon_message_mine);
                 MobclickAgent.onEvent(getActivity(), "mineNews");
                 break;
+            case R.id.mywallet:
+                if (flag == 0) {
+                    //未登录  跳转到登录页面
+                    Intent intent = new Intent(getActivity(), AccountActivity.class);
+                    startActivityForResult(intent, Constant.Code.REQUEST_CODE);
+                } else {
+                    Intent intent=new Intent(getActivity(), NewTaskActivity.class);
+                    startActivity(intent);
+                }
+
+                break;
+            case R.id.relationme:
+                Intent intent2=new Intent(getActivity(), FlowMeActivity.class);
+                startActivity(intent2);
+                break;
+
         }
     }
 
