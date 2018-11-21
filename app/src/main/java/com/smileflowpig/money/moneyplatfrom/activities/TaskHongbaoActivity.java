@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
+import com.smileflowpig.money.factory.bean.TaskJson;
 import com.smileflowpig.money.moneyplatfrom.Adapter.TaskHongbaoAdapter;
 import com.smileflowpig.money.moneyplatfrom.util.CountDownTimerUtil;
 import com.smileflowpig.money.moneyplatfrom.weight.MyMoneyTextView;
@@ -96,20 +97,18 @@ public class TaskHongbaoActivity extends Activity {
     TaskHongbaoAdapter adapter;
 
     private void initRecyclerView() {
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("1");
-        strings.add("2");
-        strings.add("3");
-        strings.add("4");
-        strings.add("5");
-        strings.add("6");
-
-        adapter = new TaskHongbaoAdapter(R.layout.item_task_hongbao_layout, strings);
+        adapter = new TaskHongbaoAdapter(R.layout.item_task_hongbao_layout);
         adapter.bindToRecyclerView(recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+        adapter.setOnSettingClickListener(new TaskHongbaoAdapter.OnSettingClickListener() {
+            @Override
+            public void onTaskClick(TaskJson taskJson) {
+                // TODO: 2018/11/21 去完成任务
+            }
+        });
 
     }
 }

@@ -95,16 +95,28 @@ public class HongbaoOperator {
     private void showDia() {
         if (LoginStatusUtil.isLogin()) {
             if (isShowNewPerson && !isGetUserHongbao) {
-                hongbaoDialog.show();
+                if (!hongbaoDialog.isShowing()) {
+
+                    hongbaoDialog.show();
+                }
             } else if (isShowJieri && !isGetjieriHongbao) {
-                jieriDialog.show();
+                if (!jieriDialog.isShowing()) {
+                    jieriDialog.show();
+
+                }
             }
         } else {
 
             if (isShowNewPerson) {
-                hongbaoDialog.show();
+                if (!hongbaoDialog.isShowing()) {
+
+                    hongbaoDialog.show();
+                }
             } else if (isShowJieri) {
-                jieriDialog.show();
+                if (!jieriDialog.isShowing()) {
+                    jieriDialog.show();
+
+                }
             }
         }
 
@@ -200,7 +212,7 @@ public class HongbaoOperator {
     public void dismissNewPersonDialog() {
         if (hongbaoDialog != null)
             hongbaoDialog.dismiss();
-        if (isShowJieri) {
+        if (isShowJieri && !isGetjieriHongbao) {
             if (jieriDialog != null)
                 jieriDialog.show();
         }
@@ -224,16 +236,17 @@ public class HongbaoOperator {
             if (resultCode == HONGBAO_RESULT_LOGIN_CODE) {
                 //新手红包登录之后的处理
                 // TODO: 2018/11/20 获取新人红包
-                dismissNewPersonDialog();
+
                 switch (currentType) {
                     case NEWPERSON:
-                        dismissNewPersonDialog();
-                        checkGet(newUser_id, NEWPERSON, true, false);
-
+//                        dismissNewPersonDialog();
+                        hongbaoDialog.dismiss();
+                        checkGet(newUser_id, NEWPERSON, true, false, false);
+                        checkGet(jieri_id, JIERI, true, false, true);
                         break;
                     case JIERI:
                         dismissJieriDialog();
-                        checkGet(jieri_id, JIERI, true, false);
+                        checkGet(jieri_id, JIERI, true, false, false);
                         break;
                 }
 
@@ -288,9 +301,7 @@ public class HongbaoOperator {
             return;
         }
         if (newUser_id != null)
-            checkGet(newUser_id, NEWPERSON, isGoToGet, true);
-        if (jieri_id != null)
-            checkGet(jieri_id, JIERI, isGoToGet, true);
+            checkGet(newUser_id, NEWPERSON, isGoToGet, true, false);
 
 
     }
@@ -303,7 +314,7 @@ public class HongbaoOperator {
      * @param type
      * @param isGoToget 是否去领取
      */
-    private void checkGet(String id, final int type, final boolean isGoToget, final boolean isFirst) {
+    private void checkGet(String id, final int type, final boolean isGoToget, final boolean isFirst, final boolean isNeedShowDialog) {
         HongbaoHelper.getUserHongbaoStatus(Integer.parseInt(id), new DataSource.Callback<HongbaoStatusJson>() {
             @Override
             public void onDataNotAvailable(int strRes) {
@@ -345,8 +356,23 @@ public class HongbaoOperator {
                         }
                     }
 
-                    if (isFirst) {
+                    if (isFirst && type == NEWPERSON) {
+                        if (jieri_id != null)
+                            checkGet(jieri_id, JIERI, false, true, false);
+                    }
+                    if (isFirst && type == JIERI) {
                         showDia();
+                    }
+                    if (isNeedShowDialog) {
+                        if (type == NEWPERSON && !isGetUserHongbao) {
+                            if (!hongbaoDialog.isShowing()) {
+                                hongbaoDialog.show();
+                            }
+                        } else if (type == JIERI && !isGetjieriHongbao) {
+                            if (!jieriDialog.isShowing()) {
+                                jieriDialog.show();
+                            }
+                        }
                     }
                 }
 

@@ -7,6 +7,7 @@ import com.smileflowpig.money.factory.bean.BillData;
 import com.smileflowpig.money.factory.bean.HongbaoBean;
 import com.smileflowpig.money.factory.bean.HongbaoStatusJson;
 import com.smileflowpig.money.factory.bean.ReceiveHongbaoJson;
+import com.smileflowpig.money.factory.bean.TaskBean;
 import com.smileflowpig.money.factory.model.api.RspModel;
 import com.smileflowpig.money.factory.model.api.bill.BillListsModel;
 import com.smileflowpig.money.factory.model.api.hongbao.HongbaoModel;
@@ -61,6 +62,7 @@ public class HongbaoHelper {
 
     /**
      * 获取用户红包领取状态
+     *
      * @param type
      * @param callback
      */
@@ -99,6 +101,7 @@ public class HongbaoHelper {
 
     /**
      * 领取红包
+     *
      * @param id
      * @param callback
      */
@@ -130,6 +133,44 @@ public class HongbaoHelper {
 
             @Override
             public void onFailure(Call<RspModel<ReceiveHongbaoJson>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    /**
+     * 红包任务
+     *
+     * @param callback
+     */
+    public static void taskLists(final DataSource.Callback<TaskBean> callback) {
+        RemoteService service = Network.remote();
+        Call<RspModel<TaskBean>> call = service.taskLists();
+        // 异步的请求
+        call.enqueue(new Callback<RspModel<TaskBean>>() {
+            @Override
+            public void onResponse(Call<RspModel<TaskBean>> call, Response<RspModel<TaskBean>> response) {
+                RspModel<TaskBean> rspModel = response.body();
+                if (rspModel == null) {
+                    Factory.decodeRspCode(rspModel, callback);
+                    callback.onDataNotAvailable(R.string.no_data);
+                    return;
+                }
+                if (rspModel.success()) {
+                    // 拿到实体
+                    TaskBean codeModel = rspModel.getRst();
+
+                    callback.onDataLoaded(codeModel);
+
+                } else {
+                    // 错误解析
+                    callback.onDataNotAvailable(R.string.no_data);
+                    Factory.decodeRspCode(rspModel, callback);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<TaskBean>> call, Throwable t) {
 
             }
         });
