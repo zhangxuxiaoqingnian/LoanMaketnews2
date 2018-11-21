@@ -2,6 +2,7 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,8 +29,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.smileflowpig.money.common.app.Activity;
+import com.smileflowpig.money.common.factory.data.DataSource;
 import com.smileflowpig.money.common.utils.DisplayUtil;
 import com.smileflowpig.money.factory.Constant;
+import com.smileflowpig.money.factory.bean.HongbaoBean;
+import com.smileflowpig.money.factory.bean.HongbaoJson;
+import com.smileflowpig.money.factory.data.helper.HongbaoHelper;
+import com.smileflowpig.money.factory.persistence.Account;
+import com.smileflowpig.money.factory.util.LoginStatusUtil;
 import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.CreditFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.HuaHomeFragment;
@@ -43,8 +50,11 @@ import com.smileflowpig.money.moneyplatfrom.frags.main.state.NewSearchFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.PigHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.helper.DataGenerator;
 import com.smileflowpig.money.moneyplatfrom.helper.FragmentHelper;
+import com.smileflowpig.money.moneyplatfrom.util.HongbaoOperator;
+import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 import com.smileflowpig.money.moneyplatfrom.weight.HongbaoDialog;
+import com.smileflowpig.money.moneyplatfrom.weight.JieriDialog;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -277,6 +287,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             setTabs(mTabLayout, this.getLayoutInflater());
             initBottomTitle();
             mPresenter.start();
+            initHongbao();
 
 //                if (credit_hidden.equals("0")) {
 //                    mFragmentHelper.add(0, new FragmentHelper.Tab<Integer>(HuaHomeFragment.class, R.string.title_home))
@@ -322,6 +333,41 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         //添加底部导航的监听
         mTabLayout.addOnTabSelectedListener(this);
     }
+
+    HongbaoOperator hongbaoOperator;
+
+    private void initHongbao() {
+        hongbaoOperator = HongbaoOperator.getInstance(this);
+        hongbaoOperator.init(new HongbaoOperator.OnDialogChangeListener() {
+            @Override
+            public void goToLogin() {
+                Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+                intent.putExtra("hongbao", true);
+                startActivityForResult(intent, HongbaoOperator.HONGBAO_REQUEST_CODE);
+
+            }
+
+            @Override
+            public void showLoadding() {
+
+
+            }
+
+            @Override
+            public void closeLoadding() {
+
+            }
+
+            @Override
+            public void goToRecord(String title, String task_name, String money_count, boolean isGet) {
+                HongbaoRecordActivity.show(MainActivity.this, title, task_name, money_count, isGet);
+
+            }
+
+
+        });
+    }
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -396,6 +442,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             }
         });
     }
+
 
     public void getvisible(int pos) {
 
@@ -577,6 +624,8 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (hongbaoOperator != null)
+            hongbaoOperator.OnActivityForResult(requestCode, resultCode);
         if (requestCode == Constant.Code.REQUEST_CODE) {
             if (resultCode == Constant.Code.RESULT_LOGINSUC_CODE) {
                 //登录之后
@@ -758,54 +807,53 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
      * Dialog
      */
     public void createDialog(final RspAdModel rspAdModel) {
-//        adDialog = new AdDialog(this);
-//
-//        adDialog.setImageView(rspAdModel.getData().getImage_url());
-//        adDialog.setNoOnclickListener("确定", new AdDialog.onNoOnclickListener() {
-//            @Override
-//            public void onNoClick() {
-//                adDialog.dismiss();
-//            }
-//        });
-//
-//        adDialog.setImageClickListener(new AdDialog.onImageOnclickListener() {
-//            @Override
-//            public void onImageClick() {
-//                Log.e(TAG, rspAdModel.getData().getProduct_id() + "product_id");
-//                Log.e(TAG, rspAdModel.getData().getSkip_type() + "skiptype");
-//                product_id = rspAdModel.getData().getProduct_id();
-//                skiptype = rspAdModel.getData().getSkip_type();
-//                link = rspAdModel.getData().getLink();
-//                if (rspAdModel.getData().getSkip_type().equals("0")) {
-//                    if (rspAdModel.getData().getProduct_id().equals("0")) {
-//                        WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
-//                    } else {
-//                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
-//                    }
-//                    adDialog.dismiss();
-//                } else {
-//                    WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
-//                    adDialog.dismiss();
-//                }
-//
-//            }
-//        });
-//        adDialog.show();
-
-        HongbaoDialog hongbaoDialog = new HongbaoDialog(this);
-        hongbaoDialog.setNoOnclickListener(new HongbaoDialog.OnHongBaoClickListener() {
+        adDialog = new AdDialog(this);
+        adDialog.setImageView(rspAdModel.getData().getImage_url());
+        adDialog.setNoOnclickListener("确定", new AdDialog.onNoOnclickListener() {
             @Override
-            public void onCancle() {
-
+            public void onNoClick() {
+                adDialog.dismiss();
             }
-
+        });
+        adDialog.setImageClickListener(new AdDialog.onImageOnclickListener() {
             @Override
-            public void onHongbaoClicck() {
+            public void onImageClick() {
+                Log.e(TAG, rspAdModel.getData().getProduct_id() + "product_id");
+                Log.e(TAG, rspAdModel.getData().getSkip_type() + "skiptype");
+                product_id = rspAdModel.getData().getProduct_id();
+                skiptype = rspAdModel.getData().getSkip_type();
+                link = rspAdModel.getData().getLink();
+                if (rspAdModel.getData().getSkip_type().equals("0")) {
+                    if (rspAdModel.getData().getProduct_id().equals("0")) {
+                        WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+                    } else {
+                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
+                    }
+                    adDialog.dismiss();
+                } else {
+                    WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+                    adDialog.dismiss();
+                }
 
             }
         });
+        adDialog.show();
 
-        hongbaoDialog.show();
+//        JieriDialog hongbaoDialog = new JieriDialog(this);
+//        hongbaoDialog.setNoOnclickListener(new JieriDialog.OnHongBaoClickListener() {
+//            @Override
+//            public void onCancle() {
+//
+//            }
+//
+//            @Override
+//            public void onHongbaoClicck() {
+//                ToastUtil.show(MainActivity.this, "点击区域");
+//
+//            }
+//        });
+//
+//        hongbaoDialog.show();
     }
 
 

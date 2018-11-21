@@ -4,6 +4,10 @@ package com.smileflowpig.money.factory.net;
 import com.smileflowpig.money.factory.bean.BillData;
 import com.smileflowpig.money.factory.bean.BillDetialData;
 import com.smileflowpig.money.factory.bean.BillStatusData;
+import com.smileflowpig.money.factory.bean.HongbaoBean;
+import com.smileflowpig.money.factory.bean.HongbaoStatusJson;
+import com.smileflowpig.money.factory.bean.ReceiveHongbaoJson;
+import com.smileflowpig.money.factory.model.api.hongbao.HongbaoModel;
 import com.smileflowpig.money.factory.model.api.RspModel;
 import com.smileflowpig.money.factory.model.api.account.AccountRspModel;
 import com.smileflowpig.money.factory.model.api.account.CodeModel;
@@ -41,6 +45,7 @@ import com.smileflowpig.money.factory.model.api.guoshen.AddModel1;
 import com.smileflowpig.money.factory.model.api.guoshen.GetRepaymentModel;
 import com.smileflowpig.money.factory.model.api.guoshen.PopModel;
 import com.smileflowpig.money.factory.model.api.guoshen.RepaymentListBean;
+import com.smileflowpig.money.factory.model.api.hongbao.ReceiveModel;
 import com.smileflowpig.money.factory.model.api.launcher.LaunchRspModel;
 import com.smileflowpig.money.factory.model.api.launcher.LauncherModel;
 import com.smileflowpig.money.factory.model.api.launcher.NoticeRspModel;
@@ -261,6 +266,10 @@ public interface RemoteService {
     Call<RspModel<List<Tool>>> tool();
 
 
+    /**
+     * 账单接口
+     */
+
     //获取账单列表
     @POST("huaJiangHu/billList")
 //    Call<RspModel<BillData>> getBillManagerLists(@Query("page") String page, @Query("status") String status);
@@ -283,4 +292,21 @@ public interface RemoteService {
     //添加账单
     @POST("huaJiangHu/addBill")
     Call<RspModel<Object>> addBill(@Body AddBillModel addBillModel);
+
+
+    /**
+     * 红包接口
+     */
+    //获取红包开启状态
+    @POST("v2/HuaRedPacket/getRedPacketStatus")
+    Call<RspModel<HongbaoBean>> getHongbaostatus();
+
+    //获取用户是否领取过红包
+    @POST("v2/HuaRedPacket/getUserRedPacketStatus")
+    Call<RspModel<HongbaoStatusJson>> getUserHongbaostatus(@Body HongbaoModel del);
+
+    //用户领取红包
+    @POST("v2/HuaRedPacket/receiveRedPacket")
+    Call<RspModel<ReceiveHongbaoJson>> receiveRedPacket(@Body ReceiveModel hongbaoModel);
+
 }

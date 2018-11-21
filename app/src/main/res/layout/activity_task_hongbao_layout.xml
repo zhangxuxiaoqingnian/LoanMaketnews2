@@ -6,11 +6,15 @@
     android:orientation="vertical">
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusBarSize"
+        android:background="#FFCE25" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionBarWithStatusBarSize"
-        android:background="#FFCE25"
-        android:paddingTop="@dimen/statusBarSize">
+        android:layout_height="40dp"
+        android:background="#FFCE25">
 
 
         <ImageView

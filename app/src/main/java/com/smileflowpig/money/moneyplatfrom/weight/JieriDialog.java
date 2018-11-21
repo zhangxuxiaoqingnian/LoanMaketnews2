@@ -6,21 +6,19 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.smileflowpig.money.R;
-import com.smileflowpig.money.common.widget.AdDialog;
+
 
 /**
- * 红包广告
+ * 节日红包
  */
-public class HongbaoDialog extends Dialog {
+public class JieriDialog extends Dialog {
 
     private TextView no;//关闭按钮
 
@@ -40,7 +38,7 @@ public class HongbaoDialog extends Dialog {
 
     }
 
-    OnHongBaoClickListener mLis;
+  OnHongBaoClickListener mLis;
 
     public interface OnHongBaoClickListener {
         void onCancle();
@@ -50,14 +48,14 @@ public class HongbaoDialog extends Dialog {
     }
 
 
-    public HongbaoDialog(Context context) {
+    public JieriDialog(Context context) {
         super(context, com.smileflowpig.money.common.R.style.MyDialog);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hongbao_ad_layout);
+        setContentView(R.layout.jieri_hongbao_ad_layout);
         //按空白处不能取消动画
         setCanceledOnTouchOutside(false);
         setCancelable(false);
@@ -132,10 +130,10 @@ public class HongbaoDialog extends Dialog {
         int[] l = {0, 0};
         v.getLocationInWindow(l);
         int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left + v.getWidth();
-        int left1 = right / 8 * 3;
-        int right1 = right / 8 * 5;
-        int top1 = bottom / 7 * 5;
-        int bottom1 = bottom / 7 * 6;
+        int left1 = right / 5 * 2;
+        int right1 = right / 5 * 4;
+        int top1 = bottom / 7 * 3;
+        int bottom1 = bottom / 7 * 5;
         Rect rect = new Rect(left1, top1, right1, bottom1);
         boolean contains = rect.contains((int) x, (int) y);
         return contains;

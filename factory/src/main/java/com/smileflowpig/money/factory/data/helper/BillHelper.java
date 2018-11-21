@@ -40,6 +40,7 @@ public class BillHelper {
                 if (rspModel == null) {
                     Factory.decodeRspCode(rspModel, callback);
                     callback.onDataNotAvailable(R.string.no_data);
+                    return;
                 }
                 if (rspModel.success()) {
                     // 拿到实体
@@ -80,6 +81,7 @@ public class BillHelper {
                 if (rspModel == null) {
                     Factory.decodeRspCode(rspModel, callback);
                     callback.onDataNotAvailable(R.string.no_data);
+                    return;
                 }
                 if (rspModel.success()) {
                     // 拿到实体
@@ -120,6 +122,7 @@ public class BillHelper {
                 if (rspModel == null) {
                     Factory.decodeRspCode(rspModel, callback);
                     callback.onDataNotAvailable(R.string.no_data);
+                    return;
                 }
                 if (rspModel.success()) {
                     // 拿到实体
@@ -158,6 +161,7 @@ public class BillHelper {
                 if (rspModel == null) {
                     Factory.decodeRspCode(rspModel, callback);
                     callback.onDataNotAvailable(R.string.no_data);
+                    return;
                 }
                 if (rspModel.success()) {
                     // 拿到实体
@@ -199,6 +203,7 @@ public class BillHelper {
                 if (rspModel == null) {
                     Factory.decodeRspCode(rspModel, callback);
                     callback.onDataNotAvailable(R.string.no_data);
+                    return;
                 }
                 if (rspModel.success()) {
                     // 拿到实体

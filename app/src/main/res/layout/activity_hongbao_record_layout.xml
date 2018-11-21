@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/statusBarSize"
+    android:background="#FFCE25"
+    />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#FFCE25"
+       >
+
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/overback" />
+
+
+        <TextView
+            android:id="@+id/activity_hongbao_record_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="完成新手任务赚现金红包"
+            android:textSize="18px" />
+
+
+
+        <TextView
+            android:id="@+id/hongbao_record_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:text="红包记录"/>
+
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/icon_hongbao_record_bg"
+        android:orientation="vertical">
+
+
+
+        <ImageView
+            android:id="@+id/activity_hongbao_record_image"
+            android:layout_width="40dp"
+            android:layout_marginTop="27px"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/ic_flowpig"/>
+
+        <TextView
+            android:id="@+id/activity_hongbao_record_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="您已领取新人红包"
+            android:textSize="14px"
+            android:textColor="#FF7C5047"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_gravity="center_horizontal">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50px"
+                android:textColor="@color/black"
+                android:id="@+id/activity_hongbao_record_money_text"
+                android:text="1.00"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16px"
+                android:text="元"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/activity_hongbao_record_money_text"
+                android:layout_alignBaseline="@+id/activity_hongbao_record_money_text"
+                android:layout_gravity="bottom"
+                android:textColor="#FF323232"/>
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14px"
+            android:textColor="#FF708FC8"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="已存入零钱，可用于发红包"/>
+
+
+
+
+    </LinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>
