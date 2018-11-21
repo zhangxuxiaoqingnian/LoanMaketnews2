@@ -71,7 +71,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="231"
+            android:layout_weight="235"
             android:orientation="vertical">
 
 
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="赚"
-                    android:textSize="30px" />
+                    android:textSize="24px" />
 
                 <com.smileflowpig.money.moneyplatfrom.weight.MyMoneyTextView
                     android:id="@+id/activity_task_money_textView"
@@ -125,13 +125,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="现金红包"
-                    android:textSize="30px" />
+                    android:textSize="24px" />
 
 
             </LinearLayout>
 
 
             <TextView
+                android:id="@+id/activity_task_title_contentview"
                 android:layout_width="match_parent"
                 android:layout_height="24px"
                 android:layout_marginTop="7px"

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.widget.PortraitView;
 import com.smileflowpig.money.factory.bean.CardBean;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 
 import java.util.List;
 

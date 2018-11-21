@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.factory.bean.DaiBanner;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 
 /**
  * Created by 小狼 on 2018/11/2.
@@ -42,7 +43,8 @@ public class SerchAdapter extends RecyclerView.Adapter<SerchAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        Glide.with(context).load(list.get(position).icon).into(holder.icon);
+        GlideUtil.setImageViewCrop(context,list.get(position).icon,holder.icon);
+//        Glide.with(context).load(list.get(position).icon).into(holder.icon);
         holder.name.setText(list.get(position).name);
         holder.destroy.setText(list.get(position).description);
         holder.money.setText(list.get(position).upper_amount+"-"+list.get(position).lower_amount);

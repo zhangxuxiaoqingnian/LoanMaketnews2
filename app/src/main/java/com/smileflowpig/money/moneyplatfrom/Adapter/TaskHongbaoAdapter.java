@@ -35,7 +35,13 @@ public class TaskHongbaoAdapter extends BaseQuickAdapter<TaskJson, TaskHongbaoVi
             else
                 helper.loadding_img.setVisibility(View.INVISIBLE);
             helper.title_text.setText(item.getTitleContent());
-
+            if (item.getTitleContent().equals("当前任务")) {
+                helper.title_image.setImageResource(R.mipmap.icon_task_current);
+            } else if (item.getTitleContent().equals("其他任务")) {
+                helper.title_image.setImageResource(R.mipmap.icon_task_other);
+            } else {
+                helper.title_image.setImageResource(R.mipmap.icon_task_complete);
+            }
         } else {
             helper.frame_layout.setBackgroundResource(R.mipmap.icon_task_small_bg);
             helper.title_layout.setVisibility(View.GONE);
@@ -44,7 +50,7 @@ public class TaskHongbaoAdapter extends BaseQuickAdapter<TaskJson, TaskHongbaoVi
         }
 
         helper.task_name_text.setText(item.getName());
-        helper.money_text.setText(item.getMoney());
+        helper.money_text.setText(item.getMoney()+"元");
 
         if (item.isComplete()) {
             helper.setting_text.setText("已完成");

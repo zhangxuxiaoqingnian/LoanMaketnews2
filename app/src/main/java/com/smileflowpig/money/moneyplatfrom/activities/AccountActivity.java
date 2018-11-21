@@ -14,6 +14,7 @@ import com.smileflowpig.money.moneyplatfrom.frags.account.RegisterFragment;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.app.Fragment;
+import com.smileflowpig.money.moneyplatfrom.frags.main.state.CreditFragment;
 import com.smileflowpig.money.moneyplatfrom.util.HongbaoOperator;
 import com.umeng.analytics.MobclickAgent;
 
@@ -24,7 +25,7 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
     private Fragment mRegisterFragment;
     private SharedPreferences sp;
 
-    private boolean isHongbao   = false;
+    private boolean isHongbao = false;
 
 
     /**
@@ -52,8 +53,8 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
                 .replace(R.id.lay_container, mCurFragment)
                 .commit();
 
-        sp = getSharedPreferences("Deng",MODE_PRIVATE);
-        isHongbao = getIntent().getBooleanExtra("hongbao",false);
+        sp = getSharedPreferences("Deng", MODE_PRIVATE);
+        isHongbao = getIntent().getBooleanExtra("hongbao", false);
     }
 
     @Override
@@ -81,18 +82,21 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
 
     @Override
     public void onLoginSuccess(boolean isSuccess) {
-        if(isSuccess) {
+        if (isSuccess) {
             Toast.makeText(AccountActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             sp.edit().putBoolean("liulang", true).commit();
-            if(isHongbao){
+            if (isHongbao) {
                 setResult(HongbaoOperator.HONGBAO_RESULT_LOGIN_CODE);
-            }else{
+            } else if (getIntent().getBooleanExtra("zhengxin", false)) {
+                setResult(CreditFragment.ZHENGXIN_RESULT_CODE);
+            } else {
 
-            setResult(Constant.Code.RESULT_LOGINSUC_CODE);
+                setResult(Constant.Code.RESULT_LOGINSUC_CODE);
             }
             finish();
         }
     }
+
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
@@ -102,6 +106,7 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
     @Override
     public void onRegistSuccess(boolean isGoToLogin) {
         if (isGoToLogin) {

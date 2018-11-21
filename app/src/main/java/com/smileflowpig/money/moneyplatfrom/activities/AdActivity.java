@@ -193,6 +193,7 @@ public class AdActivity extends Activity
         }
         Log.e(TAG,"type"+type);
         Log.e(TAG,"id"+id);
+        MainActivity.show(this);
         if(type.equals("0")){
             if(id.equals("0")){
                 WebActivity.show(this,null,link,id,type,STEPTYPE);

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -64,6 +65,7 @@ public class HongbaoRecordActivity extends Activity {
         String money_count = intent.getStringExtra(MONEY_COUNT);
         String title = intent.getStringExtra(TITLE);
         boolean isGet = intent.getBooleanExtra(ISGET, false);
+        GlideUtil.setImageViewCrop(this,R.mipmap.ic_flowpig,imageView);
         title_text.setText(title);
         if (isGet) {
             name_text.setText("您已领取过" + task_name);
