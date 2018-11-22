@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.factory.util.LoginStatusUtil;
 import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.activities.AccountActivity;
@@ -76,7 +77,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     private LinearLayout question;
     private LinearLayout feenback;
     private ImageView set;
-    private int flag = 0;
+    //    private int flag = 0;
     private SelfDialog selfDialog;
     private String myiconurl;
     private String myname;
@@ -162,19 +163,18 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     @Override
     public void stateLogin(User user) {
 
-//        sharedPreferences.edit().putString("sessionid",user.getPHPSESSID()).commit();
-        flag = 1;
+//
         login.setText(user.nick);
-        System.out.println(user.avatar_url+"图片地址");
+        System.out.println(user.avatar_url + "图片地址");
         if (user.avatar_url.equals("")) {
             loginicon.setImageResource(R.mipmap.loginicon);
         } else {
             Glide.with(getActivity()).load(user.avatar_url).into(loginicon);
         }
 
-        sharedPreferences.edit().putString("myphonecode",user.phone).commit();
+        sharedPreferences.edit().putString("myphonecode", user.phone).commit();
         myiconurl = user.avatar_url;
-        myphone=user.phone;
+        myphone = user.phone;
         myname = user.nick;
         if (user.gender.equals("woman")) {
             mysex = "女";
@@ -195,9 +195,10 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 
     @Override
     public void setNoLogin() {
-        login.setText("注册/登录");
-        loginicon.setImageResource(R.mipmap.loginicon);
-        flag = 0;
+        if (!LoginStatusUtil.isLogin()) {
+            login.setText("注册/登录");
+            loginicon.setImageResource(R.mipmap.loginicon);
+        }
     }
 
     @Override
@@ -216,14 +217,14 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         switch (v.getId()) {
             //登录
             case R.id.mine_data:
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
 
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
-                    Intent intent=new Intent(getActivity(), MyDatumActivity.class);
-                    intent.putExtra("myphone",myphone);
+                    Intent intent = new Intent(getActivity(), MyDatumActivity.class);
+                    intent.putExtra("myphone", myphone);
                     startActivity(intent);
                 }
 
@@ -231,7 +232,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 break;
             case R.id.mine_icon:
             case R.id.mine_login:
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
@@ -248,7 +249,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 break;
             //我的收藏
             case R.id.my_collect:
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //提示登录
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
@@ -267,7 +268,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 break;
             //还款备忘录
             case R.id.my_forget:
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //提示登录
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
@@ -285,7 +286,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 break;
             //意见反馈
             case R.id.my_feenback:
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //提示登录
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
@@ -297,7 +298,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 break;
             //设置
             case (R.id.my_set):
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //提示登录
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
@@ -307,28 +308,28 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 MobclickAgent.onEvent(getActivity(), "mineSetting");
                 break;
             case R.id.fragment_mine_message_img:
-                MessageActivity.show(getActivity(),2);
+                MessageActivity.show(getActivity(), 2);
                 message_img.setImageResource(R.mipmap.icon_message_mine);
                 MobclickAgent.onEvent(getActivity(), "mineNews");
                 break;
             case R.id.mywallet:
-                if (flag == 0) {
+                if (!LoginStatusUtil.isLogin()) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
-                    Intent intent=new Intent(getActivity(), NewTaskActivity.class);
+                    Intent intent = new Intent(getActivity(), NewTaskActivity.class);
                     startActivity(intent);
                 }
 
                 break;
             case R.id.relationme:
-                Intent intent2=new Intent(getActivity(), FlowMeActivity.class);
+                Intent intent2 = new Intent(getActivity(), FlowMeActivity.class);
                 startActivity(intent2);
                 break;
-                //检测报告
+            //检测报告
             case R.id.detection:
-                if(getCont!=null){
+                if (getCont != null) {
                     getCont.credit();
                 }
 
@@ -342,11 +343,13 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         super.onAttach(activity);
         this.getCont = (GetCont) activity;
     }
-    public interface GetCont{
+
+    public interface GetCont {
         void credit();
     }
-    public void SetCont(GetCont getCont){
-        this.getCont=getCont;
+
+    public void SetCont(GetCont getCont) {
+        this.getCont = getCont;
     }
 
     @Override

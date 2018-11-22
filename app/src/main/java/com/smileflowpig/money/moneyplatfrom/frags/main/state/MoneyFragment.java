@@ -210,7 +210,9 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
             @Override
             public void onError(Throwable e) {
-
+                if (popupWindow != null) {
+                    popupWindow.dismiss();
+                }
             }
 
             @Override

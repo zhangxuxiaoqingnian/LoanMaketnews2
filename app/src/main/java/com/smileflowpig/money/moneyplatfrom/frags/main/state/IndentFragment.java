@@ -201,7 +201,9 @@ public class IndentFragment extends PresenterFragment implements OnRefreshLoadmo
 
             @Override
             public void onError(Throwable e) {
-
+                if (popupWindow != null) {
+                    popupWindow.dismiss();
+                }
             }
 
             @Override
