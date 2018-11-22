@@ -16,6 +16,7 @@ import com.smileflowpig.money.moneyplatfrom.Bean.NoteEntity;
 import java.util.ArrayList;
 
 import com.smileflowpig.money.R;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 
 /**
  * Created by 小狼 on 2018/10/19.
@@ -62,7 +63,8 @@ public class DaiAdapter3 extends RecyclerView.Adapter<DaiAdapter3.MyViewHolder> 
             }
         });
 
-        Glide.with(context).load(list.get(position).imgurl).into(holder.img);
+        GlideUtil.setImageViewCrop(context,list.get(position).imgurl,holder.img);
+//        Glide.with(context).load(list.get(position).imgurl).into(holder.img);
        holder.name.setText(list.get(position).title);
         holder.jieshao.setText(list.get(position).content);
         holder.money.setText(list.get(position).price);

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 
 import java.util.List;
@@ -70,8 +71,8 @@ public class DaiAdapter extends RecyclerView.Adapter<DaiAdapter.MyViewHolder> {
                 getItemposition.success(position);
             }
         });
-
-        Glide.with(context).load(list.get(position).icon).into(holder.img);
+        GlideUtil.setImageViewCrop(context,list.get(position).icon,holder.img);
+//        Glide.with(context).load(list.get(position).icon).into(holder.img);
         holder.name.setText(list.get(position).name);
         holder.jieshao.setText(list.get(position).description);
         holder.money.setText(list.get(position).upper_amount+"-"+list.get(position).lower_amount+"元");
