@@ -817,42 +817,33 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         adDialog.setImageClickListener(new AdDialog.onImageOnclickListener() {
             @Override
             public void onImageClick() {
-                Log.e(TAG, rspAdModel.getData().getProduct_id() + "product_id");
-                Log.e(TAG, rspAdModel.getData().getSkip_type() + "skiptype");
-                product_id = rspAdModel.getData().getProduct_id();
-                skiptype = rspAdModel.getData().getSkip_type();
-                link = rspAdModel.getData().getLink();
-                if (rspAdModel.getData().getSkip_type().equals("0")) {
-                    if (rspAdModel.getData().getProduct_id().equals("0")) {
-                        WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+                try {
+                    product_id = rspAdModel.getData().getProduct_id();
+                    skiptype = rspAdModel.getData().getSkip_type();
+                    link = rspAdModel.getData().getLink();
+                    if (rspAdModel.getData().getSkip_type().equals("0")) {
+                        if (rspAdModel.getData().getProduct_id().equals("0")) {
+                            WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+                        } else {
+                            DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
+                        }
+                        adDialog.dismiss();
                     } else {
-                        DetailActivity.show(MainActivity.this, product_id, "homeAd", 0, 15);
+                        WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
+                        adDialog.dismiss();
                     }
-                    adDialog.dismiss();
-                } else {
-                    WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
-                    adDialog.dismiss();
+                }catch (Exception e){
+                    if(adDialog!=null){
+                        adDialog.dismiss();
+                    }
                 }
+
 
             }
         });
         adDialog.show();
 
-//        JieriDialog hongbaoDialog = new JieriDialog(this);
-//        hongbaoDialog.setNoOnclickListener(new JieriDialog.OnHongBaoClickListener() {
-//            @Override
-//            public void onCancle() {
-//
-//            }
-//
-//            @Override
-//            public void onHongbaoClicck() {
-//                ToastUtil.show(MainActivity.this, "点击区域");
-//
-//            }
-//        });
-//
-//        hongbaoDialog.show();
+
     }
 
 
