@@ -246,10 +246,12 @@ public class HongbaoOperator {
 //                        dismissNewPersonDialog();
                         hongbaoDialog.dismiss();
                         checkGet(newUser_id, NEWPERSON, true, false, false);
+                        if(isShowJieri)
                         checkGet(jieri_id, JIERI, true, false, true);
                         break;
                     case JIERI:
                         dismissJieriDialog();
+
                         checkGet(jieri_id, JIERI, true, false, false);
                         break;
                 }
