@@ -100,12 +100,15 @@ public class IdentityCardActivity extends PresenterActivity implements View.OnCl
             case R.id.overget:
                 String s = name.getText().toString();
                 String s1 = cord.getText().toString();
-                if(isIDCard(s1)){
-                    //进行提交信息
-                    getdata(s1,s);
-                }else {
-                    Toast.makeText(IdentityCardActivity.this,"身份证号码有误",Toast.LENGTH_SHORT).show();
+                if(!TextUtils.isEmpty(s)&&!TextUtils.isEmpty(s1)){
+                    if(isIDCard(s1)){
+                        //进行提交信息
+                        getdata(s1,s);
+                    }else {
+                        Toast.makeText(IdentityCardActivity.this,"身份证号码有误",Toast.LENGTH_SHORT).show();
+                    }
                 }
+
                 break;
 
         }

@@ -51,6 +51,8 @@ public class PayEditActivity extends PresenterActivity implements View.OnClickLi
     TextView phonecode;
     private CountDownTimer countDownTimer;
     private String payphone;
+    private String myphone;
+    private String myphonecode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +62,11 @@ public class PayEditActivity extends PresenterActivity implements View.OnClickLi
         over.setOnClickListener(this);
         phonecode.setOnClickListener(this);
         SharedPreferences sharedPreferences = getSharedPreferences("Logintype", Context.MODE_PRIVATE);
-        String myphonecode = sharedPreferences.getString("myphonecode", null);
+        myphonecode = sharedPreferences.getString("myphonecode", null);
         phone.setText(myphonecode);
 
         String myname = getIntent().getStringExtra("myname");
-        String myphone = getIntent().getStringExtra("myphone");
+        myphone = getIntent().getStringExtra("myphone");
         name.setText(myname);
         baby.setText(myphone);
         initview();
@@ -142,7 +144,9 @@ public class PayEditActivity extends PresenterActivity implements View.OnClickLi
                 String s1 = name.getText().toString();
                 String s2 = baby.getText().toString();
                 String s3 = code.getText().toString();
-                getdata(s2,payphone,s3,s1);
+                if(!TextUtils.isEmpty(s1)&&!TextUtils.isEmpty(s2)&&!TextUtils.isEmpty(s3)){
+                    getdata(s2,myphonecode,s3,s1);
+                }
                 break;
                 //获取验证码
             case R.id.pay_phonecode:
@@ -156,7 +160,7 @@ public class PayEditActivity extends PresenterActivity implements View.OnClickLi
                         @Override
                         public void onTick(long millisUntilFinished) {
 
-                            phonecode.setText("重新获取("+millisUntilFinished / 1000+"秒)");
+                            phonecode.setText("("+millisUntilFinished / 1000+"秒)");
                             if(millisUntilFinished / 1000==0){
                                 phonecode.setText("获取验证码");
                                 phonecode.setClickable(true);
@@ -190,6 +194,8 @@ public class PayEditActivity extends PresenterActivity implements View.OnClickLi
                     Toast.makeText(PayEditActivity.this,"验证码错误",Toast.LENGTH_SHORT).show();
                 }else if(o.errno.equals("0")){
                     finish();
+                }else if(o.errno.equals("10025")){
+                    Toast.makeText(PayEditActivity.this,"账号格式错误",Toast.LENGTH_SHORT).show();
                 }
 
             }

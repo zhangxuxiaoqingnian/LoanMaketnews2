@@ -15,6 +15,7 @@ import com.smileflowpig.money.moneyplatfrom.activities.TaskHongbaoActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.WebviewActivity;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.OnClick;
 
@@ -43,6 +44,7 @@ public class CreditFragment extends PresenterFragment {
     void onCredit() {
 //        String url = "https://m.tianxiaxinyong.com/cooperation/crp-op/signin.html?channel=10221247&from=singlemessage&isappinstalled=0&a=&i=&t=1540434586889";
 //        WebActivity.show(getActivity(), "个人征信", url);
+        MobclickAgent.onEvent(getActivity(),"goTocredit");
         if (LoginStatusUtil.isLogin()) {
             getUrl();
         } else {
@@ -52,6 +54,8 @@ public class CreditFragment extends PresenterFragment {
         }
 
     }
+
+
 
 
     @Override

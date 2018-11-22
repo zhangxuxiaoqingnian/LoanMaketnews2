@@ -167,9 +167,11 @@ public class NewTaskActivity extends PresenterActivity implements View.OnClickLi
                     mymoney.setText("¥"+df.format(moneyBean.rst.money));
                 }
                 if(money<50){
-                        withdraw.setBackground(getResources().getDrawable(R.drawable.buttonnoshap));
-                        withdraw.setTextColor(Color.parseColor("#ffffff"));
                         withdraw.setClickable(false);
+                }else {
+                    withdraw.setBackground(getResources().getDrawable(R.drawable.outket));
+                    withdraw.setTextColor(Color.parseColor("#FFA545"));
+                    withdraw.setClickable(true);
                 }
             }
 

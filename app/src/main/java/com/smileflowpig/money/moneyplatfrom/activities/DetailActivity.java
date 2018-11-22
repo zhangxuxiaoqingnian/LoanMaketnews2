@@ -28,6 +28,7 @@ import com.smileflowpig.money.moneyplatfrom.Bean.NoteEntity;
 import com.smileflowpig.money.moneyplatfrom.frags.AlertFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.dialog.DgFragment;
 import com.smileflowpig.money.moneyplatfrom.sqlite.DatabaseAdapter;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 import com.smileflowpig.money.moneyplatfrom.util.MarkView;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 
@@ -356,7 +357,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
 
         hideLoading();
-        Glide.with(DetailActivity.this).load(product.getIcon()).into(icon);
+//        Glide.with(DetailActivity.this).load(product.getIcon()).into(icon);
+        GlideUtil.setImageViewCrop(this,product.getIcon(),icon);
         name.setText(product.getName());
         text.setText(product.getDescription());
         mark.setValue(Double.parseDouble(product.getStar()));

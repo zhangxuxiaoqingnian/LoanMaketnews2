@@ -247,11 +247,10 @@ public class HongbaoOperator {
                         hongbaoDialog.dismiss();
                         checkGet(newUser_id, NEWPERSON, true, false, false);
                         if(isShowJieri)
-                        checkGet(jieri_id, JIERI, true, false, true);
+                        checkGet(jieri_id, JIERI, false, false, true);
                         break;
                     case JIERI:
                         dismissJieriDialog();
-
                         checkGet(jieri_id, JIERI, true, false, false);
                         break;
                 }
@@ -306,8 +305,11 @@ public class HongbaoOperator {
             showDia();
             return;
         }
-        if (newUser_id != null)
-            checkGet(newUser_id, NEWPERSON, isGoToGet, true, false);
+        if (isShowNewPerson)
+            checkGet(newUser_id, NEWPERSON, isGoToGet, true, true);
+        else if(isShowJieri){
+            checkGet(jieri_id,JIERI,isGoToGet,true,true);
+        }
 
 
     }

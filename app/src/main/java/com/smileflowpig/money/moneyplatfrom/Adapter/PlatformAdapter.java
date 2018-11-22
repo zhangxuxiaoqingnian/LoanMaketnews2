@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.factory.bean.HomedataBean;
+import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
 
 /**
  * Created by 小狼 on 2018/11/2.
@@ -34,7 +35,7 @@ public class PlatformAdapter extends RecyclerView.Adapter<PlatformAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.hot_adapter_layout, null);
-        MyViewHolder myViewHolder=new MyViewHolder(inflate);
+        MyViewHolder myViewHolder = new MyViewHolder(inflate);
         return myViewHolder;
     }
 
@@ -42,16 +43,16 @@ public class PlatformAdapter extends RecyclerView.Adapter<PlatformAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        Glide.with(context).load(list.get(position).icon).into(holder.icon);
+        GlideUtil.setImageViewCrop(context, list.get(position).icon, holder.icon);
         holder.name.setText(list.get(position).name);
         holder.destroy.setText(list.get(position).description);
-       holder.money.setText(list.get(position).upper_amount+"-"+list.get(position).lower_amount);
+        holder.money.setText(list.get(position).upper_amount + "-" + list.get(position).lower_amount);
         holder.day.setText(list.get(position).term);
         String applicants = list.get(position).applicants;
         double v = Double.parseDouble(applicants);
         double v1 = v / 10000;
         String format = String.format("%.2f", v1);
-        holder.people.setText(format+"万人申请成功");
+        holder.people.setText(format + "万人申请成功");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,9 +60,9 @@ public class PlatformAdapter extends RecyclerView.Adapter<PlatformAdapter.MyView
                 getItempostion.success(position);
             }
         });
-        if(list.get(position).prod_title==null||list.get(position).prod_title.equals("")){
+        if (list.get(position).prod_title == null || list.get(position).prod_title.equals("")) {
             holder.title.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.title.setVisibility(View.VISIBLE);
             holder.title.setText(list.get(position).prod_title);
         }
@@ -98,11 +99,12 @@ public class PlatformAdapter extends RecyclerView.Adapter<PlatformAdapter.MyView
         }
     }
 
-    public interface getItempostion{
+    public interface getItempostion {
 
         void success(int pos);
     }
-    public void setItempostion(getItempostion getItempostion){
-        this.getItempostion=getItempostion;
+
+    public void setItempostion(getItempostion getItempostion) {
+        this.getItempostion = getItempostion;
     }
 }

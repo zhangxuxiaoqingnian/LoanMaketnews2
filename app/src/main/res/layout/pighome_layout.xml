@@ -32,7 +32,8 @@
                     android:layout_marginLeft="13px"
                     android:text="小花猪"
                     android:textColor="#ffffff"
-                    android:textSize="24px" />
+                    android:textStyle="bold"
+                    android:textSize="18px" />
 
                 <ImageView
                     android:id="@+id/pigmess"
@@ -85,7 +86,8 @@
                             android:layout_marginLeft="13px"
                             android:text="小花猪"
                             android:textColor="#000000"
-                            android:textSize="24px" />
+                            android:textStyle="bold"
+                            android:textSize="28px" />
 
                         <ImageView
                             android:id="@+id/pighomemess"
@@ -93,14 +95,10 @@
                             android:layout_height="24px"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20px"
+                            android:layout_centerVertical="true"
                             android:src="@mipmap/havemessage" />
                     </RelativeLayout>
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="9px"
-                    android:background="#ffffff" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -213,8 +211,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="27px"
-                        android:layout_height="16px"
+                        android:layout_width="27dp"
+                        android:layout_height="16dp"
                         android:src="@mipmap/xiaohuazhu" />
 
                     <View
@@ -290,8 +288,8 @@
                     android:layout_marginRight="18px">
 
                     <ImageView
-                        android:layout_width="20px"
-                        android:layout_height="20px"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_centerVertical="true"
                         android:src="@mipmap/hot_platform" />
 
@@ -335,8 +333,8 @@
                     android:layout_marginRight="18px">
 
                     <ImageView
-                        android:layout_width="20px"
-                        android:layout_height="20px"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_centerVertical="true"
                         android:src="@mipmap/hot_message" />
 

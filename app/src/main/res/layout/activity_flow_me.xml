@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15201106781"
+                    android:text="xiaohuazhu01"
                     android:textColor="#888888"
                     android:textSize="12px"
                     android:layout_alignParentRight="true"
