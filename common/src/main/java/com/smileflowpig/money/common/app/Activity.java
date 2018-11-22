@@ -1,6 +1,8 @@
 package com.smileflowpig.money.common.app;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +14,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.android.tu.loadingdialog.LoadingDailog;
+import com.android.tu.loadingdialog.LoadingDialog;
+import com.smileflowpig.money.common.R;
 import com.smileflowpig.money.common.utils.NavigationBarUtil;
 import com.smileflowpig.money.common.utils.NotchUtil;
 import com.smileflowpig.money.common.widget.StatusBarUtil;
@@ -66,6 +71,31 @@ public abstract class Activity extends AutoLayoutActivity {
 
     }
 
+
+    LoadingDailog dialog;
+
+    /**
+     * 只有progressDialog
+     */
+    public void showOnlyDialogLoadding() {
+        if (dialog == null) {
+            LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(this)
+                    .setMessage("加载中...")
+                    .setCancelable(true)
+                    .setCancelOutside(true);
+            dialog = loadBuilder.create();
+        }
+        if (!dialog.isShowing())
+            dialog.show();
+    }
+
+    public void hideOnDialogLoading() {
+        if (dialog != null)
+            dialog.dismiss();
+
+    }
+
+
     /**
      * 初始化控件调用之前
      */
@@ -85,18 +115,18 @@ public abstract class Activity extends AutoLayoutActivity {
 //            System.out.println("是魅族手机");
 //
 //        }else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.TRANSPARENT);
-                window.setNavigationBarColor(Color.TRANSPARENT);
-            }
-            StatusBarUtil.StatusBarLightMode(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        }
+        StatusBarUtil.StatusBarLightMode(this);
 
     }
 

@@ -3,6 +3,7 @@ package com.smileflowpig.money.moneyplatfrom.frags.main.state;
 import android.content.Intent;
 
 import com.smileflowpig.money.R;
+import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.util.LoginStatusUtil;
@@ -61,6 +62,8 @@ public class CreditFragment extends PresenterFragment {
     }
 
     private void getUrl() {
+//        Activity activity = (Activity) getActivity();
+//        activity.showOnlyDialogLoadding();
         ToastUtil.show(getActivity(), "获取url");
     }
 }

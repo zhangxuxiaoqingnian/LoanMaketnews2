@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 
@@ -43,6 +44,18 @@ public class NewTaskActivity extends PresenterActivity implements View.OnClickLi
    @BindView(R.id.tasklayout)
    LinearLayout layout;
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

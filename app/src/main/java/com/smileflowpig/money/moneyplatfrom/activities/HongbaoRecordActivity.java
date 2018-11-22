@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.moneyplatfrom.util.GlideUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -30,6 +31,17 @@ public class HongbaoRecordActivity extends Activity {
         finish();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
     @OnClick(R.id.hongbao_record_text)
     void goToRecord() {

@@ -171,7 +171,7 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40023"]
             buildConfigField 'String', 'CHANNLE', '"40023"'
         }
-        qutoutiao11{
+        qutoutiao11 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40024"]
             buildConfigField 'String', 'CHANNLE', '"40024"'
         }
@@ -244,6 +244,7 @@ dependencies {
     compile 'com.umeng.umsdk:common:latest.integration'
     compile 'com.android.support:cardview-v7:25.2.0'
     compile files('libs/umeng-share-wechat-simplify-6.9.3.jar')
+
 }
 def product_name = "bangnidai_v" + android.defaultConfig.versionName
 def time = "1367"

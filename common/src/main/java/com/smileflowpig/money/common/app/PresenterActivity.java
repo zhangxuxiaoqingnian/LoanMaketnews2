@@ -16,6 +16,7 @@ public abstract class PresenterActivity<Presenter extends BaseContract.Presenter
     protected Presenter mPresenter;
     protected ProgressDialog mLoadingDialog;
 
+
     @Override
     protected void initBefore() {
         super.initBefore();
