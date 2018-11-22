@@ -5,7 +5,10 @@ import android.content.Intent;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.app.PresenterFragment;
+import com.smileflowpig.money.common.factory.data.DataSource;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
+import com.smileflowpig.money.factory.bean.ZhenxinUrlJson;
+import com.smileflowpig.money.factory.data.helper.HongbaoHelper;
 import com.smileflowpig.money.factory.util.LoginStatusUtil;
 import com.smileflowpig.money.moneyplatfrom.activities.AccountActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.TaskHongbaoActivity;
@@ -61,9 +64,30 @@ public class CreditFragment extends PresenterFragment {
         }
     }
 
+    Activity activity;
+
     private void getUrl() {
-//        Activity activity = (Activity) getActivity();
-//        activity.showOnlyDialogLoadding();
+        activity = (Activity) getActivity();
+        activity.showOnlyDialogLoadding();
         ToastUtil.show(getActivity(), "获取url");
+
+        HongbaoHelper.getZhenxinUrl(new DataSource.Callback<ZhenxinUrlJson>() {
+            @Override
+            public void onDataNotAvailable(int strRes) {
+                activity.hideOnDialogLoading();
+                ToastUtil.show(getActivity(), "获取链接失败，请稍后重试");
+            }
+
+            @Override
+            public void onDataLoaded(ZhenxinUrlJson zhenxinUrlJson) {
+                activity.hideOnDialogLoading();
+                if (zhenxinUrlJson != null) {
+                    String url = zhenxinUrlJson.getUrl();
+                    WebActivity.show(getActivity(), "个人征信", url);
+                }else{
+                    ToastUtil.show(getActivity(), "获取链接失败，请稍后重试");
+                }
+            }
+        });
     }
 }

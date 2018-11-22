@@ -8,6 +8,7 @@ import com.smileflowpig.money.factory.bean.HongbaoBean;
 import com.smileflowpig.money.factory.bean.HongbaoStatusJson;
 import com.smileflowpig.money.factory.bean.ReceiveHongbaoJson;
 import com.smileflowpig.money.factory.bean.TaskBean;
+import com.smileflowpig.money.factory.bean.ZhenxinUrlJson;
 import com.smileflowpig.money.factory.model.api.RspModel;
 import com.smileflowpig.money.factory.model.api.bill.BillListsModel;
 import com.smileflowpig.money.factory.model.api.hongbao.HongbaoModel;
@@ -171,6 +172,44 @@ public class HongbaoHelper {
 
             @Override
             public void onFailure(Call<RspModel<TaskBean>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    /**
+     * 获取个人征信
+     *
+     * @param callback
+     */
+    public static void getZhenxinUrl(final DataSource.Callback<ZhenxinUrlJson> callback) {
+        RemoteService service = Network.remote();
+        Call<RspModel<ZhenxinUrlJson>> call = service.getZhenxinUrl();
+        // 异步的请求
+        call.enqueue(new Callback<RspModel<ZhenxinUrlJson>>() {
+            @Override
+            public void onResponse(Call<RspModel<ZhenxinUrlJson>> call, Response<RspModel<ZhenxinUrlJson>> response) {
+                RspModel<ZhenxinUrlJson> rspModel = response.body();
+                if (rspModel == null) {
+                    Factory.decodeRspCode(rspModel, callback);
+                    callback.onDataNotAvailable(R.string.no_data);
+                    return;
+                }
+                if (rspModel.success()) {
+                    // 拿到实体
+                    ZhenxinUrlJson codeModel = rspModel.getRst();
+
+                    callback.onDataLoaded(codeModel);
+
+                } else {
+                    // 错误解析
+                    callback.onDataNotAvailable(R.string.no_data);
+                    Factory.decodeRspCode(rspModel, callback);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<ZhenxinUrlJson>> call, Throwable t) {
 
             }
         });

@@ -8,6 +8,7 @@ import com.smileflowpig.money.factory.bean.HongbaoBean;
 import com.smileflowpig.money.factory.bean.HongbaoStatusJson;
 import com.smileflowpig.money.factory.bean.ReceiveHongbaoJson;
 import com.smileflowpig.money.factory.bean.TaskBean;
+import com.smileflowpig.money.factory.bean.ZhenxinUrlJson;
 import com.smileflowpig.money.factory.model.api.hongbao.HongbaoModel;
 import com.smileflowpig.money.factory.model.api.RspModel;
 import com.smileflowpig.money.factory.model.api.account.AccountRspModel;
@@ -313,5 +314,9 @@ public interface RemoteService {
     //任务列表
     @POST("v2/xiaoHuaZhu/taskList")
     Call<RspModel<TaskBean>> taskLists();
+
+    //获取个人征信
+    @GET("huaJiangHu/makeUrl")
+    Call<RspModel<ZhenxinUrlJson>> getZhenxinUrl();
 
 }

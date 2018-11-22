@@ -27,7 +27,7 @@
     <application
         android:name=".moneyplatfrom.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_flowpig"
+        android:icon="@mipmap/icon_appicon"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_flowpig"
@@ -46,7 +46,6 @@
             android:theme="@style/AppTheme.Main" />
         <activity
             android:name=".moneyplatfrom.LaunchActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -226,7 +225,7 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -238,8 +237,8 @@
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- 友盟 -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -353,7 +352,7 @@
         <activity
             android:name=".moneyplatfrom.activities.TaskHongbaoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main" >
+            android:theme="@style/AppTheme.Main">
 
 
         </activity>
@@ -371,35 +370,36 @@
             android:name=".moneyplatfrom.activities.NewTaskActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".moneyplatfrom.activities.FlowMeActivity"
+        <activity
+            android:name=".moneyplatfrom.activities.FlowMeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            />
-        <activity android:name=".moneyplatfrom.activities.MyDatumActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".moneyplatfrom.activities.MyDatumActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            />
-        <activity android:name=".moneyplatfrom.activities.IdentityCardActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".moneyplatfrom.activities.IdentityCardActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            />
-        <activity android:name=".moneyplatfrom.activities.PayEditActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".moneyplatfrom.activities.PayEditActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            />
-        <activity android:name=".moneyplatfrom.activities.RecodePagerActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".moneyplatfrom.activities.RecodePagerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            />
-        <activity android:name=".moneyplatfrom.activities.RedPagerActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".moneyplatfrom.activities.RedPagerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"
-            ></activity>
+            android:theme="@style/AppTheme.Main"></activity>
 
 
-        <activity android:name=".moneyplatfrom.activities.HongbaoRecordActivity"
+        <activity
+            android:name=".moneyplatfrom.activities.HongbaoRecordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"/>
+            android:theme="@style/AppTheme.Main" />
 
     </application>
 

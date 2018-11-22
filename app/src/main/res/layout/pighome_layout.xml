@@ -118,8 +118,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40px"
-                            android:layout_height="40px"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="centerCrop"
                             android:src="@mipmap/qucklist" />
 
                         <TextView
@@ -140,8 +141,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40px"
-                            android:layout_height="40px"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="centerCrop"
                             android:src="@mipmap/qucknews" />
 
                         <TextView
@@ -162,8 +164,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40px"
-                            android:layout_height="40px"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="centerCrop"
                             android:src="@mipmap/qucksuccess" />
 
                         <TextView
@@ -185,8 +188,9 @@
                         android:visibility="visible">
 
                         <ImageView
-                            android:layout_width="40px"
-                            android:layout_height="40px"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="centerCrop"
                             android:src="@mipmap/quckcard" />
 
                         <TextView
