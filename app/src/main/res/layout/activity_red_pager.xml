@@ -154,21 +154,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15px"
         >
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="可提现金额"
-            android:textSize="15px"
-            android:textColor="#878787"
-            />
-        <TextView
-            android:id="@+id/red_sum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15px"
-            android:textColor="#F7363F"
-            android:layout_marginLeft="70px"
-            />
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可提现金额"
+                android:textSize="15px"
+                android:textColor="#878787"
+                />
+            <TextView
+                android:id="@+id/red_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15px"
+                android:textColor="#F7363F"
+                />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/red_all"
             android:layout_width="wrap_content"

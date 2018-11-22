@@ -24,6 +24,7 @@
             android:text="资讯"
             android:textColor="#ffffff"
             android:textSize="@dimen/font_16"
+            android:textStyle="bold"
             />
     </android.support.v7.widget.Toolbar>
 
