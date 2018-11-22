@@ -68,12 +68,7 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
         DividerItemDecoration3 decoration=new DividerItemDecoration3(getActivity(), DividerItemDecoration.VERTICAL);
         decoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.item_shap));  //把样式放进去
         allrv.addItemDecoration(decoration);
-        layout.post(new Runnable() {
-            @Override
-            public void run() {
-                getpopwindow();
-            }
-        });
+
 
         getdata();
     }
@@ -89,9 +84,7 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
 
             @Override
             public void onNext(MessageBean messageBean) {
-                if(popupWindow!=null){
-                    popupWindow.dismiss();
-                }
+
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
                 if(messageBean.rst.get(0).pageinfo.hasNext){
@@ -156,15 +149,4 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
         refreshLayout.finishRefresh();
     }
 
-    public void getpopwindow() {
-        int width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.loadingtwo_layout, null, false);
-        TextView loading = (TextView) inflate.findViewById(R.id.loadingtext);
-        loading.setText("加载中...");
-        popupWindow = new PopupWindow(inflate, width / 3, width / 3);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
-
-    }
 }

@@ -220,7 +220,6 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 if (!LoginStatusUtil.isLogin()) {
                     //未登录  跳转到登录页面
                     Intent intent = new Intent(getActivity(), AccountActivity.class);
-
                     startActivityForResult(intent, Constant.Code.REQUEST_CODE);
                 } else {
                     Intent intent = new Intent(getActivity(), MyDatumActivity.class);
