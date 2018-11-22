@@ -62,7 +62,7 @@ public class RedPagerActivity extends PresenterActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
 
         initview();
-        getdata();
+
 
         edit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -109,15 +109,17 @@ public class RedPagerActivity extends PresenterActivity implements View.OnClickL
             @Override
             public void onNext(PayoverBean o) {
 
+                real_name = o.rst.real_name;
                 if(o.rst.is_bind_zfb==0){
                     updata.setText("去绑定");
+                    name.setText("");
                     isshow=false;
                 }else {
                     updata.setText("修改");
+                    name.setText(real_name);
                     isshow=true;
                 }
-                real_name = o.rst.real_name;
-                name.setText(real_name);
+
                 if(o.rst.alipay_id!=null){
                     alipay_id = o.rst.alipay_id;
                     if(!alipay_id.equals("")){
@@ -129,7 +131,11 @@ public class RedPagerActivity extends PresenterActivity implements View.OnClickL
                 summoney = Double.parseDouble(o.rst.money);
                 length = o.rst.money.length();
                 DecimalFormat df = new DecimalFormat("#.00");
-                format = df.format(summoney);
+                if(summoney==0){
+                    format="0.00";
+                }else {
+                    format = df.format(summoney);
+                }
                 redsum.setText("¥"+ format);
                 count=o.rst.money;
 
@@ -146,6 +152,14 @@ public class RedPagerActivity extends PresenterActivity implements View.OnClickL
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getdata();
+    }
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_red_pager;

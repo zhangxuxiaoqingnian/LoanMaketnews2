@@ -1,5 +1,6 @@
 package com.smileflowpig.money.moneyplatfrom.frags.main.state;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -84,11 +85,13 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     private String myphone;
     private RelativeLayout layout;
     private SharedPreferences sharedPreferences;
+    private GetCont getCont;
 
     @BindView(R.id.fragment_mine_message_img)
     ImageView message_img;
     private LinearLayout mywallet;
     private LinearLayout relationme;
+    private LinearLayout detection;
 
     @Nullable
     @Override
@@ -121,6 +124,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         message_img = (ImageView) inflate.findViewById(R.id.fragment_mine_message_img);
         mywallet = (LinearLayout) inflate.findViewById(R.id.mywallet);
         relationme = (LinearLayout) inflate.findViewById(R.id.relationme);
+        detection = (LinearLayout) inflate.findViewById(R.id.detection);
         message_img.setOnClickListener(this);
         login.setOnClickListener(this);
         loginicon.setOnClickListener(this);
@@ -135,6 +139,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
         question.setOnClickListener(this);
         feenback.setOnClickListener(this);
         set.setOnClickListener(this);
+        detection.setOnClickListener(this);
         //loginicon.setOnClickListener(this);
         layout.setOnClickListener(this);
 
@@ -321,8 +326,27 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 Intent intent2=new Intent(getActivity(), FlowMeActivity.class);
                 startActivity(intent2);
                 break;
+                //检测报告
+            case R.id.detection:
+                if(getCont!=null){
+                    getCont.credit();
+                }
+
+                break;
 
         }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.getCont = (GetCont) activity;
+    }
+    public interface GetCont{
+        void credit();
+    }
+    public void SetCont(GetCont getCont){
+        this.getCont=getCont;
     }
 
     @Override

@@ -84,7 +84,9 @@ public class MyDatumActivity extends PresenterActivity implements View.OnClickLi
                     }
                     if(rst.alipay_id!=null){
                         if(!rst.alipay_id.equals("")){
-                            gotopay.setText(rst.alipay_id);
+                            String alipay_id = rst.alipay_id;
+                            String s = alipay_id.substring(0, 3) + "****" + alipay_id.substring(7, alipay_id.length());
+                            gotopay.setText(s);
                         }
                     }
 
