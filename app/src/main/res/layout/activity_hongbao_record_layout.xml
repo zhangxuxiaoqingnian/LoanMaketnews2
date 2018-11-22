@@ -114,7 +114,7 @@
             android:textColor="#FF708FC8"
             android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
-            android:text="已存入零钱，可用于发红包"/>
+            android:text="已存入我的钱包"/>
 
 
 

@@ -25,7 +25,6 @@ public class HongbaoOperator {
     public static final int JIERI_RESULT_LOGIN_CODE = 10014;
 
 
-
     private String title_name_newperson = "领取新人红包";
     private String title_name_jieir = "领取节日红包";
 
@@ -245,13 +244,13 @@ public class HongbaoOperator {
                     case NEWPERSON:
 //                        dismissNewPersonDialog();
                         hongbaoDialog.dismiss();
-                        checkGet(newUser_id, NEWPERSON, true, false, false);
-                        if(isShowJieri)
-                        checkGet(jieri_id, JIERI, false, false, true);
+                        checkGet(1 + "", NEWPERSON, true, false, false);
+                        if (isShowJieri)
+                            checkGet(2 + "", JIERI, false, false, true);
                         break;
                     case JIERI:
                         dismissJieriDialog();
-                        checkGet(jieri_id, JIERI, true, false, false);
+                        checkGet(2 + "", JIERI, true, false, false);
                         break;
                 }
 
@@ -306,9 +305,9 @@ public class HongbaoOperator {
             return;
         }
         if (isShowNewPerson)
-            checkGet(newUser_id, NEWPERSON, isGoToGet, true, true);
-        else if(isShowJieri){
-            checkGet(jieri_id,JIERI,isGoToGet,true,true);
+            checkGet(1 + "", NEWPERSON, isGoToGet, true, true);
+        else if (isShowJieri) {
+            checkGet(2 + "", JIERI, isGoToGet, true, true);
         }
 
 
@@ -366,7 +365,7 @@ public class HongbaoOperator {
 
                     if (isFirst && type == NEWPERSON) {
                         if (jieri_id != null)
-                            checkGet(jieri_id, JIERI, false, true, false);
+                            checkGet(2 + "", JIERI, false, true, false);
                     }
                     if (isFirst && type == JIERI) {
                         showDia();
@@ -413,7 +412,7 @@ public class HongbaoOperator {
                 }
                 if (receiveHongbaoJson != null) {
                     if (onDialogChangeListener != null) {
-                        onDialogChangeListener.goToRecord(type==NEWPERSON?title_name_newperson:title_name_jieir, receiveHongbaoJson.getName(), receiveHongbaoJson.getMoney(), type == NEWPERSON ? isGetUserHongbao : isGetjieriHongbao);
+                        onDialogChangeListener.goToRecord(type == NEWPERSON ? title_name_newperson : title_name_jieir, receiveHongbaoJson.getName(), receiveHongbaoJson.getMoney(), type == NEWPERSON ? isGetUserHongbao : isGetjieriHongbao);
                     }
                     if (type == NEWPERSON) {
                         dismissNewPersonDialog();
