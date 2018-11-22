@@ -37,8 +37,8 @@
         >
         <ImageView
             android:id="@+id/dai_img"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:src="@mipmap/loginicon"
             />
         <RelativeLayout
