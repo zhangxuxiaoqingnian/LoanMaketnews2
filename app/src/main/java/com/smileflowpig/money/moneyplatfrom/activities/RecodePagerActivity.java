@@ -20,8 +20,10 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
 import com.smileflowpig.money.factory.bean.MoneygetBean;
+import com.smileflowpig.money.factory.bean.PagerBean;
 import com.smileflowpig.money.factory.netword.NetRequestUtils;
 import com.smileflowpig.money.moneyplatfrom.Adapter.RecodeAdapter;
+import com.smileflowpig.money.moneyplatfrom.Adapter.RecodeTwoAdapter;
 import com.smileflowpig.money.moneyplatfrom.util.DividerItemDecoration3;
 
 import java.util.ArrayList;
@@ -52,15 +54,17 @@ public class RecodePagerActivity extends PresenterActivity implements OnRefreshL
     LinearLayout datanull;
     @BindView(R.id.refreshlayout)
     SmartRefreshLayout refreshlayout;
-    private List<String> list;
     private int page=1;
+    private String cardname;
+    private List<MoneygetBean.RstBean.DataBean> list;
+    private List<PagerBean.RstBean.DataBean> list2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        String cardname = intent.getStringExtra("cardname");
+        cardname = intent.getStringExtra("cardname");
         title.setText(cardname);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +76,15 @@ public class RecodePagerActivity extends PresenterActivity implements OnRefreshL
         refreshlayout.setOnRefreshLoadmoreListener(this).
                 setEnableLoadmore(true)
                 .setEnableRefresh(true);
+
         list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add("");
-        }
+        list2 = new ArrayList<>();
+
         if(cardname.equals("红包记录")){
 //            RecodeAdapter recodeAdapter=new RecodeAdapter(this, list,1);
 //            rv.setLayoutManager(new LinearLayoutManager(this));
 //            rv.setAdapter(recodeAdapter);
+            getpager();
         }else if (cardname.equals("提现记录")){
             isfaust.setVisibility(View.GONE);
             getmoney();
@@ -132,11 +137,11 @@ public class RecodePagerActivity extends PresenterActivity implements OnRefreshL
                     datanull.setVisibility(View.GONE);
                     collnull.setVisibility(View.VISIBLE);
                 }else {
-                    RecodeAdapter recodeAdapter=new RecodeAdapter(RecodePagerActivity.this,data,2);
+                    list.addAll(data);
+                    RecodeAdapter recodeAdapter=new RecodeAdapter(RecodePagerActivity.this,list,2);
                     rv.setLayoutManager(new LinearLayoutManager(RecodePagerActivity.this));
                     rv.setAdapter(recodeAdapter);
                 }
-
             }
 
             @Override
@@ -153,11 +158,62 @@ public class RecodePagerActivity extends PresenterActivity implements OnRefreshL
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-        getmoney();
+        if(cardname.equals("红包记录")){
+            getpager();
+        }else if(cardname.equals("提现记录")){
+            getmoney();
+        }
+
     }
 
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
         refreshlayout.finishRefresh();
+    }
+
+    public void getpager(){
+
+        Observable<PagerBean> pagerBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().getpager(1, 10).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        pagerBeanObservable.subscribe(new Observer<PagerBean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(PagerBean pagerBean) {
+
+                refreshlayout.finishLoadmore();
+                refreshlayout.finishRefresh();
+                if(pagerBean.rst.pageinfo.hasNext){
+                    page++;
+                }else {
+                    refreshlayout.setLoadmoreFinished(true);
+                }
+                List<PagerBean.RstBean.DataBean> data = pagerBean.rst.data;
+
+                if(data.size()==0){
+                    money.setText("0.00元");
+                }else {
+                    list2.addAll(data);
+                    money.setText(data.get(0).total_money+"元");
+                    RecodeTwoAdapter recodeTwoAdapter=new RecodeTwoAdapter(RecodePagerActivity.this,list2,1);
+                    rv.setLayoutManager(new LinearLayoutManager(RecodePagerActivity.this));
+                    rv.setAdapter(recodeTwoAdapter);
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 }

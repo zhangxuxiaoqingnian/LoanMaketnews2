@@ -105,7 +105,7 @@ import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabChan
 import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
-        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View, HuaHomeFragment.OnDaikuanClickListener, PigHomeFragment.Alldatacont {
+        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View, HuaHomeFragment.OnDaikuanClickListener, PigHomeFragment.Alldatacont,NewMineFragment.GetCont {
     @BindView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.lay_container)
@@ -567,7 +567,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         //获取屏幕宽度
         int screenWidth = DisplayUtil.getScreenWidth();
-        int i = screenWidth / 4;
+        int i = screenWidth / 5;
 
         View inflate = LayoutInflater.from(MainActivity.this).inflate(R.layout.qipao_layout, null);
         popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -982,7 +982,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     @Override
     public void message() {
-        mTabLayout.getTabAt(2).select();
+        mTabLayout.getTabAt(3).select();
     }
 
     /**
@@ -1021,5 +1021,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     }
 
 
+    @Override
+    public void credit() {
+        mTabLayout.getTabAt(2).select();
+    }
 }
 

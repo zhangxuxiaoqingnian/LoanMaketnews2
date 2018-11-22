@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="213px"
             android:layout_height="wrap_content"
-            android:text="1.账户余额满50元即可提现,需一次性全额提取;"
+            android:text="1.账户余额满50元即可提现,每次提取至少为50元;"
             android:textSize="14px"
             android:textColor="#666666"
             android:layout_marginTop="20px"

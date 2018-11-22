@@ -20,6 +20,7 @@ import com.smileflowpig.money.factory.bean.MemoShowBean;
 import com.smileflowpig.money.factory.bean.MessBannerBean;
 import com.smileflowpig.money.factory.bean.MessTypeBean;
 import com.smileflowpig.money.factory.bean.MessageBean;
+import com.smileflowpig.money.factory.bean.MoneyBean;
 import com.smileflowpig.money.factory.bean.MoneygetBean;
 import com.smileflowpig.money.factory.bean.MyDetailBean;
 import com.smileflowpig.money.factory.bean.MyHomeFragmentBean;
@@ -30,6 +31,7 @@ import com.smileflowpig.money.factory.bean.MynameBean;
 import com.smileflowpig.money.factory.bean.NewDeatilsBean;
 import com.smileflowpig.money.factory.bean.NewListBean;
 import com.smileflowpig.money.factory.bean.OverCodeBean;
+import com.smileflowpig.money.factory.bean.PagerBean;
 import com.smileflowpig.money.factory.bean.PaoBean;
 import com.smileflowpig.money.factory.bean.PayoverBean;
 import com.smileflowpig.money.factory.bean.QiangBean;
@@ -298,4 +300,13 @@ public interface Baseretrofit {
     @POST("/user/v2/huaUser/withdrawalList")
     @FormUrlEncoded
     Observable<MoneygetBean> getmoneyone(@Field("page") String page);
+
+    //红包记录
+    @POST("/user/v2/huaRedPacket/redPacketList")
+    @FormUrlEncoded
+    Observable<PagerBean> getpager(@Field("page") int page, @Field("num") int num);
+
+    //获取目前余额
+    @GET("/user/v2/huaUser/getUserBalance")
+    Observable<MoneyBean> getmonth();
 }

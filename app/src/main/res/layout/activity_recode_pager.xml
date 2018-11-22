@@ -75,7 +75,6 @@
             android:id="@+id/recode_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6666.66元"
             android:textColor="#ffffff"
             android:textSize="24px"
             android:layout_centerVertical="true"
@@ -126,7 +125,7 @@
             android:layout_height="match_parent"
             android:text="暂无记录"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="#cccccc"
             android:visibility="gone"
             />
     </RelativeLayout>
