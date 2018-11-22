@@ -69,7 +69,7 @@ public class CreditFragment extends PresenterFragment {
     private void getUrl() {
         activity = (Activity) getActivity();
         activity.showOnlyDialogLoadding();
-        ToastUtil.show(getActivity(), "获取url");
+//        ToastUtil.show(getActivity(), "获取url");
 
         HongbaoHelper.getZhenxinUrl(new DataSource.Callback<ZhenxinUrlJson>() {
             @Override

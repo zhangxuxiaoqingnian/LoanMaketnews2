@@ -41,7 +41,7 @@ public class Common {
         String REGEX_MOBILE = "[1][3,4,5,7,8][0-9]{9}$";
 ////         基础的网络请求地址
 //        String API_URL = "http://api.kuxuan-inc.com/user/";
-//         基础的网络请求地址
+//         基础的网络请求地址`
 
         //现在线上
         //String API_URL = "https://API_URLnewapi.henhaojie.com/user/";

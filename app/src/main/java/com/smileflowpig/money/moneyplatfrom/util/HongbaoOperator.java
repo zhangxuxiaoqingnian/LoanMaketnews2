@@ -25,6 +25,10 @@ public class HongbaoOperator {
     public static final int JIERI_RESULT_LOGIN_CODE = 10014;
 
 
+
+    private String title_name_newperson = "领取新人红包";
+    private String title_name_jieir = "领取节日红包";
+
     //红包type
     public final int NEWPERSON = 1;
     public final int JIERI = 2;
@@ -179,7 +183,7 @@ public class HongbaoOperator {
                     // TODO: 2018/11/20 领取红包
                     if (isGetjieriHongbao) {
                         //直接跳转领取记录
-                        onDialogChangeListener.goToRecord(festical.getSlogan(), festical.getSlogan(), jieri_getmoney, isGetjieriHongbao);
+                        onDialogChangeListener.goToRecord(title_name_jieir, festical.getName(), jieri_getmoney, isGetjieriHongbao);
 
                     } else {
                         //去领取红包
@@ -338,9 +342,9 @@ public class HongbaoOperator {
                             //领取过跳转详情页
                             if (onDialogChangeListener != null) {
                                 if (type == NEWPERSON) {
-                                    onDialogChangeListener.goToRecord(novice.getSlogan(), novice.getSlogan(), hongbaoStatusJson.getMoney(), isGetUserHongbao);
+                                    onDialogChangeListener.goToRecord(title_name_newperson, novice.getName(), hongbaoStatusJson.getMoney(), isGetUserHongbao);
                                 } else {
-                                    onDialogChangeListener.goToRecord(festical.getSlogan(), festical.getSlogan(), hongbaoStatusJson.getMoney(), isGetjieriHongbao);
+                                    onDialogChangeListener.goToRecord(title_name_jieir, festical.getName(), hongbaoStatusJson.getMoney(), isGetjieriHongbao);
                                 }
                             }
                         }
@@ -405,7 +409,7 @@ public class HongbaoOperator {
                 }
                 if (receiveHongbaoJson != null) {
                     if (onDialogChangeListener != null) {
-                        onDialogChangeListener.goToRecord(receiveHongbaoJson.getName(), receiveHongbaoJson.getName(), receiveHongbaoJson.getMoney(), type == NEWPERSON ? isGetUserHongbao : isGetjieriHongbao);
+                        onDialogChangeListener.goToRecord(type==NEWPERSON?title_name_newperson:title_name_jieir, receiveHongbaoJson.getName(), receiveHongbaoJson.getMoney(), type == NEWPERSON ? isGetUserHongbao : isGetjieriHongbao);
                     }
                     if (type == NEWPERSON) {
                         dismissNewPersonDialog();

@@ -206,7 +206,9 @@ public class DataFragment extends PresenterFragment implements OnRefreshLoadmore
 
             @Override
             public void onError(Throwable e) {
-
+                if (popupWindow != null) {
+                    popupWindow.dismiss();
+                }
             }
 
             @Override
