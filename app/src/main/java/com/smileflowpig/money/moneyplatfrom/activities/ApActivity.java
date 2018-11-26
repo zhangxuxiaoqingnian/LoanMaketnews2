@@ -111,7 +111,10 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
         super.onPause();
         MobclickAgent.onPause(this);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_ap;

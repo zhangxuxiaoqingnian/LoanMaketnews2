@@ -36,7 +36,10 @@ public class HongbaoRecordActivity extends Activity {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onPause() {
         super.onPause();

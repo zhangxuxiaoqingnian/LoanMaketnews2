@@ -48,7 +48,10 @@ public class BillDetialActivity extends Activity {
 
     @BindView(R.id.activity_bill_detial_recyclerView)
     RecyclerView recyclerView;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     private String id;
     private String platform_id;

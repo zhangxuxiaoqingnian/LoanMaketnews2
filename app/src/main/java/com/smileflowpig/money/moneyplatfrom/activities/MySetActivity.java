@@ -87,7 +87,10 @@ public class MySetActivity extends PresenterActivity<ExistContract.Presenter>
     private static ClearableCookieJar cookieJar;
     private File tempFile;
     private String photofileName;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     String permissionName = "android.permission.WRITE_EXTERNAL_STORAGE";
     private String imgUrl;
 

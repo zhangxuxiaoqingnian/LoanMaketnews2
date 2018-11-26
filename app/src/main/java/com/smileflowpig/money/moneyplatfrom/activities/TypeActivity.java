@@ -55,7 +55,10 @@ public class TypeActivity extends PresenterActivity implements View.OnClickListe
     private List<HomedataBean.RstBean.DataBean> list;
     private DaiAdapter4 daiAdapter4;
     private boolean liulang;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

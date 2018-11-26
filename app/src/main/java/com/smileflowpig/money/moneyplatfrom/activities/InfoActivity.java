@@ -52,7 +52,10 @@ implements InfoContract.View{
         context.startActivity(intent);
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @Override
     protected int getContentLayoutId() {

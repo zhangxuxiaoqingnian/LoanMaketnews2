@@ -71,6 +71,10 @@ import com.umeng.analytics.MobclickAgent;
 
 public class WebActivity extends PresenterActivity<WebContract.Presenter>
         implements WebContract.View {
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @BindView(R.id.webview)
     WebView webview;
     String title_name;

@@ -35,7 +35,10 @@ public class UpdateActivity extends PresenterActivity<UpdateContract.Presenter>
         Intent intent = new Intent(context, UpdateActivity.class);
         context.startActivity(intent);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);

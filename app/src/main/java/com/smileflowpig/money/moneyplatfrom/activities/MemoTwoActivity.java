@@ -65,7 +65,10 @@ public class MemoTwoActivity extends PresenterActivity implements View.OnClickLi
     ImageView back;
     @BindView(R.id.platform_icon)
     ImageView platform_icon;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     private boolean istrue=false;
     private String daiid;
     private boolean isfank=false;

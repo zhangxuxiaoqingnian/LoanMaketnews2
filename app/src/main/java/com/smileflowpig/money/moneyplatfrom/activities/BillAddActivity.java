@@ -53,7 +53,10 @@ public class BillAddActivity extends Activity {
         super.onPause();
         MobclickAgent.onPause(this);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @BindView(R.id.addbill_text)
     TextView addBill_text;
 

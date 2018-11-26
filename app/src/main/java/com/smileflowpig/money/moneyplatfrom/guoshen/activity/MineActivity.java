@@ -38,7 +38,10 @@ public class MineActivity extends PresenterActivity<MineConreact.Presenter> impl
 
     @BindView(R.id.phone)
     public TextView phoneTv;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @BindView(R.id.back)
     public ImageView back;
 

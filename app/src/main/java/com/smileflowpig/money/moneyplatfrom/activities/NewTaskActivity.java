@@ -54,7 +54,10 @@ public class NewTaskActivity extends PresenterActivity implements View.OnClickLi
    LinearLayout layout;
     private int money;
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

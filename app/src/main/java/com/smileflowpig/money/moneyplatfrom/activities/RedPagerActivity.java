@@ -56,7 +56,10 @@ public class RedPagerActivity extends PresenterActivity implements View.OnClickL
     private double summoney;
     private int length;
     private String format;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

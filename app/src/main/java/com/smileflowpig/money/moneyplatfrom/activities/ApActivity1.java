@@ -88,7 +88,10 @@ public class ApActivity1 extends PresenterActivity<ApplicationContract.Presenter
         Intent intent = new Intent(context, ApActivity1.class);
         context.startActivity(intent);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @Override
     protected int getContentLayoutId() {

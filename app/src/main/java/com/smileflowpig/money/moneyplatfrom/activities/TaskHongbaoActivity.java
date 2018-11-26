@@ -58,7 +58,10 @@ public class TaskHongbaoActivity extends Activity {
 
     @BindView(R.id.activity_task_recyclerView)
     RecyclerView recyclerView;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @Override
     protected int getContentLayoutId() {

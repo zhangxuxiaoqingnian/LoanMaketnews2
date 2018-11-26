@@ -65,7 +65,10 @@ public class FeedbackActivity extends PresenterActivity {
         wv.loadUrl("https://m.henhaojie.com/xiaohuazhu/feedback.html?sessionid="+sessionid);
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_feedback;

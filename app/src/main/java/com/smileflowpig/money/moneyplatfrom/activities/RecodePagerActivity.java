@@ -58,7 +58,10 @@ public class RecodePagerActivity extends PresenterActivity implements OnRefreshL
     private String cardname;
     private List<MoneygetBean.RstBean.DataBean> list;
     private List<PagerBean.RstBean.DataBean> list2;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -52,7 +52,10 @@ public class GuoShenDetail  extends PresenterActivity{
     private ImageView iv_mine;
     private TextView tv_title;
     private ImageView iv_add;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

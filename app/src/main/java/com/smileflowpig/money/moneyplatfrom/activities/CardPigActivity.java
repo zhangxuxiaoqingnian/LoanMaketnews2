@@ -24,7 +24,10 @@ public class CardPigActivity extends PresenterActivity {
 
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_card_pig;

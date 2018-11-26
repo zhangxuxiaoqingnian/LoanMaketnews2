@@ -64,7 +64,10 @@ public class BillManagerActivity extends PresenterActivity<BillContract.Presente
 
     @BindView(R.id.bill_com_recyclerView)
     RecyclerView comRecyclerView;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     private int page = 1;
     private int comPage = 1;
     private int status = 1;

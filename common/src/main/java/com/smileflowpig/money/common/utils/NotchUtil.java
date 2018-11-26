@@ -165,7 +165,7 @@ public class NotchUtil {
 //            childAt.setLayoutParams(layoutParams);
 //            childAt.setPadding(childAt.getPaddingLeft(), paddingTop, childAt.getPaddingRight(), childAt.getPaddingBottom());
             stateBar.setLayoutParams(pa);
-                stateBar.setBackgroundColor(Color.parseColor("#FEB727"));
+                stateBar.setBackgroundColor(Color.parseColor("#FFCE25"));
 
             view.addView(stateBar, 0);
         }

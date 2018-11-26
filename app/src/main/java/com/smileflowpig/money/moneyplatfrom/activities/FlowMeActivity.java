@@ -33,7 +33,10 @@ public class FlowMeActivity extends PresenterActivity implements View.OnClickLis
         banben.setText("版本名"+getVersionName());
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     /**
      * 获取版本名
      * @return 版本名

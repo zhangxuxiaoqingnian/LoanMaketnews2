@@ -20,7 +20,10 @@ import com.umeng.analytics.MobclickAgent;
 public class Webview_protocol extends PresenterActivity {
 
     private String pp;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override

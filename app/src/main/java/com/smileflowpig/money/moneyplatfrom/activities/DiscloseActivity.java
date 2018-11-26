@@ -40,7 +40,10 @@ public class DiscloseActivity extends PresenterActivity implements View.OnClickL
 
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);

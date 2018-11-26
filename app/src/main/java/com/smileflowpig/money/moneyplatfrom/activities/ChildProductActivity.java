@@ -53,7 +53,10 @@ public class ChildProductActivity extends PresenterActivity<ChildContract.Presen
     private String mTitle;
 
     private static final String TAG = "ActiveFragment";
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     /**
      * 新品区 等界面

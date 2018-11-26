@@ -66,6 +66,11 @@ public class MyTypeActivity extends PresenterActivity implements View.OnClickLis
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

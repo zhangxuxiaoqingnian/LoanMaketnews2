@@ -192,7 +192,10 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         super.onPause();
         MobclickAgent.onPause(this);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void initWidows() {
         super.initWidows();

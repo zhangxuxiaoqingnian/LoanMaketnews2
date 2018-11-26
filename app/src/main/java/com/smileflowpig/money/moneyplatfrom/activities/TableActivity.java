@@ -72,7 +72,10 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     private CardAdapter cardAdapter;
     private String tabtitle;
     private PopupWindow popupWindow;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

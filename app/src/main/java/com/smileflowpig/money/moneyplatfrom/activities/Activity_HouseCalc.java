@@ -52,7 +52,10 @@ public class Activity_HouseCalc extends Activity implements View.OnClickListener
             "17年(204个月)","18年(216个月)","19年(228个月)","20年(240个月)","21年(252个月)","22年(264个月)","23年(276个月)","24年(288个月)",
             "25年(300个月)","26年(312个月)","27年(324个月)","28年(336个月)","29年(348个月)","30年(360个月)"};
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     boolean flag;
     @BindView(R.id.tv_date)
     TextView tv_date;

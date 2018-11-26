@@ -72,6 +72,12 @@ public class PayEditActivity extends PresenterActivity implements View.OnClickLi
         initview();
 
     }
+
+
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     public void initview(){
         name.addTextChangedListener(new TextWatcher() {
             @Override

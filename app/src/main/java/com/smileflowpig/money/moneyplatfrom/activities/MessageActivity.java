@@ -79,7 +79,10 @@ implements MessageContract.View{
     protected int getContentLayoutId() {
         return R.layout.activity_message;
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void initWidget() {
         super.initWidget();

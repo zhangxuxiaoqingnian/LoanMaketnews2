@@ -25,7 +25,10 @@ import com.umeng.analytics.MobclickAgent;
 
 public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter>
         implements LauncherContract.View, LauncherPresenter.AdPictureListener {
-
+    @Override
+    protected boolean isNeedNotch() {
+        return false;
+    }
     private static final int MSG_VISIBLE = 0;
 
     private static final String KEY_TIME = "KEY_IMAGE_FILE";
@@ -77,6 +80,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
                 Context.MODE_PRIVATE);
 
     }
+
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);

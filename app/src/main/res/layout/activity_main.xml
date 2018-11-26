@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,94 +8,98 @@
     tools:context=".activities.MainActivity">
 
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionBarWithStatusBarSize"
-        android:background="@color/white"
-        android:outlineProvider="bounds"
-        app:elevation="0dp">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/statusBarSize">
-
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-            <TextView
-                android:id="@+id/txt_title"
-                android:textSize="@dimen/font_16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_centerInParent="true"
-                android:text="@string/app_name"
-                android:textAppearance="@style/TextAppearance.Title"
-                android:textColor="@color/textPrimary" />
-
-            <ImageView
-                android:id="@+id/timemore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/timemore"
-                android:layout_marginRight="20px"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                />
-
-                <TextView
-                    android:id="@+id/headset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20px"
-                    android:text="设置"
-                    android:textColor="#333333"
-                    android:textSize="14px"
-                    android:visibility="gone"
-                    android:layout_marginTop="5px"
-                    />
-
-            </com.zhy.autolayout.AutoRelativeLayout>
-        </FrameLayout>
-
-
-    </android.support.design.widget.AppBarLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:id="@+id/line"
-        android:elevation="1dp"
-        android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
-        android:background="@color/divider_gray" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/len_48"
-        android:background="@color/divider_gray" />
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/bottom_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/len_48"
-        android:layout_gravity="bottom"
-        app:tabBackground="@color/white"
-        app:tabIndicatorHeight="0dp"/>
-
     <FrameLayout
-        android:id="@+id/lay_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/len_48"/>
+        >
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/actionBarWithStatusBarSize"
+            android:background="@color/white"
+            android:outlineProvider="bounds"
+            app:elevation="0dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/statusBarSize">
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:text="@string/app_name"
+                        android:textAppearance="@style/TextAppearance.Title"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="@dimen/font_16" />
+
+                    <ImageView
+                        android:id="@+id/timemore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20px"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/timemore"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/headset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="5px"
+                        android:layout_marginRight="20px"
+                        android:text="设置"
+                        android:textColor="#333333"
+                        android:textSize="14px"
+                        android:visibility="gone" />
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </FrameLayout>
 
 
-</FrameLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/actionBarWithStatusBarSize"
+            android:background="@color/divider_gray"
+            android:elevation="1dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/len_48"
+            android:background="@color/divider_gray" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/bottom_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_48"
+            android:layout_gravity="bottom"
+            app:tabBackground="@color/white"
+            app:tabIndicatorHeight="0dp" />
+
+        <FrameLayout
+            android:id="@+id/lay_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/len_48" />
+
+
+    </FrameLayout>
+</LinearLayout>

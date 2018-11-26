@@ -76,7 +76,10 @@ public class MyCollectActivity extends PresenterActivity implements View.OnClick
     private List<CollectListBean.RstBean.DataBean> data;
     private int page=1;
     private List<CollectListBean.RstBean.DataBean> list2;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

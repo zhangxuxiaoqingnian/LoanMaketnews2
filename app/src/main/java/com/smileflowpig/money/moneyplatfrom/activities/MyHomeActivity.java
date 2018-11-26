@@ -80,7 +80,10 @@ public class MyHomeActivity extends PresenterActivity {
     private boolean ismy=false;
     private TextView title;
     private TextView success;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);

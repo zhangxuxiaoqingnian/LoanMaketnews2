@@ -43,7 +43,10 @@ import com.umeng.analytics.MobclickAgent;
  */
 
 public class HomeActivity extends PresenterActivity<HomeConreact.Presenter> implements HomeConreact.View{
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @BindView(R.id.viewpager)
     RecyclerViewPager mRecyclerViewPager;
 

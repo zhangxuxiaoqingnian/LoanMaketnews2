@@ -46,7 +46,10 @@ public class SetActivity extends PresenterActivity<ExistContract.Presenter>
         Intent intent = new Intent(context, SetActivity.class);
         context.startActivity(intent);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     //顶部导航栏返回键点击事件
     @OnClick(R.id.back)
     void back() {

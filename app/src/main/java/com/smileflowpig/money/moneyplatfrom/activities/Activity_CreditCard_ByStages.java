@@ -39,7 +39,10 @@ public class Activity_CreditCard_ByStages extends Activity implements View.OnCli
 
     @BindView(R.id.et_rate)
     EditText et_rate;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_credicard_bystages_calc;

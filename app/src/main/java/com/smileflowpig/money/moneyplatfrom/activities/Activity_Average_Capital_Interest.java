@@ -16,7 +16,10 @@ import com.umeng.analytics.MobclickAgent;
  */
 
 public class Activity_Average_Capital_Interest extends Activity implements View.OnClickListener{
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @BindView(R.id.back)
     ImageView back;

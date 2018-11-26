@@ -97,7 +97,10 @@ public class NewDetailActivity extends PresenterActivity
 
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);

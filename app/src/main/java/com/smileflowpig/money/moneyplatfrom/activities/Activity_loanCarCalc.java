@@ -61,7 +61,10 @@ public class Activity_loanCarCalc extends Activity implements View.OnClickListen
 
     @BindView(R.id.et_moneynum)
     EditText et_moneynum;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     int flag;
 

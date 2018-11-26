@@ -40,7 +40,10 @@ public class AdActivity extends Activity
     @BindView(R.id.ad_img)
     ImageView imageView;
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     private String filePath;
     private String id;
     private String link;

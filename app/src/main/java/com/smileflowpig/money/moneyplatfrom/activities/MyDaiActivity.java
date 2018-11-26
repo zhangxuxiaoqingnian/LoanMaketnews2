@@ -36,6 +36,10 @@ public class MyDaiActivity extends PresenterActivity implements View.OnClickList
         MobclickAgent.onPause(this);
     }
     @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

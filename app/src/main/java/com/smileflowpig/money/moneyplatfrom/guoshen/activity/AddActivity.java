@@ -33,7 +33,10 @@ import com.umeng.analytics.MobclickAgent;
 
 public class AddActivity extends PresenterActivity<AddConreact.Presenter> implements AddConreact.View{
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected AddConreact.Presenter initPresenter() {
         return new AddPresenter(this);

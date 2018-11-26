@@ -26,7 +26,10 @@ import com.umeng.analytics.MobclickAgent;
 public class Activity_Average_Capital extends Activity implements View.OnClickListener{
 
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @BindView(R.id.back)
     ImageView back;
 

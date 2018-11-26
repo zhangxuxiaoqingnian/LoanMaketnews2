@@ -39,7 +39,10 @@ public class MyDatumActivity extends PresenterActivity implements View.OnClickLi
     private String myphone;
     private String alipay_id;
     private String real_name;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

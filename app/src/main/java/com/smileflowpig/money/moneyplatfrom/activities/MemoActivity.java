@@ -66,7 +66,10 @@ public class MemoActivity extends PresenterActivity implements View.OnClickListe
 
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     public void getdata(){
         Observable<MemoBean> memoBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().getmemolist(page+"").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

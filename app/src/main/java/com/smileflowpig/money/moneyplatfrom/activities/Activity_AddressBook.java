@@ -35,7 +35,10 @@ public class Activity_AddressBook extends PresenterActivity<AddPlatfromContract.
         implements AddPlatfromContract.View  {
 
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     private static final String TAG = "zxt";
     private RecyclerView mRv;
     private FastFlexAdapter mAdapter;

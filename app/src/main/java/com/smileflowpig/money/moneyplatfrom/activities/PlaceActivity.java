@@ -38,7 +38,10 @@ public class PlaceActivity extends Activity {
 
 //    @BindView(R.id.tv_title)
 //    TextView tv_title;
-
+@Override
+protected boolean isNeedNotch() {
+    return true;
+}
     String title;
 
     private static final String TITLE = "TITLE";

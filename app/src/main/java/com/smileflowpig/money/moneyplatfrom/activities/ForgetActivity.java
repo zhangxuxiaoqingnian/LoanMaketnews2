@@ -51,7 +51,10 @@ implements ForgetContract.View{
         super.onPause();
         MobclickAgent.onPause(this);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     TimeCount time;
     private SelfDialog selfDialog;

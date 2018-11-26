@@ -57,7 +57,10 @@ public class CityotherActivity extends PresenterActivity {
         super.onPause();
         MobclickAgent.onPause(this);
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_pick_contact;

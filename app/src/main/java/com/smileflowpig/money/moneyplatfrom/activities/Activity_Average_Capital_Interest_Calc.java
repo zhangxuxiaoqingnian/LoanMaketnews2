@@ -42,7 +42,10 @@ public class Activity_Average_Capital_Interest_Calc extends Activity implements 
     @BindView(R.id.btn_calc)
     Button btn_calc;
 
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_average_capital_calc;

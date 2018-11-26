@@ -203,7 +203,10 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         }
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     private String getContent(String content) {
         if (TextUtils.isEmpty(content)) {

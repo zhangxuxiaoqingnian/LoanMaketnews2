@@ -34,7 +34,10 @@ implements  ActionContract.View{
 
     @BindView(R.id.action_button)
     Button action_button;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     /**
      * 意见反馈activity的入口
      * @param context

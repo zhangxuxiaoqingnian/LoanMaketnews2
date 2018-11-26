@@ -78,7 +78,10 @@ public class IdentityCardActivity extends PresenterActivity implements View.OnCl
         });
 
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_identity_card;

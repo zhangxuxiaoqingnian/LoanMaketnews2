@@ -59,7 +59,10 @@ public class MyBillActivity extends PresenterActivity implements OnClickListener
     private int sum=0;
     private RelativeLayout timeover;
     private TextView fa;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

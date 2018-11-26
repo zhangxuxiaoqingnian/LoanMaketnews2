@@ -332,7 +332,10 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             return false;
         }
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     /**
      * 初始化数据
      *

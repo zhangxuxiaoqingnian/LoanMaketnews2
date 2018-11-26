@@ -23,7 +23,10 @@ public class DetailActivityC extends PresenterActivity<DetailContract.Presenter>
     //标记，用来区分由谁进入详情页，带flag为AdActivity页进入
     public static final String PRODUCT_FLAG = "PRODUCT_FLAG";
     public static final String FLAG = "1";
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     //未登陆弹框
     DgFragment dgFragment;
     //产品Id

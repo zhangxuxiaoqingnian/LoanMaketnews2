@@ -26,7 +26,10 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
     private SharedPreferences sp;
 
     private boolean isHongbao = false;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     /**
      * 账户Activity显示的入口

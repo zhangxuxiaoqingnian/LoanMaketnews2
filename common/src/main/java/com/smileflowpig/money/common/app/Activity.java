@@ -54,7 +54,7 @@ public abstract class Activity extends AutoLayoutActivity {
             ViewGroup inflate = (ViewGroup) LayoutInflater.from(this).inflate(layId, null);
             setContentView(inflate);
             //判断是不是androidP系统
-            if (Build.VERSION.SDK_INT >= 28) {
+            if (Build.VERSION.SDK_INT >= 28 &&isNeedNotch()) {
                 NotchUtil.adaptationView(inflate, this);
             }
             initBefore();
@@ -68,8 +68,9 @@ public abstract class Activity extends AutoLayoutActivity {
             finish();
         }
 
-
     }
+
+    protected abstract boolean isNeedNotch();
 
 
     LoadingDailog dialog;

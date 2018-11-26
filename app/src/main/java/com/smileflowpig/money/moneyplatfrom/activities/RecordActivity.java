@@ -56,7 +56,10 @@ public class RecordActivity extends PresenterActivity implements View.OnClickLis
     private DaiAdapter3 daiAdapter;
     public static final String POSITION="POSITION";
     private boolean liulang;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

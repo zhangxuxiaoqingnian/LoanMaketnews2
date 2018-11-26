@@ -90,7 +90,10 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     TextView setok;
     @BindView(R.id.newmysetlayout)
     LinearLayout layout;
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
     //请求相机
     private static final int REQUEST_CAPTURE = 100;
     //请求相册

@@ -44,7 +44,10 @@ public class Activity_Income_Tax_Calc extends Activity implements View.OnClickLi
     protected int getContentLayoutId() {
         return R.layout.activity_incom_tax_calc;
     }
-
+    @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
 
     @Override
     protected void initBefore() {

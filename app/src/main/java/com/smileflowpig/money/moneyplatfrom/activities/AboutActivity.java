@@ -44,6 +44,11 @@ public class AboutActivity extends Activity {
 
 
     @Override
+    protected boolean isNeedNotch() {
+        return true;
+    }
+
+    @Override
     protected int getContentLayoutId() {
         return R.layout.activity_about;
     }

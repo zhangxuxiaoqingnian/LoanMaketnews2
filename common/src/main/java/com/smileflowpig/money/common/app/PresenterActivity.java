@@ -79,6 +79,8 @@ public abstract class PresenterActivity<Presenter extends BaseContract.Presenter
         }
     }
 
+
+
     /**
      * 只有progressDialog
      */
