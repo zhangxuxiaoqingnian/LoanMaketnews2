@@ -19,6 +19,7 @@ import com.android.tu.loadingdialog.LoadingDialog;
 import com.smileflowpig.money.common.R;
 import com.smileflowpig.money.common.utils.NavigationBarUtil;
 import com.smileflowpig.money.common.utils.NotchUtil;
+import com.smileflowpig.money.common.widget.AndroidNeigation;
 import com.smileflowpig.money.common.widget.StatusBarUtil;
 import com.smileflowpig.money.common.widget.convention.PlaceHolderView;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -61,8 +62,9 @@ public abstract class Activity extends AutoLayoutActivity {
             initWidget();
             initData();
             //虚拟键适配
-            if (NavigationBarUtil.hasNavigationBar(this)) {
-                NavigationBarUtil.initActivity(findViewById(android.R.id.content));
+            if (NavigationBarUtil.checkDeviceHasNavigationBar(this)) {
+//                NavigationBarUtil.initActivity(findViewById(android.R.id.content));
+                AndroidNeigation.assistActivity(inflate);
             }
         } else {
             finish();

@@ -169,12 +169,12 @@ public class JieriDialog extends Dialog {
 
 
     public interface onNoOnclickListener {
-        public void onNoClick();
+        void onNoClick();
 
     }
 
     public interface onImageOnclickListener {
-        public void onImageClick();
+        void onImageClick();
 
     }
 }

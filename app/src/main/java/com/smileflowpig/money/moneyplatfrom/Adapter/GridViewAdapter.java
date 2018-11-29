@@ -15,55 +15,58 @@ import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.widget.PortraitView;
 import com.smileflowpig.money.factory.model.db.Amount;
 
-/**GirdView 数据适配器*/
-    public class GridViewAdapter extends BaseAdapter {
-        Context context;
-        List<Amount> list;
+/**
+ * GirdView 数据适配器
+ */
+public class GridViewAdapter extends BaseAdapter {
+    Context context;
+    List<Amount> list;
     private static final String TAG = "GridViewAdapter";
-        public GridViewAdapter(Context _context, List<Amount> _list) {
-            this.list = _list;
-            this.context = _context;
-        }
 
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return list.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            LayoutInflater layoutInflater = LayoutInflater.from(context);
-            convertView = layoutInflater.inflate(R.layout.cell_amount_item, null);
-            TextView tvCity = (TextView) convertView.findViewById(R.id.tv_title);
-            PortraitView portraitView = (PortraitView) convertView.findViewById(R.id.im_portrait);
-            Amount amount = list.get(position);
-            tvCity.setText(amount.getName());
-            portraitView.setup(Glide.with(context),amount.getIcon());
-
-            return convertView;
-        }
+    public GridViewAdapter(Context _context, List<Amount> _list) {
+        this.list = _list;
+        this.context = _context;
     }
 
+    @Override
+    public int getCount() {
+        return list.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return list.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        convertView = layoutInflater.inflate(R.layout.cell_amount_item, null);
+        TextView tvCity = (TextView) convertView.findViewById(R.id.tv_title);
+        PortraitView portraitView = (PortraitView) convertView.findViewById(R.id.im_portrait);
+        Amount amount = list.get(position);
+        tvCity.setText(amount.getName());
+        portraitView.setup(Glide.with(context), amount.getIcon());
+
+        return convertView;
+    }
+}
+
 class CityItem {
-   private String cityName;
+    private String cityName;
 
-   public String getCityName() {
-       return cityName;
-   }
+    public String getCityName() {
+        return cityName;
+    }
 
-   public void setCityName(String cityName) {
-       this.cityName = cityName;
-   }
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
 
 
 }

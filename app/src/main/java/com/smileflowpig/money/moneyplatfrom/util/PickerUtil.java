@@ -29,7 +29,7 @@ public class PickerUtil {
     public static void onYearMonthPicker(Activity context, int startYear, int startMonth, int endYear, int endMonth, int chooseYear, int chooseMonth, DatePicker.OnYearMonthPickListener listener) {
         final DatePicker picker = new DatePicker(context, DatePicker.YEAR_MONTH);
         picker.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
-        picker.setWidth((int) (picker.getScreenWidthPixels()));
+        picker.setWidth(picker.getScreenWidthPixels());
         picker.setRangeStart(startYear, startMonth, 1);
         picker.setRangeEnd(endYear, endMonth, 1);
         picker.setSelectedItem(chooseYear, chooseMonth);
@@ -49,7 +49,7 @@ public class PickerUtil {
     public static DatePicker getOnYearMonthPicker(Activity context, int startYear, int startMonth, int endYear, int endMonth, int chooseYear, int chooseMonth, DatePicker.OnYearMonthPickListener listener) {
         final DatePicker picker = new DatePicker(context, DatePicker.YEAR_MONTH);
         picker.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
-        picker.setWidth((int) (picker.getScreenWidthPixels()));
+        picker.setWidth(picker.getScreenWidthPixels());
         picker.setRangeStart(startYear, startMonth, 1);
         picker.setRangeEnd(endYear, endMonth, 1);
         picker.setSelectedItem(chooseYear, chooseMonth);
@@ -71,7 +71,7 @@ public class PickerUtil {
                                             Activity context, DatePicker.OnYearMonthDayPickListener listener) {
         final DatePicker picker = new DatePicker(context, DatePicker.YEAR_MONTH_DAY);
         picker.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
-        picker.setWidth((int) (picker.getScreenWidthPixels()));
+        picker.setWidth(picker.getScreenWidthPixels());
         picker.setHeight(picker.getScreenHeightPixels() / 2 - 250);
         picker.setRangeStart(2010, 1, 1);
         picker.setTitleText(mTitle);

@@ -60,7 +60,7 @@ public class App extends Application {
             StrictMode.setVmPolicy(builder.build());
         }
 
-        this.context = getApplicationContext();
+        context = getApplicationContext();
         //初始化
         Factory.setup();
 //        MobclickAgent.setDebugMode(true);

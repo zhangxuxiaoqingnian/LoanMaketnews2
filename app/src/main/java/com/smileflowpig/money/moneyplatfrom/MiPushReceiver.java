@@ -80,7 +80,7 @@ public class MiPushReceiver extends PushMessageReceiver {
     }
 
     private boolean _isApplicationRunning(Context context) {
-        ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(context.ACTIVITY_SERVICE);
+        ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> processInfos = activityManager.getRunningAppProcesses();
         for (ActivityManager.RunningAppProcessInfo processInfo : processInfos) {
             if (processInfo.processName.equals(context.getApplicationContext().getPackageName())) {

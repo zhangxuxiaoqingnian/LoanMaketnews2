@@ -117,7 +117,7 @@ public class Activity_Average_Capital extends Activity implements View.OnClickLi
         tv_loanrate.setText(bean.getLoanrate()+"%");
         tv_date.setText(bean.getPaymonth()+"个月");
         monthlypaymomeyList = bean.getMonthlypaymomeyList();
-        tv_first.setText(monthlypaymomeyList.get(0).toString()+"万");
+        tv_first.setText(monthlypaymomeyList.get(0) +"万");
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{

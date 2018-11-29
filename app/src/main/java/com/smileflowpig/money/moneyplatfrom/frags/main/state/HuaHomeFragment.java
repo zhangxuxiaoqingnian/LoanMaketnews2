@@ -648,7 +648,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 break;
             case R.id.disclose:
                 if(liulang){
-                    Intent intent6=new Intent(getActivity(), CaseurlActivity.class);;
+                    Intent intent6=new Intent(getActivity(), CaseurlActivity.class);
                     intent6.putExtra("urlid",0);
                     intent6.putExtra("urlname","下款爆料");
                     intent6.putExtra("urladdress","");
@@ -661,7 +661,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 break;
             case R.id.appraisal:
                 if(liulang){
-                    Intent intent10=new Intent(getActivity(), CaseurlActivity.class);;
+                    Intent intent10=new Intent(getActivity(), CaseurlActivity.class);
                     intent10.putExtra("urlid",0);
                     intent10.putExtra("urlname","口子测评");
                     intent10.putExtra("urladdress","");

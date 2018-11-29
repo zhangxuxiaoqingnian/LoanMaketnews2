@@ -183,10 +183,7 @@ public class DgFragment extends DialogFragment  {
         getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    return true;
-                }
-                return false;
+                return keyCode == KeyEvent.KEYCODE_BACK;
             }
         });
         time = new TimeCount(60000, 1000);

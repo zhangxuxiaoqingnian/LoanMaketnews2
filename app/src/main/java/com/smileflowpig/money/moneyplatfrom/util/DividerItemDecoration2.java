@@ -239,11 +239,7 @@ public class DividerItemDecoration2 extends RecyclerView.ItemDecoration {
      * @return
      */
     protected boolean isAllowShowDivider(int position, RecyclerView parent) {
-        if (isInLastGroup(position, parent)) {
-            //末尾不显示分割
-            return false;
-        }
-        return true;
+        return !isInLastGroup(position, parent);
     }
 
     /**

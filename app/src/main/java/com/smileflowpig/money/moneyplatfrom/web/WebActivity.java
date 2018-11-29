@@ -532,7 +532,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
 
         try {
             fileUri = Uri.fromFile(createMediaFile()); // create a file to save the video
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);  // set the image file name
@@ -545,7 +545,7 @@ public class WebActivity extends PresenterActivity<WebContract.Presenter>
     }
 
 
-    private File createMediaFile() throws IOException {
+    private File createMediaFile() {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "CameraDemo");
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {

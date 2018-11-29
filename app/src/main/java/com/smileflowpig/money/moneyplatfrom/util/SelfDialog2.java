@@ -165,10 +165,10 @@ public class SelfDialog2 extends Dialog {
     }
 
     public interface onNoOnclickListener {
-        public void onNoClick();
+        void onNoClick();
     }
 
     public interface onYesOnclickListener{
-        public void onYesClick(String text);
+        void onYesClick(String text);
     }
 }

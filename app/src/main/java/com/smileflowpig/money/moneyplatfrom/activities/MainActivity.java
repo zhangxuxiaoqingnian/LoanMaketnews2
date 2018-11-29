@@ -105,7 +105,7 @@ import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabChan
 import static com.smileflowpig.money.moneyplatfrom.helper.DataGenerator.mTabXTitle;
 
 public class MainActivity extends PresenterActivity<MainContract.Presenter>
-        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View, HuaHomeFragment.OnDaikuanClickListener, PigHomeFragment.Alldatacont,NewMineFragment.GetCont {
+        implements TabLayout.OnTabSelectedListener, FragmentHelper.OnTabChangeListener<Integer>, MainContract.View, HuaHomeFragment.OnDaikuanClickListener, PigHomeFragment.Alldatacont, NewMineFragment.GetCont {
     @BindView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.lay_container)
@@ -192,10 +192,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
     @Override
     protected boolean isNeedNotch() {
         return true;
     }
+
     @Override
     protected void initWidows() {
         super.initWidows();
@@ -214,7 +216,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         Manifest.permission.SEND_SMS)
                 .subscribe(new io.reactivex.functions.Consumer<Permission>() {
                     @Override
-                    public void accept(Permission permission) throws Exception {
+                    public void accept(Permission permission) {
 
                         if (permission.granted) {
                             // 用户已经同意该权限
@@ -227,7 +229,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         }
                     }
                 });
-
     }
 
     private void loginAuto() {
@@ -529,7 +530,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
     }
 
     public void cardvisible() {
-
         RemoteService service = Network.remote();
         Call<RspModel<LaunchRspModel>> call = service.getChannel(Network.channelId);
 
@@ -538,16 +538,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             @Override
             public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
                 RspModel<LaunchRspModel> rspModel = response.body();
-
                 if (rspModel != null && rspModel.success()) {
-
                     LaunchRspModel rst = rspModel.getRst();
                     String version = rst.create_time;
                     credit_hidden = rst.getCredit_hidden();
                     String url = rst.getUrl();
                     getcarvter();
-
-
                 }
             }
 
@@ -835,8 +831,8 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         WebActivity.show(MainActivity.this, null, link, product_id, skiptype);
                         adDialog.dismiss();
                     }
-                }catch (Exception e){
-                    if(adDialog!=null){
+                } catch (Exception e) {
+                    if (adDialog != null) {
                         adDialog.dismiss();
                     }
                 }
@@ -845,8 +841,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             }
         });
         adDialog.show();
-
-
     }
 
 
@@ -955,10 +949,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             return true;
         } else if (Integer.parseInt(newDataSpli[1]) > Integer.parseInt(oldDataSpli[1])) {
             return true;
-        } else if (Integer.parseInt(newDataSpli[2]) > Integer.parseInt(oldDataSpli[2])) {
-            return true;
-        }
-        return false;
+        } else return Integer.parseInt(newDataSpli[2]) > Integer.parseInt(oldDataSpli[2]);
     }
 
     @Override
@@ -1011,7 +1002,6 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
         }
         return hasNavigationBar;
-
     }
 
     //获取虚拟键高度

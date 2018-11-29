@@ -123,11 +123,7 @@ public class NativeActionUtil {
         final PackageManager packageManager = AppInfo.getAppContext().getPackageManager();
         List<ResolveInfo> supportList =
             packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (supportList != null && supportList.size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return supportList != null && supportList.size() > 0;
     }
 
 

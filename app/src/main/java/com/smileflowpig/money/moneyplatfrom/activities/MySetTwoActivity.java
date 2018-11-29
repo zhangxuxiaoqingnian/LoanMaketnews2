@@ -468,7 +468,6 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
     private void shangchuan(String nick, File file, String gendel, String ident) {
         if (file == null) {
             avatar = MultipartBody.Part.createFormData("", "");
-            ;
         } else {
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
             avatar = MultipartBody.Part.createFormData("avatar", "avatar", requestFile);

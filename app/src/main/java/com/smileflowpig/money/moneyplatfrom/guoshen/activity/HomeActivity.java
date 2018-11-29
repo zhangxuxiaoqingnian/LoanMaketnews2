@@ -215,7 +215,6 @@ public class HomeActivity extends PresenterActivity<HomeConreact.Presenter> impl
                     View v = recyclerView.getChildAt(j);
                     //往左 从 padding 到 -(v.getWidth()-padding) 的过程中，由大到小
                     float rate = 0;
-                    ;
                     if (v.getLeft() <= padding) {
                         if (v.getLeft() >= padding - v.getWidth()) {
                             rate = (padding - v.getLeft()) * 1f / v.getWidth();

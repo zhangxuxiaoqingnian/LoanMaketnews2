@@ -7,10 +7,7 @@ package com.smileflowpig.money.moneyplatfrom.util;
 public class StringUtils {
 
     public static boolean isEmpty(String str){
-        if(str==null||str.equals("")){
-            return true;
-        }
-      return false;
+        return str == null || str.equals("");
     }
 
 

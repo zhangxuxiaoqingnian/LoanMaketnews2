@@ -135,10 +135,9 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
      */
     private void reallySkip() {
         //检测跳转到过审页还是线上页
-        if (checkChannel()) {
+//        if (checkChannel()) {
             // 检查跳转到广告页还是跳转到主页
 //            if (checkData()==false) {
-
             Log.e("LauncherPresenter","launchactivity");
             boolean iscover = sp2.getBoolean("iscover", false);
             boolean oldwer = sp.getBoolean("oldwer", false);
@@ -157,23 +156,23 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
             }
 
             finish();
-        } else {
-      //     HomeActivity.show(this);
-//           finish();
-            MainActivity.show(this);
-            Log.e(TAG, showAdDialog + "--A-DASDASDAS");
-            finish();
-            // 检查跳转到广告页还是跳转到主页
-//            if (checkData()==false) {
-//                AdActivity.show(this);
-//                finish();
-//            } else {
-//                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
-//                MainActivity.show(this);
-//                finish();
-//            }
+//        } else {
+//      //     HomeActivity.show(this);
+////           finish();
+//            MainActivity.show(this);
+//            Log.e(TAG, showAdDialog + "--A-DASDASDAS");
 //            finish();
-        }
+//            // 检查跳转到广告页还是跳转到主页
+////            if (checkData()==false) {
+////                AdActivity.show(this);
+////                finish();
+////            } else {
+////                Log.e(TAG, showAdDialog + "--A-DASDASDAS");
+////                MainActivity.show(this);
+////                finish();
+////            }
+////            finish();
+//        }
     }
 
     /**
@@ -216,10 +215,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
     }
 
     public boolean checkData() {
-        if (load().equals("")) {
-            return false;
-        }
-        return true;
+        return !load().equals("");
     }
 
     private String load() {

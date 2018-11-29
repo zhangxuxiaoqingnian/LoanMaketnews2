@@ -230,7 +230,7 @@ public class HomeHeaderLayout extends RelativeLayout implements OnBannerListener
 class GlideImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
         //Glide 加载图片简单用法
         Glide.with(context).load(path).into(imageView);
     }

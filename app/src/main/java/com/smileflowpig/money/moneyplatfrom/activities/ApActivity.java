@@ -235,8 +235,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 if (checked && !checklist.contains(holder.getLayoutPosition())) {
                     checklist.add(holder.getLayoutPosition());
                 } else if (!checked && checklist.contains(holder.getLayoutPosition())) {
-                    int index = checklist.indexOf(holder.getLayoutPosition());
-                    checklist.remove(index);
+                    checklist.remove(holder.getLayoutPosition());
                 }
                 if (checklist.size() == cardData.size()) {
                     checkBox1.setChecked(true);
@@ -287,8 +286,7 @@ public class ApActivity extends PresenterActivity<ApplicationContract.Presenter>
                 if (checked && !checklist.contains(holder.getLayoutPosition())) {
                     checklist.add(holder.getLayoutPosition());
                 } else if (!checked && checklist.contains(holder.getLayoutPosition())) {
-                    int index = checklist.indexOf(holder.getLayoutPosition());
-                    checklist.remove(index);
+                    checklist.remove(holder.getLayoutPosition());
                 }
                 if (checklist.size() == productData.size()) {
                     checkBox1.setChecked(true);

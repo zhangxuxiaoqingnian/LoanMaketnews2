@@ -25,11 +25,6 @@ public class NavigationBarUtil {
     private NavigationBarUtil(View content) {
         mObserved = content;
         //给View添加全局的布局监听器监听视图的变化
-        mObserved.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            public void onGlobalLayout() {
-                resetViewHeight();
-            }
-        });
         layoutParams = mObserved.getLayoutParams();
     }
 
@@ -46,6 +41,29 @@ public class NavigationBarUtil {
             mObserved.requestLayout();//请求重新布局
             usableHeightView = usableHeightViewNow;
         }
+    }
+
+    public static boolean checkDeviceHasNavigationBar(Context context) {
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+
+        }
+        return hasNavigationBar;
+
     }
 
     /**
@@ -68,30 +86,31 @@ public class NavigationBarUtil {
      */
     public static boolean hasNavigationBar(Context context) {
         boolean hasNavigationBar = false;
-//        Resources rs = context.getResources();
-//        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
-//        if (id > 0) {
-//            hasNavigationBar = rs.getBoolean(id);
-//        }
-//        try {
-//            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
-//            Method m = systemPropertiesClass.getMethod("get", String.class);
-//            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
-//            if ("1".equals(navBarOverride)) {
-//                hasNavigationBar = false;
-//            } else if ("0".equals(navBarOverride)) {
-//                hasNavigationBar = true;
-//            }
-//        } catch (Exception e) {
-//
-//        }
-//        return hasNavigationBar;
-        return checkDeviceHasNavigationBar2(context);
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+
+        }
+        return hasNavigationBar;
+//        return checkDeviceHasNavigationBar2(context);
     }
 
 
     /**
      * 判断是否有虚拟按键
+     *
      * @param activity
      * @return
      */

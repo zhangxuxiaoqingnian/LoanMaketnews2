@@ -189,7 +189,7 @@ public class CalculateFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 monthly_fee = s.toString();
-                if (s.toString().trim().substring(0).equals(".")) {
+                if (s.toString().trim().equals(".")) {
                     calculate_listview.setVisibility(View.GONE);
                     havechange3 =false;
                     error.setVisibility(View.VISIBLE);

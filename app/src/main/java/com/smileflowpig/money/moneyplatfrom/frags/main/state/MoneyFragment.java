@@ -249,7 +249,6 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-
         getdata(type);
     }
 
