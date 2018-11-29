@@ -17,7 +17,7 @@ import com.umeng.commonsdk.utils.UMUtils;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.common.QueuedWork;
-import com.xiaomi.mipush.sdk.MiPushClient;
+
 
 import java.util.List;
 
@@ -67,28 +67,13 @@ public class App extends Application {
 //        MobclickAgent.startWithConfigure(
 //                new MobclickAgent.UMAnalyticsConfig(this, UMENG_APP_KEY, BASE_CHANNEL));
         //推送进行初始化
-        if (shouldInit()) {
-            MiPushClient.registerPush(this, APP_ID, APP_KEY);
-        }
+
 
 
         Network.channelId = BuildConfig.CHANNLE;
 //        Fabric.with(this, new Crashlytics());
 
 
-    }
-
-    private boolean shouldInit() {
-        ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
-        List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
-        String mainProcessName = getPackageName();
-        int myPid = Process.myPid();
-        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
-            if (info.pid == myPid && mainProcessName.equals(info.processName)) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

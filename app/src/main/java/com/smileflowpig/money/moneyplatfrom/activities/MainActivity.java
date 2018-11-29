@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.kuxuan.push.PushManager;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.factory.data.DataSource;
 import com.smileflowpig.money.common.utils.DisplayUtil;
@@ -229,6 +230,9 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                         }
                     }
                 });
+
+        PushManager.register(getApplicationContext());
+
     }
 
     private void loginAuto() {
