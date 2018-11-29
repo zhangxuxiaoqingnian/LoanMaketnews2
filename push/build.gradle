@@ -28,4 +28,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
     compile files('libs/MiPush_SDK_Client_3_6_9.jar')
+    compile files('libs/vivo_pushsdk_v2.3.1.jar')
 }

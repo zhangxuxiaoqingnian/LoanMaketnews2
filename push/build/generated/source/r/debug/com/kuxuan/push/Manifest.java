@@ -9,6 +9,6 @@ package com.kuxuan.push;
 
 public final class Manifest {
     public static final class permission {
-        public static final String MIPUSH_RECEIVE="com.xiaomi.mipushdemo.permission.MIPUSH_RECEIVE";
+        public static final String MIPUSH_RECEIVE="com.smileflowpig.money.permission.MIPUSH_RECEIVE";
     }
 }

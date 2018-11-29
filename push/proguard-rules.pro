@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+ -dontwarn com.vivo.push.**
+  -keep class com.vivo.push.**{*; }
+   -keep class com.vivo.vms.**{*; }
+ -keep class com.kuxuan.push.reciver.PushMessageReceiverImpl{*;}
+
+
+ #这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名
+ -keep class com.kuxuan.push.reciver.MiPushReciver{*;}
+ #可以防止一个误报的 warning 导致无法成功编译，如果编译使用的 Android 版本是 23。
+ -dontwarn com.xiaomi.push.**

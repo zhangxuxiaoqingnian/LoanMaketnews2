@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Process;
 import android.util.Log;
 
+import com.vivo.push.PushClient;
 import com.xiaomi.channel.commonutils.logger.LoggerInterface;
 import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -30,6 +31,9 @@ public class PushManager {
         switch (phoneModel) {
             case PhoneUtil.XIAOMI:
                 registerMiPush(context);
+                break;
+            case PhoneUtil.VIVO:
+                registerVivoPush(context);
                 break;
             default:
                 registerMiPush(context);
@@ -88,7 +92,7 @@ public class PushManager {
      * @param context
      */
     private static void registerVivoPush(Context context) {
-
+        PushClient.getInstance(context).initialize();
 
     }
 
