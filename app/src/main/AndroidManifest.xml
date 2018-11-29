@@ -341,6 +341,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
 
+
+        //华为
+        <meta-data
+            android:name="com.huawei.hms.client.appid"
+            android:value="appid=${APPID}"/>
+
+
+
     </application>
 
 </manifest>
