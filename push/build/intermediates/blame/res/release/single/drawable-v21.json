@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/release/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/456b6a3741138676b50a07c3b6038e5442ff6932/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/release/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/456b6a3741138676b50a07c3b6038e5442ff6932/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/release/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/456b6a3741138676b50a07c3b6038e5442ff6932/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/release/drawable-v21/notification_action_background.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/456b6a3741138676b50a07c3b6038e5442ff6932/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/release/drawable-v21/abc_dialog_material_background.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/94f18c793ff6dd0fabd3a56da61dc606933687d6/output/res/drawable-v21/abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/release/drawable-v21/abc_list_divider_material.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/94f18c793ff6dd0fabd3a56da61dc606933687d6/output/res/drawable-v21/abc_list_divider_material.xml"
+    }
+]

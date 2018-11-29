@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/bb75ade395b498ac359da9e5079f766649f2ee09/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/bb75ade395b498ac359da9e5079f766649f2ee09/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/bb75ade395b498ac359da9e5079f766649f2ee09/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/xieshengqi/kuxuan/companyproject/bangnidai/xiaohuazhu/push/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/xieshengqi/.android/build-cache/bb75ade395b498ac359da9e5079f766649f2ee09/output/res/layout-v21/notification_template_custom_big.xml"
+    }
+]
