@@ -3,6 +3,8 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.smileflowpig.money.moneyplatfrom.Constant;
@@ -58,6 +60,10 @@ public class AccountActivity extends Activity implements AccountTrigger, LoginFr
 
         sp = getSharedPreferences("Deng", MODE_PRIVATE);
         isHongbao = getIntent().getBooleanExtra("hongbao", false);
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null){
+            Log.e("消息传过来的",extras.toString());
+        }
     }
 
     @Override

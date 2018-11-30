@@ -4,11 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.kuxuan.push.JumpJson;
+import com.kuxuan.push.OnPushRecivcerListener;
 import com.kuxuan.push.PushManager;
 import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.moneyplatfrom.activities.AdActivity;
@@ -80,6 +85,13 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         sp2= getSharedPreferences("isshowimg",
                 Context.MODE_PRIVATE);
         PushManager.huaweiConnect(this);
+        PushManager.setOnPushRecivcerListener(new OnPushRecivcerListener() {
+
+            @Override
+            public void onNotificationMessageClicked(Context context, JumpJson jumpJson) {
+                Log.e("huawei_resvice", "onEvent: " +jumpJson.toString());
+            }
+        });
 
     }
 
@@ -140,7 +152,13 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
 //        if (checkChannel()) {
             // 检查跳转到广告页还是跳转到主页
 //            if (checkData()==false) {
-            Log.e("LauncherPresenter","launchactivity");
+
+
+
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("custorm://com.smileflowpig.money/test?title=goodnews&content=this is test"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String s = intent.toUri(Intent.URI_INTENT_SCHEME);
+        Log.e("LauncherPresenter",s);
             boolean iscover = sp2.getBoolean("iscover", false);
             boolean oldwer = sp.getBoolean("oldwer", false);
             if(iscover){

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.kuxuan.push.JumpJson;
+import com.kuxuan.push.PushManager;
 import com.xiaomi.mipush.sdk.ErrorCode;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
@@ -21,36 +23,37 @@ public class MiPushReciver extends PushMessageReceiver {
 
     @Override public void onNotificationMessageClicked(Context context, MiPushMessage message) {
         Log.e("push", "mipush message: " + message.toString());
-
-        if(_isApplicationRunning(context)){
-            if(message.getExtra().containsKey("url")) {
-                //获取信息跳转产品详情
-//                Intent intent = new Intent(context, DetailActivity.class);
-//                String url = message.getExtra().get("url");
-//                Log.e("mipushurl", url);
-//                int a = url.indexOf("id");
-//
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                String b = url.substring(a + 3, url.length());
-//                intent.putExtra("PRODUCT_ID", b);
-//                Log.e("id", b);
-//                context.startActivity(intent);
-            }
-        }else{
-            Log.e("aaa","不在运行");
-            Intent launchIntent = context.getPackageManager().
-                    getLaunchIntentForPackage("com.smileflowpig.money");
-            launchIntent.setFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-            String url = message.getExtra().get("url");
-            Log.e("mipushurl", url);
-            int a = url.indexOf("id");
-            String b = url.substring(a + 3, url.length());
-            Bundle args = new Bundle();
-            args.putString("PRODUCT_ID", b);
-            launchIntent.putExtra("push", args);
-            context.startActivity(launchIntent);
-        }
+        if (PushManager.mlis != null)
+            PushManager.mlis.onNotificationMessageClicked(context, new JumpJson());
+//        if(_isApplicationRunning(context)){
+//            if(message.getExtra().containsKey("url")) {
+//                //获取信息跳转产品详情
+////                Intent intent = new Intent(context, DetailActivity.class);
+////                String url = message.getExtra().get("url");
+////                Log.e("mipushurl", url);
+////                int a = url.indexOf("id");
+////
+////                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                String b = url.substring(a + 3, url.length());
+////                intent.putExtra("PRODUCT_ID", b);
+////                Log.e("id", b);
+////                context.startActivity(intent);
+//            }
+//        }else{
+//            Log.e("aaa","不在运行");
+//            Intent launchIntent = context.getPackageManager().
+//                    getLaunchIntentForPackage("com.smileflowpig.money");
+//            launchIntent.setFlags(
+//                    Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//            String url = message.getExtra().get("url");
+//            Log.e("mipushurl", url);
+//            int a = url.indexOf("id");
+//            String b = url.substring(a + 3, url.length());
+//            Bundle args = new Bundle();
+//            args.putString("PRODUCT_ID", b);
+//            launchIntent.putExtra("push", args);
+//            context.startActivity(launchIntent);
+//        }
 
     }
 

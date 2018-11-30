@@ -15,7 +15,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
-
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
     <application
         android:name=".moneyplatfrom.App"
@@ -49,7 +48,22 @@
         <activity
             android:name=".moneyplatfrom.activities.AccountActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main" />
+            android:theme="@style/AppTheme.Main">
+
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data
+                    android:host="com.smileflowpig.money"
+                    android:path="/test"
+                    android:scheme="custorm" />
+            </intent-filter>
+
+
+        </activity>
         <activity
             android:name=".moneyplatfrom.activities.ApActivity1"
             android:screenOrientation="portrait"
@@ -340,10 +354,6 @@
             android:name=".moneyplatfrom.activities.HongbaoRecordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-
-
-
-
 
 
     </application>

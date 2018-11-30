@@ -35,21 +35,20 @@ public class PushManager {
      */
     public static void register(Context context) {
         int phoneModel = PhoneUtil.getPhoneModel(context);
-        registerHuaweiPush(context);
-//        switch (phoneModel) {
-//            case PhoneUtil.XIAOMI:
-//                registerMiPush(context);
-//                break;
-//            case PhoneUtil.VIVO:
-//                registerVivoPush(context);
-//                break;
-//            case PhoneUtil.HUAWEI:
-//                registerHuaweiPush(context);
-//                break;
-//            default:
-//                registerMiPush(context);
-//                break;
-//        }
+        switch (phoneModel) {
+            case PhoneUtil.XIAOMI:
+                registerMiPush(context);
+                break;
+            case PhoneUtil.VIVO:
+                registerMiPush(context);
+                break;
+            case PhoneUtil.HUAWEI:
+                registerHuaweiPush(context);
+                break;
+            default:
+                registerMiPush(context);
+                break;
+        }
 
 
     }
@@ -126,8 +125,6 @@ public class PushManager {
     private static void registerHuaweiPush(Context context) {
         Application app = (Application) context.getApplicationContext();
         HMSAgent.init(app);
-
-
     }
 
 
@@ -137,41 +134,42 @@ public class PushManager {
      * @param activity
      */
     private static void getHuaweiToken(Activity activity) {
-//        int phoneModel = PhoneUtil.getPhoneModel(activity);
-//        if (phoneModel == PhoneUtil.HUAWEI) {
+        int phoneModel = PhoneUtil.getPhoneModel(activity);
+        if (phoneModel == PhoneUtil.HUAWEI) {
             HMSAgent.Push.getToken(new GetTokenHandler() {
                 @Override
                 public void onResult(int rst) {
+                    Log.e("huawei_push", "tokenCode: " + rst);
 
                 }
 
 
             });
-//        }
+        }
     }
 
     /**
-     * 华为链接
+     * 华为链接com
      *
      * @param activity
      */
     public static void huaweiConnect(final Activity activity) {
-//        int phoneModel = PhoneUtil.getPhoneModel(activity);
-//        if (phoneModel == PhoneUtil.HUAWEI) {
+        int phoneModel = PhoneUtil.getPhoneModel(activity);
+        if (phoneModel == PhoneUtil.HUAWEI) {
             HMSAgent.connect(activity, new ConnectHandler() {
                 @Override
                 public void onConnect(int rst) {
                     Log.e("huaweipush_connect", rst + "");
                     getHuaweiToken(activity);
-                    HMSAgent.Push.getPushState(new GetPushStateHandler() {
-                        @Override
-                        public void onResult(int rst) {
-
-                        }
-                    });
+//                    HMSAgent.Push.getPushState(new GetPushStateHandler() {
+//                        @Override
+//                        public void onResult(int rst) {
+//
+//                        }
+//                    });
                 }
             });
-//        }
+        }
     }
 
     /**
@@ -179,7 +177,26 @@ public class PushManager {
      *
      * @param alias
      */
-    public static void setPushAlais(String alias) {
+    public static void setPushAlais(Context context,String alias) {
+        int phoneModel = PhoneUtil.getPhoneModel(context);
+        switch (phoneModel) {
+            case PhoneUtil.XIAOMI:
+               MiPushClient.setAlias(context,alias,null);
+                break;
+            case PhoneUtil.VIVO:
+                MiPushClient.setAlias(context,alias,null);
+                break;
+            case PhoneUtil.HUAWEI:
+                break;
+            default:
+                MiPushClient.setAlias(context,alias,null);
+                break;
+        }
+    }
 
+    public static OnPushRecivcerListener mlis;
+
+    public static void setOnPushRecivcerListener(OnPushRecivcerListener recivcerListener) {
+        mlis = recivcerListener;
     }
 }

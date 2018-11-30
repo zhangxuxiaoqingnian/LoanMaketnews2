@@ -18,13 +18,13 @@ public class JumpJson {
 
 
 
-    private String  url;
+    private String  url = "content_url";
 
 
-    private String id;
+    private String id="1";
 
-    private String content;
-    private String title;
+    private String content="ceshi";
+    private String title="sss";
 
 
 
@@ -66,5 +66,16 @@ public class JumpJson {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "JumpJson{" +
+                "type=" + type +
+                ", url='" + url + '\'' +
+                ", id='" + id + '\'' +
+                ", content='" + content + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }

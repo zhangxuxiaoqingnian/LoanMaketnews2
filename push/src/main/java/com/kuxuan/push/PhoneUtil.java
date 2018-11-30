@@ -29,13 +29,13 @@ public class PhoneUtil {
      */
     public static int getPhoneModel(Context context) {
         String phoneMessage = getPhoneMessage();
-        if (phoneMessage.equals("Huawei")) {
+        if (phoneMessage.equals("HUAWEI")) {
             return HUAWEI;
-        } else if (phoneMessage.equals("Xiaomi")) {
+        } else if (phoneMessage.equals("XIAOMI")) {
             return XIAOMI;
-        } else if (phoneMessage.equals("Vivo")) {
+        } else if (phoneMessage.equals("VIVO")) {
             return VIVO;
-        } else if (phoneMessage.equals("Oppo")) {
+        } else if (phoneMessage.equals("OPPO")) {
             return OPPO;
         } else {
             return OTHER;
