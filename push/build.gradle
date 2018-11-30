@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -29,5 +29,6 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
     compile files('libs/MiPush_SDK_Client_3_6_9.jar')
     compile 'com.huawei.android.hms:push:2.6.1.301'
+    compile 'com.huawei.android.hms:hwid:2.6.1.301'
     compile files('libs/vivo_pushsdk_v2.3.1.jar')
 }

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Process;
 import android.os.StrictMode;
 
+import com.kuxuan.push.PushManager;
 import com.smileflowpig.money.BuildConfig;
 import com.smileflowpig.money.common.app.Application;
 import com.smileflowpig.money.factory.Factory;
@@ -68,7 +69,7 @@ public class App extends Application {
 //                new MobclickAgent.UMAnalyticsConfig(this, UMENG_APP_KEY, BASE_CHANNEL));
         //推送进行初始化
 
-
+        PushManager.register(this);
 
         Network.channelId = BuildConfig.CHANNLE;
 //        Fabric.with(this, new Crashlytics());

@@ -29,3 +29,20 @@
  -keep class com.kuxuan.push.reciver.MiPushReciver{*;}
  #可以防止一个误报的 warning 导致无法成功编译，如果编译使用的 Android 版本是 23。
  -dontwarn com.xiaomi.push.**
+
+
+
+
+-ignorewarning
+-keepattributes *Annotation*
+-keepattributes Exceptions
+-keepattributes InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+-keep class com.hianalytics.android.**{*;}
+-keep class com.huawei.updatesdk.**{*;}
+-keep class com.huawei.hms.**{*;}
+
+-keep class com.huawei.android.hms.agent.**{*;}
+-keep class com.huawei.gamebox.plugin.gameservice.**{*;}
+

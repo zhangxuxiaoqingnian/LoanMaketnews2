@@ -231,7 +231,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     }
                 });
 
-        PushManager.register(getApplicationContext());
+
 
     }
 

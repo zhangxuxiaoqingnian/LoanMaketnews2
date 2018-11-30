@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.kuxuan.push.PushManager;
 import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.moneyplatfrom.activities.AdActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MainActivity;
@@ -78,6 +79,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         sp = getSharedPreferences("Overs",MODE_PRIVATE);
         sp2= getSharedPreferences("isshowimg",
                 Context.MODE_PRIVATE);
+        PushManager.huaweiConnect(this);
 
     }
 
