@@ -246,7 +246,6 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         lang = bundle.getInt("Lang");
         pricessid = bundle.getInt("pricessid", -1);
         return !TextUtils.isEmpty(mProductId);
-
     }
 
 

@@ -2,8 +2,10 @@ package com.smileflowpig.money.moneyplatfrom.push.reciver;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
+import com.smileflowpig.money.factory.service.MyService;
 import com.smileflowpig.money.moneyplatfrom.push.JumpJson;
 import com.smileflowpig.money.moneyplatfrom.push.PushManager;
 import com.xiaomi.mipush.sdk.ErrorCode;
@@ -63,11 +65,11 @@ public class MiPushReciver extends PushMessageReceiver {
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 //小米注册成功
-//                String regid = MiPushClient.getRegId(context);
-//                Log.e("ppppppp", "mipush regid: " + MiPushClient.getRegId(context));
-//                Intent intent = new Intent(context, MyService.class);
-//                intent.putExtra("regid",regid);
-//                context.startService(intent);
+                String regid = MiPushClient.getRegId(context);
+                Log.e("ppppppp", "mipush regid: " + MiPushClient.getRegId(context));
+                Intent intent = new Intent(context, MyService.class);
+                intent.putExtra("regid",regid);
+                context.startService(intent);
             }
         }
     }

@@ -16,6 +16,10 @@
 
 
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    //小米push权限
+    <permission android:name="com.smileflowpig.money.permission.MIPUSH_RECEIVE" />
+
+    <uses-permission android:name="com.smileflowpig.money.permission.MIPUSH_RECEIVE" />
     <application
         android:name=".moneyplatfrom.App"
         android:allowBackup="true"
@@ -404,7 +408,7 @@
         </receiver>
 
         //自定义小米推送push类
-        <receiver android:name=".reciver.MiPushReciver">
+        <receiver android:name=".moneyplatfrom.push.reciver.MiPushReciver">
 
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
@@ -437,7 +441,7 @@
             android:value="10533" />
 
 
-        <receiver android:name=".reciver.PushMessageReceiverImpl">
+        <receiver android:name=".moneyplatfrom.push.reciver.PushMessageReceiverImpl">
 
             <intent-filter>
 
@@ -450,8 +454,8 @@
         //华为推送
         <meta-data
             android:name="com.huawei.hms.client.appid"
-            android:value="appid=100488097"/>
-        <receiver android:name=".reciver.HuaweiReceiver" >
+            android:value="appid=100488097" />
+        <receiver android:name=".moneyplatfrom.push.reciver.HuaweiReceiver">
             <intent-filter>
                 <!-- 必须,用于接收token | Must， for receiving token -->
                 <action android:name="com.huawei.android.push.intent.REGISTRATION" />
@@ -464,7 +468,7 @@
             </intent-filter>
         </receiver>
         <!--&lt;!&ndash; 接入HMSSDK PUSH模块需要注册 :接收通道发来的通知栏消息 | The access HMSSDK push module needs to be registered: the notification bar message sent from the receiving channel &ndash;&gt;-->
-        <receiver android:name="com.huawei.hms.support.api.push.PushEventReceiver" >
+        <receiver android:name="com.huawei.hms.support.api.push.PushEventReceiver">
             <intent-filter>
                 <action android:name="com.huawei.intent.action.PUSH" />
             </intent-filter>
@@ -475,7 +479,7 @@
             android:name="com.huawei.hms.update.provider.UpdateProvider"
             android:authorities="com.smileflowpig.money.hms.update.provider"
             android:exported="false"
-            android:grantUriPermissions="true"/>
+            android:grantUriPermissions="true" />
 
         <!--&lt;!&ndash;    在application节点下增加activity。-->
         <!--BridgeActivity定义了HMS-SDK中一些跳转所需要的透明页面&ndash;&gt;-->
@@ -485,7 +489,7 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent" >
+            android:theme="@android:style/Theme.Translucent">
             <meta-data
                 android:name="hwc-theme"
                 android:value="androidhwext:style/Theme.Emui.Translucent" />
@@ -495,7 +499,7 @@
             android:name="com.huawei.updatesdk.service.otaupdate.AppUpdateActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:theme="@style/upsdkDlDialog" >
+            android:theme="@style/upsdkDlDialog">
 
             <meta-data
                 android:name="hwc-theme"
@@ -506,7 +510,7 @@
             android:name="com.huawei.updatesdk.support.pm.PackageInstallerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
-            android:theme="@style/upsdkDlDialog" >
+            android:theme="@style/upsdkDlDialog">
             <meta-data
                 android:name="hwc-theme"
                 android:value="androidhwext:style/Theme.Emui.Translucent" />
@@ -520,7 +524,6 @@
             android:grantUriPermissions="true">
 
 
-
         </provider>
         <!-- 应用下载服务 -->
         <!--<service android:name="com.huawei.updatesdk.service.deamon.download.DownloadService"-->
@@ -532,7 +535,7 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent" >
+            android:theme="@android:style/Theme.Translucent">
             <meta-data
                 android:name="hwc-theme"
                 android:value="androidhwext:style/Theme.Emui.Translucent" />

@@ -175,19 +175,19 @@ public class PushManager {
      *
      * @param alias
      */
-    public static void setPushAlais(Context context,String alias) {
+    public static void setPushAlais(Context context, String alias) {
         int phoneModel = PhoneUtil.getPhoneModel(context);
         switch (phoneModel) {
             case PhoneUtil.XIAOMI:
-               MiPushClient.setAlias(context,alias,null);
+                MiPushClient.setAlias(context, alias, null);
                 break;
             case PhoneUtil.VIVO:
-                MiPushClient.setAlias(context,alias,null);
+                MiPushClient.setAlias(context, alias, null);
                 break;
             case PhoneUtil.HUAWEI:
                 break;
             default:
-                MiPushClient.setAlias(context,alias,null);
+                MiPushClient.setAlias(context, alias, null);
                 break;
         }
     }

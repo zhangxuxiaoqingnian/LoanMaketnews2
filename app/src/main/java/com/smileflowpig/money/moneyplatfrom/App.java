@@ -68,9 +68,9 @@ public class App extends Application {
 //        MobclickAgent.startWithConfigure(
 //                new MobclickAgent.UMAnalyticsConfig(this, UMENG_APP_KEY, BASE_CHANNEL));
         //推送进行初始化
-
         PushManager.register(this);
 
+        PushManager.setPushAlais(this, "token");
         Network.channelId = BuildConfig.CHANNLE;
 //        Fabric.with(this, new Crashlytics());
 
