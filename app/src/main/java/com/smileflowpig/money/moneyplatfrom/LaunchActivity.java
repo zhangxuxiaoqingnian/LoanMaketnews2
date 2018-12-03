@@ -12,9 +12,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.kuxuan.push.JumpJson;
-import com.kuxuan.push.OnPushRecivcerListener;
-import com.kuxuan.push.PushManager;
+
 import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.moneyplatfrom.activities.AdActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MainActivity;
@@ -26,6 +24,9 @@ import com.smileflowpig.money.factory.model.api.launcher.RspAdModel;
 import com.smileflowpig.money.factory.model.db.AdModel;
 import com.smileflowpig.money.factory.presenter.launcher.LauncherContract;
 import com.smileflowpig.money.factory.presenter.launcher.LauncherPresenter;
+import com.smileflowpig.money.moneyplatfrom.push.JumpJson;
+import com.smileflowpig.money.moneyplatfrom.push.OnPushRecivcerListener;
+import com.smileflowpig.money.moneyplatfrom.push.PushManager;
 import com.umeng.analytics.MobclickAgent;
 
 

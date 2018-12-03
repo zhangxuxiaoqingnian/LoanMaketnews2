@@ -1,1 +1,1 @@
-include ':app', ':common', ':lang', ':factory', ':PhotoPicker', ':push'
+include ':app', ':common', ':lang', ':factory', ':PhotoPicker'
