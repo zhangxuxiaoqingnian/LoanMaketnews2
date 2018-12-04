@@ -23,8 +23,8 @@ public class MiPushReciver extends PushMessageReceiver {
 
     @Override public void onNotificationMessageClicked(Context context, MiPushMessage message) {
         Log.e("push", "mipush message: " + message.toString());
-        if (PushManager.mlis != null)
-            PushManager.mlis.onNotificationMessageClicked(context, new JumpJson());
+//        if (PushManager.mlis != null)
+//            PushManager.mlis.onNotificationMessageClicked(context, new JumpJson());
 //        if(_isApplicationRunning(context)){
 //            if(message.getExtra().containsKey("url")) {
 //                //获取信息跳转产品详情
