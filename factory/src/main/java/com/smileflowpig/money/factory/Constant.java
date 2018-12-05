@@ -8,6 +8,7 @@ package com.smileflowpig.money.factory;
 public class Constant {
 
 
+    public static final String NEEDGUID = "needguild";
     public static class UserInfo {
         public static final String USERNAME = "userName";
         public static final String SESSIONID = "sessionid";

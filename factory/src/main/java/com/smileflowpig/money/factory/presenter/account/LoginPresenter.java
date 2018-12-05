@@ -54,7 +54,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
                 @Override
                 public void onDataLoaded(User user) {
                     if(user!=null){
-
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.SESSIONID, user.getPHPSESSID());
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.USERNAME, user.getPhone());
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, password);
@@ -90,7 +89,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
                         SPUtil.putAndApply(Factory.app(), Constant.UserInfo.PASSWORD, "");
                         SPUtil.putAndApply(Factory.app(),Constant.UserInfo.ISEXITE,false);
                         if (user.getUser_token()!=null)
-                            SPUtil.putAndApply(Factory.app(), Constant.UserInfo.CODETOKEN, user.getUser_token());
+                                    SPUtil.putAndApply(Factory.app(), Constant.UserInfo.CODETOKEN, user.getUser_token());
                     }
                     onSuccess(user);
                 }

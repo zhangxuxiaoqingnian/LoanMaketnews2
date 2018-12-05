@@ -38,6 +38,7 @@
 
         <activity
             android:name=".moneyplatfrom.activities.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
         <activity
@@ -87,9 +88,24 @@
 
         <activity
             android:name=".moneyplatfrom.activities.DetailActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main" />
+            android:theme="@style/AppTheme.Main">
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.smileflowpig.money"
+                    android:path="/detail"
+                    android:scheme="detiailactivity" />
+
+
+            </intent-filter>
+
+
+        </activity>
         <activity android:name=".moneyplatfrom.activities.Activity_HouseCalc" />
         <activity android:name=".moneyplatfrom.guoshen.activity.HomeActivity" />
         <activity android:name=".moneyplatfrom.activities.Activity_Average_Capital_Interest" />
@@ -280,7 +296,21 @@
         <activity
             android:name=".moneyplatfrom.activities.CaseurlActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main" />
+            android:theme="@style/AppTheme.Main" >
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.smileflowpig.money"
+                    android:path="/caseurl"
+                    android:scheme="caseurlactivity" />
+
+
+            </intent-filter>
+        </activity>
         <activity
             android:name=".moneyplatfrom.activities.FeedbackActivity"
             android:screenOrientation="portrait"
@@ -359,7 +389,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
 
+        <activity
+            android:name=".moneyplatfrom.activities.GuildActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main" />
 
+
+        <!--推送模块-->
         <service
             android:name="com.xiaomi.push.service.XMPushService"
             android:enabled="true"
@@ -540,6 +576,46 @@
                 android:name="hwc-theme"
                 android:value="androidhwext:style/Theme.Emui.Translucent" />
         </activity>
+
+
+        <activity
+            android:name="com.huawei.hms.activity.BridgeActivity"
+            android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Translucent">
+            <meta-data
+                android:name="hwc-theme"
+                android:value="androidhwext:style/Theme.Emui.Translucent" />
+        </activity>
+
+        <!-- 接入HMSSDK 需要注册的activity | Access HMSSDK activity to be registered-->
+        <activity
+            android:name="com.huawei.updatesdk.service.otaupdate.AppUpdateActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:theme="@style/upsdkDlDialog">
+            <meta-data
+                android:name="hwc-theme"
+                android:value="androidhwext:style/Theme.Emui.Translucent.NoTitleBar" />
+        </activity>
+
+        <!-- 接入HMSSDK 需要注册的activity | Access HMSSDK activity to be registered-->
+        <activity
+            android:name="com.huawei.updatesdk.support.pm.PackageInstallerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:theme="@style/upsdkDlDialog">
+            <meta-data
+                android:name="hwc-theme"
+                android:value="androidhwext:style/Theme.Emui.Translucent" />
+        </activity>
+        <!-- 接入HMSSDK 需要注册的应用下载服务 | Access HMSSDK need to register app download service-->
+        <service
+            android:name="com.huawei.updatesdk.service.deamon.download.DownloadService"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -142,17 +142,17 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         }
         //滚动文字
         getlapview();
-        //banner
-        getbannerdata();
-        //特色功能
-        getfeature();
-        //热门平台
-        getplatform();
-        //热门资讯
-        getmessage();
-
-        //滑动模块
-        getclose();
+//        //banner
+//        getbannerdata();
+//        //特色功能
+//        getfeature();
+//        //热门平台
+//        getplatform();
+//        //热门资讯
+//        getmessage();
+//
+//        //滑动模块
+//        getclose();
 //        MyAdapter myAdapter=new MyAdapter();
 //        vp.setAdapter(myAdapter);
 //        vp.setCurrentItem(1);
@@ -162,13 +162,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
 
         //获取控件高度
-        ViewTreeObserver vto = shoulayout.getViewTreeObserver();
-        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            public boolean onPreDraw() {
-                measuredHeight = shoulayout.getMeasuredHeight();
-                return true;
-            }
-        });
+
 
     }
 
@@ -213,13 +207,25 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
             @Override
             public void onError(Throwable e) {
-
+                ViewTreeObserver vto = shoulayout.getViewTreeObserver();
+                vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    public boolean onPreDraw() {
+                        measuredHeight = shoulayout.getMeasuredHeight();
+                        return true;
+                    }
+                });
                 System.out.println(e.toString()+"错误");
             }
 
             @Override
             public void onComplete() {
-
+                ViewTreeObserver vto = shoulayout.getViewTreeObserver();
+                vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    public boolean onPreDraw() {
+                        measuredHeight = shoulayout.getMeasuredHeight();
+                        return true;
+                    }
+                });
             }
         });
     }
@@ -247,12 +253,12 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
             @Override
             public void onError(Throwable e) {
-
+                getbannerdata();
             }
 
             @Override
             public void onComplete() {
-
+                getbannerdata();
             }
         });
     }
@@ -308,12 +314,12 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
             @Override
             public void onError(Throwable e) {
-
+                getclose();
             }
 
             @Override
             public void onComplete() {
-
+                getclose();
             }
         });
 
@@ -359,19 +365,19 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
             @Override
             public void onError(Throwable e) {
-
+                getmessage();
             }
 
             @Override
             public void onComplete() {
-
+                getmessage();
             }
         });
 
     }
 
     public void getfeature(){
-
+        getplatform();
 //        FeatureAdapter featureAdapter=new FeatureAdapter(getActivity(),list);
 //        LinearLayoutManager ms=new LinearLayoutManager(getActivity());
 //        ms.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -419,12 +425,12 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
             @Override
             public void onError(Throwable e) {
-
+                getfeature();
             }
 
             @Override
             public void onComplete() {
-
+                getfeature();
             }
         });
     }

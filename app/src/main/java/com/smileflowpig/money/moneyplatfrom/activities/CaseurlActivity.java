@@ -3,6 +3,7 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -83,13 +84,18 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
     private String shareTitle = null;
     private String shareCotnent = null;
 
+    private boolean isPush = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        urlid = intent.getStringExtra("urlid");
-        urlname = intent.getStringExtra("urlname");
+        Uri data = intent.getData();
+        if (data == null) {
+            urlid = intent.getStringExtra("urlid");
+            urlname = intent.getStringExtra("urlname");
+        }
 
         String urladdress = intent.getStringExtra("urladdress");
         case_back.setOnClickListener(this);
@@ -142,7 +148,21 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 
         //资讯h5
         //https://m.henhaojie.com/xiaohuazhu/information.html?id=3&view_num=1&sessionid=fdhof410su74rraob9matto0r4
-        strurl = ONLINE_URL + "id=" + urlid + "&view_num=" + urlname + "&sessionid=" + sessionid;
+        //如果datta不为空，说明是华为推送过来的数据，从url里面获取数据
+        if (data != null) {
+            String pushId = data.getQueryParameter("isPush");
+            isPush = pushId.equals("1") ? true : false;
+            strurl = data.getQueryParameter("url") + "&sessionid=" + sessionid;
+        } else {
+            //判断是不是小米推送过来的
+            isPush = getIntent().getBooleanExtra("push", false);
+            if (isPush) {
+                strurl = getIntent().getStringExtra("pushurl") + "&sessionid=" + sessionid;
+            } else {
+                strurl = ONLINE_URL + "id=" + urlid + "&view_num=" + urlname + "&sessionid=" + sessionid;
+            }
+
+        }
 //        wv.loadUrl("?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
         wv.loadUrl(strurl);
 
@@ -188,7 +208,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         public void webViewTitleContent(String json) {
 //            ToastUtil.show(context, "分享微信");
             JSONObject jsonObject = null;
-            Log.e("currentThread",Thread.currentThread().toString());
+            Log.e("currentThread", Thread.currentThread().toString());
             try {
                 jsonObject = new JSONObject(json);
                 shareTitle = jsonObject.getString("title");
@@ -203,6 +223,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         }
 
     }
+
     @Override
     protected boolean isNeedNotch() {
         return true;
@@ -435,4 +456,11 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isPush) {
+            MainActivity.show(this);
+        }
+    }
 }

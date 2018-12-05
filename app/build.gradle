@@ -276,6 +276,10 @@ dependencies {
     compile 'com.huawei.android.hms:hwid:2.6.1.301'
     compile files('libs/vivo_pushsdk_v2.3.1.jar')
 
+    compile 'com.alibaba:fastjson:1.2.54'
+    compile 'com.alibaba:fastjson:1.1.70.android'
+
+
 }
 def product_name = "bangnidai_v" + android.defaultConfig.versionName
 def time = "1367"
