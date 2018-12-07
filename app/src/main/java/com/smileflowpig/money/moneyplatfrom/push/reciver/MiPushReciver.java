@@ -37,7 +37,7 @@ public class MiPushReciver extends PushMessageReceiver {
         try {
             JSONObject jsonObject = new JSONObject(content);
             int is_product = jsonObject.getInt("is_product");
-            if (is_product == 0) {
+            if (is_product == 2) {
                 //跳转咨询
                 String url = jsonObject.getString("url");
                 Intent intent = new Intent(context, CaseurlActivity.class);
@@ -45,7 +45,7 @@ public class MiPushReciver extends PushMessageReceiver {
                 intent.putExtra("push", true);
                 intent.putExtra("pushurl", url);
                 context.startActivity(intent);
-            } else if (is_product == 1) {
+            } else if (is_product == 3) {
                 //跳转产品
                 int id = jsonObject.getInt("id");
                 Intent intent = new Intent(context, DetailActivity.class);
@@ -60,7 +60,7 @@ public class MiPushReciver extends PushMessageReceiver {
                 //进入首页（如果）
                 if (!MyLifecycleHandler.isApplicationInForeground()) {
                     Intent intent = new Intent(context, LaunchActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
             }
@@ -115,7 +115,7 @@ public class MiPushReciver extends PushMessageReceiver {
                 Log.e("ppppppp", "mipush regid: " + MiPushClient.getRegId(context));
                 Intent intent = new Intent(context, MyService.class);
                 intent.putExtra("regid", regid);
-                context.startService(intent);
+                context.startService(intent);context.startService(intent);
             }
         }
     }

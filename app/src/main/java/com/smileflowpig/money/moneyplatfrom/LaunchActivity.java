@@ -93,6 +93,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
                 Context.MODE_PRIVATE);
         PushManager.register(this);
         PushManager.huaweiConnect(this);
+        //添加推送别名
         if (LoginStatusUtil.isLogin()) {
             String phone = (String) SPUtil.get(this, Constant.UserInfo.USERNAME, "");
             if (!TextUtils.isEmpty(phone)) {

@@ -52,8 +52,6 @@ public class MyDatumActivity extends PresenterActivity implements View.OnClickLi
         String s = myphone.substring(0, 3) + "****" + myphone.substring(7, myphone.length());
         cardphone.setText(s);
 
-
-
     }
     public void initview(){
         back.setOnClickListener(this);
@@ -74,7 +72,7 @@ public class MyDatumActivity extends PresenterActivity implements View.OnClickLi
 
             @Override
             public void onNext(MyidentcardBean o) {
-                if(o.rst==null){
+                if(o==null||o.rst==null){
                     System.out.println("没数据");
                 }else {
                     MyidentcardBean.RstBean rst = o.rst;

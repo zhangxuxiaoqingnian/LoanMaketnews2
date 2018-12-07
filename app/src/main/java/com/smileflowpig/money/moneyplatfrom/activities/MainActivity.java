@@ -440,7 +440,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     public void onTick(long millisUntilFinished) {
 
                         if (millisUntilFinished / 1000 == 0) {
+                            try {
+
                             getpopshort(content, icon);
+                            }catch (Exception e){
+
+                            }
                         }
 
                     }
@@ -583,7 +588,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     }
 
-    public void getpopshort(String cont, String img) {
+    public void getpopshort(String cont, String img) throws  Exception{
 
         //获取屏幕宽度
         int screenWidth = DisplayUtil.getScreenWidth();

@@ -582,8 +582,12 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      */
     @Override
     public void state() {
-
+try {
         mPresenter.apply(mProductDetail.getId(), time.getText().toString(), money.getText().toString());
+
+}catch (Exception e){
+
+}
     }
 
     /**
@@ -621,9 +625,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     @Override
     public void getApplyId(String id) {
         Log.e(TAG, id + "ID是");
-
         boolean ispop = false;
-
         int clickNumber = (int) SPUtil.get(getApplicationContext(), Common.Daichao.CLICKNUMBER, 0);
         String clickdate = (String) SPUtil.get(getApplicationContext(), Common.Daichao.CLICKDATEFOUR, "");
         Date d = new Date();
@@ -647,7 +649,6 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
                 SPUtil.putAndApply(getApplicationContext(), Common.Daichao.CLICKDATEFOUR, "");
             }
         }
-
 
         if (!istrue) {
             //判断取消还是收藏

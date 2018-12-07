@@ -102,7 +102,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
     @Override
     public void getCode(String phone, String qrcode, String smstype) {
         final LoginContract.View view = getView();
-
         if (TextUtils.isEmpty(phone)) {
             if (view != null)
                 view.showError(R.string.data_account_login_invalid_parameter);
@@ -112,9 +111,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
             AccountHelper.loginByCode(model, new DataSource.Callback<CodeRspModel>() {
                 @Override
                 public void onDataNotAvailable(@StringRes int strRes) {
-
                     getView().showError(strRes);
-
                 }
 
                 @Override
