@@ -11,6 +11,7 @@ import com.smileflowpig.money.BuildConfig;
 import com.smileflowpig.money.common.app.Application;
 import com.smileflowpig.money.factory.Factory;
 import com.smileflowpig.money.factory.net.Network;
+import com.smileflowpig.money.moneyplatfrom.push.PushManager;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.commonsdk.utils.UMUtils;
@@ -54,7 +55,7 @@ public class App extends Application {
         QueuedWork.isUseThreadPool = false;
         UMShareAPI.get(this);
         PlatformConfig.setWeixin("wx0ecd96dc278329e3", "69a60470c14742059f9d90194b92655b");
-        PlatformConfig.setQQZone("101524904","5427cfe5dbe05f72e6fc44acafbb93c3");
+        PlatformConfig.setQQZone("101524904", "5427cfe5dbe05f72e6fc44acafbb93c3");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
@@ -67,12 +68,12 @@ public class App extends Application {
 //        MobclickAgent.startWithConfigure(
 //                new MobclickAgent.UMAnalyticsConfig(this, UMENG_APP_KEY, BASE_CHANNEL));
         //推送进行初始化
-
-
-
+//        PushManager.register(this);
+//
+//        PushManager.setPushAlais(this, "token");
         Network.channelId = BuildConfig.CHANNLE;
 //        Fabric.with(this, new Crashlytics());
-
+        registerActivityLifecycleCallbacks(new MyLifecycleHandler());
 
     }
 

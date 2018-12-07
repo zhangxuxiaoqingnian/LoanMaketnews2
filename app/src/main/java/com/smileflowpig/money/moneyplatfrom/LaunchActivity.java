@@ -4,22 +4,34 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+
+import com.smileflowpig.money.factory.Constant;
 import com.smileflowpig.money.factory.Factory;
+import com.smileflowpig.money.factory.util.LoginStatusUtil;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.activities.AdActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MainActivity;
 
 import butterknife.BindView;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterActivity;
 import com.smileflowpig.money.factory.model.api.launcher.RspAdModel;
 import com.smileflowpig.money.factory.model.db.AdModel;
 import com.smileflowpig.money.factory.presenter.launcher.LauncherContract;
 import com.smileflowpig.money.factory.presenter.launcher.LauncherPresenter;
+import com.smileflowpig.money.moneyplatfrom.push.JumpJson;
+import com.smileflowpig.money.moneyplatfrom.push.OnPushRecivcerListener;
+import com.smileflowpig.money.moneyplatfrom.push.PushManager;
 import com.umeng.analytics.MobclickAgent;
 
 
@@ -29,6 +41,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
     protected boolean isNeedNotch() {
         return false;
     }
+
     private static final int MSG_VISIBLE = 0;
 
     private static final String KEY_TIME = "KEY_IMAGE_FILE";
@@ -75,10 +88,18 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         mPresenter.start();
         mImageView.setAlpha(0.1f);
 
-        sp = getSharedPreferences("Overs",MODE_PRIVATE);
-        sp2= getSharedPreferences("isshowimg",
+        sp = getSharedPreferences("Overs", MODE_PRIVATE);
+        sp2 = getSharedPreferences("isshowimg",
                 Context.MODE_PRIVATE);
-
+        PushManager.register(this);
+        PushManager.huaweiConnect(this);
+        //添加推送别名
+        if (LoginStatusUtil.isLogin()) {
+            String phone = (String) SPUtil.get(this, Constant.UserInfo.USERNAME, "");
+            if (!TextUtils.isEmpty(phone)) {
+                PushManager.setPushAlais(this, phone);
+            }
+        }
     }
 
     public void onResume() {
@@ -90,6 +111,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
     @Override
     protected void initWidows() {
         super.initWidows();
@@ -136,26 +158,31 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
     private void reallySkip() {
         //检测跳转到过审页还是线上页
 //        if (checkChannel()) {
-            // 检查跳转到广告页还是跳转到主页
+        // 检查跳转到广告页还是跳转到主页
 //            if (checkData()==false) {
-            Log.e("LauncherPresenter","launchactivity");
-            boolean iscover = sp2.getBoolean("iscover", false);
-            boolean oldwer = sp.getBoolean("oldwer", false);
-            if(iscover){
+
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("custorm://com.smileflowpig.money/test?title=goodnews&content=this is test"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String s = intent.toUri(Intent.URI_INTENT_SCHEME);
+        Log.e("LauncherPresenter", s);
+        boolean iscover = sp2.getBoolean("iscover", false);
+        boolean oldwer = sp.getBoolean("oldwer", false);
+        if (iscover) {
+            MainActivity.show(this);
+            finish();
+        } else {
+            if (oldwer) {
+                AdActivity.show(this);
+                finish();
+            } else {
+                sp.edit().putBoolean("oldwer", true).commit();
                 MainActivity.show(this);
                 finish();
-            }else {
-                if(oldwer){
-                    AdActivity.show(this);
-                    finish();
-                }else {
-                    sp.edit().putBoolean("oldwer",true).commit();
-                    MainActivity.show(this);
-                    finish();
-                }
             }
+        }
 
-            finish();
+        finish();
 //        } else {
 //      //     HomeActivity.show(this);
 ////           finish();
@@ -177,6 +204,7 @@ public class LaunchActivity extends PresenterActivity<LauncherContract.Presenter
 
     /**
      * 给背景设置一个动画
+     *
      * @param endProgress 动画的结束进度
      * @param endCallback 动画结束时触发
      */

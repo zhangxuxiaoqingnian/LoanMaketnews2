@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
@@ -28,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.kuxuan.push.PushManager;
 import com.smileflowpig.money.common.app.Activity;
 import com.smileflowpig.money.common.factory.data.DataSource;
 import com.smileflowpig.money.common.utils.DisplayUtil;
@@ -51,6 +51,7 @@ import com.smileflowpig.money.moneyplatfrom.frags.main.state.NewSearchFragment;
 import com.smileflowpig.money.moneyplatfrom.frags.main.state.PigHomeFragment;
 import com.smileflowpig.money.moneyplatfrom.helper.DataGenerator;
 import com.smileflowpig.money.moneyplatfrom.helper.FragmentHelper;
+import com.smileflowpig.money.moneyplatfrom.push.PushManager;
 import com.smileflowpig.money.moneyplatfrom.util.HongbaoOperator;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
@@ -231,8 +232,24 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     }
                 });
 
-        PushManager.register(getApplicationContext());
+//        test();
+        checkNeedGuid();
+    }
 
+
+    private void test() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("caseurlactivity://com.smileflowpig.money/caseurl?url=https://m.henhaojie.com/xiaohuazhu/information.html?id=3&view_num=1"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String intentUri = intent.toUri(Intent.URI_INTENT_SCHEME);
+        Log.e("打开咨询页页面", intentUri);
+    }
+
+    private void checkNeedGuid() {
+        boolean isNeed = (boolean) SPUtil.get(this, Constant.NEEDGUID, true);
+        if (isNeed && !LoginStatusUtil.isLogin()) {
+            Intent intent = new Intent(this, GuildActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void loginAuto() {
@@ -423,7 +440,12 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
                     public void onTick(long millisUntilFinished) {
 
                         if (millisUntilFinished / 1000 == 0) {
+                            try {
+
                             getpopshort(content, icon);
+                            }catch (Exception e){
+
+                            }
                         }
 
                     }
@@ -566,7 +588,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
 
     }
 
-    public void getpopshort(String cont, String img) {
+    public void getpopshort(String cont, String img) throws  Exception{
 
         //获取屏幕宽度
         int screenWidth = DisplayUtil.getScreenWidth();
@@ -845,6 +867,7 @@ public class MainActivity extends PresenterActivity<MainContract.Presenter>
             }
         });
         adDialog.show();
+
     }
 
 

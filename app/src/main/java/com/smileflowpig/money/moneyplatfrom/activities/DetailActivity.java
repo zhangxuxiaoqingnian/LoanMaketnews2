@@ -2,6 +2,7 @@ package com.smileflowpig.money.moneyplatfrom.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -44,6 +45,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.Common;
 import com.smileflowpig.money.common.app.PresenterActivity;
@@ -66,7 +68,7 @@ import com.umeng.analytics.MobclickAgent;
 
 //产品详情页
 public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
-        implements DetailContract.View, DgFragment.DialogClick,View.OnClickListener {
+        implements DetailContract.View, DgFragment.DialogClick, View.OnClickListener {
     private static final String TAG = "DetailActivity";
     //产品ID
     public static final String PRODUCT_ID = "PRODUCT_ID";
@@ -74,7 +76,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     public static final String PRODUCT_FLAG = "PRODUCT_FLAG";
     public static final String TYPE_CHANNEL = "channel_type";
     public static final String FLAG = "1";
-    private boolean istrue=false;
+    private boolean istrue = false;
     //未登陆弹框
     DgFragment dgFragment;
     //产品Id
@@ -127,7 +129,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private LinearLayout collectlayout;
     private ImageView nocollect;
     private TextView apply;
-    private boolean iscont=false;
+    private boolean iscont = false;
     private String num;
     private ImageView share;
     private RelativeLayout layout;
@@ -137,12 +139,12 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     private AlertFragment alertFragment;
     private ImageView quality;
     private int pricessid;
+    private boolean isPush = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
     }
@@ -156,7 +158,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         super.onPause();
         MobclickAgent.onPause(this);
     }
-    public void initview(){
+
+    public void initview() {
         money = (EditText) findViewById(R.id.summoney);
         data = (LinearLayout) findViewById(R.id.ppdata);
         give = (TextView) findViewById(R.id.successgive);
@@ -207,14 +210,14 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      *
      * @param context context
      */
-    public static void show(Context context, String id, String type_channel,int num,int convert) {
+    public static void show(Context context, String id, String type_channel, int num, int convert) {
 
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(PRODUCT_ID, id);
         intent.putExtra(TYPE_CHANNEL, type_channel);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("Lang",num);
-        intent.putExtra("pricessid",convert);
+        intent.putExtra("Lang", num);
+        intent.putExtra("pricessid", convert);
         context.startActivity(intent);
 
 
@@ -239,14 +242,37 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     @Override
     protected boolean initArgs(Bundle bundle) {
 
-        mProductId = bundle.getString(PRODUCT_ID);
-//        Log.e(TAG,mProductId);
-        enter_source = bundle.getString(TYPE_CHANNEL);
-        flag = bundle.getString(PRODUCT_FLAG);
-        lang = bundle.getInt("Lang");
-        pricessid = bundle.getInt("pricessid", -1);
-        return !TextUtils.isEmpty(mProductId);
+        Uri data = getIntent().getData();
+        if (data != null) {
+            mProductId = data.getQueryParameter("PRODUCT_ID");
+            enter_source = data.getQueryParameter("channel_type");
+            flag = data.getQueryParameter("PRODUCT_FLAG");
+            lang = 1;
+            pricessid = 13;
+        } else {
+            mProductId = bundle.getString(PRODUCT_ID);
+            enter_source = bundle.getString(TYPE_CHANNEL);
+            flag = bundle.getString(PRODUCT_FLAG);
+            lang = bundle.getInt("Lang");
+            pricessid = bundle.getInt("pricessid", -1);
+        }
+//        if(isPush==1){
+//           MobclickAgent.onEvent(this,"push_product");
+//           mProductId = getIntent().getStringExtra(PRODUCT_ID);
+//           enter_source = getIntent().getStringExtra(TYPE_CHANNEL);
+//           flag = getIntent().getStringExtra(PRODUCT_FLAG);
+//           lang = getIntent().getIntExtra("Lang",1);
+//           pricessid = getIntent().getIntExtra( "pricessid", -1);
+//       }else{
+//           mProductId = bundle.getString(PRODUCT_ID);
+//           enter_source = bundle.getString(TYPE_CHANNEL);
+//           flag = bundle.getString(PRODUCT_FLAG);
+//           lang = bundle.getInt("Lang");
+//           pricessid = bundle.getInt("pricessid", -1);
+//       }
 
+
+        return !TextUtils.isEmpty(mProductId);
     }
 
 
@@ -305,7 +331,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     public void onDone(ProductDetail product) {
         productDetails.add(product);
         this.mProductDetail = product;
-        mProductId =product.getId();
+        mProductId = product.getId();
         initProductData(product);
     }
 
@@ -332,10 +358,12 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             return false;
         }
     }
+
     @Override
     protected boolean isNeedNotch() {
         return true;
     }
+
     /**
      * 初始化数据
      *
@@ -343,50 +371,50 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      */
     private void initProductData(final ProductDetail product) {
 
-        NoteEntity noteEntity=new NoteEntity();
-        noteEntity.imgurl=product.getIcon();
-        noteEntity.title=product.getName();
-        noteEntity.content=product.getDescription();
-        noteEntity.productid=product.getId();
-        noteEntity.peoplenum=product.getApplicants();
-        noteEntity.price=product.getUpper_amount()+"-"+ product.getLower_amount()+"元";
-        noteEntity.interest=product.getMonthly_rate()+"%";
-        noteEntity.url=product.getLink();
+        NoteEntity noteEntity = new NoteEntity();
+        noteEntity.imgurl = product.getIcon();
+        noteEntity.title = product.getName();
+        noteEntity.content = product.getDescription();
+        noteEntity.productid = product.getId();
+        noteEntity.peoplenum = product.getApplicants();
+        noteEntity.price = product.getUpper_amount() + "-" + product.getLower_amount() + "元";
+        noteEntity.interest = product.getMonthly_rate() + "%";
+        noteEntity.url = product.getLink();
         //保存数据库
-        DatabaseAdapter databaseAdapter=new DatabaseAdapter(DetailActivity.this);
+        DatabaseAdapter databaseAdapter = new DatabaseAdapter(DetailActivity.this);
         databaseAdapter.create(noteEntity);
-       // ArrayList<NoteEntity> limit = databaseAdapter.findLimit(1, 1);
-       // Log.e(TAG, "initProductData: "+limit.get(0).url );
+        // ArrayList<NoteEntity> limit = databaseAdapter.findLimit(1, 1);
+        // Log.e(TAG, "initProductData: "+limit.get(0).url );
 
 
         hideLoading();
 //        Glide.with(DetailActivity.this).load(product.getIcon()).into(icon);
-        GlideUtil.setImageViewCrop(this,product.getIcon(),icon);
+        GlideUtil.setImageViewCrop(this, product.getIcon(), icon);
         name.setText(product.getName());
         text.setText(product.getDescription());
         mark.setValue(Double.parseDouble(product.getStar()));
-        money1.setText("金额（"+ product.getUpper_amount()+"-"+ product.getLower_amount()+")");
-        timer.setText("期限（"+ product.getTerm()+")");
-        if(product.getIs_quality()!=null){
-            if(product.getIs_quality().equals("0")){
+        money1.setText("金额（" + product.getUpper_amount() + "-" + product.getLower_amount() + ")");
+        timer.setText("期限（" + product.getTerm() + ")");
+        if (product.getIs_quality() != null) {
+            if (product.getIs_quality().equals("0")) {
                 quality.setVisibility(View.GONE);
-            }else {
+            } else {
                 quality.setVisibility(View.VISIBLE);
             }
         }
 
         obser.setText(product.getLend_time());
-        num=product.getId();
+        num = product.getId();
         type.setText(product.getShow_day());
-        if(product.getShow_day().equals("参考月利率")){
-            lilv.setText(product.getMonthly_rate()+"%");
+        if (product.getShow_day().equals("参考月利率")) {
+            lilv.setText(product.getMonthly_rate() + "%");
             timetype.setText("每月还款金额");
-        }else {
-            lilv.setText(product.getDay_rate()+"%");
+        } else {
+            lilv.setText(product.getDay_rate() + "%");
             timetype.setText("每日还款金额");
         }
 
-        success.setText("成功放款人数"+ product.getApplicants()+"人");
+        success.setText("成功放款人数" + product.getApplicants() + "人");
         cond.setText(product.getRequirements());
         datum.setText(product.getDocument());
         state.setText(Html.fromHtml(product.getExplain()));
@@ -395,7 +423,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         double v = Double.parseDouble(applicants);
         double v1 = v / 10000;
         String format = String.format("%.1f", v1);
-        apply.setText("立即申请 ("+format+"万人已经申请)");
+        apply.setText("立即申请 (" + format + "万人已经申请)");
 
 //        if(product.getCustomer_service_number()!=null){
 //            if(product.getCustomer_service_number().equals("")){
@@ -406,16 +434,16 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 //            }
 //        }
         title.setText(product.getName());
-        money.setText(product.getUpper_amount()+"");
+        money.setText(product.getUpper_amount() + "");
         time.setText(product.getLoan_period().get(0).getV());
 
-        if(product.getIs_collection()==0){
+        if (product.getIs_collection() == 0) {
             //未收藏
             nocollect.setImageResource(R.mipmap.noshoucang);
-            iscont=true;
-        }else{
+            iscont = true;
+        } else {
             //已收藏
-            iscont=false;
+            iscont = false;
             nocollect.setImageResource(R.mipmap.collect);
         }
         final List<Dialogs> loan_period = product.getLoan_period();
@@ -464,25 +492,25 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
 
                 String trim = s.toString().trim();
-                if(!trim.equals("")){
+                if (!trim.equals("")) {
                     String s1 = time.getText().toString();
                     Pattern p = Pattern.compile("\\d+");
                     Matcher m = p.matcher(s1);
                     m.find();
                     double v2 = Double.parseDouble(m.group());
                     double v1 = Double.parseDouble(trim);
-                    if(!TextUtils.isEmpty(trim)){
+                    if (!TextUtils.isEmpty(trim)) {
                         if (product.getShow_day().equals("参考日利率")) {
                             double c = Double.parseDouble(product.getDay_rate());
-                            double ben = (v1+v1*v2*c/100)/v2;
+                            double ben = (v1 + v1 * v2 * c / 100) / v2;
                             give.setText(String.format("%.2f", ben) + "元");
                         } else {
                             double c = Double.parseDouble(product.getMonthly_rate());
-                            double ben = (v1+v1*v2*c/100)/v2;
+                            double ben = (v1 + v1 * v2 * c / 100) / v2;
                             give.setText(String.format("%.2f", ben) + "元");
                         }
                     }
-                }else {
+                } else {
                     give.setText(String.format("%.2f", 0.0) + "元");
                 }
 
@@ -493,10 +521,9 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     }
 
 
-
-    public void count(ProductDetail product){
-        if(money.getText().toString().equals("")){
-        }else {
+    public void count(ProductDetail product) {
+        if (money.getText().toString().equals("")) {
+        } else {
             double a = Double.parseDouble(money.getText().toString());
             String s = time.getText().toString();
             Pattern p = Pattern.compile("\\d+");
@@ -505,11 +532,11 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             double b = Double.parseDouble(m.group());
             if (product.getShow_day().equals("参考日利率")) {
                 double c = Double.parseDouble(product.getDay_rate());
-                double ben = (a + b * c * a / 100)/b;
+                double ben = (a + b * c * a / 100) / b;
                 give.setText(String.format("%.2f", ben) + "元");
             } else {
                 double c = Double.parseDouble(product.getMonthly_rate());
-                double ben = (a + b * c * a / 100)/b;
+                double ben = (a + b * c * a / 100) / b;
                 give.setText(String.format("%.2f", ben) + "元");
             }
         }
@@ -555,8 +582,12 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
      */
     @Override
     public void state() {
+try {
+        mPresenter.apply(mProductDetail.getId(), time.getText().toString(), money.getText().toString());
 
-        mPresenter.apply(mProductDetail.getId(), time.getText().toString(),money.getText().toString());
+}catch (Exception e){
+
+}
     }
 
     /**
@@ -594,98 +625,91 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     @Override
     public void getApplyId(String id) {
         Log.e(TAG, id + "ID是");
-
         boolean ispop = false;
-
-        int clickNumber = (int) SPUtil.get(getApplicationContext(), Common.Daichao.CLICKNUMBER,0);
-        String clickdate = (String) SPUtil.get(getApplicationContext(),Common.Daichao.CLICKDATEFOUR,"");
+        int clickNumber = (int) SPUtil.get(getApplicationContext(), Common.Daichao.CLICKNUMBER, 0);
+        String clickdate = (String) SPUtil.get(getApplicationContext(), Common.Daichao.CLICKDATEFOUR, "");
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String date="";
-        if(clickdate.equals("")){
+        String date = "";
+        if (clickdate.equals("")) {
             clickNumber++;
-            if(clickNumber==4){
-                SPUtil.putAndApply(getApplicationContext(),Common.Daichao.CLICKNUMBER,0);
+            if (clickNumber == 4) {
+                SPUtil.putAndApply(getApplicationContext(), Common.Daichao.CLICKNUMBER, 0);
                 date = sdf.format(d);
-                SPUtil.putAndApply(getApplicationContext(),Common.Daichao.CLICKDATEFOUR,date);
+                SPUtil.putAndApply(getApplicationContext(), Common.Daichao.CLICKDATEFOUR, date);
                 ispop = true;
-            }else {
-                SPUtil.putAndApply(getApplicationContext(),Common.Daichao.CLICKNUMBER,clickNumber);
+            } else {
+                SPUtil.putAndApply(getApplicationContext(), Common.Daichao.CLICKNUMBER, clickNumber);
             }
-        }else {
+        } else {
             date = sdf.format(d);
-            int day = DateTimeUtil.getDatedifference(clickdate,date);
+            int day = DateTimeUtil.getDatedifference(clickdate, date);
 
-            if(day>=10){
-                SPUtil.putAndApply(getApplicationContext(),Common.Daichao.CLICKDATEFOUR,"");
+            if (day >= 10) {
+                SPUtil.putAndApply(getApplicationContext(), Common.Daichao.CLICKDATEFOUR, "");
             }
         }
 
-
-        if(!istrue){
+        if (!istrue) {
             //判断取消还是收藏
-            if(iscont){
+            if (iscont) {
                 //进行收藏
                 getcollect(num);
                 MobclickAgent.onEvent(DetailActivity.this, "collectClick");
-            }else {
+            } else {
                 //取消收藏
-                String[] arr=new String[]{num};
-                List<String> list=new ArrayList<>();
+                String[] arr = new String[]{num};
+                List<String> list = new ArrayList<>();
                 list.add(num);
                 getnocollect(list);
             }
-        }else {
-            if(pricessid==1){
-               //快借
+        } else {
+            if (pricessid == 1) {
+                //快借
                 MobclickAgent.onEvent(DetailActivity.this, "homeFastKindApply");
-            }else if(pricessid==2){
+            } else if (pricessid == 2) {
                 //最新口子
-                MobclickAgent.onEvent(DetailActivity.this, "homeFreshKindApply");            }
-            else if(pricessid==3){
+                MobclickAgent.onEvent(DetailActivity.this, "homeFreshKindApply");
+            } else if (pricessid == 3) {
                 //一定借到
-                MobclickAgent.onEvent(DetailActivity.this, "homeMastKindApply");            }
-            else if(pricessid==4){
+                MobclickAgent.onEvent(DetailActivity.this, "homeMastKindApply");
+            } else if (pricessid == 4) {
                 //公告
                 MobclickAgent.onEvent(DetailActivity.this, "noticeApply");
-            }
-            else if(pricessid==5){
+            } else if (pricessid == 5) {
                 //viewpager
                 MobclickAgent.onEvent(DetailActivity.this, "homeRecommendTurnsApply");
-            }
-            else if(pricessid==6){
+            } else if (pricessid == 6) {
                 //banner
                 MobclickAgent.onEvent(DetailActivity.this, "homeBannerApply");
-            }else if(pricessid==7){
+            } else if (pricessid == 7) {
                 //热门平台
                 MobclickAgent.onEvent(DetailActivity.this, "homeHotLoanLIstApply");
-            }
-            else if(pricessid==8){
+            } else if (pricessid == 8) {
                 //贷款列表
                 MobclickAgent.onEvent(DetailActivity.this, "loanListApply");
-            }
-            else if(pricessid==9){
+            } else if (pricessid == 9) {
                 //我的收藏列表
                 MobclickAgent.onEvent(DetailActivity.this, "minecollectListApply");
-            }
-            else if(pricessid==10){
+            } else if (pricessid == 10) {
                 //我的足迹列表
                 MobclickAgent.onEvent(DetailActivity.this, "mineBrowseListApply");
-            }
-            else if(pricessid==11){
+            } else if (pricessid == 11) {
                 //首页消息
                 MobclickAgent.onEvent(DetailActivity.this, "homeNewsApply");
-            }
-            else if(pricessid==12){
+            } else if (pricessid == 12) {
                 //我的消息
                 MobclickAgent.onEvent(DetailActivity.this, "mineNewsApply");
+            } else if (pricessid == 13) {
+                MobclickAgent.onEvent(DetailActivity.this, "pushApply");
             }
             WebActivity.show(this, mProductDetail.getName(),
-                    mProductDetail.getLink(), mProductDetail.getId(), id, "0",ispop);
+                    mProductDetail.getLink(), mProductDetail.getId(), id, "0", ispop);
         }
 
     }
-    public void getcollect(String pos){
+
+    public void getcollect(String pos) {
 
 
         Observable<CollectBean> likeBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().getcollect(pos).subscribeOn(Schedulers.io())
@@ -699,8 +723,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             @Override
             public void onNext(CollectBean collectBean) {
 
-                Toast.makeText(DetailActivity.this,"收藏成功",Toast.LENGTH_SHORT).show();
-                iscont=false;
+                Toast.makeText(DetailActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+                iscont = false;
                 nocollect.setImageResource(R.mipmap.collect);
             }
 
@@ -717,7 +741,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         });
     }
 
-    public void getnocollect(List<String> arr){
+    public void getnocollect(List<String> arr) {
 
         Observable<CancleCollectBean> collectBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().getnocollect(arr).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -730,8 +754,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
             @Override
             public void onNext(CancleCollectBean collectBean) {
 
-                Toast.makeText(DetailActivity.this,"已取消",Toast.LENGTH_SHORT).show();
-                iscont=true;
+                Toast.makeText(DetailActivity.this, "已取消", Toast.LENGTH_SHORT).show();
+                iscont = true;
                 nocollect.setImageResource(R.mipmap.noshoucang);
 
             }
@@ -762,7 +786,6 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     }
 
 
-
     /**
      * 创建底部dialog
      *
@@ -783,7 +806,6 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 //        alertFragment.setData(data);
 //        alertFragment.show(getSupportFragmentManager(), AlertFragment.class.getName());
 //    }
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -841,7 +863,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         hideSoftKeyboard();
-        if(onBack()){
+        if (onBack()) {
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 finish();
             }
@@ -854,7 +876,7 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.detal_back:
                 InputMethodManager imm2 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm2.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -865,21 +887,21 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
                 break;
             case R.id.money_edit:
                 money.requestFocus();
-                if(alertFragment!=null){
+                if (alertFragment != null) {
                     alertFragment.dismiss();
                 }
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(money,0);
+                imm.showSoftInput(money, 0);
                 String s = money.getText().toString();
                 money.setSelection(s.length());
                 break;
             case R.id.collect_layout:
                 //收藏与取消收藏   先判断是否登录
-                istrue=false;
+                istrue = false;
                 mPresenter.loginState();
                 break;
             case R.id.apply_success:
-                istrue=true;
+                istrue = true;
                 mPresenter.loginState();
                 break;
             case R.id.share:
@@ -890,14 +912,14 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         }
     }
 
-    public void getsharepopwindow(){
+    public void getsharepopwindow() {
 
         View inflate = LayoutInflater.from(DetailActivity.this).inflate(R.layout.activity_share_popup, null, false);
-        final PopupWindow popupWindow=new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         popupWindow.setAnimationStyle(R.style.pop_anim);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+        popupWindow.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
         light(0.8f);
 
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -932,7 +954,8 @@ public class DetailActivity extends PresenterActivity<DetailContract.Presenter>
         });
 
     }
-    public void light(float t){
+
+    public void light(float t) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = t;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);

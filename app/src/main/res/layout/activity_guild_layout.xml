@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_guild_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="41px"
+    android:paddingRight="41px">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="70px"
+        android:text="欢迎使用小花猪"
+        android:textColor="@color/black"
+        android:textSize="30px" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="18px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我们已帮助"
+            android:textColor="#FF878787"
+            android:textSize="14px" />
+
+        <TextView
+            android:id="@+id/activity_guild_num_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15,553,589"
+            android:textColor="#FFFEB727"
+            android:textSize="14px"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="名"
+            android:textColor="#FFFEB727"
+            android:textSize="14px" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户成功推荐"
+            android:textColor="#FF878787"
+            android:textSize="14px" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="30px"
+        android:background="#FFE9E9E9" />
+
+    <RelativeLayout
+        android:id="@+id/activity_guild_choosmoney_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ems="6"
+            android:text="想借多少"
+            android:textColor="@color/black"
+            android:textSize="15px" />
+
+
+        <TextView
+            android:id="@+id/activity_guild_money_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="118px"
+            android:layout_centerVertical="true"
+            android:text="请选择"
+            android:textColor="@color/black"
+            android:textSize="15px" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_tonext" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFE9E9E9" />
+
+    <RelativeLayout
+        android:id="@+id/activity_guild_choostime_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ems="6"
+            android:text="想借多久"
+            android:textColor="@color/black"
+            android:textSize="15px" />
+
+
+        <TextView
+            android:id="@+id/activity_guild_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="118px"
+            android:layout_centerVertical="true"
+            android:text="请选择"
+            android:textColor="@color/black"
+            android:textSize="15px" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_tonext" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFE9E9E9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ems="6"
+            android:text="手机号"
+            android:textColor="@color/black"
+            android:textSize="15px" />
+
+
+        <EditText
+            android:id="@+id/activity_guild_phone_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="118px"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="请输入"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/black"
+            android:textColorHint="#FF666666"
+            android:textSize="15px" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_tonext" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFE9E9E9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ems="6"
+            android:text="验证码"
+            android:textColor="@color/black"
+            android:textSize="15px" />
+
+
+        <EditText
+            android:id="@+id/activity_guild_code_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="118px"
+            android:layout_marginRight="100px"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="请输入"
+            android:inputType="number"
+            android:maxEms="6"
+            android:textColor="@color/black"
+            android:textColorHint="#FF666666"
+            android:textSize="15px" />
+
+
+        <TextView
+            android:id="@+id/activity_guild_getcode_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/guild_getcode_bg"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="获取验证码"
+            android:textColor="@color/white"
+            android:textSize="12px" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#FFE9E9E9" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <CheckBox
+            android:id="@+id/activity_guild_checkbox"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:button="@null"
+            android:background="@drawable/checkbox_guild" />
+
+
+        <TextView
+            android:id="@+id/activity_guild_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我已阅读并同意小花猪的"
+            android:textColor="#FF535353"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="12px" />
+
+        <TextView
+            android:id="@+id/acitivity_guild_xieyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户协议、隐私声明"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/blue"
+            android:textSize="12px" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/actiity_guild_tuijian_text"
+        android:layout_width="249px"
+        android:layout_height="40px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30px"
+        android:background="@drawable/guild_tuijian_bg"
+        android:gravity="center"
+        android:text="为我推荐"
+        android:textColor="@color/white"
+        android:textSize="18px" />
+
+
+    <TextView
+        android:id="@+id/actiity_guild_jump_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16px"
+        android:text="跳过本次推荐>"
+        android:textColor="#ffc0c0c0"
+        android:textSize="14px" />
+
+</LinearLayout>
