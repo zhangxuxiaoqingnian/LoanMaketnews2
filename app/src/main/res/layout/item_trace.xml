@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:background="#ffffff"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/rlTimeline"
+        android:layout_width="32dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvTopLine"
+            android:layout_width="2px"
+            android:layout_height="41px"
+            android:layout_centerHorizontal="true"
+            android:background="#FFCE25" />
+
+        <TextView
+            android:id="@+id/tvDot"
+            android:layout_width="16px"
+            android:layout_height="16px"
+            android:layout_below="@id/tvTopLine"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/timelline_dot_first" />
+
+        <TextView
+            android:layout_width="2px"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvDot"
+            android:layout_centerHorizontal="true"
+            android:background="#FFCE25" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlCenter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="6dp"
+        android:paddingRight="10dp"
+        android:paddingTop="38px">
+
+        <TextView
+            android:id="@+id/tvAcceptTime"
+            android:layout_width="wrap_content"
+            android:layout_height="22px"
+            android:text="2014/06/24 20:55:28"
+            android:textColor="#444444"
+            android:gravity="center"
+            android:layout_marginLeft="10px"
+            android:textSize="16px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvAcceptTime"
+            android:layout_marginTop="10px"
+            android:orientation="horizontal"
+            android:background="@mipmap/mydrable"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/tvAcceptStation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="快件在 深圳 ,准备送往下一站 深圳集散中心 [深圳市]"
+                android:textColor="#343434"
+                android:layout_marginLeft="18px"
+                android:layout_marginRight="18px"
+                android:layout_marginTop="21px"
+                android:layout_marginBottom="21px"
+                android:lineSpacingExtra="21px"
+                android:textSize="14px" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>
+

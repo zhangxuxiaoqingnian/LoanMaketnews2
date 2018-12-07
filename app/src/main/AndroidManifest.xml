@@ -14,8 +14,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
-
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
     <application
         android:name=".moneyplatfrom.App"
@@ -65,7 +63,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
 
         <activity
             android:name=".moneyplatfrom.activities.DetailActivity"
@@ -161,7 +158,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <!--QQ-->
+        <!-- QQ -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -287,15 +284,10 @@
             android:name=".moneyplatfrom.activities.WebviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-
-
         <activity
             android:name=".moneyplatfrom.activities.TaskHongbaoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main">
-
-
-        </activity>
+            android:theme="@style/AppTheme.Main"></activity>
 
         <receiver
             android:name=".moneyplatfrom.util.AlarmReceiver"
@@ -333,14 +325,15 @@
         <activity
             android:name=".moneyplatfrom.activities.RedPagerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Main"></activity>
-
-
+            android:theme="@style/AppTheme.Main" />
         <activity
             android:name=".moneyplatfrom.activities.HongbaoRecordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
-
+        <activity android:name=".moneyplatfrom.activities.MessContextActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main"
+            ></activity>
     </application>
 
 </manifest>

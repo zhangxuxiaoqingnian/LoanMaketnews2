@@ -13,7 +13,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.smileflowpig.money"
-         minSdkVersion 19
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 4
         versionName "1.2.0"
@@ -177,27 +177,27 @@ android {
         }
 
 
-        shenmashousuo01{
+        shenmashousuo01 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40026"]
             buildConfigField 'String', 'CHANNLE', '"40026"'
         }
-        shenmashousuo02{
+        shenmashousuo02 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40027"]
             buildConfigField 'String', 'CHANNLE', '"40027"'
         }
-        shenmashousuo03{
+        shenmashousuo03 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40028"]
             buildConfigField 'String', 'CHANNLE', '"40028"'
         }
-        shenmashousuo04{
+        shenmashousuo04 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40029"]
             buildConfigField 'String', 'CHANNLE', '"40029"'
         }
-        shenmashousuo05{
+        shenmashousuo05 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40030"]
             buildConfigField 'String', 'CHANNLE', '"40030"'
         }
-        shenmashousuo06{
+        shenmashousuo06 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40031"]
             buildConfigField 'String', 'CHANNLE', '"40031"'
         }

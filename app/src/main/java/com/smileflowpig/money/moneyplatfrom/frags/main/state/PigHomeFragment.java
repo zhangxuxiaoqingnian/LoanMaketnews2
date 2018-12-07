@@ -28,6 +28,7 @@ import com.smileflowpig.money.moneyplatfrom.Constant;
 import com.smileflowpig.money.moneyplatfrom.LampView;
 import com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.DetailActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.MessContextActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.TableActivity;
 import com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView;
@@ -327,6 +328,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             @Override
             public void onSubscribe(Disposable d) {
 
+
             }
 
             @Override
@@ -540,7 +542,6 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         animatorSet.playTogether(translationX,translationY); //设置动画
         animatorSet.setDuration(500);  //设置动画时间
         animatorSet.start(); //启动
-
     }
 
     public Alldatacont listener;
@@ -601,7 +602,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 break;
             case R.id.pighomemess:
                 MobclickAgent.onEvent(getActivity(), "homeNews");
-                MessageActivity.show(getActivity(),1);
+                Intent intent5=new Intent(getActivity(), MessContextActivity.class);
+                startActivity(intent5);
                 mess.setImageResource(R.mipmap.notmessage);
                 mess2.setImageResource(R.mipmap.icon_message_mine);
                 break;

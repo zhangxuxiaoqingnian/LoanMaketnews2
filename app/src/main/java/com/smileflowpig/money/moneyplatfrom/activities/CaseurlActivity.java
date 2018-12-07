@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.smileflowpig.money.common.utils.DisplayUtil;
+import com.smileflowpig.money.moneyplatfrom.Bean.CaseClase;
 import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
@@ -150,7 +151,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
 //        if(urlid!=0){
 //
 //            wv.loadUrl(urladdress+"?id="+urlid+"&title="+urlname+"&sessionid="+sessionid+"&channel_id"+channelId);
-//            wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
+          //wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
 //            wv.addJavascriptInterface(new CaseClase(CaseurlActivity.this),"messageHandlers");
 //
 //        }else {
