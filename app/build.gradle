@@ -176,7 +176,6 @@ android {
             buildConfigField 'String', 'CHANNLE', '"40024"'
         }
 
-
         shenmashousuo01{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40026"]
             buildConfigField 'String', 'CHANNLE', '"40026"'
