@@ -35,8 +35,8 @@ LoginInterceptor implements Interceptor {
 //                        }
         long time = System.currentTimeMillis() / 1000;
         try {
+//            String token = (String) SPUtil.get(Factory.app(),"deviceToken","");
             builder.addHeader("Content-Type", "application/json");
-
             builder.addHeader("User-Agent", "version=" + Factory.getVersionName(Factory.app()) +
                     "phone=" + android.os.Build.VERSION.RELEASE +
                     android.os.Build.MODEL + "channel=" + channelId);
@@ -46,6 +46,8 @@ LoginInterceptor implements Interceptor {
             builder.addHeader("cid", channelId);
             builder.addHeader("sign", md5(a));
             builder.addHeader("device", "Android");
+//            if(!TextUtils.isEmpty(token))
+//            builder.addHeader("token", token);
 
 
         } catch (Exception e) {

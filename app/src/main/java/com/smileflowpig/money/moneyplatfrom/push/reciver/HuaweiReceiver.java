@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.huawei.hms.support.api.push.PushReceiver;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.LaunchActivity;
 import com.smileflowpig.money.moneyplatfrom.MyLifecycleHandler;
 import com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity;
@@ -25,7 +26,10 @@ public class HuaweiReceiver extends PushReceiver {
     @Override
     public void onToken(Context context, String s, Bundle bundle) {
         super.onToken(context, s, bundle);
-        Log.e("huawei_push", "onToken: " + bundle.toString());
+        String token = bundle.getString("deviceToken");
+        SPUtil.putAndApply(context,"deviceToken",token);
+        Log.e("huawei_push", "onToken: " + token);
+
     }
 
 
