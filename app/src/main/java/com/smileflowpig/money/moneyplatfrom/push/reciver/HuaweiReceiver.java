@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.huawei.hms.support.api.push.PushReceiver;
+import com.smileflowpig.money.factory.model.api.RspModel;
+import com.smileflowpig.money.factory.model.api.account.AccountRspModel;
+import com.smileflowpig.money.factory.net.Network;
+import com.smileflowpig.money.factory.net.RemoteService;
 import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.LaunchActivity;
 import com.smileflowpig.money.moneyplatfrom.MyLifecycleHandler;
@@ -20,15 +24,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HuaweiReceiver extends PushReceiver {
 
 
     @Override
     public void onToken(Context context, String s, Bundle bundle) {
         super.onToken(context, s, bundle);
-        String token = bundle.getString("deviceToken");
-        SPUtil.putAndApply(context,"deviceToken",token);
-        Log.e("huawei_push", "onToken: " + token);
+        try {
+            String token = bundle.getString("deviceToken");
+            SPUtil.putAndApply(context,"deviceToken",token);
+            Log.e("huawei_push", "onToken: " + token);
+            RemoteService service = Network.remote();
+            Call<RspModel<Object>> call = service.sendToken(token);
+            call.enqueue(new Callback<RspModel<Object>>() {
+                @Override
+                public void onResponse(Call<RspModel<Object>> call, Response<RspModel<Object>> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<RspModel<Object>> call, Throwable t) {
+
+                }
+            });
+        }catch (Exception e){
+
+        }
+
 
     }
 
