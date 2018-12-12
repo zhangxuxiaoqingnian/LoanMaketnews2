@@ -110,6 +110,7 @@ public class AllFragment extends PresenterFragment implements OnRefreshLoadmoreL
                         intent.putExtra("urlid",list.get(pos).id);
                         intent.putExtra("urlname",list.get(pos).view_num);
                         intent.putExtra("urladdress","");
+                        intent.putExtra("pushurlmess","");
                         startActivity(intent);
                     }
                 });

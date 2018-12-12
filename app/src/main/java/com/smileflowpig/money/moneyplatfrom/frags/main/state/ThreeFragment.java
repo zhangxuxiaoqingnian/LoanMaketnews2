@@ -95,6 +95,7 @@ public class ThreeFragment extends PresenterFragment implements OnRefreshLoadmor
                         intent.putExtra("urlid",list.get(pos).id);
                         intent.putExtra("urlname",list.get(pos).view_num);
                         intent.putExtra("urladdress","");
+                        intent.putExtra("pushurlmess","");
                         startActivity(intent);
                     }
                 });

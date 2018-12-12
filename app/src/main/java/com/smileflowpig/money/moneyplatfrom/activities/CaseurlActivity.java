@@ -92,6 +92,8 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
+        String pushurlmess = intent.getStringExtra("pushurlmess");
+        strurl=pushurlmess;
         Uri data = intent.getData();
         if (data == null) {
             urlid = intent.getStringExtra("urlid");
@@ -150,22 +152,28 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         //资讯h5
         //https://m.henhaojie.com/xiaohuazhu/information.html?id=3&view_num=1&sessionid=fdhof410su74rraob9matto0r4
         //如果datta不为空，说明是华为推送过来的数据，从url里面获取数据
-        if (data != null) {
-            String pushId = data.getQueryParameter("isPush");
-            isPush = pushId.equals("1") ? true : false;
-            strurl = data.getQueryParameter("url") + "&sessionid=" + sessionid;
-        } else {
-            //判断是不是小米推送过来的
-            isPush = getIntent().getBooleanExtra("push", false);
-            if (isPush) {
-                strurl = getIntent().getStringExtra("pushurl") + "&sessionid=" + sessionid;
+        if(strurl.equals("")){
+            if (data != null) {
+                String pushId = data.getQueryParameter("isPush");
+                isPush = pushId.equals("1") ? true : false;
+                strurl = data.getQueryParameter("url") + "&sessionid=" + sessionid;
             } else {
-                strurl = ONLINE_URL + "id=" + urlid + "&view_num=" + urlname + "&sessionid=" + sessionid;
-            }
+                //判断是不是小米推送过来的
+                isPush = getIntent().getBooleanExtra("push", false);
+                if (isPush) {
+                    strurl = getIntent().getStringExtra("pushurl") + "&sessionid=" + sessionid;
+                } else {
+                    strurl = ONLINE_URL + "id=" + urlid + "&view_num=" + urlname + "&sessionid=" + sessionid;
+                }
 
+            }
+            wv.loadUrl(strurl);
+        }else {
+            wv.loadUrl(strurl);
         }
+
 //        wv.loadUrl("?id="+ urlid +"&view_num="+urlname+"&sessionid="+sessionid);
-        wv.loadUrl(strurl);
+        //wv.loadUrl(strurl);
 
         //第一版被抛弃的小花猪
 //        if(urlid!=0){

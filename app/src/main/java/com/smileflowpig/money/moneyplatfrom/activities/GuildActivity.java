@@ -179,7 +179,6 @@ public class GuildActivity extends Activity {
         String s = activityGuildPhoneText.getText().toString();
         if (TextUtils.isEmpty(s)) {
             //请输入手机号
-
             Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
             return;
         }

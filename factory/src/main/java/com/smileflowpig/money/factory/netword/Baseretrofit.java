@@ -34,6 +34,7 @@ import com.smileflowpig.money.factory.bean.OverCodeBean;
 import com.smileflowpig.money.factory.bean.PagerBean;
 import com.smileflowpig.money.factory.bean.PaoBean;
 import com.smileflowpig.money.factory.bean.PayoverBean;
+import com.smileflowpig.money.factory.bean.PushBean;
 import com.smileflowpig.money.factory.bean.QiangBean;
 import com.smileflowpig.money.factory.bean.TabBean;
 import com.smileflowpig.money.factory.model.api.Bean.HomeBase;
@@ -309,4 +310,9 @@ public interface Baseretrofit {
     //获取目前余额
     @GET("/user/v2/huaUser/getUserBalance")
     Observable<MoneyBean> getmonth();
+
+    //获取消息推送列表
+    @POST("/api/PushMessage/V1/getXhzMessage")
+    @FormUrlEncoded
+    Observable<PushBean> getpushmess(@Field("app_list_id") int page);
 }

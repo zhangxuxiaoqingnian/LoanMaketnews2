@@ -97,6 +97,7 @@ public class FourFragment extends PresenterFragment implements OnRefreshLoadmore
                         intent.putExtra("urlid",list.get(pos).id);
                         intent.putExtra("urlname",list.get(pos).view_num);
                         intent.putExtra("urladdress","");
+                        intent.putExtra("pushurlmess","");
                         startActivity(intent);
                     }
                 });

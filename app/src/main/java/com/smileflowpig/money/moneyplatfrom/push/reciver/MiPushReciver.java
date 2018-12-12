@@ -44,6 +44,7 @@ public class MiPushReciver extends PushMessageReceiver {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("push", true);
                 intent.putExtra("pushurl", url);
+                intent.putExtra("pushurlmess","");
                 context.startActivity(intent);
             } else if (is_product == 3) {
                 //跳转产品

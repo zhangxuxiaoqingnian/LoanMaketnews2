@@ -33,6 +33,7 @@ import com.smileflowpig.money.moneyplatfrom.activities.AccountActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.BillManagerActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.FeedbackActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.FlowMeActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.MessContextActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MyCollectActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MyDatumActivity;
@@ -307,7 +308,8 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 MobclickAgent.onEvent(getActivity(), "mineSetting");
                 break;
             case R.id.fragment_mine_message_img:
-                MessageActivity.show(getActivity(), 2);
+                Intent intent3=new Intent(getActivity(), MessContextActivity.class);
+                startActivity(intent3);
                 message_img.setImageResource(R.mipmap.icon_message_mine);
                 MobclickAgent.onEvent(getActivity(), "mineNews");
                 break;

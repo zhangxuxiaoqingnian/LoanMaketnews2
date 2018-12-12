@@ -616,6 +616,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 intent.putExtra("urlid",list.get(0).id);
                 intent.putExtra("urlname",list.get(0).name);
                 intent.putExtra("urladdress",list.get(0).url);
+                intent.putExtra("pushurlmess","");
                 startActivity(intent);
                 break;
             case R.id.bigmoney:
@@ -623,6 +624,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 intent2.putExtra("urlid",list.get(1).id);
                 intent2.putExtra("urlname",list.get(1).name);
                 intent2.putExtra("urladdress",list.get(1).url);
+                intent2.putExtra("pushurlmess","");
                 startActivity(intent2);
                 break;
             case R.id.allnew:
@@ -630,6 +632,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 intent3.putExtra("urlid",list.get(2).id);
                 intent3.putExtra("urlname",list.get(2).name);
                 intent3.putExtra("urladdress",list.get(2).url);
+                intent3.putExtra("pushurlmess","");
                 startActivity(intent3);
                 break;
             case R.id.successmoney:
@@ -637,6 +640,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 intent4.putExtra("urlid",list.get(3).id);
                 intent4.putExtra("urlname",list.get(3).name);
                 intent4.putExtra("urladdress",list.get(3).url);
+                intent4.putExtra("pushurlmess","");
                 startActivity(intent4);
                 break;
             case R.id.cardwant:
@@ -644,6 +648,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                 intent5.putExtra("urlid",list.get(4).id);
                 intent5.putExtra("urlname",list.get(4).name);
                 intent5.putExtra("urladdress",list.get(4).url);
+                intent5.putExtra("pushurlmess","");
                 startActivity(intent5);
                 break;
             case R.id.disclose:
@@ -652,6 +657,7 @@ public class HuaHomeFragment extends PresenterFragment implements View.OnClickLi
                     intent6.putExtra("urlid",0);
                     intent6.putExtra("urlname","下款爆料");
                     intent6.putExtra("urladdress","");
+                    intent6.putExtra("pushurlmess","");
                     startActivity(intent6);
                 }else {
                     Intent intent11 = new Intent(getActivity(), AccountActivity.class);

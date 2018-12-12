@@ -307,6 +307,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                         intent.putExtra("urlid",new_list.get(pos).id);
                         intent.putExtra("urlname",new_list.get(pos).view_num);
                         intent.putExtra("urladdress","");
+                        intent.putExtra("pushurlmess","");
                         startActivity(intent);
                     }
                 });
@@ -615,7 +616,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 break;
             case R.id.pigmess:
                 MobclickAgent.onEvent(getActivity(), "homeNews");
-                MessageActivity.show(getActivity(),1);
+                Intent intent6=new Intent(getActivity(), MessContextActivity.class);
+                startActivity(intent6);
                 mess2.setImageResource(R.mipmap.icon_message_mine);
                 mess.setImageResource(R.mipmap.notmessage);
                 break;

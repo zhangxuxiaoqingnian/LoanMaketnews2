@@ -1,6 +1,7 @@
 package com.smileflowpig.money.moneyplatfrom.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smileflowpig.money.R;
+import com.smileflowpig.money.factory.bean.PushBean;
+import com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.DetailActivity;
 
 import java.util.List;
 
@@ -27,9 +31,9 @@ import java.util.List;
 public class MessAdapter extends RecyclerView.Adapter<MessAdapter.MyViewHolder> {
 
     private Context context;
-    private List<String> list;
+    private List<PushBean.ResBean> list;
 
-    public MessAdapter(Context context, List<String> list) {
+    public MessAdapter(Context context, List<PushBean.ResBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -42,14 +46,28 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         SpannableString clickString2 = new SpannableString("速戳查看");
         clickString2.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View widget) {
+                //首页
+                if(list.get(position).xhz_type==1){
 
-                Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
+                }//资讯url
+                else if(list.get(position).xhz_type==2){
+                    Intent intent=new Intent(context, CaseurlActivity.class);
+                    intent.putExtra("urlid","");
+                    intent.putExtra("urlname","");
+                    intent.putExtra("urladdress","");
+                    intent.putExtra("pushurlmess",list.get(position).link);
+                    context.startActivity(intent);
+                }//产品
+                else if(list.get(position).xhz_type==3){
+                    DetailActivity.show(context, list.get(position).product_id + "", "notice", 0, 8);
+                }
+
             }
 
             @Override
@@ -59,10 +77,11 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.MyViewHolder> 
             }
         }, 0, clickString2.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        holder.tvAcceptStation.setText(list.get(position)+"    ");
+        holder.tvAcceptStation.setText(list.get(position).content+"    ");
         holder.tvAcceptStation.append(clickString2);
         holder.tvAcceptStation.setMovementMethod(LinkMovementMethod.getInstance());
         //holder.cont.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        holder.tvAcceptTime.setText(list.get(position).push_time);
     }
 
     @Override
@@ -85,23 +104,5 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.MyViewHolder> 
         }
     }
 
-    /** 
-          * 半角转换为全角 
-          *  
-          * @param input 
-          * @return 
-          */
-            public static String ToDBC(String input) {
-                char[] c = input.toCharArray();
-                for (int i = 0; i < c.length; i++) {
-                    if (c[i] == 12288) {
-                        c[i] = (char) 32;
-                        continue;
-                    }
-                    if (c[i] > 65280 && c[i] < 65375)
-                        c[i] = (char) (c[i] - 65248);
-                }
-                return new String(c);
-            }
 
 }

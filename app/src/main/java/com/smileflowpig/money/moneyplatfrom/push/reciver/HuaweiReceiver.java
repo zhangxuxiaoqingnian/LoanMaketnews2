@@ -66,6 +66,7 @@ public class HuaweiReceiver extends PushReceiver {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("push", true);
                     intent.putExtra("pushurl", url);
+                    intent.putExtra("pushurlmess","");
                     context.startActivity(intent);
                 } else if (is_product.equals("1")) {
                     //跳转产品
