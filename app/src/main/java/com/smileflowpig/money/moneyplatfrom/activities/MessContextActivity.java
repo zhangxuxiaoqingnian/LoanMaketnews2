@@ -56,9 +56,7 @@ public class MessContextActivity extends PresenterActivity implements View.OnCli
             }
             @Override
             public void onNext(PushBean pushBean) {
-
                 if(pushBean.message.equals("成功")){
-
                     if(pushBean.res.size()>0){
                         List<PushBean.ResBean> res = pushBean.res;
                         MessAdapter messAdapter=new MessAdapter(MessContextActivity.this,res);

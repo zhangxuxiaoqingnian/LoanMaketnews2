@@ -37,8 +37,7 @@ public class Common {
 //         基础的网络请求地址`
 
         //现在线上
-        //String API_URL = "https://API_URLnewapi.henhaojie.com/user/";
-//        String API_URL = "http://m.henhaojie.com/user/";
+
 
         //张
 //        String API_URL = "https://newapi.henhaojie.com/user/";
