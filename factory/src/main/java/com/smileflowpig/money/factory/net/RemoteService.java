@@ -319,4 +319,14 @@ public interface RemoteService {
     @GET("huaJiangHu/makeUrl")
     Call<RspModel<ZhenxinUrlJson>> getZhenxinUrl();
 
+
+    /**
+     * 华为上传token
+     * @param token
+     * @return
+     */
+    @POST("user/recordSignToken")
+    @FormUrlEncoded
+    Call<RspModel<Object>> sendToken(@Field("token") String token);
+
 }
