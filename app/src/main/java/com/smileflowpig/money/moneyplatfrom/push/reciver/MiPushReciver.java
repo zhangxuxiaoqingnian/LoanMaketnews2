@@ -37,7 +37,7 @@ public class MiPushReciver extends PushMessageReceiver {
         try {
             JSONObject jsonObject = new JSONObject(content);
             int is_product = jsonObject.getInt("is_product");
-            if (is_product == 2) {
+                if (is_product == 2) {
                 //跳转咨询
                 String url = jsonObject.getString("url");
                 Intent intent = new Intent(context, CaseurlActivity.class);
@@ -45,8 +45,8 @@ public class MiPushReciver extends PushMessageReceiver {
                 intent.putExtra("push", true);
                 intent.putExtra("pushurl", url);
                 intent.putExtra("pushurlmess","");
-                context.startActivity(intent);
-            } else if (is_product == 3) {
+                                context.startActivity(intent);
+                            } else if (is_product == 3) {
                 //跳转产品
                 int id = jsonObject.getInt("id");
                 Intent intent = new Intent(context, DetailActivity.class);
@@ -55,7 +55,7 @@ public class MiPushReciver extends PushMessageReceiver {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("Lang", 1);
                 intent.putExtra("pricessid", 13);
-                intent.putExtra("isPush", true);
+                intent.putExtra("isPush",   true);
                 context.startActivity(intent);
             } else {
                 //进入首页（如果）
