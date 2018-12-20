@@ -134,13 +134,11 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
                 cardAdapter.setItemposition(new CardAdapter.getItemposition() {
                     @Override
                     public void success(int pos) {
-
                         MobclickAgent.onEvent(TableActivity.this, "homeCreditCardApply");
                         WebActivity.show(TableActivity.this, list2.get(pos).name,
                                 list2.get(pos).url);
                     }
                 });
-
             }
 
             @Override

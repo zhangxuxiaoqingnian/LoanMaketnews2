@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:gravity="center_horizontal"
+    tools:context="com.smileflowpig.money.moneyplatfrom.activities.PigCardActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarWithStatusBarSize"
+        android:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingTop="@dimen/statusBarSize"
+        android:background="#FFCE25"
+        app:titleTextAppearance="@style/TextAppearance.Title">
+
+        <LinearLayout
+            android:id="@+id/table_back"
+            android:layout_width="100px"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/overback" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tab_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="信用卡"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/font_16"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/caard_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/len_10"
+            android:layout_gravity="right|center_vertical"
+            android:text="我的申请"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/pig_layout"
+        android:layout_width="375px"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@mipmap/bg_itemshap"
+        android:layout_marginTop="8px"
+        >
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="12px"
+            android:layout_marginTop="22px"
+            android:layout_marginBottom="15px"
+            >
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.scwang.smartrefresh.layout.header.ClassicsHeader>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pigcardrv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            />
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+
+</LinearLayout>

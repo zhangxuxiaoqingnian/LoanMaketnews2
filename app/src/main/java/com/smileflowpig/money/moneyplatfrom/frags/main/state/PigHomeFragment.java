@@ -30,6 +30,7 @@ import com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.DetailActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessContextActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.PigCardActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.TableActivity;
 import com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView;
 import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
@@ -602,9 +603,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 break;
             case R.id.fourdata:
                 MobclickAgent.onEvent(getActivity(), "homeCreditCard");
-                Intent intent4=new Intent(getActivity(), TableActivity.class);
-                intent4.putExtra("tabtitle","信用卡");
-                intent4.putExtra("tabid",4);
+                Intent intent4=new Intent(getActivity(), PigCardActivity.class);
                 startActivityForResult(intent4, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.pighomemess:

@@ -69,7 +69,6 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.MyViewHolder> 
                 }
 
             }
-
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
@@ -77,11 +76,12 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.MyViewHolder> 
             }
         }, 0, clickString2.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        holder.tvAcceptStation.setText(list.get(position).content+"    ");
+        holder.tvAcceptStation.setText(list.get(position).content+"   ");
         holder.tvAcceptStation.append(clickString2);
         holder.tvAcceptStation.setMovementMethod(LinkMovementMethod.getInstance());
         //holder.cont.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         holder.tvAcceptTime.setText(list.get(position).push_time);
+
     }
 
     @Override

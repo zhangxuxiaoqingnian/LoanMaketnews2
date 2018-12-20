@@ -65,7 +65,6 @@
                 android:id="@+id/tvAcceptStation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="快件在 深圳 ,准备送往下一站 深圳集散中心 [深圳市]"
                 android:textColor="#343434"
                 android:layout_marginLeft="18px"
                 android:layout_marginRight="18px"
