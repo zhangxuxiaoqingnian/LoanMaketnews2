@@ -84,7 +84,6 @@ public class LampView extends FrameLayout {
     public void setList(List<Notice> list){
         this.list = list;
         initView();
-        Log.e(TAG,list.get(0).getContent());
     }
 
 }  

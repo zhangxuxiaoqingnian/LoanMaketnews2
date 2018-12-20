@@ -11,6 +11,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -20,7 +21,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.smileflowpig.money.BuildConfig;
 import com.smileflowpig.money.common.utils.DisplayUtil;
+import com.smileflowpig.money.factory.model.api.RspModel;
+import com.smileflowpig.money.factory.model.api.launcher.LaunchRspModel;
+import com.smileflowpig.money.factory.net.RemoteService;
 import com.smileflowpig.money.moneyplatfrom.Adapter.MessageAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.MyAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.PlatformAdapter;
@@ -47,6 +52,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.app.PresenterFragment;
 import com.smileflowpig.money.common.factory.presenter.BaseContract;
@@ -141,6 +150,10 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         for (int i = 0; i < 6; i++) {
             list.add("");
         }
+
+        //vivo渠道控制信用卡开关
+        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("30073"))
+            cardvisible();
         //滚动文字
         getlapview();
 //        //banner
@@ -167,6 +180,35 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     }
 
+    /**
+     * 信用卡开关
+     */
+    public void cardvisible() {
+        RemoteService service = Network.remote();
+        Call<RspModel<LaunchRspModel>> call = service.getChannel(Network.channelId);
+
+        // 异步的请求
+        call.enqueue(new Callback<RspModel<LaunchRspModel>>() {
+            @Override
+            public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
+                RspModel<LaunchRspModel> rspModel = response.body();
+                if (rspModel != null && rspModel.success()) {
+
+                    if (rspModel.getRst()!=null&&!TextUtils.isEmpty(rspModel.getRst().getCredit_hidden())&&rspModel.getRst().getCredit_hidden().equals("1"))
+                        fourdata.setVisibility(View.GONE);
+                    else
+                        fourdata.setVisibility(View.VISIBLE);
+                } else {
+                    fourdata.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<LaunchRspModel>> call, Throwable t) {
+                fourdata.setVisibility(View.GONE);
+            }
+        });
+    }
     @Override
     protected BaseContract.Presenter initPresenter() {
         return null;
@@ -249,7 +291,6 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                     list.add(new Notice(data.get(i).product_id,data.get(i).content,data.get(i).link,data.get(i).skip_type+""));
                 }
                 lampView.setList(list);
-
             }
 
             @Override
