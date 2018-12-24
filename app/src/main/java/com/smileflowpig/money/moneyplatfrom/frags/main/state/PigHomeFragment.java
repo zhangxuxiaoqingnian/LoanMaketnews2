@@ -193,7 +193,6 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
             public void onResponse(Call<RspModel<LaunchRspModel>> call, Response<RspModel<LaunchRspModel>> response) {
                 RspModel<LaunchRspModel> rspModel = response.body();
                 if (rspModel != null && rspModel.success()) {
-
                     if (rspModel.getRst()!=null&&!TextUtils.isEmpty(rspModel.getRst().getCredit_hidden())&&rspModel.getRst().getCredit_hidden().equals("1"))
                         fourdata.setVisibility(View.GONE);
                     else

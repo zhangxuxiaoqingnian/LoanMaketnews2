@@ -97,8 +97,8 @@ android {
             buildConfigField 'String', 'CHANNLE', '"30077"'
         }
         avivo {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30073"]
-            buildConfigField 'String', 'CHANNLE', '"30073"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1002"]
+            buildConfigField 'String', 'CHANNLE', '"1002"'
         }
         aqqlibray {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30063"]
