@@ -36,7 +36,7 @@ public class App extends Application {
     public static final String APP_ID = "2882303761517556732";
     public static final String APP_KEY = "5821755628732";
     private static final String TAG = "App";
-    public static final String UMENG_APP_KEY = "59b64bfa677baa34a00017ca";
+    public static final String UMENG_APP_KEY = "5c206eeff1f556b18100004e";
 
     public static Context context;
 
@@ -49,7 +49,7 @@ public class App extends Application {
         UMConfigure.setLogEnabled(true);
 //        UMConfigure.init(this,"5b1ddad3f43e485f4d00003e","umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
 //        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null);
-        UMConfigure.init(this, "5bda5fdaf1f5564485000223"
+        UMConfigure.init(this, "5c206eeff1f556b18100004e"
                 , "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
         UMUtils.setChannel(this, BuildConfig.CHANNLE);
         QueuedWork.isUseThreadPool = false;
