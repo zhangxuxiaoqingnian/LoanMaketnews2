@@ -155,8 +155,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         }
 
         //vivo渠道控制信用卡开关
-//        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("30073"))
-//            cardvisible();
+        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("1003"))
+            cardvisible();
         //滚动文字
         getlapview();
 //        //banner
@@ -446,12 +446,10 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 if(o!=null){
                     final List<Allbanner.RstBean.HomeactBean> homeact = o.rst.homeact;
                     if(homeact!=null&&homeact.size()>0){
-
                         banner.setData(homeact,null);
                         banner.loadImage(new XBanner.XBannerAdapter() {
                             @Override
                             public void loadBanner(XBanner banner, Object model, View view, int position2) {
-
                                 Glide.with(getActivity()).load(homeact.get(position2).photo).into((ImageView) view);
                             }
                         });

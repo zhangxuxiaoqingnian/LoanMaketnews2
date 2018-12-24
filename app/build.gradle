@@ -58,151 +58,45 @@ android {
     }
 
     productFlavors {
-        z30033 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30001"]
-            buildConfigField 'String', 'CHANNLE', '"30001"'
-        }
+
 
         aoppo {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30074"]
-            buildConfigField 'String', 'CHANNLE', '"30074"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1006"]
+            buildConfigField 'String', 'CHANNLE', '"1006"'
         }
 
         a360 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30071"]
-            buildConfigField 'String', 'CHANNLE', '"30071"'
-        }
-
-        ayingyongbao {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30070"]
-            buildConfigField 'String', 'CHANNLE', '"30070"'
-        }
-
-        axiaomi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30075"]
-            buildConfigField 'String', 'CHANNLE', '"30075"'
-        }
-
-        ahuawei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30076"]
-            buildConfigField 'String', 'CHANNLE', '"30076"'
-        }
-
-        abaidu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30072"]
-            buildConfigField 'String', 'CHANNLE', '"30072"'
-        }
-        ameizu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1001"]
-            buildConfigField 'String', 'CHANNLE', '"1001"'
-        }
-        avivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1002"]
             buildConfigField 'String', 'CHANNLE', '"1002"'
         }
-        aqqlibray {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30063"]
-            buildConfigField 'String', 'CHANNLE', '"30063"'
+
+        ayingyongbao {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1001"]
+            buildConfigField 'String', 'CHANNLE', '"1001"'
         }
 
-        axunfei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30068"]
-            buildConfigField 'String', 'CHANNLE', '"30068"'
+        axiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1004"]
+            buildConfigField 'String', 'CHANNLE', '"1004"'
         }
 
-
-        bvivo {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30057"]
-            buildConfigField 'String', 'CHANNLE', '"30057"'
-        }
-
-        bxiaomi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30058"]
-            buildConfigField 'String', 'CHANNLE', '"30058"'
-        }
-
-        byingyongbao {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30059"]
-            buildConfigField 'String', 'CHANNLE', '"30059"'
-        }
-
-        bhuawei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30060"]
-            buildConfigField 'String', 'CHANNLE', '"30060"'
-        }
-        qutoutiao01 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40014"]
-            buildConfigField 'String', 'CHANNLE', '"40014"'
-        }
-        qutoutiao02 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40015"]
-            buildConfigField 'String', 'CHANNLE', '"40015"'
-        }
-        qutoutiao03 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40016"]
-            buildConfigField 'String', 'CHANNLE', '"40016"'
-        }
-        qutoutiao04 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40017"]
-            buildConfigField 'String', 'CHANNLE', '"40017"'
-        }
-        qutoutiao05 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40018"]
-            buildConfigField 'String', 'CHANNLE', '"40018"'
-        }
-        qutoutiao06 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40019"]
-            buildConfigField 'String', 'CHANNLE', '"40019"'
-        }
-
-        qutoutiao07 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40020"]
-            buildConfigField 'String', 'CHANNLE', '"40020"'
-        }
-        qutoutiao08 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40021"]
-            buildConfigField 'String', 'CHANNLE', '"40021"'
-        }
-        qutoutiao09 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40022"]
-            buildConfigField 'String', 'CHANNLE', '"40022"'
-        }
-        qutoutiao10 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40023"]
-            buildConfigField 'String', 'CHANNLE', '"40023"'
-        }
-        qutoutiao11 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40024"]
-            buildConfigField 'String', 'CHANNLE', '"40024"'
+        ahuawei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1005"]
+            buildConfigField 'String', 'CHANNLE', '"1005"'
         }
 
 
-        shenmashousuo01 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40026"]
-            buildConfigField 'String', 'CHANNLE', '"40026"'
+        ameizu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1007"]
+            buildConfigField 'String', 'CHANNLE', '"1007"'
         }
-        shenmashousuo02 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40027"]
-            buildConfigField 'String', 'CHANNLE', '"40027"'
-        }
-        shenmashousuo03 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40028"]
-            buildConfigField 'String', 'CHANNLE', '"40028"'
-        }
-        shenmashousuo04 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40029"]
-            buildConfigField 'String', 'CHANNLE', '"40029"'
-        }
-        shenmashousuo05 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40030"]
-            buildConfigField 'String', 'CHANNLE', '"40030"'
-        }
-        shenmashousuo06 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "40031"]
-            buildConfigField 'String', 'CHANNLE', '"40031"'
+        avivo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1003"]
+            buildConfigField 'String', 'CHANNLE', '"1003"'
         }
 
-//
+
+
 
     }
 }
