@@ -40,10 +40,10 @@ public class Common {
 
 
         //正式接口
-        //String API_URL = "https://newapi.henhaojie.com/user/";
+        String API_URL = "https://xiaohuazhu.tthbw.com/user/";
         //测试接口
       //String API_URL = "http://bw.quyaqu.com/user/";
-      String API_URL = "http://182.92.118.1:5220/user/";
+//      String API_URL = "http://182.92.118.1:5220/user/";
 
         // 最大的上传图片大小860kb
         long MAX_UPLOAD_IMAGE_LENGTH = 860 * 1024;

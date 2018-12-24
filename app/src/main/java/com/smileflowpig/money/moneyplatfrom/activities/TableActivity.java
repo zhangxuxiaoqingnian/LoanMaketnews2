@@ -101,6 +101,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
             getcardlist();
         }else {
             //其他类型
+            showOnlyDialogLoadding();
             getdatalist();
         }
 
@@ -171,6 +172,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
             @Override
             public void onNext(HomedataBean homedataBean) {
 
+
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
                 if(homedataBean.rst.pageinfo.hasNext){
@@ -207,12 +209,12 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
 
             @Override
             public void onError(Throwable e) {
-
+                hideOnDialogLoading();
             }
 
             @Override
             public void onComplete() {
-
+                hideOnDialogLoading();
             }
         });
     }
