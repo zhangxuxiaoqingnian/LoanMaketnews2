@@ -60,7 +60,7 @@ public class PlatformAdapter extends RecyclerView.Adapter<PlatformAdapter.MyView
                 getItempostion.success(position);
             }
         });
-        if (list.get(position).prod_title == null || list.get(position).prod_title.size() == 0) {
+        if (list.get(position).prod_title.get(0).equals("")) {
             holder.title.setVisibility(View.GONE);
         } else {
             holder.title.setVisibility(View.VISIBLE);
