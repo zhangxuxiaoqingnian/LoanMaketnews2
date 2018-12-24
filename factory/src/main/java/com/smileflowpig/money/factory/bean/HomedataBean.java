@@ -1,5 +1,6 @@
 package com.smileflowpig.money.factory.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,7 +83,7 @@ public class HomedataBean {
             public String lower_amount;
             public String remarks;
             public String description;
-            public String prod_title;
+            public ArrayList<String> prod_title;
             public String applicants;
             public String icon;
             public String day_rate;

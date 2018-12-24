@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/tvTopLine"
             android:layout_width="2px"
-            android:layout_height="41px"
+            android:layout_height="11px"
             android:layout_centerHorizontal="true"
             android:background="#FFCE25" />
 
@@ -40,7 +40,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="6dp"
         android:paddingRight="10dp"
-        android:paddingTop="38px">
+        android:paddingTop="8px">
 
         <TextView
             android:id="@+id/tvAcceptTime"

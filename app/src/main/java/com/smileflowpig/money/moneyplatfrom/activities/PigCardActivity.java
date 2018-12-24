@@ -109,8 +109,12 @@ public class PigCardActivity extends PresenterActivity implements View.OnClickLi
                 pigCardAdapter.setItemshap(new PigCardAdapter.getItemshap() {
                     @Override
                     public void success(int pos) {
-                        Intent intent=new Intent(PigCardActivity.this,CardDetailActivity.class);
-                        startActivity(intent);
+                        //进去详情页
+//                        Intent intent=new Intent(PigCardActivity.this,CardDetailActivity.class);
+//                        startActivity(intent);
+                        MobclickAgent.onEvent(PigCardActivity.this, "homeCreditCardApply");
+                        WebActivity.show(PigCardActivity.this, list2.get(pos).name,
+                                list2.get(pos).url);
                     }
                 });
 

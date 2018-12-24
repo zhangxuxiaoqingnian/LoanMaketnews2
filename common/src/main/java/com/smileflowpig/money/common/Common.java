@@ -36,15 +36,14 @@ public class Common {
 //        String API_URL = "http://api.kuxuan-inc.com/user/";
 //         基础的网络请求地址`
 
-        //现在线上
-        //String API_URL = "https://API_URLnewapi.henhaojie.com/user/";
-//        String API_URL = "http://m.henhaojie.com/user/";
 
-        //张
-       String API_URL = "https://newapi.henhaojie.com/user/";
 
+
+        //正式接口
+        //String API_URL = "https://newapi.henhaojie.com/user/";
         //测试接口
       //String API_URL = "http://bw.quyaqu.com/user/";
+      String API_URL = "http://182.92.118.1:5220/user/";
 
         // 最大的上传图片大小860kb
         long MAX_UPLOAD_IMAGE_LENGTH = 860 * 1024;

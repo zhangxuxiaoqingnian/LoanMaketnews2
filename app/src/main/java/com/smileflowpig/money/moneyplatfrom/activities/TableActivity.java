@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.smileflowpig.money.factory.bean.CardBean;
+import com.smileflowpig.money.factory.bean.HomedataBean;
 import com.smileflowpig.money.moneyplatfrom.Adapter.CardAdapter;
 import com.smileflowpig.money.moneyplatfrom.Adapter.TabAdapter;
 import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
@@ -41,6 +42,9 @@ import com.smileflowpig.money.moneyplatfrom.web.WebActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class TableActivity extends PresenterActivity implements View.OnClickListener,OnRefreshLoadmoreListener {
+
+    private int changid;
+
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
@@ -66,7 +70,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
     private int tabid;
     private String channelId;
     private int page=1;
-    private List<TabBean.RstBean.DataBean> list;
+    private List<HomedataBean.RstBean.DataBean> list;
     private TabAdapter tabAdapter;
     private List<CardBean.RstBean.ListBean> list2;
     private CardAdapter cardAdapter;
@@ -84,6 +88,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
         list = new ArrayList<>();
         list2 = new ArrayList<>();
         channelId = Network.channelId;
+        changid = Integer.parseInt(channelId);
         Intent intent = getIntent();
         tabtitle = intent.getStringExtra("tabtitle");
         tabid = intent.getIntExtra("tabid", -1);
@@ -155,25 +160,25 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
 
     public void getdatalist(){
 
-        Observable<TabBean> tabBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gettablist(tabid, page, channelId).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> homedataBeanObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(tabid, changid, 10, page).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        tabBeanObservable.subscribe(new Observer<TabBean>() {
+        homedataBeanObservable.subscribe(new Observer<HomedataBean>() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(TabBean tabBean) {
+            public void onNext(HomedataBean homedataBean) {
 
                 refreshLayout.finishLoadmore();
                 refreshLayout.finishRefresh();
-                if(tabBean.rst.pageinfo.hasNext){
+                if(homedataBean.rst.pageinfo.hasNext){
                     page++;
                 }else {
                     refreshLayout.setLoadmoreFinished(true);
                 }
-                final List<TabBean.RstBean.DataBean> data = tabBean.rst.data;
+                List<HomedataBean.RstBean.DataBean> data = homedataBean.rst.data;
                 list.addAll(data);
                 if(tabAdapter==null){
                     tabAdapter = new TabAdapter(TableActivity.this,list);

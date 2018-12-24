@@ -51,6 +51,7 @@
             android:text="我的申请"
             android:textColor="#ffffff"
             android:textSize="14sp"
+            android:visibility="gone"
             />
 
     </android.support.v7.widget.Toolbar>

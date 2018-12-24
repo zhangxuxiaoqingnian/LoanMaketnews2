@@ -40,6 +40,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
+
         holder.name.setText(list.get(position).title);
         Glide.with(context).load(list.get(position).picture).into(holder.icon);
         holder.num.setText(list.get(position).view_num+"阅读");
@@ -78,7 +79,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             num = (TextView) itemView.findViewById(R.id.mess_num);
             time = (TextView) itemView.findViewById(R.id.mess_time);
             uper = (TextView) itemView.findViewById(R.id.mess_up);
-
 
         }
     }

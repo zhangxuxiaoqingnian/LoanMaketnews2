@@ -15,8 +15,8 @@ android {
         applicationId "com.smileflowpig.money"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.2.0"
+        versionCode 5
+        versionName "1.3.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -93,8 +93,8 @@ android {
             buildConfigField 'String', 'CHANNLE', '"30072"'
         }
         ameizu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30077"]
-            buildConfigField 'String', 'CHANNLE', '"30077"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1001"]
+            buildConfigField 'String', 'CHANNLE', '"1001"'
         }
         avivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30073"]
