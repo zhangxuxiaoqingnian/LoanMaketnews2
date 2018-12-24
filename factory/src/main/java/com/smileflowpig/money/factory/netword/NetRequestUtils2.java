@@ -64,8 +64,8 @@ public class NetRequestUtils2 {
         okHttpClient.writeTimeout(30, TimeUnit.SECONDS);
         okHttpClient.addInterceptor(new Retry(10));//多次重连
 
-        //https://newapi.henhaojie.com/user/
-        //http://bw.quyaqu.com/user/
+        //http://ads.726p.com/api/    //线上
+        //http://182.92.118.1:8070/api/           //测试
                 Retrofit.Builder retrofit = new Retrofit.Builder().baseUrl("http://ads.726p.com/api/").client(okHttpClient.build());
         retrofit.addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
@@ -73,7 +73,6 @@ public class NetRequestUtils2 {
 //                Network.getRetrofit().create(Baseretrofit.class)
 
         Baseretrofit baseretrofit = retrofit.build().create(Baseretrofit.class);
-
         Instance = new NetRequestUtils2(baseretrofit);
 
         return Instance;

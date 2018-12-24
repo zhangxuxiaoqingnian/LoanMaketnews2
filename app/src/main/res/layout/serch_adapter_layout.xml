@@ -59,6 +59,20 @@
                     android:paddingRight="5px"
                     android:visibility="gone"
                     />
+                <TextView
+                    android:id="@+id/pri_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通过率高"
+                    android:textColor="#FB4F4F"
+                    android:textSize="9px"
+                    android:layout_marginLeft="9px"
+                    android:background="@drawable/hotback"
+                    android:gravity="center"
+                    android:paddingLeft="5px"
+                    android:paddingRight="5px"
+                    android:visibility="gone"
+                    />
             </LinearLayout>
             <TextView
                 android:id="@+id/hot_destory"

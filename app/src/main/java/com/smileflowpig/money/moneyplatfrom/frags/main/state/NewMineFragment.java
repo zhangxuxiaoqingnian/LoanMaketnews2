@@ -167,11 +167,11 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
 //
         login.setText(user.nick);
         System.out.println(user.avatar_url + "图片地址");
-        if (user.avatar_url.equals("")) {
-            loginicon.setImageResource(R.mipmap.loginicon);
-        } else {
+//        if (user.avatar_url.equals("")) {
+//            loginicon.setImageResource(R.mipmap.loginicon);
+//        } else {
             Glide.with(getActivity()).load(user.avatar_url).into(loginicon);
-        }
+//        }
 
         sharedPreferences.edit().putString("myphonecode", user.phone).commit();
         myiconurl = user.avatar_url;

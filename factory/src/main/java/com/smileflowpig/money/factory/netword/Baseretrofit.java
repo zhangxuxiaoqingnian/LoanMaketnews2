@@ -314,7 +314,7 @@ public interface Baseretrofit {
     Observable<MoneyBean> getmonth();
 
     //获取消息推送列表
-    @POST("/PushMessage/V1/getXhzMessage")
+    @POST("/api/PushMessage/V1/getXhzMessage")
     @FormUrlEncoded
     Observable<PushBean> getpushmess(@Field("app_list_id") int page);
 }
