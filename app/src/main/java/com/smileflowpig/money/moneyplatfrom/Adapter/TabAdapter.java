@@ -60,11 +60,29 @@ public class TabAdapter extends RecyclerView.Adapter<TabAdapter.MyViewHolder> {
                 getItempostion.success(position);
             }
         });
-        if(list.get(position).prod_title.get(0).equals("")){
+        if (list.get(position).prod_title == null || list.get(position).prod_title.size() == 0) {
             holder.title.setVisibility(View.GONE);
-        }else {
-            holder.title.setVisibility(View.VISIBLE);
-            holder.title.setText(list.get(position).prod_title.get(0));
+            holder.title2.setVisibility(View.GONE);
+        } else {
+            if(list.get(position).prod_title.size()<3){
+                if(list.get(position).prod_title.size()==1){
+                    holder.title.setVisibility(View.VISIBLE);
+                    holder.title.setText(list.get(position).prod_title.get(0));
+                    holder.title2.setVisibility(View.GONE);
+                }else if(list.get(position).prod_title.size()==2){
+                    holder.title.setVisibility(View.VISIBLE);
+                    holder.title.setText(list.get(position).prod_title.get(0));
+                    holder.title2.setVisibility(View.VISIBLE);
+                    holder.title2.setText(list.get(position).prod_title.get(1));
+                }
+
+            }else {
+                holder.title.setVisibility(View.VISIBLE);
+                holder.title.setText(list.get(position).prod_title.get(0));
+                holder.title2.setVisibility(View.VISIBLE);
+                holder.title2.setText(list.get(position).prod_title.get(1));
+            }
+
         }
     }
 
@@ -83,6 +101,7 @@ public class TabAdapter extends RecyclerView.Adapter<TabAdapter.MyViewHolder> {
         private final TextView name;
         private final ImageView icon;
         private final TextView title;
+        private final TextView title2;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -95,6 +114,7 @@ public class TabAdapter extends RecyclerView.Adapter<TabAdapter.MyViewHolder> {
             day = (TextView) itemView.findViewById(R.id.hot_day);
             people = (TextView) itemView.findViewById(R.id.hot_people);
             title = (TextView) itemView.findViewById(R.id.pri_title);
+            title2 = (TextView) itemView.findViewById(R.id.pri_title2);
 
         }
     }

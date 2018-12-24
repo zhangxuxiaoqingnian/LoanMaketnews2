@@ -49,7 +49,7 @@ public class MessContextActivity extends PresenterActivity implements View.OnCli
     }
     public void getdata(){
 
-        Observable<PushBean> pushBeanObservable = new NetRequestUtils2().bucuo().getbaseretrofit().getpushmess(3).subscribeOn(Schedulers.io())
+        Observable<PushBean> pushBeanObservable = new NetRequestUtils2().bucuo().getbaseretrofit().getpushmess(2).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         pushBeanObservable.subscribe(new Observer<PushBean>() {
             @Override

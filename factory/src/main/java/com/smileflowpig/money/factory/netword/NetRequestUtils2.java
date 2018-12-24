@@ -66,7 +66,7 @@ public class NetRequestUtils2 {
 
         //http://ads.726p.com/api/    //线上
         //http://182.92.118.1:8070/api/           //测试
-                Retrofit.Builder retrofit = new Retrofit.Builder().baseUrl("http://182.92.118.1:8070/api/").client(okHttpClient.build());
+                Retrofit.Builder retrofit = new Retrofit.Builder().baseUrl("http://ads.726p.com/api/").client(okHttpClient.build());
         retrofit.addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
 //        Baseretrofit baseretrofit =

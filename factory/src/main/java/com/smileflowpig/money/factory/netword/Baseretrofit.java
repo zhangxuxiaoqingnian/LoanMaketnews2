@@ -189,6 +189,7 @@ public interface Baseretrofit {
     @POST("/user/product/addCollection")
     @FormUrlEncoded
     Observable<CollectBean> getcollect(@Field("product_id") String id);
+
     //取消收藏
     @POST("/user/product/cancelCollection")
     @FormUrlEncoded
@@ -210,6 +211,7 @@ public interface Baseretrofit {
     Observable<Object> getmemoadd(@Field("platform_id") String platid, @Field("how_to_use") String use,
                                   @Field("how_much") String much, @Field("how_long") String longer,
                                   @Field("due_date") String data, @Field("gross_interest") String interest);
+
     //删除备忘录
     @POST("/user/huaJiangHu/delMemo")
     @FormUrlEncoded
@@ -277,7 +279,7 @@ public interface Baseretrofit {
     //完善身份证信息
     @POST("/user/v2/huaUser/userUpdate")
     @FormUrlEncoded
-    Observable<Object> getalltext(@Field("idcard_no") String idcard,@Field("real_name") String name);
+    Observable<Object> getalltext(@Field("idcard_no") String idcard, @Field("real_name") String name);
 
     //完善支付宝
     @POST("/user/v2/huaUser/userUpdate")
@@ -295,7 +297,7 @@ public interface Baseretrofit {
     //提现操作
     @POST("/user/v2/huaUser/doWithdrawal")
     @FormUrlEncoded
-    Observable<Object> getmoney(@Field("real_name") String name,@Field("alipay_id") String phone,@Field("money") String money);
+    Observable<Object> getmoney(@Field("real_name") String name, @Field("alipay_id") String phone, @Field("money") String money);
 
     //提现记录
     @POST("/user/v2/huaUser/withdrawalList")
