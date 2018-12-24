@@ -68,7 +68,7 @@ public class RadiersActivity extends Activity {
 
 
         List<String> childData = new ArrayList<String>();
-        childData.add("您可以根据需求在\"极速贷款\"板块选择贷款产品，我们建议您选择符合个人信息和" +
+        childData.add("您可以根据需求在\"贷款\"板块选择贷款产品，我们建议您选择符合个人信息和" +
                 "需求的贷款产品，并根绝次贷款产品的要求" +
                 "填写完资料并提交申请");
         childData.add("一般需要1-3个工作日，最快1小时可以到账。用户的资料真实度、" +

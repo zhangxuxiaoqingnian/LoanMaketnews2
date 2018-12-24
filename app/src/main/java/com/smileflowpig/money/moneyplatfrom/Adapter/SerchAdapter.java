@@ -61,11 +61,12 @@ public class SerchAdapter extends RecyclerView.Adapter<SerchAdapter.MyViewHolder
                 getItempostion.success(position);
             }
         });
-        if(list.get(position).prod_title==null||list.get(position).prod_title.equals("")){
+
+        if(list.get(position).prod_title.get(0).equals("")){
             holder.title.setVisibility(View.GONE);
         }else {
             holder.title.setVisibility(View.VISIBLE);
-            holder.title.setText(list.get(position).prod_title);
+            holder.title.setText(list.get(position).prod_title.get(0));
         }
         if(list.get(position).is_quality!=null){
             if(list.get(position).is_quality.equals("0")){

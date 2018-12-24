@@ -186,6 +186,7 @@ public class MoneyFragment extends PresenterFragment implements View.OnClickList
                 }
                 list3.addAll(data);
                 if (serchAdapter == null) {
+                    System.out.println(list3.size()+"多长额");
                     serchAdapter = new SerchAdapter(getActivity(), list3);
                     moneyrv.setLayoutManager(new WrapContentLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
                     moneyrv.setAdapter(serchAdapter);

@@ -35,6 +35,7 @@ import com.smileflowpig.money.moneyplatfrom.activities.CaseurlActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.DetailActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessContextActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.MessageActivity;
+import com.smileflowpig.money.moneyplatfrom.activities.PigCardActivity;
 import com.smileflowpig.money.moneyplatfrom.activities.TableActivity;
 import com.smileflowpig.money.moneyplatfrom.util.CustomViewpagerView;
 import com.smileflowpig.money.moneyplatfrom.util.DisplayUtils3;
@@ -143,17 +144,19 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
         initview();
         list5 = new ArrayList<>();
+
         //获取当前渠道号
         String channelId = Network.channelId;
         changid = Integer.parseInt(channelId);
+        cardvisible();
         list = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             list.add("");
         }
 
         //vivo渠道控制信用卡开关
-        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("30073"))
-            cardvisible();
+//        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("30073"))
+//            cardvisible();
         //滚动文字
         getlapview();
 //        //banner
@@ -220,7 +223,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getclose(){
 
-        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(13, changid,6,1).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(4, changid,6,1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<HomedataBean>() {
             @Override
@@ -369,7 +372,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getplatform(){
 
-        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(12, changid,18,1).subscribeOn(Schedulers.io())
+        Observable<HomedataBean> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().gethomedata(5, changid,18,1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<HomedataBean>() {
             @Override
@@ -430,7 +433,7 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
 
     public void getbannerdata(){
 
-        Observable<Allbanner> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getallbanner(2).subscribeOn(Schedulers.io())
+        Observable<Allbanner> objectObservable = new NetRequestUtils().bucuo().getbaseretrofit().getallbanner(1).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         objectObservable.subscribe(new Observer<Allbanner>() {
             @Override
@@ -642,9 +645,8 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
                 break;
             case R.id.fourdata:
                 MobclickAgent.onEvent(getActivity(), "homeCreditCard");
-                Intent intent4=new Intent(getActivity(), TableActivity.class);
-                intent4.putExtra("tabtitle","信用卡");
-                intent4.putExtra("tabid",4);
+                //下版用
+                Intent intent4=new Intent(getActivity(), PigCardActivity.class);
                 startActivityForResult(intent4, Constant.Code.REQUEST_CODEF);
                 break;
             case R.id.pighomemess:

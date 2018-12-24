@@ -2,6 +2,7 @@ package com.smileflowpig.money.factory.model.api.product;
 
 import com.smileflowpig.money.factory.model.db.Dialogs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ProductDetail {
     private String is_hot;
     private String is_new;
     private String user_title;
-    private String prod_title;
+    private ArrayList<String> prod_title;
     private String sort_order;
     private String status;
     private String create_time;
@@ -224,11 +225,11 @@ public class ProductDetail {
         this.user_title = user_title;
     }
 
-    public String getProd_title() {
+    public ArrayList<String> getProd_title() {
         return prod_title;
     }
 
-    public void setProd_title(String prod_title) {
+    public void setProd_title(ArrayList<String> prod_title) {
         this.prod_title = prod_title;
     }
 

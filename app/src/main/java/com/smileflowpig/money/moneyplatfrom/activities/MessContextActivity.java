@@ -35,12 +35,14 @@ public class MessContextActivity extends PresenterActivity implements View.OnCli
     LinearLayout back;
     @BindView(R.id.nullmess)
     TextView nulltv;
+    private List<PushBean.ResBean> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         initview();
-
+        list = new ArrayList<>();
         //请求数据
         getdata();
 
@@ -59,7 +61,12 @@ public class MessContextActivity extends PresenterActivity implements View.OnCli
                 if(pushBean.message.equals("成功")){
                     if(pushBean.res.size()>0){
                         List<PushBean.ResBean> res = pushBean.res;
-                        MessAdapter messAdapter=new MessAdapter(MessContextActivity.this,res);
+                        for (int i = 0; i < res.size(); i++) {
+                            if(res.get(i).xhz_type!=1){
+                                list.add(res.get(i));
+                            }
+                        }
+                        MessAdapter messAdapter=new MessAdapter(MessContextActivity.this,list);
                         rv.setLayoutManager(new LinearLayoutManager(MessContextActivity.this));
                         rv.setAdapter(messAdapter);
                     }else {

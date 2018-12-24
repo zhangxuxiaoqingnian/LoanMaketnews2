@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import com.smileflowpig.money.R;
+import com.smileflowpig.money.factory.bean.HomedataBean;
 import com.smileflowpig.money.factory.bean.TabBean;
 
 /**
@@ -23,10 +24,10 @@ import com.smileflowpig.money.factory.bean.TabBean;
 public class TabAdapter extends RecyclerView.Adapter<TabAdapter.MyViewHolder> {
 
     private Context context;
-    private List<TabBean.RstBean.DataBean> list;
+    private List<HomedataBean.RstBean.DataBean> list;
     private getItempostion getItempostion;
 
-    public TabAdapter(Context context, List<TabBean.RstBean.DataBean> list) {
+    public TabAdapter(Context context, List<HomedataBean.RstBean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -59,11 +60,11 @@ public class TabAdapter extends RecyclerView.Adapter<TabAdapter.MyViewHolder> {
                 getItempostion.success(position);
             }
         });
-        if(list.get(position).prod_title==null||list.get(position).prod_title.equals("")){
+        if(list.get(position).prod_title.get(0).equals("")){
             holder.title.setVisibility(View.GONE);
         }else {
             holder.title.setVisibility(View.VISIBLE);
-            holder.title.setText(list.get(position).prod_title);
+            holder.title.setText(list.get(position).prod_title.get(0));
         }
     }
 

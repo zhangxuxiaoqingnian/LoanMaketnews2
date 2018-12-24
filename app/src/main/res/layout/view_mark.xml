@@ -9,25 +9,25 @@
         android:id="@+id/m_view_mark_start_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_star_empty"/>
+        android:src="@mipmap/pighuise"/>
     <ImageView
         android:id="@+id/m_view_mark_start_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_star_empty"/>
+        android:src="@mipmap/pighuise"/>
     <ImageView
         android:id="@+id/m_view_mark_start_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_star_empty"/>
+        android:src="@mipmap/pighuise"/>
     <ImageView
         android:id="@+id/m_view_mark_start_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_star_empty"/>
+        android:src="@mipmap/pighuise"/>
     <ImageView
         android:id="@+id/m_view_mark_start_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_star_empty"/>
+        android:src="@mipmap/pighuise"/>
 </LinearLayout>

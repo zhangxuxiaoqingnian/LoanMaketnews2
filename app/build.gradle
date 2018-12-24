@@ -93,8 +93,8 @@ android {
             buildConfigField 'String', 'CHANNLE', '"30072"'
         }
         ameizu {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "30077"]
-            buildConfigField 'String', 'CHANNLE', '"30077"'
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1001"]
+            buildConfigField 'String', 'CHANNLE', '"1001"'
         }
         avivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1002"]
