@@ -227,7 +227,6 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     intent.putExtra("myphone", myphone);
                     startActivity(intent);
                 }
-
                 MobclickAgent.onEvent(getActivity(), "mineData");
                 break;
             case R.id.mine_icon:
@@ -256,7 +255,6 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 } else {
                     Intent intent = new Intent(getActivity(), MyCollectActivity.class);
                     startActivityForResult(intent, Constant.Code.REQUEST_CODEF);
-
                 }
                 MobclickAgent.onEvent(getActivity(), "mineCollectInto");
                 break;
@@ -277,7 +275,6 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                     startActivity(intent2);
                 }
                 MobclickAgent.onEvent(getActivity(), "mineMemoInto");
-
                 break;
             //常见问题
             case R.id.my_question:

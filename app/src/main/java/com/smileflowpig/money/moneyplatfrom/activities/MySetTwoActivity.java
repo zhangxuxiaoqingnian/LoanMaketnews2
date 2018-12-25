@@ -132,11 +132,9 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         String loginsex = intent.getStringExtra("loginsex");
         String loginindent = intent.getStringExtra("loginindent");
 
-        if(loginicon.equals("")){
-            icon.setImageResource(R.mipmap.loginicon);
-        }else {
-            Glide.with(MySetTwoActivity.this).load(loginicon).error(R.mipmap.loginicon).into(icon);
-        }
+
+        Glide.with(MySetTwoActivity.this).load(loginicon).error(R.mipmap.loginicon).into(icon);
+
         name.setText(loginname);
         sex.setText(loginsex);
         typetext.setText(loginindent);
