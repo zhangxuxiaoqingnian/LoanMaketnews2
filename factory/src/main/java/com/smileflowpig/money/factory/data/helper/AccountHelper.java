@@ -330,12 +330,11 @@ public class AccountHelper {
             // 请求成功返回
             // 从返回中得到我们的全局Model，内部是使用的Gson进行解析
             RspModel<AccountRspModel> rspModel = response.body();
-            if (rspModel.success()) {
+            if (rspModel!=null&&rspModel.success()) {
                 // 拿到实体
                 AccountRspModel accountRspModel = rspModel.getRst();
                 User user = accountRspModel.getUser();
                 callback.onDataLoaded(user);
-
             } else {
                 // 错误解析
                 Factory.decodeRspCode(rspModel, callback);
@@ -349,9 +348,6 @@ public class AccountHelper {
                 callback.onDataNotAvailable(R.string.data_network_error);
         }
     }
-
-
-
 
 
 }

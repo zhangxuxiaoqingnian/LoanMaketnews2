@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -132,13 +133,16 @@ public class MySetTwoActivity extends PresenterActivity implements View.OnClickL
         String loginsex = intent.getStringExtra("loginsex");
         String loginindent = intent.getStringExtra("loginindent");
 
-        if(loginicon.equals("")){
+        if(loginicon==null||loginicon.equals("")){
             icon.setImageResource(R.mipmap.loginicon);
         }else {
             Glide.with(MySetTwoActivity.this).load(loginicon).error(R.mipmap.loginicon).into(icon);
         }
+        if(!TextUtils.isEmpty(loginname))
         name.setText(loginname);
+        if(!TextUtils.isEmpty(loginsex))
         sex.setText(loginsex);
+        if(!TextUtils.isEmpty(loginindent))
         typetext.setText(loginindent);
 
     }

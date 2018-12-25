@@ -384,9 +384,10 @@ public class MySetActivity extends PresenterActivity<ExistContract.Presenter>
     @Override
     public void ExistSuccess() {
 
-        SPUtil.clear(this);
-        com.smileflowpig.money.factory.util.SPUtil.clear(this);
-        com.smileflowpig.money.factory.util.SPUtil.putAndApply(this, Constant.UserInfo.ISEXITE, true);
+//        SPUtil.clear(this);
+//        com.smileflowpig.money.factory.util.SPUtil.clear(this);
+     SPUtil.putAndApply(this, Constant.UserInfo.ISEXITE, true);
+        SPUtil.putAndApply(this, Constant.UserInfo.SESSIONID, "");
         finish();
     }
 

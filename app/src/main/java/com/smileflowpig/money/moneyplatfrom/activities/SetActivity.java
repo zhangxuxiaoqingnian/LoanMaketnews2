@@ -73,9 +73,10 @@ public class SetActivity extends PresenterActivity<ExistContract.Presenter>
     @Override
     public void ExistSuccess() {
         EventBus.getDefault().post(new SecondEvent("登录/注册"));
-        SPUtil.clear(this);
-        com.smileflowpig.money.factory.util.SPUtil.clear(this);
-        com.smileflowpig.money.factory.util.SPUtil.putAndApply(this, Constant.UserInfo.ISEXITE, true);
+//        SPUtil.clear(this);
+//        com.smileflowpig.money.factory.util.SPUtil.clear(this);`
+       SPUtil.putAndApply(this, Constant.UserInfo.ISEXITE, true);
+      SPUtil.putAndApply(this, Constant.UserInfo.SESSIONID, "");
         finish();
 
     }

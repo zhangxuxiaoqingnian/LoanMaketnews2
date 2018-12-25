@@ -156,8 +156,10 @@ public class PigHomeFragment extends PresenterFragment implements View.OnClickLi
         }
 
         //vivo渠道控制信用卡开关
-        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("1003"))
+        if (!TextUtils.isEmpty(BuildConfig.CHANNLE) && BuildConfig.CHANNLE.equals("1003")){
+            fourdata.setVisibility(View.GONE);
             cardvisible();
+        }
         //滚动文字
         getlapview();
 //        //banner

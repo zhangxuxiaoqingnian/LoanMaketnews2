@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.smileflowpig.money.factory.Constant;
+import com.smileflowpig.money.factory.util.SPUtil;
 import com.smileflowpig.money.moneyplatfrom.activities.Webview_protocol;
 
 import net.qiujuer.genius.ui.widget.Button;
@@ -26,6 +28,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 import com.smileflowpig.money.BuildConfig;
 import com.smileflowpig.money.R;
 import com.smileflowpig.money.common.SecondEvent;
@@ -80,9 +83,9 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
     }
 
 
-
     @BindView(R.id.fragment_register_delete_pwdimg)
     ImageView register_check_imge;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -96,8 +99,9 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
      * 显示隐藏密码
      */
     boolean isCheck;
+
     @OnClick(R.id.fragment_register_delete_pwdimg)
-    void onCheck(){
+    void onCheck() {
         if (!isCheck) {
             mPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             isCheck = true;
@@ -162,6 +166,8 @@ public class RegisterFragment extends PresenterFragment<RegisterContract.Present
 
 //        MainActivity.show(getActivity());
         EventBus.getDefault().post(new SecondEvent(user.phone));
+        //注册时候登录成功
+        SPUtil.putAndApply(getActivity(), Constant.UserInfo.ISEXITE, false);
         listener.onRegistSuccess(false);
     }
 

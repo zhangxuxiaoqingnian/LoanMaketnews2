@@ -15,6 +15,8 @@ public class Constant {
         public static final String PASSWORD = "password";
         public static final String CODETOKEN = "codetoken";
         public static final String ISEXITE = "isexite";
+        public static final String NICK = "nick";
+        public static final String ICONURL = "icon_url";
     }
     public static class Code {
         public static final int RESULT_LOGINSUC_CODE = 10000;
