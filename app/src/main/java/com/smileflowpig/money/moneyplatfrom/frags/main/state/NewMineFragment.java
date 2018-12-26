@@ -152,14 +152,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
-        if (LoginStatusUtil.isLogin()) {
-            //登录先显示缓存的
-            String nick = (String) SPUtil.get(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.NICK, "");
-            String icon_url = (String) SPUtil.get(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.ICONURL, "");
-            login.setText(nick);
-            Glide.with(getActivity()).load(icon_url).into(loginicon);
-            mPresenter.start();
-        }
+
 
     }
 
@@ -365,7 +358,17 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     @Override
     public void onResume() {
         super.onResume();
-
+        if (LoginStatusUtil.isLogin()) {
+            //登录先显示缓存的
+            String nick = (String) SPUtil.get(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.NICK, "");
+            String icon_url = (String) SPUtil.get(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.ICONURL, "");
+            login.setText(nick);
+            Glide.with(getActivity()).load(icon_url).into(loginicon);
+            mPresenter.start();
+        }else{
+            login.setText("注册/登录");
+            loginicon.setImageResource(R.mipmap.loginicon);
+        }
 
     }
 
