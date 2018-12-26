@@ -48,9 +48,13 @@ public class MyDatumActivity extends PresenterActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
 
         initview();
-        myphone = getIntent().getStringExtra("myphone");
+        try {
+            myphone = getIntent().getStringExtra("myphone");
         String s = myphone.substring(0, 3) + "****" + myphone.substring(7, myphone.length());
         cardphone.setText(s);
+        }catch (Exception e){
+
+        }
 
     }
     public void initview(){
