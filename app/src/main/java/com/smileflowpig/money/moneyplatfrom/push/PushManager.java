@@ -156,7 +156,7 @@ public class PushManager {
      */
     public static void huaweiConnect(final Activity activity) {
         int phoneModel = PhoneUtil.getPhoneModel(activity);
-//        if (phoneModel == PhoneUtil.HUAWEI) {
+        if (phoneModel == PhoneUtil.HUAWEI) {
             HMSAgent.connect(activity, new ConnectHandler() {
                 @Override
                 public void onConnect(int rst) {
@@ -164,7 +164,7 @@ public class PushManager {
 getHuaweiToken(activity);
                 }
             });
-//        }
+        }
     }
 
     /**

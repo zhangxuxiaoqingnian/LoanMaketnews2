@@ -24,8 +24,8 @@
             />
         <ImageView
             android:id="@+id/fragment_mine_message_img"
-            android:layout_width="24px"
-            android:layout_height="24px"
+            android:layout_width="25px"
+            android:layout_height="25px"
             android:layout_marginTop="35px"
             android:layout_marginRight="24px"
             android:layout_alignParentRight="true"

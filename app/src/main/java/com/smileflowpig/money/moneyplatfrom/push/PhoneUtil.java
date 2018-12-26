@@ -29,7 +29,7 @@ public class PhoneUtil {
      */
     public static int getPhoneModel(Context context) {
         String phoneMessage = getPhoneMessage();
-        if (phoneMessage.equals("HUAWEI")) {
+        if (phoneMessage.equals("HUAWEI")||phoneMessage.equals("HONOR")) {
             return HUAWEI;
         } else if (phoneMessage.equals("XIAOMI")) {
             return XIAOMI;

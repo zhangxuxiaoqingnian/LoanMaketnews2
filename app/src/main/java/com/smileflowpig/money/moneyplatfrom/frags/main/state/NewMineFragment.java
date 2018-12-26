@@ -58,6 +58,7 @@ import com.smileflowpig.money.moneyplatfrom.util.DialogPermission;
 import com.smileflowpig.money.moneyplatfrom.util.FileUtil;
 import com.smileflowpig.money.moneyplatfrom.util.PermissionUtil;
 import com.smileflowpig.money.moneyplatfrom.util.SharedPreferenceMark;
+import com.smileflowpig.money.moneyplatfrom.util.ToastUtil;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
@@ -151,27 +152,34 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
-        mPresenter.start();
+        if (LoginStatusUtil.isLogin()) {
+            //登录先显示缓存的
+            String nick = (String) SPUtil.get(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.NICK, "");
+            String icon_url = (String) SPUtil.get(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.ICONURL, "");
+            login.setText(nick);
+            Glide.with(getActivity()).load(icon_url).into(loginicon);
+            mPresenter.start();
+        }
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.start();
+
 
     }
 
     @Override
     public void stateLogin(User user) {
-
 //
+        if (user == null) {
+            return;
+        }
+        SPUtil.putAndApply(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.NICK, user.nick);
+        SPUtil.putAndApply(getActivity(), com.smileflowpig.money.factory.Constant.UserInfo.ICONURL, user.avatar_url);
         login.setText(user.nick);
-        System.out.println(user.avatar_url + "图片地址");
-//        if (user.avatar_url.equals("")) {
-//            loginicon.setImageResource(R.mipmap.loginicon);
-//        } else {
-            Glide.with(getActivity()).load(user.avatar_url).into(loginicon);
-//        }
+        Glide.with(getActivity()).load(user.avatar_url).into(loginicon);
 
         sharedPreferences.edit().putString("myphonecode", user.phone).commit();
         myiconurl = user.avatar_url;
@@ -305,7 +313,7 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
                 MobclickAgent.onEvent(getActivity(), "mineSetting");
                 break;
             case R.id.fragment_mine_message_img:
-                Intent intent3=new Intent(getActivity(), MessContextActivity.class);
+                Intent intent3 = new Intent(getActivity(), MessContextActivity.class);
                 startActivity(intent3);
                 message_img.setImageResource(R.mipmap.icon_message_mine);
                 MobclickAgent.onEvent(getActivity(), "mineNews");
@@ -354,7 +362,6 @@ public class NewMineFragment extends PresenterFragment<StateContract.Presenter>
     public void onResume() {
         super.onResume();
 
-        mPresenter.start();
 
     }
 

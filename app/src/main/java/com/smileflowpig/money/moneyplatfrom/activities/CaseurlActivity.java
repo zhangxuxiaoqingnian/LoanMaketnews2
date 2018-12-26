@@ -152,7 +152,7 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
         //资讯h5
         //https://m.henhaojie.com/xiaohuazhu/information.html?id=3&view_num=1&sessionid=fdhof410su74rraob9matto0r4
         //如果datta不为空，说明是华为推送过来的数据，从url里面获取数据
-        if(strurl.equals("")){
+        if(strurl==null||strurl.equals("")){
             if (data != null) {
                 String pushId = data.getQueryParameter("isPush");
                 isPush = pushId.equals("1") ? true : false;
@@ -165,7 +165,6 @@ public class CaseurlActivity extends PresenterActivity implements View.OnClickLi
                 } else {
                     strurl = ONLINE_URL + "id=" + urlid + "&view_num=" + urlname + "&sessionid=" + sessionid;
                 }
-
             }
             wv.loadUrl(strurl);
         }else {

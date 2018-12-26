@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.android.tu.loadingdialog.LoadingDialog;
 import com.asm.base.android.ui.launcher.BaseApplication;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -103,6 +104,7 @@ public class TableActivity extends PresenterActivity implements View.OnClickList
             //其他类型
             showOnlyDialogLoadding();
             getdatalist();
+
         }
 
     }
